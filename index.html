@@ -3,17 +3,103 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>アイカツアンコール ♡ カードコレクション</title>
+
+  <title>アイカツアンコール ♡ CARD COLLECTION</title>
+
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <h1>✦ アイカツアンコール ✦</h1>
-  <p>♡ CARD COLLECTION ♡</p>
+  <header>
+    <div class="logo-small">✦ AIKATSU ENCORE ✦</div>
 
-  <p>
-    まずはここから、あやりちゃんのカード管理アプリを作っていくよ🎀
-  </p>
+    <h1>カードコレクション</h1>
+
+    <p class="subtitle">
+      MY CARD COLLECTION
+    </p>
+  </header>
+
+
+  <main>
+
+    <section class="status-box">
+
+      <p class="status-title">
+        ♡ COLLECTION STATUS ♡
+      </p>
+
+      <div class="status-number">
+        <span id="owned">0</span>
+        /
+        <span id="total">0</span>
+      </div>
+
+      <div class="progress">
+        <div
+          class="progress-bar"
+          id="progressBar">
+        </div>
+      </div>
+
+      <div class="status-detail">
+        <span>
+          所持 <strong id="ownedDetail">0</strong>
+        </span>
+
+        <span>
+          未所持 <strong id="missing">0</strong>
+        </span>
+
+        <span>
+          <strong id="percentage">0</strong>%
+        </span>
+      </div>
+
+    </section>
+
+
+    <section class="search-box">
+
+      <input
+        type="search"
+        id="search"
+        placeholder="♡ カード名を検索"
+      >
+
+    </section>
+
+
+    <div class="filters">
+
+      <button
+        class="filter-button active"
+        data-filter="all">
+        すべて
+      </button>
+
+      <button
+        class="filter-button"
+        data-filter="owned">
+        ♡ 所持
+      </button>
+
+      <button
+        class="filter-button"
+        data-filter="missing">
+        ☆ 未所持
+      </button>
+
+    </div>
+
+
+    <section id="cards"></section>
+
+  </main>
+
+
+  <script src="app.js"></script>
 
 </body>
 </html>
