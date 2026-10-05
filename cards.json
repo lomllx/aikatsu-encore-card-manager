@@ -1,0 +1,16 @@
+[
+  {
+    "id": "001",
+    "name": "サンプルカード 001",
+    "brand": "Angely Sugar",
+    "rarity": "レア",
+    "image": "https://placehold.co/400x560/fcebf5/9e6e8b?text=Card+001"
+  },
+  {
+    "id": "002",
+    "name": "サンプルカード 002",
+    "brand": "FUTURING GIRL",
+    "rarity": "プレミアム",
+    "image": "https://placehold.co/400x560/f3ecff/9e6e8b?text=Card+002"
+  }
+]
