@@ -707,19 +707,26 @@ footer {
 }
 /* =========================
    アクセサリーカード
-========================= */
+   ========================= */
 
 .card.accessory .accessory-image {
+  width: 100%;
   aspect-ratio: 7 / 5 !important;
   overflow: hidden;
+  border-radius: 12px;
+  background: #f8f3f8;
+
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .card.accessory .accessory-image img {
-  width: 142%;
-  height: 142%;
+  width: auto !important;
+  height: 140% !important;
+  max-width: none !important;
+  max-height: none !important;
+
   object-fit: contain !important;
   transform: rotate(90deg);
 }
