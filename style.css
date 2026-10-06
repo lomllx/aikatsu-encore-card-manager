@@ -165,3 +165,278 @@ footer {
   font-size: 11px;
   letter-spacing: 2px;
 }
+/* ====================
+   Card Page
+==================== */
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: #8d6b91;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+
+/* Collection status */
+
+.collection-status {
+  padding: 18px 20px;
+}
+
+.status-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.status-title span {
+  color: #9f879f;
+  font-size: 13px;
+}
+
+
+/* Progress bar */
+
+.progress {
+  width: 100%;
+  height: 8px;
+  margin-top: 12px;
+
+  background: #f0e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#progressBar {
+  width: 0%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    #e7a7c5,
+    #c9b9e8
+  );
+
+  border-radius: 10px;
+
+  transition: width 0.3s ease;
+}
+
+
+/* Search */
+
+.search-box {
+  width: 100%;
+
+  padding: 13px 15px;
+
+  border: none;
+  outline: none;
+
+  font-size: 16px;
+
+  color: #554b55;
+  background: transparent;
+}
+
+.search-box::placeholder {
+  color: #b8adb8;
+}
+
+
+/* Filter */
+
+.filter-area {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 7px;
+
+  margin-bottom: 15px;
+}
+
+.filter-button {
+  min-height: 42px;
+
+  border: 1px solid #eadfea;
+  border-radius: 12px;
+
+  background: white;
+  color: #8c7d8c;
+
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.filter-button.active {
+  background: #f7eaf2;
+  border-color: #e2b4cf;
+  color: #8d6b91;
+}
+
+
+/* Card grid */
+
+.card-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 12px;
+}
+
+
+/* Card */
+
+.card {
+  position: relative;
+
+  background: white;
+
+  border: 1px solid #eadfea;
+  border-radius: 15px;
+
+  padding: 8px;
+
+  overflow: hidden;
+}
+
+
+/* Card image */
+
+.card-image {
+  width: 100%;
+
+  aspect-ratio: 0.7;
+
+  background: #f8f3f8;
+
+  border-radius: 10px;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+}
+
+
+/* Card information */
+
+.card-info {
+  padding: 9px 3px 5px;
+}
+
+.card-info strong {
+  display: block;
+
+  font-size: 12px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-info small {
+  display: block;
+
+  margin-top: 3px;
+
+  font-size: 10px;
+
+  color: #a99eaa;
+}
+
+
+/* Count buttons */
+
+.count-control {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  margin-top: 5px;
+}
+
+.count-control button {
+  width: 34px;
+  height: 34px;
+
+  padding: 0;
+
+  border: 1px solid #e7dce6;
+  border-radius: 50%;
+
+  background: #fff8fc;
+
+  color: #8d6b91;
+
+  font-size: 19px;
+  line-height: 1;
+}
+
+.count-control span {
+  min-width: 18px;
+
+  text-align: center;
+
+  font-size: 14px;
+  font-weight: bold;
+}
+
+
+/* Trade badge */
+
+.trade-badge {
+  margin: 7px 2px 2px;
+
+  padding: 5px;
+
+  border-radius: 8px;
+
+  background: #f8edf5;
+
+  color: #a06d8f;
+
+  text-align: center;
+
+  font-size: 10px;
+  font-weight: bold;
+}
+
+
+/* Loading */
+
+.loading {
+  grid-column: 1 / -1;
+
+  text-align: center;
+
+  padding: 30px;
+
+  color: #aaa0aa;
+  font-size: 13px;
+}
+
+
+/* Smaller screens */
+
+@media (max-width: 360px) {
+
+  .filter-area {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
