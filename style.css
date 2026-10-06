@@ -709,3 +709,25 @@ footer {
   }
 
 }
+/* =========================
+   カード表示 最終設定
+========================= */
+
+.card-image {
+  width: 100%;
+  aspect-ratio: 5 / 7 !important;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #f8f3f8;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain !important;
+  display: block;
+}
