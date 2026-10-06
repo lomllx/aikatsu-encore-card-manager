@@ -705,3 +705,10 @@ footer {
   }
 
 }
+/* =========================
+   アクセサリーカード
+========================= */
+
+.card.accessory .card-image img {
+  transform: rotate(90deg);
+}
