@@ -718,8 +718,8 @@ footer {
 }
 
 .card.accessory .accessory-image img {
-  width: 100%;
-  height: 100%;
+  width: 142%;
+  height: 142%;
   object-fit: contain !important;
   transform: rotate(90deg);
 }
