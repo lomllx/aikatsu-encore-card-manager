@@ -331,13 +331,14 @@
 
       return cards.filter(card => {
 
-        const id =
-          String(card.id || "")
-            .toLowerCase();
-
-        const name =
-          String(card.name || "")
-            .toLowerCase();
+        const searchableText = [
+          card.id,
+          card.name,
+          card.unit
+        ]
+          .filter(value => value)
+          .join(" ")
+          .toLowerCase();
 
         const count =
           getCount(card);
@@ -347,8 +348,7 @@
 
         if (
           keyword &&
-          !id.includes(keyword) &&
-          !name.includes(keyword)
+          !searchableText.includes(keyword)
         ) {
           return false;
         }
