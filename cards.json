@@ -3,71 +3,78 @@
     "id": "E1-01_PR",
     "season": 1,
     "name": "オーロラキスキャミソール",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "キュート",
+    "brand": "エンジェリーシュガー",
+    "coordinate": "オーロラキスコーデ",
     "category": "トップス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-01_PR.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-01_PR.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-01_PR_b.webp"
   },
   {
     "id": "E1-02_PR",
     "season": 1,
     "name": "オーロラキスドレープスカート",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "キュート",
+    "brand": "エンジェリーシュガー",
+    "coordinate": "オーロラキスコーデ",
     "category": "ボトムス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-02_PR.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-02_PR.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-02_PR_b.webp"
   },
   {
     "id": "E1-03_PR",
     "season": 1,
     "name": "オーロラキスバレエシューズ",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "キュート",
+    "brand": "エンジェリーシュガー",
+    "coordinate": "オーロラキスコーデ",
     "category": "シューズ",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-03_PR.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-03_PR.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-03_PR_b.webp"
   },
   {
     "id": "E1-04_PR",
     "season": 1,
     "name": "オーロラキスリボン",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "キュート",
+    "brand": "エンジェリーシュガー",
+    "coordinate": "オーロラキスコーデ",
     "category": "アクセサリー",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-04_PR.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-04_PR.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-04_PR_b.webp"
   },
   {
     "id": "E1-05_R",
     "season": 1,
     "name": "アイスブルーフリルキャミソール",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "キュート",
+    "brand": "エンジェリーシュガー",
+    "coordinate": "アイスブルーコーデ",
     "category": "トップス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-05_R.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-05_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-05_R_b.webp"
   },
   {
     "id": "E1-06_R",
     "season": 1,
     "name": "アイスブルーフリルパニエ",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "キュート",
+    "brand": "エンジェリーシュガー",
+    "coordinate": "アイスブルーコーデ",
     "category": "ボトムス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-06_R.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-06_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-06_R_b.webp"
   },
   {
     "id": "E1-07_R",
     "season": 1,
     "name": "アイスブルーシューズ",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "キュート",
+    "brand": "エンジェリーシュガー",
+    "coordinate": "アイスブルーコーデ",
     "category": "シューズ",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-07_R.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-07_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-07_R_b.webp"
   },
   {
     "id": "E1-08_R",
@@ -77,7 +84,8 @@
     "brand": "",
     "coordinate": "",
     "category": "アクセサリー",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-08_R.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-08_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-08_R_b.webp"
   },
   {
     "id": "E1-09_R",
@@ -87,147 +95,162 @@
     "brand": "",
     "coordinate": "",
     "category": "トップス&ボトムス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-09_R.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-09_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-09_R_b.webp"
   },
   {
     "id": "E1-10_R",
     "season": 1,
     "name": "ドリーミースタートップス",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "キュート",
+    "brand": "ドリーミークラウン",
+    "coordinate": "ドリーミースターコーデ",
     "category": "トップス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-10_R.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-10_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-10_R_b.webp"
   },
   {
     "id": "E1-11_R",
     "season": 1,
     "name": "ドリーミースタースカート",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "キュート",
+    "brand": "ドリーミークラウン",
+    "coordinate": "ドリーミースターコーデ",
     "category": "ボトムス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-11_R.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-11_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-11_R_b.webp"
   },
   {
     "id": "E1-12_R",
     "season": 1,
     "name": "ドリーミースターパンプス",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "キュート",
+    "brand": "ドリーミークラウン",
+    "coordinate": "ドリーミースターコーデ",
     "category": "シューズ",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-12_R.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-12_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-12_R_b.webp"
   },
   {
     "id": "E1-13_R",
     "season": 1,
     "name": "チャーミーリボントップス",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "キュート",
+    "brand": "メープルリボン",
+    "coordinate": "チャーミーリボンコーデ",
     "category": "トップス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-13_R.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-13_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-13_R_b.webp"
   },
   {
     "id": "E1-14_R",
     "season": 1,
     "name": "チャーミーリボンスカート",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "キュート",
+    "brand": "メープルリボン",
+    "coordinate": "チャーミーリボンコーデ",
     "category": "ボトムス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-14_R.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-14_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-14_R_b.webp"
   },
   {
     "id": "E1-15_R",
     "season": 1,
     "name": "チャーミーリボンサンダル",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "キュート",
+    "brand": "メープルリボン",
+    "coordinate": "チャーミーリボンコーデ",
     "category": "シューズ",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-15_R.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-15_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-15_R_b.webp"
   },
   {
     "id": "E1-16_R",
     "season": 1,
     "name": "チャーミーリボンアクセ",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "キュート",
+    "brand": "メープルリボン",
+    "coordinate": "チャーミーリボンコーデ",
     "category": "アクセサリー",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-16_R.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-16_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-16_R_b.webp"
   },
   {
     "id": "E1-17_R",
     "season": 1,
     "name": "クリアネスイエロートップス",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "キュート",
+    "brand": "エンジェリーシュガー",
+    "coordinate": "クリアネスイエローコーデ",
     "category": "トップス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-17_R.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-17_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-17_R_b.webp"
   },
   {
     "id": "E1-18_R",
     "season": 1,
     "name": "クリアネスイエロースカート",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "キュート",
+    "brand": "エンジェリーシュガー",
+    "coordinate": "クリアネスイエローコーデ",
     "category": "ボトムス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-18_R.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-18_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-18_R_b.webp"
   },
   {
     "id": "E1-19_R",
     "season": 1,
     "name": "クリアネスイエローパンプス",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "キュート",
+    "brand": "エンジェリーシュガー",
+    "coordinate": "クリアネスイエローコーデ",
     "category": "シューズ",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-19_R.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-19_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-19_R_b.webp"
   },
   {
     "id": "E1-20_R",
     "season": 1,
     "name": "クリアネスイエローアクセ",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "キュート",
+    "brand": "エンジェリーシュガー",
+    "coordinate": "クリアネスイエローコーデ",
     "category": "アクセサリー",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-20_R.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-20_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-20_R_b.webp"
   },
   {
     "id": "E1-21_N",
     "season": 1,
     "name": "ピンクステージベスト",
-    "type": "",
+    "type": "キュート",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "ピンクステージコーデ",
     "category": "トップス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-21_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-21_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-21_N_b.webp"
   },
   {
     "id": "E1-22_N",
     "season": 1,
     "name": "ピンクステージスカート",
-    "type": "",
+    "type": "キュート",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "ピンクステージコーデ",
     "category": "ボトムス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-22_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-22_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-22_N_b.webp"
   },
   {
     "id": "E1-23_N",
     "season": 1,
     "name": "ピンクステージシューズ",
-    "type": "",
+    "type": "キュート",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "ピンクステージコーデ",
     "category": "シューズ",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-23_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-23_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-23_N_b.webp"
   },
   {
     "id": "E1-24_N",
@@ -237,7 +260,8 @@
     "brand": "",
     "coordinate": "",
     "category": "トップス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-24_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-24_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-24_N_b.webp"
   },
   {
     "id": "E1-25_N",
@@ -247,7 +271,8 @@
     "brand": "",
     "coordinate": "",
     "category": "ボトムス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-25_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-25_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-25_N_b.webp"
   },
   {
     "id": "E1-26_N",
@@ -257,107 +282,118 @@
     "brand": "",
     "coordinate": "",
     "category": "シューズ",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-26_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-26_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-26_N_b.webp"
   },
   {
     "id": "E1-27_N",
     "season": 1,
     "name": "ピンクブロッサムトップス",
-    "type": "",
+    "type": "キュート",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "ピンクブロッサムコーデ",
     "category": "トップス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-27_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-27_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-27_N_b.webp"
   },
   {
     "id": "E1-28_N",
     "season": 1,
     "name": "ピンクブロッサムスカート",
-    "type": "",
+    "type": "キュート",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "ピンクブロッサムコーデ",
     "category": "ボトムス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-28_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-28_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-28_N_b.webp"
   },
   {
     "id": "E1-29_N",
     "season": 1,
     "name": "ピンクブロッサムブーツ",
-    "type": "",
+    "type": "キュート",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "ピンクブロッサムコーデ",
     "category": "シューズ",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-29_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-29_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-29_N_b.webp"
   },
   {
     "id": "E1-30_ER",
     "season": 1,
     "name": "オデットスワン",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "キュート",
+    "brand": "ドリーミークラウン",
+    "coordinate": "オデットスワンコーデ",
     "category": "フルコーデ",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-30_ER.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-30_ER.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-30_ER_b.webp"
   },
   {
     "id": "E1-31_ER",
     "season": 1,
     "name": "リルリボンストーリー",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "キュート",
+    "brand": "メープルリボン",
+    "coordinate": "リルリボンストーリーコーデ",
     "category": "フルコーデ",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-31_ER.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-31_ER.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-31_ER_b.webp"
   },
   {
     "id": "E1-32_ER",
     "season": 1,
     "name": "オーロラペガサス",
-    "type": "",
+    "type": "キュート",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "オーロラペガサスコーデ",
     "category": "フルコーデ",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-32_ER.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-32_ER.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-32_ER_b.webp"
   },
   {
     "id": "E1-33_PR",
     "season": 1,
     "name": "天の川コズミックワンショルダー",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "クール",
+    "brand": "フューチャリングガール",
+    "coordinate": "天の川コズミックコーデ",
     "category": "トップス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-33_PR.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-33_PR.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-33_PR_b.webp"
   },
   {
     "id": "E1-34_PR",
     "season": 1,
     "name": "天の川コズミックスカート",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "クール",
+    "brand": "フューチャリングガール",
+    "coordinate": "天の川コズミックコーデ",
     "category": "ボトムス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-34_PR.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-34_PR.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-34_PR_b.webp"
   },
   {
     "id": "E1-35_PR",
     "season": 1,
     "name": "天の川コズミックブーツ",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "クール",
+    "brand": "フューチャリングガール",
+    "coordinate": "天の川コズミックコーデ",
     "category": "シューズ",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-35_PR.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-35_PR.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-35_PR_b.webp"
   },
   {
     "id": "E1-36_PR",
     "season": 1,
     "name": "天の川コズミックカチューシャ",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "クール",
+    "brand": "フューチャリングガール",
+    "coordinate": "天の川コズミックコーデ",
     "category": "アクセサリー",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-36_PR.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-36_PR.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-36_PR_b.webp"
   },
   {
     "id": "E1-37_R",
@@ -367,67 +403,74 @@
     "brand": "",
     "coordinate": "",
     "category": "トップス&ボトムス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-37_R.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-37_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-37_R_b.webp"
   },
   {
     "id": "E1-38_R",
     "season": 1,
     "name": "ブラックモダンボレロ",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "クール",
+    "brand": "フューチャリングガール",
+    "coordinate": "ブラックフューチャーコーデ",
     "category": "トップス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-38_R.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-38_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-38_R_b.webp"
   },
   {
     "id": "E1-39_R",
     "season": 1,
     "name": "ブラックフューチャーエナメルショートパンツ",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "クール",
+    "brand": "フューチャリングガール",
+    "coordinate": "ブラックフューチャーコーデ",
     "category": "ボトムス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-39_R.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-39_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-39_R_b.webp"
   },
   {
     "id": "E1-40_R",
     "season": 1,
     "name": "ブラックフューチャーブーツ",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "クール",
+    "brand": "フューチャリングガール",
+    "coordinate": "ブラックフューチャーコーデ",
     "category": "シューズ",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-40_R.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-40_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-40_R_b.webp"
   },
   {
     "id": "E1-41_N",
     "season": 1,
     "name": "ブルーステージブラウス",
-    "type": "",
+    "type": "クール",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "ブルーステージコーデ",
     "category": "トップス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-41_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-41_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-41_N_b.webp"
   },
   {
     "id": "E1-42_N",
     "season": 1,
     "name": "ブルーステージスカート",
-    "type": "",
+    "type": "クール",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "ブルーステージコーデ",
     "category": "ボトムス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-42_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-42_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-42_N_b.webp"
   },
   {
     "id": "E1-43_N",
     "season": 1,
     "name": "ブルーステージブーツ",
-    "type": "",
+    "type": "クール",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "ブルーステージコーデ",
     "category": "シューズ",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-43_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-43_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-43_N_b.webp"
   },
   {
     "id": "E1-44_N",
@@ -437,7 +480,8 @@
     "brand": "",
     "coordinate": "",
     "category": "トップス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-44_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-44_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-44_N_b.webp"
   },
   {
     "id": "E1-45_N",
@@ -447,7 +491,8 @@
     "brand": "",
     "coordinate": "",
     "category": "ボトムス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-45_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-45_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-45_N_b.webp"
   },
   {
     "id": "E1-46_N",
@@ -457,87 +502,96 @@
     "brand": "",
     "coordinate": "",
     "category": "シューズ",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-46_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-46_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-46_N_b.webp"
   },
   {
     "id": "E1-47_N",
     "season": 1,
     "name": "ネイビーブロッサムトップス",
-    "type": "",
+    "type": "クール",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "ネイビーブロッサムコーデ",
     "category": "トップス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-47_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-47_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-47_N_b.webp"
   },
   {
     "id": "E1-48_N",
     "season": 1,
     "name": "ネイビーブロッサムスカート",
-    "type": "",
+    "type": "クール",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "ネイビーブロッサムコーデ",
     "category": "ボトムス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-48_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-48_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-48_N_b.webp"
   },
   {
     "id": "E1-49_N",
     "season": 1,
     "name": "ネイビーブロッサムブーツ",
-    "type": "",
+    "type": "クール",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "ネイビーブロッサムコーデ",
     "category": "シューズ",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-49_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-49_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-49_N_b.webp"
   },
   {
     "id": "E1-50_ER",
     "season": 1,
     "name": "ドリームエミネンス",
-    "type": "",
+    "type": "クール",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "ドリームエミネンスコーデ",
     "category": "フルコーデ",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-50_ER.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-50_ER.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-50_ER_b.webp"
   },
   {
     "id": "E1-51_PR",
     "season": 1,
     "name": "レジェンダリールージュドレス",
-    "type": "",
+    "type": "セクシー",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "レジェンダリールージュコーデ",
     "category": "トップス&ボトムス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-51_PR.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-51_PR.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-51_PR_b.webp"
   },
   {
     "id": "E1-52_PR",
     "season": 1,
     "name": "レジェンダリールージュパンプス",
-    "type": "",
+    "type": "セクシー",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "レジェンダリールージュコーデ",
     "category": "シューズ",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-52_PR.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-52_PR.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-52_PR_b.webp"
   },
   {
     "id": "E1-53_R",
     "season": 1,
     "name": "アゲハレッドコクーンワンピ",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "セクシー",
+    "brand": "スパイシーアゲハ",
+    "coordinate": "アゲハレッドコーデ",
     "category": "トップス&ボトムス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-53_R.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-53_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-53_R_b.webp"
   },
   {
     "id": "E1-54_R",
     "season": 1,
     "name": "アゲハレッドミュール",
-    "type": "",
-    "brand": "",
-    "coordinate": "",
+    "type": "セクシー",
+    "brand": "スパイシーアゲハ",
+    "coordinate": "アゲハレッドコーデ",
     "category": "シューズ",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-54_R.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-54_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-54_R_b.webp"
   },
   {
     "id": "E1-55_R",
@@ -547,7 +601,8 @@
     "brand": "",
     "coordinate": "",
     "category": "トップス&ボトムス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-55_R.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-55_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-55_R_b.webp"
   },
   {
     "id": "E1-56_R",
@@ -557,7 +612,8 @@
     "brand": "",
     "coordinate": "",
     "category": "シューズ",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-56_R.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-56_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-56_R_b.webp"
   },
   {
     "id": "E1-57_R",
@@ -567,7 +623,8 @@
     "brand": "",
     "coordinate": "",
     "category": "トップス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-57_R.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-57_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-57_R_b.webp"
   },
   {
     "id": "E1-58_R",
@@ -577,7 +634,8 @@
     "brand": "",
     "coordinate": "",
     "category": "ボトムス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-58_R.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-58_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-58_R_b.webp"
   },
   {
     "id": "E1-59_R",
@@ -587,37 +645,41 @@
     "brand": "",
     "coordinate": "",
     "category": "アクセサリー",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-59_R.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-59_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-59_R_b.webp"
   },
   {
     "id": "E1-60_N",
     "season": 1,
     "name": "パープルステージトップス",
-    "type": "",
+    "type": "セクシー",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "パープルステージコーデ",
     "category": "トップス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-60_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-60_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-60_N_b.webp"
   },
   {
     "id": "E1-61_N",
     "season": 1,
     "name": "パープルステージスカート",
-    "type": "",
+    "type": "セクシー",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "パープルステージコーデ",
     "category": "ボトムス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-61_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-61_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-61_N_b.webp"
   },
   {
     "id": "E1-62_N",
     "season": 1,
     "name": "パープルステージニーハイパンプス",
-    "type": "",
+    "type": "セクシー",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "パープルステージコーデ",
     "category": "シューズ",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-62_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-62_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-62_N_b.webp"
   },
   {
     "id": "E1-63_N",
@@ -627,7 +689,8 @@
     "brand": "",
     "coordinate": "",
     "category": "トップス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-63_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-63_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-63_N_b.webp"
   },
   {
     "id": "E1-64_N",
@@ -637,7 +700,8 @@
     "brand": "",
     "coordinate": "",
     "category": "ボトムス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-64_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-64_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-64_N_b.webp"
   },
   {
     "id": "E1-65_N",
@@ -647,7 +711,8 @@
     "brand": "",
     "coordinate": "",
     "category": "トップス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-65_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-65_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-65_N_b.webp"
   },
   {
     "id": "E1-66_N",
@@ -657,7 +722,8 @@
     "brand": "",
     "coordinate": "",
     "category": "ボトムス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-66_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-66_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-66_N_b.webp"
   },
   {
     "id": "E1-67_N",
@@ -667,186 +733,217 @@
     "brand": "",
     "coordinate": "",
     "category": "シューズ",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-67_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-67_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-67_N_b.webp"
   },
   {
     "id": "E1-68_N",
     "season": 1,
     "name": "パープルブロッサムトップス",
-    "type": "",
+    "type": "セクシー",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "パープルブロッサムコーデ",
     "category": "トップス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-68_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-68_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-68_N_b.webp"
   },
   {
     "id": "E1-69_N",
     "season": 1,
     "name": "パープルブロッサムスカート",
-    "type": "",
+    "type": "セクシー",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "パープルブロッサムコーデ",
     "category": "ボトムス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-69_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-69_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-69_N_b.webp"
   },
   {
     "id": "E1-70_N",
     "season": 1,
     "name": "パープルブロッサムブーツ",
-    "type": "",
+    "type": "セクシー",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "パープルブロッサムコーデ",
     "category": "シューズ",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-70_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-70_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-70_N_b.webp"
   },
   {
     "id": "E1-71_PR",
     "season": 1,
     "name": "サンシャインスターウェイトップス",
-    "type": "",
+    "type": "ポップ",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "サンシャインスターウェイコーデ",
     "category": "トップス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-71_PR.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-71_PR.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-71_PR_b.webp",
+    "unit": "ソレイユ"
   },
   {
     "id": "E1-72_PR",
     "season": 1,
     "name": "サンシャインスターウェイスカート",
-    "type": "",
+    "type": "ポップ",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "サンシャインスターウェイコーデ",
     "category": "ボトムス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-72_PR.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-72_PR.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-72_PR_b.webp",
+    "unit": "ソレイユ"
   },
   {
     "id": "E1-73_PR",
     "season": 1,
     "name": "サンシャインスターウェイシューズ",
-    "type": "",
+    "type": "ポップ",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "サンシャインスターウェイコーデ",
     "category": "シューズ",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-73_PR.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-73_PR.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-73_PR_b.webp",
+    "unit": "ソレイユ"
   },
   {
     "id": "E1-74_PR",
     "season": 1,
     "name": "サンシャインスターウェイカチューシャ",
-    "type": "",
+    "type": "ポップ",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "サンシャインスターウェイコーデ",
     "category": "アクセサリー",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-74_PR.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-74_PR.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-74_PR_b.webp",
+    "unit": "ソレイユ"
   },
   {
     "id": "E1-75_PR",
     "season": 1,
     "name": "サンライズスターウェイトップス",
-    "type": "",
+    "type": "ポップ",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "サンライズスターウェイコーデ",
     "category": "トップス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-75_PR.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-75_PR.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-75_PR_b.webp",
+    "unit": "ソレイユ"
   },
   {
     "id": "E1-76_PR",
     "season": 1,
     "name": "サンライズスターウェイスカート",
-    "type": "",
+    "type": "ポップ",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "サンライズスターウェイコーデ",
     "category": "ボトムス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-76_PR.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-76_PR.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-76_PR_b.webp",
+    "unit": "ソレイユ"
   },
   {
     "id": "E1-77_PR",
     "season": 1,
     "name": "サンライズスターウェイシューズ",
-    "type": "",
+    "type": "ポップ",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "サンライズスターウェイコーデ",
     "category": "シューズ",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-77_PR.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-77_PR.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-77_PR_b.webp",
+    "unit": "ソレイユ"
   },
   {
     "id": "E1-78_PR",
     "season": 1,
     "name": "サンライズスターウェイカチューシャ",
-    "type": "",
+    "type": "ポップ",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "サンライズスターウェイコーデ",
     "category": "アクセサリー",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-78_PR.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-78_PR.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-78_PR_b.webp",
+    "unit": "ソレイユ"
   },
   {
     "id": "E1-79_PR",
     "season": 1,
     "name": "サンセットスターウェイトップス",
-    "type": "",
+    "type": "ポップ",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "サンセットスターウェイコーデ",
     "category": "トップス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-79_PR.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-79_PR.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-79_PR_b.webp",
+    "unit": "ソレイユ"
   },
   {
     "id": "E1-80_PR",
     "season": 1,
     "name": "サンセットスターウェイスカート",
-    "type": "",
+    "type": "ポップ",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "サンセットスターウェイコーデ",
     "category": "ボトムス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-80_PR.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-80_PR.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-80_PR_b.webp",
+    "unit": "ソレイユ"
   },
   {
     "id": "E1-81_PR",
     "season": 1,
     "name": "サンセットスターウェイシューズ",
-    "type": "",
+    "type": "ポップ",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "サンセットスターウェイコーデ",
     "category": "シューズ",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-81_PR.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-81_PR.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-81_PR_b.webp",
+    "unit": "ソレイユ"
   },
   {
     "id": "E1-82_PR",
     "season": 1,
     "name": "サンセットスターウェイカチューシャ",
-    "type": "",
+    "type": "ポップ",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "サンセットスターウェイコーデ",
     "category": "アクセサリー",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-82_PR.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-82_PR.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-82_PR_b.webp",
+    "unit": "ソレイユ"
   },
   {
     "id": "E1-83_N",
     "season": 1,
     "name": "イエローブロッサムトップス",
-    "type": "",
+    "type": "ポップ",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "イエローブロッサムコーデ",
     "category": "トップス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-83_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-83_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-83_N_b.webp"
   },
   {
     "id": "E1-84_N",
     "season": 1,
     "name": "イエローブロッサムスカート",
-    "type": "",
+    "type": "ポップ",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "イエローブロッサムコーデ",
     "category": "ボトムス",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-84_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-84_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-84_N_b.webp"
   },
   {
     "id": "E1-85_N",
     "season": 1,
     "name": "イエローブロッサムブーツ",
-    "type": "",
+    "type": "ポップ",
     "brand": "",
-    "coordinate": "",
+    "coordinate": "イエローブロッサムコーデ",
     "category": "シューズ",
-    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-85_N.webp"
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-85_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-85_N_b.webp"
   }
 ]
