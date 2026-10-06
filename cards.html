@@ -12,15 +12,20 @@
 
   <title>第1弾 ♡ アイカツアンコール</title>
 
+  <!-- v=2 はSafariの古いCSSキャッシュを避けるため -->
   <link
     rel="stylesheet"
-    href="style.css"
+    href="style.css?v=2"
   >
 
 </head>
 
 
 <body>
+
+  <!-- =========================
+       Header
+  ========================== -->
 
   <header class="header">
 
@@ -44,6 +49,7 @@
 
   <main class="home">
 
+
     <!-- =========================
          コレクション状況
     ========================== -->
@@ -63,9 +69,7 @@
       </div>
 
       <div class="progress">
-
         <div id="progressBar"></div>
-
       </div>
 
     </section>
@@ -88,10 +92,11 @@
 
 
     <!-- =========================
-         絞り込み
+         4種類の絞り込み
     ========================== -->
 
-    <section class="filter-area">
+    <section class="filter-area metadata-filters">
+
 
       <div class="filter-group">
 
@@ -160,6 +165,7 @@
 
       </div>
 
+
     </section>
 
 
@@ -219,10 +225,12 @@
 
     </section>
 
+
   </main>
 
 
   <script>
+
 
     /* =========================
        基本要素
@@ -270,7 +278,7 @@
 
 
     /* =========================
-       データ
+       カードデータ
     ========================== */
 
     let cards = [];
@@ -279,7 +287,7 @@
 
 
     /* =========================
-       所持枚数
+       localStorage
     ========================== */
 
     const STORAGE_KEY =
@@ -297,15 +305,16 @@
 
     function isAccessory(card) {
 
-      return String(
-        card.category || ""
-      ).trim() === "アクセサリー";
+      return (
+        String(card.category || "").trim()
+        === "アクセサリー"
+      );
 
     }
 
 
     /* =========================
-       カードデータ読み込み
+       カード読み込み
     ========================== */
 
     async function loadCards() {
@@ -327,23 +336,31 @@
           await response.json();
 
 
-        /* 弾ごとにカードを分ける */
+        /* 弾ごとに分ける */
 
         cards =
           allCards.filter(card => {
 
-            return String(
-              card.season || "1"
-            ) === String(season);
+            return (
+              String(card.season || "1")
+              === String(season)
+            );
 
           });
 
+
+        /* タイトル */
 
         seasonTitle.textContent =
           `✦ 第${season}弾 ✦`;
 
 
+        /* 絞り込み */
+
         createFilterOptions();
+
+
+        /* カード表示 */
 
         renderCards();
 
@@ -364,7 +381,7 @@
 
 
     /* =========================
-       所持枚数を取得
+       所持枚数取得
     ========================== */
 
     function getCount(cardId) {
@@ -375,7 +392,7 @@
 
 
     /* =========================
-       所持枚数を変更
+       所持枚数変更
     ========================== */
 
     function changeCount(
@@ -392,13 +409,16 @@
           current + amount
         );
 
+
       ownedCards[cardId] =
         next;
+
 
       localStorage.setItem(
         STORAGE_KEY,
         JSON.stringify(ownedCards)
       );
+
 
       renderCards();
 
@@ -406,7 +426,7 @@
 
 
     /* =========================
-       絞り込み選択肢
+       絞り込み選択肢作成
     ========================== */
 
     function createFilterOptions() {
@@ -447,20 +467,23 @@
         )
       ];
 
+
       values.sort();
+
 
       values.forEach(value => {
 
         const option =
-          document.createElement(
-            "option"
-          );
+          document.createElement("option");
+
 
         option.value =
           value;
 
+
         option.textContent =
           value;
+
 
         select.appendChild(
           option
@@ -504,13 +527,35 @@
       }
 
 
+      const frontImage = `
+        <div class="
+          modal-card-image
+          ${accessory ? "modal-accessory-image" : ""}
+        ">
+
+          <img
+            src="${card.image}"
+            alt="${card.name || card.id}"
+          >
+
+        </div>
+      `;
+
+
       const backImage =
         card.backImage
           ? `
-            <img
-              src="${card.backImage}"
-              alt="${card.name || card.id} 裏面"
-            >
+            <div class="
+              modal-card-image
+              ${accessory ? "modal-accessory-image" : ""}
+            ">
+
+              <img
+                src="${card.backImage}"
+                alt="${card.name || card.id} 裏面"
+              >
+
+            </div>
           `
           : "";
 
@@ -528,10 +573,7 @@
 
         <div class="modal-images">
 
-          <img
-            src="${card.image}"
-            alt="${card.name || card.id}"
-          >
+          ${frontImage}
 
           ${backImage}
 
@@ -545,7 +587,7 @@
       document.body.appendChild(modal);
 
 
-      /* 閉じるボタン */
+      /* 閉じる */
 
       content
         .querySelector(".card-modal-close")
@@ -614,6 +656,7 @@
               card.id || ""
             ).toLowerCase();
 
+
           const name =
             String(
               card.name || ""
@@ -649,7 +692,8 @@
             getCount(card.id);
 
 
-          let matchesStatus = true;
+          let matchesStatus =
+            true;
 
 
           if (
@@ -701,6 +745,10 @@
       cardList.innerHTML = "";
 
 
+      /* =========================
+         該当なし
+      ========================== */
+
       if (
         filteredCards.length === 0
       ) {
@@ -719,7 +767,7 @@
 
 
       /* =========================
-         カードを作成
+         カード作成
       ========================== */
 
       filteredCards.forEach(card => {
@@ -727,17 +775,14 @@
         const count =
           getCount(card.id);
 
+
         const accessory =
           isAccessory(card);
 
 
         const cardElement =
-          document.createElement(
-            "article"
-          );
+          document.createElement("article");
 
-
-        /* 通常 / アクセサリーを明確に分ける */
 
         cardElement.className =
           accessory
@@ -745,26 +790,40 @@
             : "card";
 
 
-        /* 画像クラスも分ける */
+        /* =========================
+           画像部分
+        ========================== */
 
         const imageClass =
           accessory
             ? "card-image accessory-image"
-            : "card-image normal-image";
+            : "card-image";
+
+
+        const imageInnerClass =
+          accessory
+            ? "accessory-image-inner"
+            : "normal-image-inner";
 
 
         cardElement.innerHTML = `
 
           <div class="${imageClass}">
 
-            <img
-              src="${card.image}"
-              alt="${card.name || card.id}"
-              onerror="this.style.display='none'"
-            >
+            <div class="${imageInnerClass}">
+
+              <img
+                src="${card.image}"
+                alt="${card.name || card.id}"
+                onerror="this.style.display='none'"
+              >
+
+            </div>
 
           </div>
 
+
+          <!-- カード情報 -->
 
           <div class="card-info">
 
@@ -779,11 +838,14 @@
           </div>
 
 
+          <!-- 所持枚数 -->
+
           <div class="count-control">
 
             <button
               type="button"
               class="minus"
+              aria-label="減らす"
             >
               −
             </button>
@@ -797,6 +859,7 @@
             <button
               type="button"
               class="plus"
+              aria-label="増やす"
             >
               ＋
             </button>
@@ -832,7 +895,7 @@
 
 
         /* =========================
-           −ボタン
+           −
         ========================== */
 
         cardElement
@@ -840,16 +903,18 @@
           .addEventListener(
             "click",
             () => {
+
               changeCount(
                 card.id,
                 -1
               );
+
             }
           );
 
 
         /* =========================
-           ＋ボタン
+           ＋
         ========================== */
 
         cardElement
@@ -857,10 +922,12 @@
           .addEventListener(
             "click",
             () => {
+
               changeCount(
                 card.id,
                 1
               );
+
             }
           );
 
@@ -946,19 +1013,16 @@
     ========================== */
 
     document
-      .querySelectorAll(
-        ".filter-button"
-      )
+      .querySelectorAll(".filter-button")
       .forEach(button => {
 
         button.addEventListener(
           "click",
           () => {
 
+
             document
-              .querySelectorAll(
-                ".filter-button"
-              )
+              .querySelectorAll(".filter-button")
               .forEach(otherButton => {
 
                 otherButton.classList.remove(
@@ -990,6 +1054,7 @@
     ========================== */
 
     loadCards();
+
 
   </script>
 
