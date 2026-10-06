@@ -496,7 +496,78 @@
 
     }
 
+/* =========================
+   カード拡大表示
+========================= */
 
+function openCardModal(card) {
+  const isAccessory =
+    card.category === "アクセサリー";
+
+  const modal =
+    document.createElement("div");
+
+  modal.className =
+    "card-modal";
+
+  const content =
+    document.createElement("div");
+
+  content.className =
+    "card-modal-content";
+
+  if (isAccessory) {
+    content.classList.add(
+      "accessory-modal"
+    );
+  }
+
+  content.innerHTML = `
+    <button
+      type="button"
+      class="card-modal-close"
+    >
+      ×
+    </button>
+
+    <div class="modal-images">
+      <img
+        src="${card.image}"
+        alt="${card.name || card.id}"
+      >
+
+      ${
+        card.backImage
+          ? `
+            <img
+              src="${card.backImage}"
+              alt="${card.name || card.id} 裏面"
+            >
+          `
+          : ""
+      }
+    </div>
+  `;
+
+  modal.appendChild(content);
+  document.body.appendChild(modal);
+
+  content
+    .querySelector(".card-modal-close")
+    .addEventListener(
+      "click",
+      () => modal.remove()
+    );
+
+  modal.addEventListener(
+    "click",
+    event => {
+      if (event.target === modal) {
+        modal.remove();
+      }
+    }
+  );
+}
 
     /* =========================
        カード表示
