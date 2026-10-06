@@ -668,7 +668,12 @@
 
 
         cardElement.className =
-          "card";
+  "card" +
+  (
+    card.category === "アクセサリー"
+      ? " accessory"
+      : ""
+  );
 
 
 
