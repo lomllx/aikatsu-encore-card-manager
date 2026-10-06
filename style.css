@@ -4,215 +4,164 @@
 
 body {
   margin: 0;
-  min-height: 100vh;
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Hiragino Kaku Gothic ProN",
-    "Yu Gothic",
+  background: #fff8fc;
+  color: #554b55;
+  font-family: -apple-system, BlinkMacSystemFont,
+    "Hiragino Kaku Gothic ProN", "Yu Gothic",
     sans-serif;
-  color: #6f5965;
-  background:
-    radial-gradient(circle at top left, #fff 0%, transparent 35%),
-    linear-gradient(135deg, #fff7fb, #f9f4ff);
 }
 
-header {
+
+/* --------------------
+   Header
+-------------------- */
+
+.header {
   text-align: center;
-  padding: 32px 20px 24px;
+  padding: 35px 20px 25px;
 }
 
-.logo-small {
-  font-size: 13px;
-  letter-spacing: 0.25em;
-  color: #c89ab5;
-  margin-bottom: 8px;
-}
-
-h1 {
+.header h1 {
   margin: 0;
-  font-size: 28px;
-  letter-spacing: 0.08em;
-  color: #9f708c;
+  font-size: 24px;
+  letter-spacing: 2px;
+  color: #8d6b91;
 }
 
-.subtitle {
+.header p {
   margin: 8px 0 0;
   font-size: 12px;
-  letter-spacing: 0.18em;
-  color: #b89baa;
+  letter-spacing: 3px;
+  color: #b79db9;
 }
 
-main {
-  width: min(100% - 28px, 760px);
-  margin: 0 auto 40px;
+
+/* --------------------
+   Home
+-------------------- */
+
+.home {
+  width: min(92%, 600px);
+  margin: 0 auto;
 }
 
-.status-box {
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.82);
-  border: 1px solid rgba(220, 190, 210, 0.5);
-  border-radius: 24px;
-  box-shadow: 0 8px 25px rgba(170, 130, 160, 0.12);
-  margin-bottom: 18px;
-}
 
-.status-title {
-  margin: 0 0 14px;
-  text-align: center;
-  font-size: 13px;
-  letter-spacing: 0.15em;
-  color: #aa8298;
-}
+/* --------------------
+   Menu Section
+-------------------- */
 
-.status-number {
-  text-align: center;
-  font-size: 28px;
-  font-weight: bold;
-  color: #9e6e8b;
-}
-
-.progress {
-  height: 10px;
-  background: #f1e6ee;
-  border-radius: 999px;
-  overflow: hidden;
-  margin-top: 14px;
-}
-
-.progress-bar {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, #e7a9c9, #cdaee8);
-  border-radius: 999px;
-  transition: width 0.3s ease;
-}
-
-.status-detail {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 15px;
-  font-size: 12px;
-}
-
-.search-box {
-  margin-bottom: 16px;
-}
-
-#search {
-  width: 100%;
-  padding: 14px 18px;
-  border: 1px solid #ead8e3;
-  border-radius: 999px;
-  outline: none;
-  background: rgba(255, 255, 255, 0.9);
-  color: #6f5965;
-  font-size: 14px;
-  box-shadow: 0 5px 18px rgba(170, 130, 160, 0.08);
-}
-
-#search:focus {
-  border-color: #d5a8c2;
-}
-
-.filters {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-  padding-bottom: 6px;
-  margin-bottom: 18px;
-}
-
-.filter-button {
-  flex-shrink: 0;
-  border: 1px solid #ead8e3;
+.menu-section {
+  margin-bottom: 14px;
   background: white;
-  color: #9c788b;
-  padding: 9px 15px;
-  border-radius: 999px;
-  font-size: 12px;
-}
-
-.filter-button.active {
-  background: #eabbd4;
-  color: white;
-  border-color: #eabbd4;
-}
-
-#cards {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 13px;
-}
-
-.card {
-  position: relative;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid #eadde5;
+  border: 1px solid #eadfea;
   border-radius: 18px;
-  padding: 9px;
-  box-shadow: 0 7px 18px rgba(170, 130, 160, 0.10);
-  transition: transform 0.2s ease;
+  overflow: hidden;
 }
 
-.card:active {
-  transform: scale(0.97);
-}
 
-.card-image {
-  width: 100%;
-  aspect-ratio: 0.7;
-  object-fit: cover;
-  border-radius: 12px;
-  background: #f5edf3;
-}
+/* --------------------
+   Collection button
+-------------------- */
 
-.card-name {
-  margin: 9px 3px 3px;
-  font-size: 12px;
-  font-weight: bold;
-  line-height: 1.4;
-}
-
-.card-info {
-  margin: 0 3px 8px;
-  font-size: 10px;
-  color: #aa929f;
-}
-
-.owned {
-  border-color: #dba6c3;
-}
-
-.owned::after {
-  content: "♡ 所持";
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  padding: 5px 8px;
-  background: rgba(255,255,255,0.92);
-  color: #c27fa5;
-  border-radius: 999px;
-  font-size: 10px;
-}
-
-.own-button {
+.section-title {
   width: 100%;
   border: none;
-  border-radius: 999px;
-  padding: 9px;
-  background: #f5e6ef;
-  color: #a5778e;
+  background: white;
+  color: #554b55;
+
+  padding: 18px 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 16px;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+
+/* --------------------
+   Collection list
+-------------------- */
+
+.collection-list {
+  border-top: 1px solid #f0e7ef;
+}
+
+
+.season-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 17px 20px;
+
+  color: #554b55;
+  text-decoration: none;
+
+  border-bottom: 1px solid #f3edf3;
+
+  transition: background 0.2s;
+}
+
+
+.season-link:last-child {
+  border-bottom: none;
+}
+
+
+.season-link:active {
+  background: #fff0f7;
+}
+
+
+/* --------------------
+   Other menu
+-------------------- */
+
+.menu-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 18px 20px;
+
+  color: #554b55;
+  text-decoration: none;
+}
+
+
+.menu-link strong {
+  display: block;
+  font-size: 16px;
+}
+
+
+.menu-link small {
+  display: block;
+  margin-top: 4px;
+
+  font-size: 12px;
+  color: #aa9eaa;
+}
+
+
+.menu-link > span:last-child {
+  font-size: 24px;
+  color: #b99bb7;
+}
+
+
+/* --------------------
+   Footer
+-------------------- */
+
+footer {
+  text-align: center;
+  padding: 30px 20px;
+  color: #c0aabd;
   font-size: 11px;
-}
-
-.card.owned .own-button {
-  background: #e9bfd5;
-  color: white;
-}
-
-@media (min-width: 600px) {
-  #cards {
-    grid-template-columns: repeat(4, 1fr);
-  }
+  letter-spacing: 2px;
 }
