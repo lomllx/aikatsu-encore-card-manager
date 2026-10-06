@@ -1,45 +1,75 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>第1弾 ♡ アイカツアンコール</title>
 
-  <link rel="stylesheet" href="style.css">
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
 </head>
+
 
 <body>
 
   <header class="header">
 
-    <a href="index.html" class="back-link">
+    <a
+      href="index.html"
+      class="back-link"
+    >
       ← HOME
     </a>
 
-    <h1>✦ 第1弾 ✦</h1>
+    <h1 id="seasonTitle">
+      ✦ 第1弾 ✦
+    </h1>
 
-    <p>♡ CARD COLLECTION ♡</p>
+    <p>
+      ♡ CARD COLLECTION ♡
+    </p>
 
   </header>
 
 
   <main class="home">
 
+
     <!-- コレクション状況 -->
 
     <section class="menu-section collection-status">
 
       <div class="status-title">
-        <strong>COLLECTION</strong>
-        <span id="collectionCount">0 / 85</span>
+
+        <strong>
+          COLLECTION
+        </strong>
+
+        <span id="collectionCount">
+          0 / 0
+        </span>
+
       </div>
 
+
       <div class="progress">
+
         <div id="progressBar"></div>
+
       </div>
 
     </section>
+
 
 
     <!-- 検索 -->
@@ -49,39 +79,148 @@
       <input
         type="search"
         id="searchInput"
-        placeholder="カードを検索…"
         class="search-box"
+        placeholder="カードを検索…"
       >
 
     </section>
+
 
 
     <!-- 絞り込み -->
 
     <section class="filter-area">
 
-      <button class="filter-button active" data-filter="all">
-        すべて
-      </button>
 
-      <button class="filter-button" data-filter="owned">
-        所持
-      </button>
+      <!-- タイプ -->
 
-      <button class="filter-button" data-filter="missing">
-        未所持
-      </button>
+      <div class="filter-group">
 
-      <button class="filter-button" data-filter="trade">
-        交換
-      </button>
+        <label>
+          タイプ
+        </label>
+
+        <select id="typeFilter">
+
+          <option value="">
+            すべて
+          </option>
+
+        </select>
+
+      </div>
+
+
+
+      <!-- ブランド -->
+
+      <div class="filter-group">
+
+        <label>
+          ブランド
+        </label>
+
+        <select id="brandFilter">
+
+          <option value="">
+            すべて
+          </option>
+
+        </select>
+
+      </div>
+
+
+
+      <!-- コーデ -->
+
+      <div class="filter-group">
+
+        <label>
+          コーデ
+        </label>
+
+        <select id="coordinateFilter">
+
+          <option value="">
+            すべて
+          </option>
+
+        </select>
+
+      </div>
+
+
+
+      <!-- カテゴリ -->
+
+      <div class="filter-group">
+
+        <label>
+          カテゴリ
+        </label>
+
+        <select id="categoryFilter">
+
+          <option value="">
+            すべて
+          </option>
+
+        </select>
+
+      </div>
 
     </section>
 
 
+
+    <!-- 所持状態 -->
+
+    <section class="filter-area">
+
+
+      <button
+        class="filter-button active"
+        data-filter="all"
+      >
+        すべて
+      </button>
+
+
+      <button
+        class="filter-button"
+        data-filter="owned"
+      >
+        所持
+      </button>
+
+
+      <button
+        class="filter-button"
+        data-filter="missing"
+      >
+        未所持
+      </button>
+
+
+      <button
+        class="filter-button"
+        data-filter="trade"
+      >
+        交換
+      </button>
+
+
+    </section>
+
+
+
     <!-- カード一覧 -->
 
-    <section id="cardList" class="card-grid">
+    <section
+      id="cardList"
+      class="card-grid"
+    >
 
       <p class="loading">
         カードを読み込み中…
@@ -89,10 +228,17 @@
 
     </section>
 
+
   </main>
 
 
+
   <script>
+
+
+    /* =========================
+       基本設定
+    ========================= */
 
     const cardList =
       document.getElementById("cardList");
@@ -106,26 +252,62 @@
     const progressBar =
       document.getElementById("progressBar");
 
+    const typeFilter =
+      document.getElementById("typeFilter");
+
+    const brandFilter =
+      document.getElementById("brandFilter");
+
+    const coordinateFilter =
+      document.getElementById("coordinateFilter");
+
+    const categoryFilter =
+      document.getElementById("categoryFilter");
+
+    const seasonTitle =
+      document.getElementById("seasonTitle");
+
+
+    /* =========================
+       URLから弾を取得
+    ========================= */
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+    const season =
+      params.get("season") || "1";
+
+
+    /* =========================
+       データ
+    ========================= */
 
     let cards = [];
 
     let currentFilter = "all";
 
 
-    /*
-      所持枚数を保存する場所
-    */
+    /* =========================
+       所持枚数
+    ========================= */
 
-    const STORAGE_KEY = "aikatsuOwned";
+    const STORAGE_KEY =
+      "aikatsuOwned";
 
 
     let ownedCards =
-      JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+      JSON.parse(
+        localStorage.getItem(STORAGE_KEY) || "{}"
+      );
 
 
-    /*
-      カードデータを読み込む
-    */
+
+    /* =========================
+       カードデータ読み込み
+    ========================= */
 
     async function loadCards() {
 
@@ -134,14 +316,52 @@
         const response =
           await fetch("cards.json");
 
-        cards = await response.json();
+
+        if (!response.ok) {
+
+          throw new Error(
+            "cards.jsonを読み込めませんでした"
+          );
+
+        }
+
+
+        const allCards =
+          await response.json();
+
+
+        /*
+          今は第1弾だけ。
+          cards.jsonにseasonが入ったら
+          弾ごとに自動で分けられる。
+        */
+
+        cards =
+          allCards.filter(card => {
+
+            return String(card.season || "1")
+              === String(season);
+
+        });
+
+
+        seasonTitle.textContent =
+          `✦ 第${season}弾 ✦`;
+
+
+        createFilterOptions();
 
         renderCards();
+
 
       } catch (error) {
 
         cardList.innerHTML =
-          "<p>カードデータを読み込めませんでした。</p>";
+          `
+          <p>
+            カードデータを読み込めませんでした。
+          </p>
+          `;
 
         console.error(error);
 
@@ -150,9 +370,10 @@
     }
 
 
-    /*
-      所持枚数を取得
-    */
+
+    /* =========================
+       所持枚数を取得
+    ========================= */
 
     function getCount(cardId) {
 
@@ -161,48 +382,166 @@
     }
 
 
-    /*
-      所持枚数を変更
-    */
 
-    function changeCount(cardId, amount) {
+    /* =========================
+       所持枚数を変更
+    ========================= */
+
+    function changeCount(
+      cardId,
+      amount
+    ) {
 
       const current =
         getCount(cardId);
 
-      const next =
-        Math.max(0, current + amount);
 
-      ownedCards[cardId] = next;
+      const next =
+        Math.max(
+          0,
+          current + amount
+        );
+
+
+      ownedCards[cardId] =
+        next;
+
 
       localStorage.setItem(
         STORAGE_KEY,
         JSON.stringify(ownedCards)
       );
 
+
       renderCards();
 
     }
 
 
-    /*
-      カード一覧を表示
-    */
+
+    /* =========================
+       絞り込み選択肢を作る
+    ========================= */
+
+    function createFilterOptions() {
+
+
+      addOptions(
+        typeFilter,
+        "type"
+      );
+
+
+      addOptions(
+        brandFilter,
+        "brand"
+      );
+
+
+      addOptions(
+        coordinateFilter,
+        "coordinate"
+      );
+
+
+      addOptions(
+        categoryFilter,
+        "category"
+      );
+
+    }
+
+
+
+    function addOptions(
+      select,
+      property
+    ) {
+
+
+      const values =
+        [
+          ...new Set(
+            cards
+              .map(card => card[property])
+              .filter(Boolean)
+          )
+        ];
+
+
+      values.sort();
+
+
+      values.forEach(value => {
+
+        const option =
+          document.createElement(
+            "option"
+          );
+
+
+        option.value =
+          value;
+
+
+        option.textContent =
+          value;
+
+
+        select.appendChild(
+          option
+        );
+
+      });
+
+    }
+
+
+
+    /* =========================
+       カード表示
+    ========================= */
 
     function renderCards() {
 
+
       const keyword =
-        searchInput.value.toLowerCase().trim();
+        searchInput.value
+          .toLowerCase()
+          .trim();
 
 
-      let filteredCards =
+      const selectedType =
+        typeFilter.value;
+
+
+      const selectedBrand =
+        brandFilter.value;
+
+
+      const selectedCoordinate =
+        coordinateFilter.value;
+
+
+      const selectedCategory =
+        categoryFilter.value;
+
+
+
+      const filteredCards =
         cards.filter(card => {
 
+
           const id =
-            String(card.id || "").toLowerCase();
+            String(
+              card.id || ""
+            ).toLowerCase();
+
 
           const name =
-            String(card.name || "").toLowerCase();
+            String(
+              card.name || ""
+            ).toLowerCase();
 
 
           const matchesSearch =
@@ -210,49 +549,131 @@
             name.includes(keyword);
 
 
+
+          const matchesType =
+            !selectedType ||
+            card.type === selectedType;
+
+
+
+          const matchesBrand =
+            !selectedBrand ||
+            card.brand === selectedBrand;
+
+
+
+          const matchesCoordinate =
+            !selectedCoordinate ||
+            card.coordinate === selectedCoordinate;
+
+
+
+          const matchesCategory =
+            !selectedCategory ||
+            card.category === selectedCategory;
+
+
+
           const count =
             getCount(card.id);
 
 
-          let matchesFilter = true;
+
+          let matchesStatus =
+            true;
 
 
-          if (currentFilter === "owned") {
-            matchesFilter = count >= 1;
+
+          if (
+            currentFilter === "owned"
+          ) {
+
+            matchesStatus =
+              count >= 1;
+
           }
 
 
-          if (currentFilter === "missing") {
-            matchesFilter = count === 0;
+
+          if (
+            currentFilter === "missing"
+          ) {
+
+            matchesStatus =
+              count === 0;
+
           }
 
 
-          if (currentFilter === "trade") {
-            matchesFilter = count >= 2;
+
+          if (
+            currentFilter === "trade"
+          ) {
+
+            matchesStatus =
+              count >= 2;
+
           }
 
 
-          return matchesSearch && matchesFilter;
+
+          return (
+            matchesSearch &&
+            matchesType &&
+            matchesBrand &&
+            matchesCoordinate &&
+            matchesCategory &&
+            matchesStatus
+          );
 
         });
+
 
 
       cardList.innerHTML = "";
 
 
+
+      if (
+        filteredCards.length === 0
+      ) {
+
+        cardList.innerHTML =
+          `
+          <p class="loading">
+            条件に一致するカードがありません。
+          </p>
+          `;
+
+        updateCollection();
+
+        return;
+
+      }
+
+
+
       filteredCards.forEach(card => {
+
 
         const count =
           getCount(card.id);
 
 
+
         const cardElement =
-          document.createElement("article");
+          document.createElement(
+            "article"
+          );
 
-        cardElement.className = "card";
+
+        cardElement.className =
+          "card";
 
 
-        cardElement.innerHTML = `
+
+        cardElement.innerHTML =
+          `
 
           <div class="card-image">
 
@@ -305,32 +726,50 @@
 
           ${
             count >= 2
-              ? '<div class="trade-badge">♡ 交換可能</div>'
+              ? `
+                <div class="trade-badge">
+                  ♡ 交換可能
+                </div>
+              `
               : ""
           }
 
-        `;
+          `;
+
 
 
         cardElement
           .querySelector(".minus")
           .addEventListener(
             "click",
-            () => changeCount(card.id, -1)
+            () =>
+              changeCount(
+                card.id,
+                -1
+              )
           );
+
 
 
         cardElement
           .querySelector(".plus")
           .addEventListener(
             "click",
-            () => changeCount(card.id, 1)
+            () =>
+              changeCount(
+                card.id,
+                1
+              )
           );
 
 
-        cardList.appendChild(cardElement);
+
+        cardList.appendChild(
+          cardElement
+        );
 
       });
+
 
 
       updateCollection();
@@ -338,11 +777,13 @@
     }
 
 
-    /*
-      コレクション数を更新
-    */
+
+    /* =========================
+       コレクション状況
+    ========================= */
 
     function updateCollection() {
+
 
       const total =
         cards.length;
@@ -350,7 +791,8 @@
 
       const owned =
         cards.filter(
-          card => getCount(card.id) >= 1
+          card =>
+            getCount(card.id) >= 1
         ).length;
 
 
@@ -358,10 +800,14 @@
         `${owned} / ${total}`;
 
 
+
       const percentage =
         total === 0
           ? 0
-          : (owned / total) * 100;
+          : (
+              owned /
+              total
+            ) * 100;
 
 
       progressBar.style.width =
@@ -370,9 +816,10 @@
     }
 
 
-    /*
-      検索
-    */
+
+    /* =========================
+       検索
+    ========================= */
 
     searchInput.addEventListener(
       "input",
@@ -380,26 +827,58 @@
     );
 
 
-    /*
-      絞り込み
-    */
+
+    /* =========================
+       4種類の絞り込み
+    ========================= */
+
+    [
+      typeFilter,
+      brandFilter,
+      coordinateFilter,
+      categoryFilter
+    ]
+      .forEach(select => {
+
+        select.addEventListener(
+          "change",
+          renderCards
+        );
+
+      });
+
+
+
+    /* =========================
+       所持状態フィルター
+    ========================= */
 
     document
-      .querySelectorAll(".filter-button")
+      .querySelectorAll(
+        ".filter-button"
+      )
       .forEach(button => {
+
 
         button.addEventListener(
           "click",
           () => {
 
+
             document
-              .querySelectorAll(".filter-button")
+              .querySelectorAll(
+                ".filter-button"
+              )
               .forEach(b =>
-                b.classList.remove("active")
+                b.classList.remove(
+                  "active"
+                )
               );
 
 
-            button.classList.add("active");
+            button.classList.add(
+              "active"
+            );
 
 
             currentFilter =
@@ -414,13 +893,16 @@
       });
 
 
-    /*
-      開始
-    */
+
+    /* =========================
+       開始
+    ========================= */
 
     loadCards();
+
 
   </script>
 
 </body>
+
 </html>
