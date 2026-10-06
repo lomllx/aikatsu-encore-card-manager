@@ -705,3 +705,18 @@ footer {
   }
 
 }
+/* =========================
+   アクセサリーカード最終設定
+========================= */
+
+/* アクセサリーだけ横長 */
+.card.accessory .card-image {
+  aspect-ratio: 7 / 5 !important;
+}
+
+/* アクセサリー画像は枠いっぱい */
+.card.accessory .card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover !important;
+}
