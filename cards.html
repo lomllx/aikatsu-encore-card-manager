@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>第1弾 ♡ アイカツアンコール</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="header">
+
+    <a href="index.html" class="back-link">
+      ← HOME
+    </a>
+
+    <h1>✦ 第1弾 ✦</h1>
+
+    <p>♡ CARD COLLECTION ♡</p>
+
+  </header>
+
+
+  <main class="home">
+
+    <!-- コレクション状況 -->
+
+    <section class="menu-section collection-status">
+
+      <div class="status-title">
+        <strong>COLLECTION</strong>
+        <span id="collectionCount">0 / 85</span>
+      </div>
+
+      <div class="progress">
+        <div id="progressBar"></div>
+      </div>
+
+    </section>
+
+
+    <!-- 検索 -->
+
+    <section class="menu-section">
+
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="カードを検索…"
+        class="search-box"
+      >
+
+    </section>
+
+
+    <!-- 絞り込み -->
+
+    <section class="filter-area">
+
+      <button class="filter-button active" data-filter="all">
+        すべて
+      </button>
+
+      <button class="filter-button" data-filter="owned">
+        所持
+      </button>
+
+      <button class="filter-button" data-filter="missing">
+        未所持
+      </button>
+
+      <button class="filter-button" data-filter="trade">
+        交換
+      </button>
+
+    </section>
+
+
+    <!-- カード一覧 -->
+
+    <section id="cardList" class="card-grid">
+
+      <p class="loading">
+        カードを読み込み中…
+      </p>
+
+    </section>
+
+  </main>
+
+
+  <script>
+
+    const cardList =
+      document.getElementById("cardList");
+
+    const searchInput =
+      document.getElementById("searchInput");
+
+    const collectionCount =
+      document.getElementById("collectionCount");
+
+    const progressBar =
+      document.getElementById("progressBar");
+
+
+    let cards = [];
+
+    let currentFilter = "all";
+
+
+    /*
+      所持枚数を保存する場所
+    */
+
+    const STORAGE_KEY = "aikatsuOwned";
+
+
+    let ownedCards =
+      JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+
+
+    /*
+      カードデータを読み込む
+    */
+
+    async function loadCards() {
+
+      try {
+
+        const response =
+          await fetch("cards.json");
+
+        cards = await response.json();
+
+        renderCards();
+
+      } catch (error) {
+
+        cardList.innerHTML =
+          "<p>カードデータを読み込めませんでした。</p>";
+
+        console.error(error);
+
+      }
+
+    }
+
+
+    /*
+      所持枚数を取得
+    */
+
+    function getCount(cardId) {
+
+      return ownedCards[cardId] || 0;
+
+    }
+
+
+    /*
+      所持枚数を変更
+    */
+
+    function changeCount(cardId, amount) {
+
+      const current =
+        getCount(cardId);
+
+      const next =
+        Math.max(0, current + amount);
+
+      ownedCards[cardId] = next;
+
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(ownedCards)
+      );
+
+      renderCards();
+
+    }
+
+
+    /*
+      カード一覧を表示
+    */
+
+    function renderCards() {
+
+      const keyword =
+        searchInput.value.toLowerCase().trim();
+
+
+      let filteredCards =
+        cards.filter(card => {
+
+          const id =
+            String(card.id || "").toLowerCase();
+
+          const name =
+            String(card.name || "").toLowerCase();
+
+
+          const matchesSearch =
+            id.includes(keyword) ||
+            name.includes(keyword);
+
+
+          const count =
+            getCount(card.id);
+
+
+          let matchesFilter = true;
+
+
+          if (currentFilter === "owned") {
+            matchesFilter = count >= 1;
+          }
+
+
+          if (currentFilter === "missing") {
+            matchesFilter = count === 0;
+          }
+
+
+          if (currentFilter === "trade") {
+            matchesFilter = count >= 2;
+          }
+
+
+          return matchesSearch && matchesFilter;
+
+        });
+
+
+      cardList.innerHTML = "";
+
+
+      filteredCards.forEach(card => {
+
+        const count =
+          getCount(card.id);
+
+
+        const cardElement =
+          document.createElement("article");
+
+        cardElement.className = "card";
+
+
+        cardElement.innerHTML = `
+
+          <div class="card-image">
+
+            <img
+              src="${card.image}"
+              alt="${card.name || card.id}"
+              onerror="this.style.display='none'"
+            >
+
+          </div>
+
+
+          <div class="card-info">
+
+            <strong>
+              ${card.name || card.id}
+            </strong>
+
+            <small>
+              ${card.id}
+            </small>
+
+          </div>
+
+
+          <div class="count-control">
+
+            <button
+              type="button"
+              class="minus"
+            >
+              −
+            </button>
+
+
+            <span>
+              ${count}
+            </span>
+
+
+            <button
+              type="button"
+              class="plus"
+            >
+              ＋
+            </button>
+
+          </div>
+
+
+          ${
+            count >= 2
+              ? '<div class="trade-badge">♡ 交換可能</div>'
+              : ""
+          }
+
+        `;
+
+
+        cardElement
+          .querySelector(".minus")
+          .addEventListener(
+            "click",
+            () => changeCount(card.id, -1)
+          );
+
+
+        cardElement
+          .querySelector(".plus")
+          .addEventListener(
+            "click",
+            () => changeCount(card.id, 1)
+          );
+
+
+        cardList.appendChild(cardElement);
+
+      });
+
+
+      updateCollection();
+
+    }
+
+
+    /*
+      コレクション数を更新
+    */
+
+    function updateCollection() {
+
+      const total =
+        cards.length;
+
+
+      const owned =
+        cards.filter(
+          card => getCount(card.id) >= 1
+        ).length;
+
+
+      collectionCount.textContent =
+        `${owned} / ${total}`;
+
+
+      const percentage =
+        total === 0
+          ? 0
+          : (owned / total) * 100;
+
+
+      progressBar.style.width =
+        `${percentage}%`;
+
+    }
+
+
+    /*
+      検索
+    */
+
+    searchInput.addEventListener(
+      "input",
+      renderCards
+    );
+
+
+    /*
+      絞り込み
+    */
+
+    document
+      .querySelectorAll(".filter-button")
+      .forEach(button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            document
+              .querySelectorAll(".filter-button")
+              .forEach(b =>
+                b.classList.remove("active")
+              );
+
+
+            button.classList.add("active");
+
+
+            currentFilter =
+              button.dataset.filter;
+
+
+            renderCards();
+
+          }
+        );
+
+      });
+
+
+    /*
+      開始
+    */
+
+    loadCards();
+
+  </script>
+
+</body>
+</html>
