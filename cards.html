@@ -741,7 +741,12 @@
 
           `;
 
-
+cardElement
+  .querySelector(".card-image")
+  .addEventListener(
+    "click",
+    () => openCardModal(card)
+  );
 
         cardElement
           .querySelector(".minus")
