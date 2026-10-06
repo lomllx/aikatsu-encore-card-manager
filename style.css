@@ -12,9 +12,9 @@ body {
 }
 
 
-/* --------------------
+/* ====================
    Header
--------------------- */
+==================== */
 
 .header {
   text-align: center;
@@ -36,9 +36,9 @@ body {
 }
 
 
-/* --------------------
+/* ====================
    Home
--------------------- */
+==================== */
 
 .home {
   width: min(92%, 600px);
@@ -46,9 +46,9 @@ body {
 }
 
 
-/* --------------------
+/* ====================
    Menu Section
--------------------- */
+==================== */
 
 .menu-section {
   margin-bottom: 14px;
@@ -59,9 +59,9 @@ body {
 }
 
 
-/* --------------------
+/* ====================
    Collection button
--------------------- */
+==================== */
 
 .section-title {
   width: 100%;
@@ -82,14 +82,13 @@ body {
 }
 
 
-/* --------------------
+/* ====================
    Collection list
--------------------- */
+==================== */
 
 .collection-list {
   border-top: 1px solid #f0e7ef;
 }
-
 
 .season-link {
   display: flex;
@@ -106,20 +105,18 @@ body {
   transition: background 0.2s;
 }
 
-
 .season-link:last-child {
   border-bottom: none;
 }
-
 
 .season-link:active {
   background: #fff0f7;
 }
 
 
-/* --------------------
+/* ====================
    Other menu
--------------------- */
+==================== */
 
 .menu-link {
   display: flex;
@@ -132,12 +129,10 @@ body {
   text-decoration: none;
 }
 
-
 .menu-link strong {
   display: block;
   font-size: 16px;
 }
-
 
 .menu-link small {
   display: block;
@@ -147,24 +142,26 @@ body {
   color: #aa9eaa;
 }
 
-
 .menu-link > span:last-child {
   font-size: 24px;
   color: #b99bb7;
 }
 
 
-/* --------------------
+/* ====================
    Footer
--------------------- */
+==================== */
 
 footer {
   text-align: center;
   padding: 30px 20px;
+
   color: #c0aabd;
   font-size: 11px;
   letter-spacing: 2px;
 }
+
+
 /* ====================
    Card Page
 ==================== */
@@ -172,14 +169,18 @@ footer {
 .back-link {
   display: inline-block;
   margin-bottom: 18px;
+
   color: #8d6b91;
   text-decoration: none;
+
   font-size: 14px;
   font-weight: bold;
 }
 
 
-/* Collection status */
+/* ====================
+   Collection Status
+==================== */
 
 .collection-status {
   padding: 18px 20px;
@@ -189,6 +190,7 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   font-size: 14px;
 }
 
@@ -198,15 +200,19 @@ footer {
 }
 
 
-/* Progress bar */
+/* ====================
+   Progress Bar
+==================== */
 
 .progress {
   width: 100%;
   height: 8px;
+
   margin-top: 12px;
 
   background: #f0e8f0;
   border-radius: 10px;
+
   overflow: hidden;
 }
 
@@ -226,7 +232,9 @@ footer {
 }
 
 
-/* Search */
+/* ====================
+   Search
+==================== */
 
 .search-box {
   width: 100%;
@@ -247,48 +255,119 @@ footer {
 }
 
 
-/* Filter */
+/* ====================
+   絞り込み
+==================== */
 
 .filter-area {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 7px;
+  width: 100%;
+  margin: 12px 0;
 
-  margin-bottom: 15px;
+  display: grid;
+  gap: 10px;
 }
 
-.filter-button {
-  min-height: 42px;
 
-  border: 1px solid #eadfea;
-  border-radius: 12px;
+/* タイプ・ブランド・コーデ・カテゴリ */
 
-  background: white;
-  color: #8c7d8c;
+.filter-group {
+  width: 100%;
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-group label {
+  width: 58px;
+  flex-shrink: 0;
 
   font-size: 12px;
   font-weight: bold;
+
+  color: #9e6e8b;
+}
+
+.filter-group select {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+
+  padding: 9px 10px;
+
+  border: 1px solid #ead6e2;
+  border-radius: 12px;
+
+  background: #fffafd;
+
+  color: #76566a;
+
+  font-size: 13px;
+
+  outline: none;
+}
+
+.filter-group select:focus {
+  border-color: #d9b4cc;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(217, 180, 204, 0.2);
+}
+
+
+/* ====================
+   所持状態フィルター
+==================== */
+
+.filter-area:has(.filter-button) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-button {
+  padding: 8px 14px;
+
+  border: 1px solid #ead6e2;
+  border-radius: 20px;
+
+  background: #fffafd;
+
+  color: #9e6e8b;
+
+  font-size: 13px;
+  font-weight: bold;
+
+  cursor: pointer;
 }
 
 .filter-button.active {
-  background: #f7eaf2;
-  border-color: #e2b4cf;
-  color: #8d6b91;
+  background: #f3ddea;
+  border-color: #d9b4cc;
+
+  color: #7d536d;
 }
 
 
-/* Card grid */
+/* ====================
+   Card Grid
+==================== */
 
 .card-grid {
   display: grid;
 
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
 
   gap: 12px;
 }
 
 
-/* Card */
+/* ====================
+   Card
+==================== */
 
 .card {
   position: relative;
@@ -304,12 +383,14 @@ footer {
 }
 
 
-/* Card image */
+/* ====================
+   通常カード画像
+==================== */
 
 .card-image {
   width: 100%;
 
-  aspect-ratio: 0.7;
+  aspect-ratio: 5 / 7;
 
   background: #f8f3f8;
 
@@ -320,6 +401,8 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  cursor: pointer;
 }
 
 .card-image img {
@@ -327,10 +410,41 @@ footer {
   height: 100%;
 
   object-fit: contain;
+
+  display: block;
+}
+
+.card-image:active {
+  transform: scale(0.98);
 }
 
 
-/* Card information */
+/* ====================
+   アクセサリーカード
+   横長画像の余白をなくす
+==================== */
+
+.card.accessory .card-image {
+  aspect-ratio: auto;
+
+  height: auto;
+
+  background: transparent;
+}
+
+.card.accessory .card-image img {
+  width: 100%;
+  height: auto;
+
+  object-fit: contain;
+
+  display: block;
+}
+
+
+/* ====================
+   Card Information
+==================== */
 
 .card-info {
   padding: 9px 3px 5px;
@@ -357,7 +471,9 @@ footer {
 }
 
 
-/* Count buttons */
+/* ====================
+   Count Buttons
+==================== */
 
 .count-control {
   display: flex;
@@ -397,7 +513,9 @@ footer {
 }
 
 
-/* Trade badge */
+/* ====================
+   Trade Badge
+==================== */
 
 .trade-badge {
   margin: 7px 2px 2px;
@@ -417,7 +535,9 @@ footer {
 }
 
 
-/* Loading */
+/* ====================
+   Loading
+==================== */
 
 .loading {
   grid-column: 1 / -1;
@@ -427,161 +547,14 @@ footer {
   padding: 30px;
 
   color: #aaa0aa;
-  font-size: 13px;
-}
-
-
-/* Smaller screens */
-
-@media (max-width: 360px) {
-
-  .filter-area {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-}
-/* =========================
-   絞り込み
-========================= */
-
-.filter-area {
-  display: grid;
-  gap: 10px;
-  margin: 12px 0;
-}
-
-.filter-group {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.filter-group label {
-  width: 70px;
-  flex-shrink: 0;
 
   font-size: 13px;
-  font-weight: bold;
-
-  color: #9e6e8b;
-}
-
-.filter-group select {
-  flex: 1;
-
-  padding: 10px 12px;
-
-  border: 1px solid #ead6e2;
-  border-radius: 12px;
-
-  background: #fffafd;
-
-  color: #76566a;
-
-  font-size: 14px;
-
-  outline: none;
-}
-
-.filter-group select:focus {
-  border-color: #d9b4cc;
-  box-shadow: 0 0 0 3px rgba(217, 180, 204, 0.2);
 }
 
 
-/* =========================
-   所持状態フィルター
-========================= */
-
-.filter-area:has(.filter-button) {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.filter-button {
-  padding: 8px 14px;
-
-  border: 1px solid #ead6e2;
-  border-radius: 20px;
-
-  background: #fffafd;
-
-  color: #9e6e8b;
-
-  font-size: 13px;
-  font-weight: bold;
-
-  cursor: pointer;
-}
-
-.filter-button.active {
-  background: #f3ddea;
-  border-color: #d9b4cc;
-  color: #7d536d;
-}
-/* =========================
-   フィルター スマホ対応
-========================= */
-
-.filter-area {
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.filter-group {
-  width: 100%;
-  min-width: 0;
-  box-sizing: border-box;
-}
-
-.filter-group select {
-  min-width: 0;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-
-/* =========================
-   カード表示
-========================= */
-
-.card {
-  position: relative;
-  overflow: hidden;
-}
-
-.card-image {
-  width: 100%;
-  aspect-ratio: 5 / 7;
-  overflow: hidden;
-  border-radius: 12px;
-}
-
-.card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-
-
-/* =========================
-   カードをタップできる表示
-========================= */
-
-.card-image {
-  cursor: pointer;
-}
-
-.card-image:active {
-  transform: scale(0.98);
-}
-
-
-/* =========================
+/* ====================
    カード拡大モーダル
-========================= */
+==================== */
 
 .card-modal {
   position: fixed;
@@ -632,6 +605,7 @@ footer {
   border-radius: 50%;
 
   background: #f3ddea;
+
   color: #7d536d;
 
   font-size: 22px;
@@ -641,7 +615,9 @@ footer {
 
 .modal-images {
   display: flex;
+
   flex-direction: column;
+
   gap: 14px;
 }
 
@@ -655,15 +631,9 @@ footer {
 }
 
 
-/* =========================
-   アクセサリーカード
-========================= */
-.card-image {
-  width: 100%;
-  aspect-ratio: 5 / 7;
-  overflow: hidden;
-  border-radius: 12px;
-}
+/* ====================
+   アクセサリー拡大表示
+==================== */
 
 .card-modal-content.accessory-modal {
   width: min(94vw, 600px);
@@ -679,11 +649,19 @@ footer {
 }
 
 
-/* =========================
-   スマホ
-========================= */
+/* ====================
+   Smaller Screens
+==================== */
 
 @media (max-width: 600px) {
+
+  .home {
+    width: 92%;
+  }
+
+  .card-grid {
+    gap: 10px;
+  }
 
   .filter-area {
     gap: 8px;
@@ -709,25 +687,21 @@ footer {
   }
 
 }
-/* =========================
-   カード表示 最終設定
-========================= */
 
-.card-image {
-  width: 100%;
-  aspect-ratio: 5 / 7 !important;
-  overflow: hidden;
-  border-radius: 12px;
-  background: #f8f3f8;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+/* ====================
+   とても小さい画面
+==================== */
 
-.card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain !important;
-  display: block;
+@media (max-width: 360px) {
+
+  .card-grid {
+    gap: 8px;
+  }
+
+  .filter-button {
+    padding: 7px 12px;
+    font-size: 12px;
+  }
+
 }
