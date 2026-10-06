@@ -3,103 +3,134 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>アイカツアンコール ♡ CARD COLLECTION</title>
-
+  <title>アイカツアンコール ♡ カードコレクション</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <header>
-    <div class="logo-small">✦ AIKATSU ENCORE ✦</div>
-
-    <h1>カードコレクション</h1>
-
-    <p class="subtitle">
-      MY CARD COLLECTION
-    </p>
+  <header class="header">
+    <h1>✦ AIKATSU ENCORE ✦</h1>
+    <p>♡ CARD COLLECTION ♡</p>
   </header>
 
 
-  <main>
+  <main class="home">
 
-    <section class="status-box">
+    <!-- Collection -->
+    <section class="menu-section">
 
-      <p class="status-title">
-        ♡ COLLECTION STATUS ♡
-      </p>
+      <button class="section-title" id="collectionToggle">
+        ♡ Collection
+        <span id="collectionArrow">▼</span>
+      </button>
 
-      <div class="status-number">
-        <span id="owned">0</span>
-        /
-        <span id="total">0</span>
-      </div>
+      <div id="collectionList" class="collection-list">
 
-      <div class="progress">
-        <div
-          class="progress-bar"
-          id="progressBar">
-        </div>
-      </div>
+        <a href="cards.html?season=1" class="season-link">
+          <span>第1弾</span>
+          <span>0 / 85　›</span>
+        </a>
 
-      <div class="status-detail">
-        <span>
-          所持 <strong id="ownedDetail">0</strong>
-        </span>
+        <a href="cards.html?season=2" class="season-link">
+          <span>第2弾</span>
+          <span>準備中　›</span>
+        </a>
 
-        <span>
-          未所持 <strong id="missing">0</strong>
-        </span>
+        <a href="cards.html?season=3" class="season-link">
+          <span>第3弾</span>
+          <span>準備中　›</span>
+        </a>
 
-        <span>
-          <strong id="percentage">0</strong>%
-        </span>
       </div>
 
     </section>
 
 
-    <section class="search-box">
+    <!-- Trade -->
+    <section class="menu-section">
 
-      <input
-        type="search"
-        id="search"
-        placeholder="♡ カード名を検索"
-      >
+      <a href="trade.html" class="menu-link">
+        <span>
+          <strong>♡ Trade</strong>
+          <small>交換可能カード</small>
+        </span>
+
+        <span>›</span>
+      </a>
 
     </section>
 
 
-    <div class="filters">
+    <!-- My Character -->
+    <section class="menu-section">
 
-      <button
-        class="filter-button active"
-        data-filter="all">
-        すべて
-      </button>
+      <a href="character.html" class="menu-link">
+        <span>
+          <strong>♡ My Character</strong>
+          <small>マイキャラ</small>
+        </span>
 
-      <button
-        class="filter-button"
-        data-filter="owned">
-        ♡ 所持
-      </button>
+        <span>›</span>
+      </a>
 
-      <button
-        class="filter-button"
-        data-filter="missing">
-        ☆ 未所持
-      </button>
-
-    </div>
+    </section>
 
 
-    <section id="cards"></section>
+    <!-- Information -->
+    <section class="menu-section">
+
+      <a href="information.html" class="menu-link">
+        <span>
+          <strong>♡ Information</strong>
+          <small>アイカツ情報</small>
+        </span>
+
+        <span>›</span>
+      </a>
+
+    </section>
 
   </main>
 
 
-  <script src="app.js"></script>
+  <footer>
+    <p>♡ AIKATSU ENCORE ♡</p>
+  </footer>
+
+
+  <script>
+
+    const collectionToggle =
+      document.getElementById("collectionToggle");
+
+    const collectionList =
+      document.getElementById("collectionList");
+
+    const collectionArrow =
+      document.getElementById("collectionArrow");
+
+
+    collectionToggle.addEventListener("click", () => {
+
+      const isOpen =
+        collectionList.style.display !== "none";
+
+      if (isOpen) {
+
+        collectionList.style.display = "none";
+        collectionArrow.textContent = "▶";
+
+      } else {
+
+        collectionList.style.display = "block";
+        collectionArrow.textContent = "▼";
+
+      }
+
+    });
+
+  </script>
 
 </body>
 </html>
