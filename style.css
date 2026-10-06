@@ -1,6 +1,6 @@
-/* ==================================================
-   Base
-================================================== */
+/* =========================
+   全体
+========================= */
 
 * {
   box-sizing: border-box;
@@ -8,794 +8,439 @@
 
 body {
   margin: 0;
-
   background: #fff8fc;
-  color: #554b55;
-
+  color: #5f5360;
   font-family:
     -apple-system,
     BlinkMacSystemFont,
-    "Hiragino Kaku Gothic ProN",
-    "Yu Gothic",
+    "Helvetica Neue",
     sans-serif;
 }
 
 
-/* ==================================================
-   Header
-================================================== */
+/* =========================
+   ヘッダー
+========================= */
 
 .header {
-  padding: 35px 20px 25px;
-
+  padding: 28px 20px 22px;
   text-align: center;
+  background: linear-gradient(
+    135deg,
+    #f8dff0,
+    #eee2fa
+  );
 }
 
 .header h1 {
   margin: 0;
-
-  color: #8d6b91;
-
-  font-size: 24px;
+  color: #80627d;
+  font-size: 20px;
   letter-spacing: 2px;
 }
 
 .header p {
-  margin: 8px 0 0;
-
-  color: #b79db9;
-
-  font-size: 12px;
-  letter-spacing: 3px;
-}
-
-
-/* ==================================================
-   Layout
-================================================== */
-
-.home {
-  width: min(92%, 600px);
-
-  margin: 0 auto;
-}
-
-
-/* ==================================================
-   Common Section
-================================================== */
-
-.menu-section {
-  margin-bottom: 14px;
-
-  background: #ffffff;
-
-  border: 1px solid #eadfea;
-  border-radius: 18px;
-
-  overflow: hidden;
-}
-
-
-/* ==================================================
-   Home Menu
-================================================== */
-
-.section-title {
-  width: 100%;
-
-  padding: 18px 20px;
-
-  border: none;
-
-  background: #ffffff;
-  color: #554b55;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  font-size: 16px;
-  font-weight: bold;
-
-  cursor: pointer;
-}
-
-.collection-list {
-  border-top: 1px solid #f0e7ef;
-}
-
-.season-link {
-  padding: 17px 20px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  color: #554b55;
-  text-decoration: none;
-
-  border-bottom: 1px solid #f3edf3;
-}
-
-.season-link:last-child {
-  border-bottom: none;
-}
-
-.season-link:active {
-  background: #fff0f7;
-}
-
-.menu-link {
-  padding: 18px 20px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  color: #554b55;
-  text-decoration: none;
-}
-
-.menu-link strong {
-  display: block;
-
-  font-size: 16px;
-}
-
-.menu-link small {
-  display: block;
-
-  margin-top: 4px;
-
-  color: #aa9eaa;
-
-  font-size: 12px;
-}
-
-.menu-link > span:last-child {
-  color: #b99bb7;
-
-  font-size: 24px;
-}
-
-
-/* ==================================================
-   Footer
-================================================== */
-
-footer {
-  padding: 30px 20px;
-
-  color: #c0aabd;
-
-  text-align: center;
-
+  margin: 7px 0 0;
+  color: #a886a4;
   font-size: 11px;
   letter-spacing: 2px;
 }
 
 
-/* ==================================================
-   Back Link
-================================================== */
+/* =========================
+   ページ
+========================= */
+
+.cards-page {
+  width: min(100% - 28px, 900px);
+  margin: 0 auto;
+  padding: 18px 0 40px;
+}
+
+
+/* =========================
+   戻る
+========================= */
 
 .back-link {
   display: inline-block;
-
-  margin-bottom: 18px;
-
-  color: #8d6b91;
-
-  font-size: 14px;
-  font-weight: bold;
-
+  margin-bottom: 12px;
+  color: #9b7798;
   text-decoration: none;
+  font-size: 14px;
 }
 
 
-/* ==================================================
-   Collection Status
-================================================== */
+/* =========================
+   シーズン
+========================= */
 
-.collection-status {
-  padding: 18px 20px;
-}
-
-.status-title {
+.season-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 14px;
+}
 
+.season-header h2 {
+  margin: 0;
+  color: #72596f;
+  font-size: 22px;
+}
+
+.season-header p {
+  margin: 0;
+  color: #a486a1;
   font-size: 14px;
 }
 
-.status-title span {
-  color: #9f879f;
 
-  font-size: 13px;
-}
-
-
-/* ==================================================
-   Progress
-================================================== */
-
-.progress {
-  width: 100%;
-  height: 8px;
-
-  margin-top: 12px;
-
-  background: #f0e8f0;
-
-  border-radius: 10px;
-
-  overflow: hidden;
-}
-
-#progressBar {
-  width: 0;
-  height: 100%;
-
-  background:
-    linear-gradient(
-      90deg,
-      #e7a7c5,
-      #c9b9e8
-    );
-
-  border-radius: 10px;
-
-  transition: width 0.3s ease;
-}
-
-
-/* ==================================================
-   Search
-================================================== */
+/* =========================
+   検索
+========================= */
 
 .search-box {
+  margin-bottom: 12px;
+}
+
+.search-box input {
   width: 100%;
-
-  padding: 13px 15px;
-
-  border: none;
+  padding: 12px 14px;
+  border: 1px solid #ead7e6;
+  border-radius: 12px;
+  background: #fff;
+  color: #5f5360;
+  font-size: 14px;
   outline: none;
-
-  background: transparent;
-  color: #554b55;
-
-  font-size: 16px;
 }
 
-.search-box::placeholder {
-  color: #b8adb8;
+.search-box input:focus {
+  border-color: #cfa9c8;
 }
 
 
-/* ==================================================
-   Filters
-================================================== */
+/* =========================
+   所持状態
+========================= */
 
-.filter-area {
-  width: 100%;
-
-  margin: 12px 0;
-
+.status-filters {
   display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-bottom: 12px;
+}
 
-  gap: 10px;
+.status-button {
+  padding: 9px 4px;
+  border: 1px solid #ead7e6;
+  border-radius: 10px;
+  background: #fff;
+  color: #8c7188;
+  font-size: 12px;
+}
+
+.status-button.active {
+  background: #ead8e8;
+  border-color: #d6b7d1;
+  color: #70566d;
+  font-weight: bold;
 }
 
 
-/* ---------- Metadata filters ---------- */
+/* =========================
+   フィルター
+========================= */
 
-.filter-group {
-  width: 100%;
-  min-width: 0;
-
-  display: flex;
-  align-items: center;
-
-  gap: 10px;
+.filters {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-bottom: 18px;
 }
 
 .filter-group label {
-  width: 58px;
-
-  flex-shrink: 0;
-
-  color: #9e6e8b;
-
-  font-size: 12px;
-  font-weight: bold;
+  display: block;
+  margin-bottom: 4px;
+  color: #8f778b;
+  font-size: 11px;
 }
 
 .filter-group select {
   width: 100%;
-  min-width: 0;
-
-  flex: 1;
-
-  padding: 9px 10px;
-
-  border: 1px solid #ead6e2;
-  border-radius: 12px;
-
-  outline: none;
-
-  background: #fffafd;
-  color: #76566a;
-
-  font-size: 13px;
-}
-
-.filter-group select:focus {
-  border-color: #d9b4cc;
-
-  box-shadow:
-    0 0 0 3px
-    rgba(217, 180, 204, 0.2);
+  padding: 9px 8px;
+  border: 1px solid #ead7e6;
+  border-radius: 10px;
+  background: #fff;
+  color: #665966;
+  font-size: 12px;
 }
 
 
-/* ---------- Status filters ---------- */
-
-.status-filter-area {
-  display: flex;
-
-  flex-wrap: wrap;
-
-  gap: 8px;
-}
-
-.filter-button {
-  padding: 8px 14px;
-
-  border: 1px solid #ead6e2;
-  border-radius: 20px;
-
-  background: #fffafd;
-  color: #9e6e8b;
-
-  font-size: 13px;
-  font-weight: bold;
-
-  cursor: pointer;
-}
-
-.filter-button.active {
-  border-color: #d9b4cc;
-
-  background: #f3ddea;
-  color: #7d536d;
-}
-
-
-/* ==================================================
-   Card Grid
-================================================== */
+/* =========================
+   カード一覧
+========================= */
 
 .card-grid {
   display: grid;
-
-  grid-template-columns:
-    repeat(2, minmax(0, 1fr));
-
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
 
 
-/* ==================================================
-   Card
-================================================== */
+/* =========================
+   カード
+========================= */
 
 .card {
-  position: relative;
-
+  min-width: 0;
   padding: 8px;
+  border: 1px solid #eadde8;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow:
+    0 3px 10px rgba(130, 100, 130, 0.07);
 
-  background: #ffffff;
-
-  border: 1px solid #eadfea;
-  border-radius: 15px;
-
-  overflow: hidden;
+  cursor: pointer;
 }
 
 
-/* ==================================================
-   Normal Card Image
-================================================== */
+/* =========================
+   カード画像
+========================= */
 
 .card-image {
   width: 100%;
-
   aspect-ratio: 5 / 7;
-
-  background: #f8f3f8;
-
-  border-radius: 10px;
-
   overflow: hidden;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  cursor: pointer;
-}
-
-.normal-image-inner {
-  width: 100%;
-  height: 100%;
+  border-radius: 9px;
+  background: #f7f2f7;
 
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.normal-image-inner img {
+.card-image img {
   width: 100%;
   height: 100%;
-
   display: block;
 
   object-fit: contain;
 }
 
-.card-image:active {
-  transform: scale(0.98);
-}
-
-
-/* ==================================================
-   Accessory Card
-================================================== */
 
 /*
-   アクセサリーは
-   「枠そのもの」を横長にする。
+  アクセサリーも通常カードと同じ。
+  特別な回転・横長化はしない。
 */
 
-.card.accessory .accessory-image {
-  width: 100%;
 
-  /*
-    通常カード 5:7
-    ↓
-    アクセサリー 7:5
-  */
-  aspect-ratio: 7 / 5;
-
-  background: #f8f3f8;
-
-  border-radius: 10px;
-
-  overflow: hidden;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
-/*
-   回転専用の内部ボックス
-*/
-
-.card.accessory .accessory-image-inner {
-  width: 100%;
-  height: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  overflow: hidden;
-}
-
-
-/*
-   元画像は縦長なので、
-   90度回転させて横向きにする。
-
-   height: 140% にすることで、
-   回転後に横長の枠いっぱいに収まる。
-*/
-
-.card.accessory .accessory-image-inner img {
-  width: auto;
-  height: 140%;
-
-  max-width: none;
-  max-height: none;
-
-  display: block;
-
-  flex-shrink: 0;
-
-  object-fit: contain;
-
-  transform: rotate(90deg);
-}
-
-
-/* ==================================================
-   Card Information
-================================================== */
+/* =========================
+   カード情報
+========================= */
 
 .card-info {
-  padding: 9px 3px 5px;
+  padding: 7px 3px 3px;
 }
 
-.card-info strong {
-  display: block;
+.card-id {
+  color: #a18b9e;
+  font-size: 10px;
+}
 
+.card-name {
+  margin-top: 2px;
+  min-height: 17px;
+  color: #655864;
   font-size: 12px;
-
-  white-space: nowrap;
-
-  overflow: hidden;
-
-  text-overflow: ellipsis;
+  font-weight: bold;
+  line-height: 1.4;
 }
 
-.card-info small {
-  display: block;
-
-  margin-top: 3px;
-
-  color: #a99eaa;
-
+.card-meta {
+  margin-top: 2px;
+  color: #a18b9e;
   font-size: 10px;
 }
 
 
-/* ==================================================
-   Count
-================================================== */
+/* =========================
+   所持数
+========================= */
 
 .count-control {
-  margin-top: 5px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
-  gap: 10px;
+  gap: 12px;
+  margin-top: 7px;
 }
 
-.count-control button {
-  width: 34px;
-  height: 34px;
-
+.count-button {
+  width: 27px;
+  height: 27px;
   padding: 0;
 
-  border: 1px solid #e7dce6;
+  border: 1px solid #ead7e6;
   border-radius: 50%;
 
   background: #fff8fc;
-  color: #8d6b91;
+  color: #896e84;
 
-  font-size: 19px;
+  font-size: 16px;
   line-height: 1;
-
-  cursor: pointer;
 }
 
-.count-control span {
+.count {
   min-width: 18px;
-
-  color: #554b55;
-
   text-align: center;
-
-  font-size: 14px;
+  color: #6d5a69;
+  font-size: 13px;
   font-weight: bold;
 }
 
 
-/* ==================================================
-   Trade Badge
-================================================== */
+/* =========================
+   読み込み・該当なし
+========================= */
 
-.trade-badge {
-  margin: 7px 2px 2px;
-
-  padding: 5px;
-
-  border-radius: 8px;
-
-  background: #f8edf5;
-  color: #a06d8f;
-
+.loading,
+.no-results {
+  padding: 40px 10px;
   text-align: center;
-
-  font-size: 10px;
-  font-weight: bold;
-}
-
-
-/* ==================================================
-   Loading
-================================================== */
-
-.loading {
-  grid-column: 1 / -1;
-
-  padding: 30px;
-
-  color: #aaa0aa;
-
-  text-align: center;
-
+  color: #a58d9f;
   font-size: 13px;
 }
 
 
-/* ==================================================
-   Card Modal
-================================================== */
+/* =========================
+   モーダル
+========================= */
 
 .card-modal {
   position: fixed;
-
   inset: 0;
-
-  z-index: 9999;
-
-  padding: 20px;
+  z-index: 1000;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  background: rgba(40, 25, 35, 0.72);
+  padding: 20px;
+
+  background: rgba(60, 45, 60, 0.55);
 }
 
 .card-modal-content {
   position: relative;
 
-  width: min(92vw, 430px);
-
+  width: min(92vw, 600px);
   max-height: 90vh;
 
-  padding: 14px;
+  padding: 18px;
 
-  background: #fffafd;
+  overflow-y: auto;
 
   border-radius: 18px;
-
-  overflow: auto;
+  background: #fff9fd;
 }
-
-
-/* ---------- Close ---------- */
 
 .card-modal-close {
   position: absolute;
-
   top: 8px;
   right: 10px;
 
   z-index: 2;
 
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
 
-  border: none;
+  border: 0;
   border-radius: 50%;
 
-  background: #f3ddea;
-  color: #7d536d;
+  background: rgba(255,255,255,0.9);
+  color: #80677b;
 
-  font-size: 22px;
-
-  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
 }
-
-
-/* ---------- Modal Images ---------- */
 
 .modal-images {
   display: flex;
-
   flex-direction: column;
-
-  gap: 14px;
-}
-
-.modal-card-image {
-  width: 100%;
-
-  display: flex;
   align-items: center;
-  justify-content: center;
-
-  overflow: hidden;
-
-  border-radius: 10px;
+  gap: 14px;
+  padding-top: 10px;
 }
 
-.modal-card-image img {
-  width: 100%;
-  height: auto;
-
+.modal-images img {
   display: block;
 
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+
+  border-radius: 10px;
   object-fit: contain;
 }
 
 
-/* ==================================================
-   Accessory Modal
-================================================== */
+/* =========================
+   フッター
+========================= */
 
-.card-modal-content.accessory-modal {
-  width: min(94vw, 600px);
+footer {
+  padding: 25px 10px 35px;
+  text-align: center;
+}
+
+footer p {
+  margin: 0;
+  color: #b99fb5;
+  font-size: 10px;
+  letter-spacing: 2px;
 }
 
 
-/*
-   アクセサリーも拡大時は横向き。
-*/
+/* =========================
+   スマホ
+========================= */
 
-.accessory-modal .modal-card-image {
-  aspect-ratio: 7 / 5;
+@media (max-width: 480px) {
 
-  background: #f8f3f8;
-}
-
-.accessory-modal .modal-accessory-image img {
-  width: auto;
-  height: 140%;
-
-  max-width: none;
-  max-height: none;
-
-  flex-shrink: 0;
-
-  transform: rotate(90deg);
-}
-
-
-/* ==================================================
-   Mobile
-================================================== */
-
-@media (max-width: 600px) {
-
-  .home {
-    width: 92%;
+  .cards-page {
+    width: min(100% - 20px, 900px);
   }
 
   .card-grid {
-    gap: 10px;
+    gap: 9px;
   }
 
-  .filter-area {
-    gap: 8px;
+  .card {
+    padding: 6px;
+    border-radius: 12px;
   }
 
-}
-
-
-/* ==================================================
-   Very Small Screens
-================================================== */
-
-@media (max-width: 360px) {
-
-  .card-grid {
-    gap: 8px;
+  .card-image {
+    border-radius: 8px;
   }
 
-  .filter-button {
-    padding: 7px 12px;
+  .count-control {
+    gap: 9px;
+  }
 
-    font-size: 12px;
+  .count-button {
+    width: 25px;
+    height: 25px;
+  }
+
+  .card-modal {
+    padding: 10px;
+  }
+
+  .card-modal-content {
+    width: 96vw;
+    padding: 12px;
   }
 
 }
