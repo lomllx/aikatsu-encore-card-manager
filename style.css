@@ -658,6 +658,12 @@ footer {
 /* =========================
    アクセサリーカード
 ========================= */
+.card-image {
+  width: 100%;
+  aspect-ratio: 5 / 7;
+  overflow: hidden;
+  border-radius: 12px;
+}
 
 .card-modal-content.accessory-modal {
   width: min(94vw, 600px);
