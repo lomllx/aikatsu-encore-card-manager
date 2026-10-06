@@ -1,79 +1,99 @@
+/* ==================================================
+   Base
+================================================== */
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
+
   background: #fff8fc;
   color: #554b55;
-  font-family: -apple-system, BlinkMacSystemFont,
-    "Hiragino Kaku Gothic ProN", "Yu Gothic",
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
     sans-serif;
 }
 
 
-/* ====================
+/* ==================================================
    Header
-==================== */
+================================================== */
 
 .header {
-  text-align: center;
   padding: 35px 20px 25px;
+
+  text-align: center;
 }
 
 .header h1 {
   margin: 0;
+
+  color: #8d6b91;
+
   font-size: 24px;
   letter-spacing: 2px;
-  color: #8d6b91;
 }
 
 .header p {
   margin: 8px 0 0;
+
+  color: #b79db9;
+
   font-size: 12px;
   letter-spacing: 3px;
-  color: #b79db9;
 }
 
 
-/* ====================
-   Home
-==================== */
+/* ==================================================
+   Layout
+================================================== */
 
 .home {
   width: min(92%, 600px);
+
   margin: 0 auto;
 }
 
 
-/* ====================
-   Menu Section
-==================== */
+/* ==================================================
+   Common Section
+================================================== */
 
 .menu-section {
   margin-bottom: 14px;
-  background: white;
+
+  background: #ffffff;
+
   border: 1px solid #eadfea;
   border-radius: 18px;
+
   overflow: hidden;
 }
 
 
-/* ====================
-   Collection button
-==================== */
+/* ==================================================
+   Home Menu
+================================================== */
 
 .section-title {
   width: 100%;
-  border: none;
-  background: white;
-  color: #554b55;
 
   padding: 18px 20px;
 
+  border: none;
+
+  background: #ffffff;
+  color: #554b55;
+
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 
   font-size: 16px;
   font-weight: bold;
@@ -81,28 +101,21 @@ body {
   cursor: pointer;
 }
 
-
-/* ====================
-   Collection list
-==================== */
-
 .collection-list {
   border-top: 1px solid #f0e7ef;
 }
 
 .season-link {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
   padding: 17px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   color: #554b55;
   text-decoration: none;
 
   border-bottom: 1px solid #f3edf3;
-
-  transition: background 0.2s;
 }
 
 .season-link:last-child {
@@ -113,17 +126,12 @@ body {
   background: #fff0f7;
 }
 
-
-/* ====================
-   Other menu
-==================== */
-
 .menu-link {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
   padding: 18px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   color: #554b55;
   text-decoration: none;
@@ -131,56 +139,64 @@ body {
 
 .menu-link strong {
   display: block;
+
   font-size: 16px;
 }
 
 .menu-link small {
   display: block;
+
   margin-top: 4px;
 
-  font-size: 12px;
   color: #aa9eaa;
+
+  font-size: 12px;
 }
 
 .menu-link > span:last-child {
-  font-size: 24px;
   color: #b99bb7;
+
+  font-size: 24px;
 }
 
 
-/* ====================
+/* ==================================================
    Footer
-==================== */
+================================================== */
 
 footer {
-  text-align: center;
   padding: 30px 20px;
 
   color: #c0aabd;
+
+  text-align: center;
+
   font-size: 11px;
   letter-spacing: 2px;
 }
 
 
-/* ====================
-   Card Page
-==================== */
+/* ==================================================
+   Back Link
+================================================== */
 
 .back-link {
   display: inline-block;
+
   margin-bottom: 18px;
 
   color: #8d6b91;
-  text-decoration: none;
 
   font-size: 14px;
   font-weight: bold;
+
+  text-decoration: none;
 }
 
 
-/* ====================
+/* ==================================================
    Collection Status
-==================== */
+================================================== */
 
 .collection-status {
   padding: 18px 20px;
@@ -188,21 +204,22 @@ footer {
 
 .status-title {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 
   font-size: 14px;
 }
 
 .status-title span {
   color: #9f879f;
+
   font-size: 13px;
 }
 
 
-/* ====================
-   Progress Bar
-==================== */
+/* ==================================================
+   Progress
+================================================== */
 
 .progress {
   width: 100%;
@@ -211,20 +228,22 @@ footer {
   margin-top: 12px;
 
   background: #f0e8f0;
+
   border-radius: 10px;
 
   overflow: hidden;
 }
 
 #progressBar {
-  width: 0%;
+  width: 0;
   height: 100%;
 
-  background: linear-gradient(
-    90deg,
-    #e7a7c5,
-    #c9b9e8
-  );
+  background:
+    linear-gradient(
+      90deg,
+      #e7a7c5,
+      #c9b9e8
+    );
 
   border-radius: 10px;
 
@@ -232,9 +251,9 @@ footer {
 }
 
 
-/* ====================
+/* ==================================================
    Search
-==================== */
+================================================== */
 
 .search-box {
   width: 100%;
@@ -244,10 +263,10 @@ footer {
   border: none;
   outline: none;
 
-  font-size: 16px;
-
-  color: #554b55;
   background: transparent;
+  color: #554b55;
+
+  font-size: 16px;
 }
 
 .search-box::placeholder {
@@ -255,20 +274,22 @@ footer {
 }
 
 
-/* ====================
-   絞り込み
-==================== */
+/* ==================================================
+   Filters
+================================================== */
 
 .filter-area {
   width: 100%;
+
   margin: 12px 0;
 
   display: grid;
+
   gap: 10px;
 }
 
 
-/* タイプ・ブランド・コーデ・カテゴリ */
+/* ---------- Metadata filters ---------- */
 
 .filter-group {
   width: 100%;
@@ -276,36 +297,38 @@ footer {
 
   display: flex;
   align-items: center;
+
   gap: 10px;
 }
 
 .filter-group label {
   width: 58px;
+
   flex-shrink: 0;
+
+  color: #9e6e8b;
 
   font-size: 12px;
   font-weight: bold;
-
-  color: #9e6e8b;
 }
 
 .filter-group select {
-  flex: 1;
-  min-width: 0;
   width: 100%;
+  min-width: 0;
+
+  flex: 1;
 
   padding: 9px 10px;
 
   border: 1px solid #ead6e2;
   border-radius: 12px;
 
-  background: #fffafd;
+  outline: none;
 
+  background: #fffafd;
   color: #76566a;
 
   font-size: 13px;
-
-  outline: none;
 }
 
 .filter-group select:focus {
@@ -317,13 +340,13 @@ footer {
 }
 
 
-/* ====================
-   所持状態フィルター
-==================== */
+/* ---------- Status filters ---------- */
 
-.filter-area:has(.filter-button) {
+.status-filter-area {
   display: flex;
+
   flex-wrap: wrap;
+
   gap: 8px;
 }
 
@@ -334,7 +357,6 @@ footer {
   border-radius: 20px;
 
   background: #fffafd;
-
   color: #9e6e8b;
 
   font-size: 13px;
@@ -344,16 +366,16 @@ footer {
 }
 
 .filter-button.active {
-  background: #f3ddea;
   border-color: #d9b4cc;
 
+  background: #f3ddea;
   color: #7d536d;
 }
 
 
-/* ====================
+/* ==================================================
    Card Grid
-==================== */
+================================================== */
 
 .card-grid {
   display: grid;
@@ -365,27 +387,27 @@ footer {
 }
 
 
-/* ====================
+/* ==================================================
    Card
-==================== */
+================================================== */
 
 .card {
   position: relative;
 
-  background: white;
+  padding: 8px;
+
+  background: #ffffff;
 
   border: 1px solid #eadfea;
   border-radius: 15px;
-
-  padding: 8px;
 
   overflow: hidden;
 }
 
 
-/* ====================
-   通常カード画像
-==================== */
+/* ==================================================
+   Normal Card Image
+================================================== */
 
 .card-image {
   width: 100%;
@@ -405,13 +427,22 @@ footer {
   cursor: pointer;
 }
 
-.card-image img {
+.normal-image-inner {
   width: 100%;
   height: 100%;
 
-  object-fit: contain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.normal-image-inner img {
+  width: 100%;
+  height: 100%;
 
   display: block;
+
+  object-fit: contain;
 }
 
 .card-image:active {
@@ -419,32 +450,81 @@ footer {
 }
 
 
-/* ====================
-   アクセサリーカード
-   横長画像の余白をなくす
-==================== */
+/* ==================================================
+   Accessory Card
+================================================== */
 
-.card.accessory .card-image {
-  aspect-ratio: auto;
+/*
+   アクセサリーは
+   「枠そのもの」を横長にする。
+*/
 
-  height: auto;
+.card.accessory .accessory-image {
+  width: 100%;
 
-  background: transparent;
+  /*
+    通常カード 5:7
+    ↓
+    アクセサリー 7:5
+  */
+  aspect-ratio: 7 / 5;
+
+  background: #f8f3f8;
+
+  border-radius: 10px;
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.card.accessory .card-image img {
+
+/*
+   回転専用の内部ボックス
+*/
+
+.card.accessory .accessory-image-inner {
   width: 100%;
-  height: auto;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+
+/*
+   元画像は縦長なので、
+   90度回転させて横向きにする。
+
+   height: 140% にすることで、
+   回転後に横長の枠いっぱいに収まる。
+*/
+
+.card.accessory .accessory-image-inner img {
+  width: auto;
+  height: 140%;
+
+  max-width: none;
+  max-height: none;
+
+  display: block;
+
+  flex-shrink: 0;
 
   object-fit: contain;
 
-  display: block;
+  transform: rotate(90deg);
 }
 
 
-/* ====================
+/* ==================================================
    Card Information
-==================== */
+================================================== */
 
 .card-info {
   padding: 9px 3px 5px;
@@ -456,7 +536,9 @@ footer {
   font-size: 12px;
 
   white-space: nowrap;
+
   overflow: hidden;
+
   text-overflow: ellipsis;
 }
 
@@ -465,25 +547,24 @@ footer {
 
   margin-top: 3px;
 
-  font-size: 10px;
-
   color: #a99eaa;
+
+  font-size: 10px;
 }
 
 
-/* ====================
-   Count Buttons
-==================== */
+/* ==================================================
+   Count
+================================================== */
 
 .count-control {
-  display: flex;
+  margin-top: 5px;
 
+  display: flex;
   align-items: center;
   justify-content: center;
 
   gap: 10px;
-
-  margin-top: 5px;
 }
 
 .count-control button {
@@ -496,15 +577,18 @@ footer {
   border-radius: 50%;
 
   background: #fff8fc;
-
   color: #8d6b91;
 
   font-size: 19px;
   line-height: 1;
+
+  cursor: pointer;
 }
 
 .count-control span {
   min-width: 18px;
+
+  color: #554b55;
 
   text-align: center;
 
@@ -513,9 +597,9 @@ footer {
 }
 
 
-/* ====================
+/* ==================================================
    Trade Badge
-==================== */
+================================================== */
 
 .trade-badge {
   margin: 7px 2px 2px;
@@ -525,7 +609,6 @@ footer {
   border-radius: 8px;
 
   background: #f8edf5;
-
   color: #a06d8f;
 
   text-align: center;
@@ -535,60 +618,61 @@ footer {
 }
 
 
-/* ====================
+/* ==================================================
    Loading
-==================== */
+================================================== */
 
 .loading {
   grid-column: 1 / -1;
-
-  text-align: center;
 
   padding: 30px;
 
   color: #aaa0aa;
 
+  text-align: center;
+
   font-size: 13px;
 }
 
 
-/* ====================
-   カード拡大モーダル
-==================== */
+/* ==================================================
+   Card Modal
+================================================== */
 
 .card-modal {
   position: fixed;
+
   inset: 0;
 
   z-index: 9999;
+
+  padding: 20px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  padding: 20px;
-
   background: rgba(40, 25, 35, 0.72);
-
-  box-sizing: border-box;
 }
 
 .card-modal-content {
   position: relative;
 
   width: min(92vw, 430px);
+
   max-height: 90vh;
 
   padding: 14px;
 
-  border-radius: 18px;
-
   background: #fffafd;
 
-  box-sizing: border-box;
+  border-radius: 18px;
 
   overflow: auto;
 }
+
+
+/* ---------- Close ---------- */
 
 .card-modal-close {
   position: absolute;
@@ -605,13 +689,15 @@ footer {
   border-radius: 50%;
 
   background: #f3ddea;
-
   color: #7d536d;
 
   font-size: 22px;
 
   cursor: pointer;
 }
+
+
+/* ---------- Modal Images ---------- */
 
 .modal-images {
   display: flex;
@@ -621,37 +707,63 @@ footer {
   gap: 14px;
 }
 
-.modal-images img {
+.modal-card-image {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  border-radius: 10px;
+}
+
+.modal-card-image img {
   width: 100%;
   height: auto;
 
   display: block;
 
-  border-radius: 10px;
+  object-fit: contain;
 }
 
 
-/* ====================
-   アクセサリー拡大表示
-==================== */
+/* ==================================================
+   Accessory Modal
+================================================== */
 
 .card-modal-content.accessory-modal {
   width: min(94vw, 600px);
 }
 
-.accessory-modal .modal-images {
-  flex-direction: row;
-  align-items: flex-start;
+
+/*
+   アクセサリーも拡大時は横向き。
+*/
+
+.accessory-modal .modal-card-image {
+  aspect-ratio: 7 / 5;
+
+  background: #f8f3f8;
 }
 
-.accessory-modal .modal-images img {
-  width: calc(50% - 7px);
+.accessory-modal .modal-accessory-image img {
+  width: auto;
+  height: 140%;
+
+  max-width: none;
+  max-height: none;
+
+  flex-shrink: 0;
+
+  transform: rotate(90deg);
 }
 
 
-/* ====================
-   Smaller Screens
-==================== */
+/* ==================================================
+   Mobile
+================================================== */
 
 @media (max-width: 600px) {
 
@@ -667,31 +779,12 @@ footer {
     gap: 8px;
   }
 
-  .filter-group {
-    display: flex;
-    align-items: center;
-  }
-
-  .filter-group label {
-    width: 58px;
-    font-size: 12px;
-  }
-
-  .filter-group select {
-    flex: 1;
-    min-width: 0;
-
-    padding: 9px 10px;
-
-    font-size: 13px;
-  }
-
 }
 
 
-/* ====================
-   とても小さい画面
-==================== */
+/* ==================================================
+   Very Small Screens
+================================================== */
 
 @media (max-width: 360px) {
 
@@ -701,32 +794,8 @@ footer {
 
   .filter-button {
     padding: 7px 12px;
+
     font-size: 12px;
   }
 
-}
-/* =========================
-   アクセサリーカード
-   ========================= */
-
-.card.accessory .accessory-image {
-  width: 100%;
-  aspect-ratio: 7 / 5 !important;
-  overflow: hidden;
-  border-radius: 12px;
-  background: #f8f3f8;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.card.accessory .accessory-image img {
-  width: auto !important;
-  height: 140% !important;
-  max-width: none !important;
-  max-height: none !important;
-
-  object-fit: contain !important;
-  transform: rotate(90deg);
 }
