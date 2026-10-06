@@ -709,6 +709,17 @@ footer {
    アクセサリーカード
 ========================= */
 
-.card.accessory .card-image img {
+.card.accessory .accessory-image {
+  aspect-ratio: 7 / 5 !important;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card.accessory .accessory-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain !important;
   transform: rotate(90deg);
 }
