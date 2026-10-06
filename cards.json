@@ -1,16 +1,852 @@
 [
   {
-    "id": "001",
-    "name": "サンプルカード 001",
-    "brand": "Angely Sugar",
-    "rarity": "レア",
-    "image": "https://placehold.co/400x560/fcebf5/9e6e8b?text=Card+001"
+    "id": "E1-01_PR",
+    "season": 1,
+    "name": "E1-01",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-01_PR.webp"
   },
   {
-    "id": "002",
-    "name": "サンプルカード 002",
-    "brand": "FUTURING GIRL",
-    "rarity": "プレミアム",
-    "image": "https://placehold.co/400x560/f3ecff/9e6e8b?text=Card+002"
+    "id": "E1-02_PR",
+    "season": 1,
+    "name": "E1-02",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-02_PR.webp"
+  },
+  {
+    "id": "E1-03_PR",
+    "season": 1,
+    "name": "E1-03",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-03_PR.webp"
+  },
+  {
+    "id": "E1-04_PR",
+    "season": 1,
+    "name": "E1-04",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-04_PR.webp"
+  },
+  {
+    "id": "E1-05_R",
+    "season": 1,
+    "name": "E1-05",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-05_R.webp"
+  },
+  {
+    "id": "E1-06_R",
+    "season": 1,
+    "name": "E1-06",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-06_R.webp"
+  },
+  {
+    "id": "E1-07_R",
+    "season": 1,
+    "name": "E1-07",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-07_R.webp"
+  },
+  {
+    "id": "E1-08_R",
+    "season": 1,
+    "name": "E1-08",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-08_R.webp"
+  },
+  {
+    "id": "E1-09_R",
+    "season": 1,
+    "name": "E1-09",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-09_R.webp"
+  },
+  {
+    "id": "E1-10_R",
+    "season": 1,
+    "name": "E1-10",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-10_R.webp"
+  },
+  {
+    "id": "E1-11_R",
+    "season": 1,
+    "name": "E1-11",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-11_R.webp"
+  },
+  {
+    "id": "E1-12_R",
+    "season": 1,
+    "name": "E1-12",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-12_R.webp"
+  },
+  {
+    "id": "E1-13_R",
+    "season": 1,
+    "name": "E1-13",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-13_R.webp"
+  },
+  {
+    "id": "E1-14_R",
+    "season": 1,
+    "name": "E1-14",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-14_R.webp"
+  },
+  {
+    "id": "E1-15_R",
+    "season": 1,
+    "name": "E1-15",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-15_R.webp"
+  },
+  {
+    "id": "E1-16_R",
+    "season": 1,
+    "name": "E1-16",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-16_R.webp"
+  },
+  {
+    "id": "E1-17_R",
+    "season": 1,
+    "name": "E1-17",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-17_R.webp"
+  },
+  {
+    "id": "E1-18_R",
+    "season": 1,
+    "name": "E1-18",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-18_R.webp"
+  },
+  {
+    "id": "E1-19_R",
+    "season": 1,
+    "name": "E1-19",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-19_R.webp"
+  },
+  {
+    "id": "E1-20_R",
+    "season": 1,
+    "name": "E1-20",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-20_R.webp"
+  },
+  {
+    "id": "E1-21_N",
+    "season": 1,
+    "name": "E1-21",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-21_N.webp"
+  },
+  {
+    "id": "E1-22_N",
+    "season": 1,
+    "name": "E1-22",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-22_N.webp"
+  },
+  {
+    "id": "E1-23_N",
+    "season": 1,
+    "name": "E1-23",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-23_N.webp"
+  },
+  {
+    "id": "E1-24_N",
+    "season": 1,
+    "name": "E1-24",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-24_N.webp"
+  },
+  {
+    "id": "E1-25_N",
+    "season": 1,
+    "name": "E1-25",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-25_N.webp"
+  },
+  {
+    "id": "E1-26_N",
+    "season": 1,
+    "name": "E1-26",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-26_N.webp"
+  },
+  {
+    "id": "E1-27_N",
+    "season": 1,
+    "name": "E1-27",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-27_N.webp"
+  },
+  {
+    "id": "E1-28_N",
+    "season": 1,
+    "name": "E1-28",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-28_N.webp"
+  },
+  {
+    "id": "E1-29_N",
+    "season": 1,
+    "name": "E1-29",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-29_N.webp"
+  },
+  {
+    "id": "E1-30_ER",
+    "season": 1,
+    "name": "E1-30",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-30_ER.webp"
+  },
+  {
+    "id": "E1-31_ER",
+    "season": 1,
+    "name": "E1-31",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-31_ER.webp"
+  },
+  {
+    "id": "E1-32_ER",
+    "season": 1,
+    "name": "E1-32",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-32_ER.webp"
+  },
+  {
+    "id": "E1-33_PR",
+    "season": 1,
+    "name": "E1-33",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-33_PR.webp"
+  },
+  {
+    "id": "E1-34_PR",
+    "season": 1,
+    "name": "E1-34",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-34_PR.webp"
+  },
+  {
+    "id": "E1-35_PR",
+    "season": 1,
+    "name": "E1-35",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-35_PR.webp"
+  },
+  {
+    "id": "E1-36_PR",
+    "season": 1,
+    "name": "E1-36",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-36_PR.webp"
+  },
+  {
+    "id": "E1-37_R",
+    "season": 1,
+    "name": "E1-37",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-37_R.webp"
+  },
+  {
+    "id": "E1-38_R",
+    "season": 1,
+    "name": "E1-38",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-38_R.webp"
+  },
+  {
+    "id": "E1-39_R",
+    "season": 1,
+    "name": "E1-39",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-39_R.webp"
+  },
+  {
+    "id": "E1-40_R",
+    "season": 1,
+    "name": "E1-40",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-40_R.webp"
+  },
+  {
+    "id": "E1-41_N",
+    "season": 1,
+    "name": "E1-41",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-41_N.webp"
+  },
+  {
+    "id": "E1-42_N",
+    "season": 1,
+    "name": "E1-42",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-42_N.webp"
+  },
+  {
+    "id": "E1-43_N",
+    "season": 1,
+    "name": "E1-43",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-43_N.webp"
+  },
+  {
+    "id": "E1-44_N",
+    "season": 1,
+    "name": "E1-44",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-44_N.webp"
+  },
+  {
+    "id": "E1-45_N",
+    "season": 1,
+    "name": "E1-45",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-45_N.webp"
+  },
+  {
+    "id": "E1-46_N",
+    "season": 1,
+    "name": "E1-46",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-46_N.webp"
+  },
+  {
+    "id": "E1-47_N",
+    "season": 1,
+    "name": "E1-47",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-47_N.webp"
+  },
+  {
+    "id": "E1-48_N",
+    "season": 1,
+    "name": "E1-48",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-48_N.webp"
+  },
+  {
+    "id": "E1-49_N",
+    "season": 1,
+    "name": "E1-49",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-49_N.webp"
+  },
+  {
+    "id": "E1-50_ER",
+    "season": 1,
+    "name": "E1-50",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-50_ER.webp"
+  },
+  {
+    "id": "E1-51_PR",
+    "season": 1,
+    "name": "E1-51",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-51_PR.webp"
+  },
+  {
+    "id": "E1-52_PR",
+    "season": 1,
+    "name": "E1-52",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-52_PR.webp"
+  },
+  {
+    "id": "E1-53_R",
+    "season": 1,
+    "name": "E1-53",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-53_R.webp"
+  },
+  {
+    "id": "E1-54_R",
+    "season": 1,
+    "name": "E1-54",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-54_R.webp"
+  },
+  {
+    "id": "E1-55_R",
+    "season": 1,
+    "name": "E1-55",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-55_R.webp"
+  },
+  {
+    "id": "E1-56_R",
+    "season": 1,
+    "name": "E1-56",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-56_R.webp"
+  },
+  {
+    "id": "E1-57_R",
+    "season": 1,
+    "name": "E1-57",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-57_R.webp"
+  },
+  {
+    "id": "E1-58_R",
+    "season": 1,
+    "name": "E1-58",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-58_R.webp"
+  },
+  {
+    "id": "E1-59_R",
+    "season": 1,
+    "name": "E1-59",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-59_R.webp"
+  },
+  {
+    "id": "E1-60_N",
+    "season": 1,
+    "name": "E1-60",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-60_N.webp"
+  },
+  {
+    "id": "E1-61_N",
+    "season": 1,
+    "name": "E1-61",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-61_N.webp"
+  },
+  {
+    "id": "E1-62_N",
+    "season": 1,
+    "name": "E1-62",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-62_N.webp"
+  },
+  {
+    "id": "E1-63_N",
+    "season": 1,
+    "name": "E1-63",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-63_N.webp"
+  },
+  {
+    "id": "E1-64_N",
+    "season": 1,
+    "name": "E1-64",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-64_N.webp"
+  },
+  {
+    "id": "E1-65_N",
+    "season": 1,
+    "name": "E1-65",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-65_N.webp"
+  },
+  {
+    "id": "E1-66_N",
+    "season": 1,
+    "name": "E1-66",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-66_N.webp"
+  },
+  {
+    "id": "E1-67_N",
+    "season": 1,
+    "name": "E1-67",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-67_N.webp"
+  },
+  {
+    "id": "E1-68_N",
+    "season": 1,
+    "name": "E1-68",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-68_N.webp"
+  },
+  {
+    "id": "E1-69_N",
+    "season": 1,
+    "name": "E1-69",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-69_N.webp"
+  },
+  {
+    "id": "E1-70_N",
+    "season": 1,
+    "name": "E1-70",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-70_N.webp"
+  },
+  {
+    "id": "E1-71_PR",
+    "season": 1,
+    "name": "E1-71",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-71_PR.webp"
+  },
+  {
+    "id": "E1-72_PR",
+    "season": 1,
+    "name": "E1-72",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-72_PR.webp"
+  },
+  {
+    "id": "E1-73_PR",
+    "season": 1,
+    "name": "E1-73",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-73_PR.webp"
+  },
+  {
+    "id": "E1-74_PR",
+    "season": 1,
+    "name": "E1-74",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-74_PR.webp"
+  },
+  {
+    "id": "E1-75_PR",
+    "season": 1,
+    "name": "E1-75",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-75_PR.webp"
+  },
+  {
+    "id": "E1-76_PR",
+    "season": 1,
+    "name": "E1-76",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-76_PR.webp"
+  },
+  {
+    "id": "E1-77_PR",
+    "season": 1,
+    "name": "E1-77",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-77_PR.webp"
+  },
+  {
+    "id": "E1-78_PR",
+    "season": 1,
+    "name": "E1-78",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-78_PR.webp"
+  },
+  {
+    "id": "E1-79_PR",
+    "season": 1,
+    "name": "E1-79",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-79_PR.webp"
+  },
+  {
+    "id": "E1-80_PR",
+    "season": 1,
+    "name": "E1-80",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-80_PR.webp"
+  },
+  {
+    "id": "E1-81_PR",
+    "season": 1,
+    "name": "E1-81",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-81_PR.webp"
+  },
+  {
+    "id": "E1-82_PR",
+    "season": 1,
+    "name": "E1-82",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-82_PR.webp"
+  },
+  {
+    "id": "E1-83_N",
+    "season": 1,
+    "name": "E1-83",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-83_N.webp"
+  },
+  {
+    "id": "E1-84_N",
+    "season": 1,
+    "name": "E1-84",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-84_N.webp"
+  },
+  {
+    "id": "E1-85_N",
+    "season": 1,
+    "name": "E1-85",
+    "type": "",
+    "brand": "",
+    "coordinate": "",
+    "category": "",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-85_N.webp"
   }
 ]
