@@ -731,3 +731,16 @@ footer {
   object-fit: contain !important;
   display: block;
 }
+/* =========================
+   アクセサリー一覧表示
+========================= */
+
+.card.accessory .card-image {
+  aspect-ratio: 3 / 2;
+}
+
+.card.accessory .card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
