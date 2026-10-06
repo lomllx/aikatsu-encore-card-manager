@@ -440,3 +440,83 @@ footer {
   }
 
 }
+/* =========================
+   絞り込み
+========================= */
+
+.filter-area {
+  display: grid;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-group label {
+  width: 70px;
+  flex-shrink: 0;
+
+  font-size: 13px;
+  font-weight: bold;
+
+  color: #9e6e8b;
+}
+
+.filter-group select {
+  flex: 1;
+
+  padding: 10px 12px;
+
+  border: 1px solid #ead6e2;
+  border-radius: 12px;
+
+  background: #fffafd;
+
+  color: #76566a;
+
+  font-size: 14px;
+
+  outline: none;
+}
+
+.filter-group select:focus {
+  border-color: #d9b4cc;
+  box-shadow: 0 0 0 3px rgba(217, 180, 204, 0.2);
+}
+
+
+/* =========================
+   所持状態フィルター
+========================= */
+
+.filter-area:has(.filter-button) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-button {
+  padding: 8px 14px;
+
+  border: 1px solid #ead6e2;
+  border-radius: 20px;
+
+  background: #fffafd;
+
+  color: #9e6e8b;
+
+  font-size: 13px;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.filter-button.active {
+  background: #f3ddea;
+  border-color: #d9b4cc;
+  color: #7d536d;
+}
