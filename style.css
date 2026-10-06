@@ -520,3 +520,190 @@ footer {
   border-color: #d9b4cc;
   color: #7d536d;
 }
+/* =========================
+   フィルター スマホ対応
+========================= */
+
+.filter-area {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.filter-group {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.filter-group select {
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   カード表示
+========================= */
+
+.card {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-image {
+  width: 100%;
+  aspect-ratio: 5 / 7;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+/* =========================
+   カードをタップできる表示
+========================= */
+
+.card-image {
+  cursor: pointer;
+}
+
+.card-image:active {
+  transform: scale(0.98);
+}
+
+
+/* =========================
+   カード拡大モーダル
+========================= */
+
+.card-modal {
+  position: fixed;
+  inset: 0;
+
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(40, 25, 35, 0.72);
+
+  box-sizing: border-box;
+}
+
+.card-modal-content {
+  position: relative;
+
+  width: min(92vw, 430px);
+  max-height: 90vh;
+
+  padding: 14px;
+
+  border-radius: 18px;
+
+  background: #fffafd;
+
+  box-sizing: border-box;
+
+  overflow: auto;
+}
+
+.card-modal-close {
+  position: absolute;
+
+  top: 8px;
+  right: 10px;
+
+  z-index: 2;
+
+  width: 36px;
+  height: 36px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #f3ddea;
+  color: #7d536d;
+
+  font-size: 22px;
+
+  cursor: pointer;
+}
+
+.modal-images {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.modal-images img {
+  width: 100%;
+  height: auto;
+
+  display: block;
+
+  border-radius: 10px;
+}
+
+
+/* =========================
+   アクセサリーカード
+========================= */
+
+.card.accessory .card-image {
+  aspect-ratio: 7 / 5;
+}
+
+.card-modal-content.accessory-modal {
+  width: min(94vw, 600px);
+}
+
+.accessory-modal .modal-images {
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.accessory-modal .modal-images img {
+  width: calc(50% - 7px);
+}
+
+
+/* =========================
+   スマホ
+========================= */
+
+@media (max-width: 600px) {
+
+  .filter-area {
+    gap: 8px;
+  }
+
+  .filter-group {
+    display: flex;
+    align-items: center;
+  }
+
+  .filter-group label {
+    width: 58px;
+    font-size: 12px;
+  }
+
+  .filter-group select {
+    flex: 1;
+    min-width: 0;
+
+    padding: 9px 10px;
+
+    font-size: 13px;
+  }
+
+}
