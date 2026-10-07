@@ -457,7 +457,7 @@ footer p {
   align-items: center;
   justify-content: center;
 
-  padding: 20px;
+  padding: 16px;
 
   background: rgba(60, 40, 70, 0.72);
 
@@ -466,13 +466,17 @@ footer p {
 }
 
 
+/* =========================
+   モーダル本体
+========================= */
+
 .card-modal-content {
   position: relative;
 
-  width: min(90vw, 420px);
-  max-height: 92vh;
+  width: min(88vw, 360px);
+  max-height: 88vh;
 
-  padding: 20px 16px 18px;
+  padding: 18px 12px 20px;
 
   background: #fffaff;
 
@@ -482,7 +486,7 @@ footer p {
   box-shadow:
     0 10px 35px rgba(80, 50, 80, 0.25);
 
-  overflow-y: auto;
+  overflow: hidden;
 
   text-align: center;
 }
@@ -496,26 +500,25 @@ footer p {
   position: absolute;
 
   top: 8px;
-  right: 10px;
+  right: 8px;
 
-  width: 38px;
-  height: 38px;
+  width: 42px;
+  height: 42px;
 
   border: none;
   border-radius: 50%;
 
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
 
   color: #8d6688;
 
-  font-size: 28px;
+  font-size: 30px;
   line-height: 1;
 
   cursor: pointer;
 
-  z-index: 2;
+  z-index: 10;
 }
-
 
 .card-modal-close:active {
   transform: scale(0.92);
@@ -523,10 +526,12 @@ footer p {
 
 
 /* =========================
-   大きなカード表示
+   カード表示エリア
 ========================= */
 
 .modal-card-area {
+  position: relative;
+
   display: flex;
 
   align-items: center;
@@ -540,23 +545,79 @@ footer p {
 }
 
 
+/* カード本体 */
+
 .modal-card-image {
   display: block;
 
-  width: min(76vw, 350px);
-  max-width: 100%;
+  width: min(62vw, 280px);
 
-  max-height: 68vh;
+  max-width: 100%;
+  max-height: 58vh;
 
   object-fit: contain;
 
-  border-radius: 8px;
+  border-radius: 6px;
 
   box-shadow:
     0 5px 18px rgba(80, 50, 80, 0.18);
 
   user-select: none;
   -webkit-user-drag: none;
+}
+
+
+/* =========================
+   左右の矢印
+========================= */
+
+.card-side-arrow {
+  position: absolute;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.92);
+
+  color: #8d6688;
+
+  font-size: 34px;
+  font-weight: normal;
+
+  line-height: 1;
+
+  box-shadow:
+    0 3px 10px rgba(80, 50, 80, 0.18);
+
+  cursor: pointer;
+
+  z-index: 5;
+}
+
+.card-side-arrow.left {
+  left: 4px;
+}
+
+.card-side-arrow.right {
+  right: 4px;
+}
+
+.card-side-arrow:active {
+  transform:
+    translateY(-50%)
+    scale(0.9);
 }
 
 
@@ -568,16 +629,17 @@ footer p {
   display: flex;
 
   justify-content: center;
-  gap: 10px;
 
-  margin-top: 18px;
+  gap: 12px;
+
+  margin-top: 16px;
 }
 
 
 .card-side-button {
-  min-width: 90px;
+  min-width: 100px;
 
-  padding: 9px 18px;
+  padding: 11px 22px;
 
   border: 1px solid #e8cce4;
   border-radius: 999px;
@@ -586,7 +648,7 @@ footer p {
 
   color: #8d6688;
 
-  font-size: 14px;
+  font-size: 15px;
   font-weight: bold;
 
   cursor: pointer;
@@ -613,50 +675,57 @@ footer p {
 
 
 /* =========================
-   スワイプ説明
-========================= */
-
-.card-side-hint {
-  margin: 10px 0 0;
-
-  color: #aa91a7;
-
-  font-size: 11px;
-}
-
-
-/* =========================
    スマホ用
 ========================= */
 
 @media (max-width: 480px) {
 
   .card-modal {
-    padding: 12px;
+    padding: 10px;
   }
 
 
   .card-modal-content {
-    width: 92vw;
+    width: 90vw;
 
     padding:
-      18px 12px 15px;
+      16px 8px 18px;
 
     border-radius: 22px;
   }
 
 
   .modal-card-image {
-    width: 78vw;
+    width: 62vw;
 
-    max-height: 65vh;
+    max-height: 57vh;
+  }
+
+
+  .card-side-arrow {
+    width: 44px;
+    height: 44px;
+
+    font-size: 32px;
+  }
+
+
+  .card-side-arrow.left {
+    left: 2px;
+  }
+
+
+  .card-side-arrow.right {
+    right: 2px;
   }
 
 
   .card-side-button {
-    min-width: 82px;
+    min-width: 95px;
 
-    padding: 8px 16px;
+    padding: 10px 20px;
+
+    font-size: 15px;
   }
 
 }
