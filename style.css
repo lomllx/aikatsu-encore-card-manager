@@ -888,3 +888,13 @@ footer p {
   }
 
 }
+/* =========================
+   交換可能表示
+========================= */
+
+.trade-label {
+  margin-top: 4px;
+  color: #b47eaa;
+  font-size: 10px;
+  font-weight: bold;
+}
