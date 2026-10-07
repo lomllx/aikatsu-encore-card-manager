@@ -50,6 +50,18 @@
 
         <div id="seasonLinks"></div>
 
+
+        <!-- プロモーション -->
+
+        <a
+          href="promotion.html"
+          class="season-link promotion-link"
+          id="promotionLink"
+        >
+          <span>♡ プロモーションカード</span>
+          <span id="promotionCount">›</span>
+        </a>
+
       </div>
 
     </section>
@@ -147,6 +159,11 @@
         "seasonLinks"
       );
 
+    const promotionCount =
+      document.getElementById(
+        "promotionCount"
+      );
+
 
     /* =========================
        Collection 開閉
@@ -183,6 +200,21 @@
 
 
     /* =========================
+       プロモーションかどうか
+    ========================= */
+
+    function isPromotion(card) {
+
+      return (
+        String(
+          card.collection || ""
+        ).toLowerCase() === "promotion"
+      );
+
+    }
+
+
+    /* =========================
        カード情報を読み込む
     ========================= */
 
@@ -192,9 +224,11 @@
         .then(response => {
 
           if (!response.ok) {
+
             throw new Error(
               "cards.jsonを読み込めませんでした"
             );
+
           }
 
           return response.json();
@@ -209,6 +243,8 @@
 
 
           createSeasonLinks(cards);
+
+          updatePromotionLink(cards);
 
         })
         .catch(error => {
@@ -227,15 +263,28 @@
 
 
     /* =========================
-       弾ごとのリンクを作る
+       通常弾だけを弾ごとに表示
     ========================= */
 
     function createSeasonLinks(cards) {
 
+      /*
+        プロモーションカードを除外
+        通常弾だけをここで扱う
+      */
+
+      const normalCards =
+        cards.filter(
+          card => !isPromotion(card)
+        );
+
+
       const seasons = [
         ...new Set(
-          cards.map(card =>
-            String(card.season || "1")
+          normalCards.map(card =>
+            String(
+              card.season || "1"
+            )
           )
         )
       ]
@@ -251,7 +300,7 @@
       seasons.forEach(season => {
 
         const seasonCards =
-          cards.filter(card =>
+          normalCards.filter(card =>
             String(
               card.season || "1"
             ) === season
@@ -281,6 +330,7 @@
         link.href =
           `cards.html?season=${season}`;
 
+
         link.className =
           "season-link";
 
@@ -298,9 +348,47 @@
         `;
 
 
-        seasonLinks.appendChild(link);
+        seasonLinks.appendChild(
+          link
+        );
 
       });
+
+    }
+
+
+    /* =========================
+       プロモーションカードの所持数
+    ========================= */
+
+    function updatePromotionLink(cards) {
+
+      const promotionCards =
+        cards.filter(
+          card => isPromotion(card)
+        );
+
+
+      const ownership =
+        JSON.parse(
+          localStorage.getItem(
+            "aikatsu-encore-promotion"
+          ) || "{}"
+        );
+
+
+      const owned =
+        promotionCards.filter(card =>
+          Number(
+            ownership[card.id] || 0
+          ) >= 1
+        ).length;
+
+
+      promotionCount.textContent =
+        promotionCards.length > 0
+          ? `${owned} / ${promotionCards.length}　›`
+          : "›";
 
     }
 
