@@ -3,524 +3,399 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>交換可能カード</title>
+  <title>交換できるカード</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <header class="header">
-    <h1>✦ AIKATSU ENCORE ✦</h1>
-    <p>♡ TRADE ♡</p>
-  </header>
+  <main class="container">
 
+    <a href="index.html" class="back-link">← ホームへ戻る</a>
 
-  <main class="cards-page">
+    <h1>♡ 交換できるカード</h1>
 
-    <a href="index.html" class="back-link">
-      ‹ Home
-    </a>
+    <p class="page-description">
+      2枚以上持っているカードを表示します
+    </p>
 
+    <input
+      type="search"
+      id="search"
+      class="search-box"
+      placeholder="カード名・カード番号で検索"
+    >
 
-    <section class="season-header">
+    <div id="season-buttons" class="season-buttons"></div>
 
-      <h2>交換可能カード</h2>
+    <div id="card-list" class="card-list"></div>
 
-      <p id="tradeStatus">
-        読み込み中…
-      </p>
-
-    </section>
-
-
-    <!-- 検索 -->
-
-    <div class="search-box">
-
-      <input
-        type="search"
-        id="searchInput"
-        placeholder="カード番号・カード名を検索"
-      >
-
-    </div>
-
-
-    <!-- 弾フィルター -->
-
-    <div class="trade-season-filter">
-
-      <button
-        class="trade-season-button active"
-        data-season=""
-      >
-        すべて
-      </button>
-
-      <div id="seasonButtons"></div>
-
-    </div>
-
-
-    <!-- カード一覧 -->
-
-    <div
-      id="tradeGrid"
-      class="card-grid"
-    ></div>
-
+    <p id="empty-message" class="empty-message">
+      交換できるカードはありません。
+    </p>
 
   </main>
 
+<script>
 
-  <footer>
-    <p>♡ AIKATSU ENCORE ♡</p>
-  </footer>
+let allCards = [];
+let selectedSeason = "all";
 
-
-  <script>
-
-    let cards = [];
-
-    let currentSeason = "";
+const cardList = document.getElementById("card-list");
+const emptyMessage = document.getElementById("empty-message");
+const searchInput = document.getElementById("search");
+const seasonButtons = document.getElementById("season-buttons");
 
 
-    const searchInput =
-      document.getElementById(
-        "searchInput"
+// ==============================
+// データ読み込み
+// ==============================
+
+async function loadCards() {
+
+  const response = await fetch("cards.json");
+  allCards = await response.json();
+
+  createSeasonButtons();
+  renderCards();
+}
+
+
+// ==============================
+// シーズンボタン
+// ==============================
+
+function createSeasonButtons() {
+
+  seasonButtons.innerHTML = "";
+
+  const allButton = document.createElement("button");
+
+  allButton.textContent = "すべて";
+  allButton.className = "season-button active";
+
+  allButton.addEventListener("click", () => {
+
+    selectedSeason = "all";
+
+    updateSeasonButtons();
+    renderCards();
+
+  });
+
+  seasonButtons.appendChild(allButton);
+
+
+  // 通常弾
+  const seasons = [
+    ...new Set(
+      allCards
+        .filter(card => card.collection !== "promotion")
+        .map(card => card.season)
+        .filter(Boolean)
+    )
+  ].sort((a, b) => Number(a) - Number(b));
+
+
+  seasons.forEach(season => {
+
+    const button = document.createElement("button");
+
+    button.textContent = `第${season}弾`;
+
+    button.className = "season-button";
+
+    button.dataset.season = season;
+
+    button.addEventListener("click", () => {
+
+      selectedSeason = String(season);
+
+      updateSeasonButtons();
+      renderCards();
+
+    });
+
+    seasonButtons.appendChild(button);
+
+  });
+
+
+  // プロモーション
+  const promotionCards = allCards.filter(
+    card => card.collection === "promotion"
+  );
+
+  if (promotionCards.length > 0) {
+
+    const button = document.createElement("button");
+
+    button.textContent = "♡ プロモ";
+
+    button.className = "season-button";
+
+    button.dataset.season = "promotion";
+
+    button.addEventListener("click", () => {
+
+      selectedSeason = "promotion";
+
+      updateSeasonButtons();
+      renderCards();
+
+    });
+
+    seasonButtons.appendChild(button);
+  }
+}
+
+
+// ==============================
+// ボタン状態
+// ==============================
+
+function updateSeasonButtons() {
+
+  document
+    .querySelectorAll(".season-button")
+    .forEach(button => {
+
+      const buttonSeason =
+        button.dataset.season || "all";
+
+      button.classList.toggle(
+        "active",
+        buttonSeason === selectedSeason
       );
 
-    const tradeGrid =
-      document.getElementById(
-        "tradeGrid"
-      );
-
-    const tradeStatus =
-      document.getElementById(
-        "tradeStatus"
-      );
-
-    const seasonButtons =
-      document.getElementById(
-        "seasonButtons"
-      );
+    });
+}
 
 
-    /* =========================
-       カード情報読み込み
-    ========================= */
+// ==============================
+// 所持数
+// ==============================
 
-    fetch("cards.json")
+function getStorageKey(card) {
 
-      .then(response => {
+  if (card.collection === "promotion") {
+    return "aikatsu-encore-promotion";
+  }
 
-        if (!response.ok) {
-
-          throw new Error(
-            "cards.jsonを読み込めませんでした"
-          );
-
-        }
-
-        return response.json();
-
-      })
-
-      .then(data => {
-
-        cards =
-          Array.isArray(data)
-            ? data
-            : data.cards || [];
+  return `aikatsu-encore-season-${card.season}`;
+}
 
 
-        createSeasonButtons();
+function getOwnedCount(card) {
 
-        renderTradeCards();
+  const key = getStorageKey(card);
 
-      })
+  const data = JSON.parse(
+    localStorage.getItem(key) || "{}"
+  );
 
-      .catch(error => {
-
-        console.error(error);
-
-        tradeStatus.textContent =
-          "カードを読み込めませんでした。";
-
-      });
+  return Number(data[card.id] || 0);
+}
 
 
-    /* =========================
-       所持数を取得
-    ========================= */
+// ==============================
+// カード描画
+// ==============================
 
-    function getCount(card) {
+function renderCards() {
 
-      const season =
-        String(card.season || "1");
+  cardList.innerHTML = "";
 
-
-      const ownership =
-        JSON.parse(
-          localStorage.getItem(
-            `aikatsu-encore-season-${season}`
-          ) || "{}"
-        );
+  const keyword =
+    searchInput.value.trim().toLowerCase();
 
 
-      return Number(
-        ownership[card.id] || 0
-      );
+  let cards = allCards.filter(card => {
 
+    const ownedCount = getOwnedCount(card);
+
+    // 交換対象は2枚以上
+    if (ownedCount < 2) {
+      return false;
     }
 
 
-    /* =========================
-       弾ボタン作成
-    ========================= */
+    // シーズン
+    if (selectedSeason === "promotion") {
 
-    function createSeasonButtons() {
+      if (card.collection !== "promotion") {
+        return false;
+      }
 
-      const seasons = [
-
-        ...new Set(
-
-          cards.map(card =>
-            String(
-              card.season || "1"
-            )
-          )
-
-        )
-
-      ].sort(
-        (a, b) =>
-          Number(a) - Number(b)
-      );
-
-
-      seasonButtons.innerHTML = "";
-
-
-      seasons.forEach(season => {
-
-        const button =
-          document.createElement(
-            "button"
-          );
-
-
-        button.type = "button";
-
-        button.className =
-          "trade-season-button";
-
-
-        button.dataset.season =
-          season;
-
-
-        button.textContent =
-          `第${season}弾`;
-
-
-        button.addEventListener(
-          "click",
-          () => {
-
-            document
-              .querySelectorAll(
-                ".trade-season-button"
-              )
-              .forEach(button =>
-                button.classList.remove(
-                  "active"
-                )
-              );
-
-
-            button.classList.add(
-              "active"
-            );
-
-
-            currentSeason =
-              season;
-
-
-            renderTradeCards();
-
-          }
-        );
-
-
-        seasonButtons.appendChild(
-          button
-        );
-
-      });
-
-
-      document
-        .querySelector(
-          '[data-season=""]'
-        )
-        .addEventListener(
-          "click",
-          () => {
-
-            document
-              .querySelectorAll(
-                ".trade-season-button"
-              )
-              .forEach(button =>
-                button.classList.remove(
-                  "active"
-                )
-              );
-
-
-            document
-              .querySelector(
-                '[data-season=""]'
-              )
-              .classList.add(
-                "active"
-              );
-
-
-            currentSeason = "";
-
-            renderTradeCards();
-
-          }
-        );
-
-    }
-
-
-    /* =========================
-       交換可能カード表示
-    ========================= */
-
-    function renderTradeCards() {
-
-      tradeGrid.innerHTML = "";
-
-
-      const keyword =
-        searchInput.value
-          .toLowerCase()
-          .trim();
-
-
-      const tradeCards =
-        cards.filter(card => {
-
-          const count =
-            getCount(card);
-
-
-          /* 2枚以上だけ */
-
-          if (count < 2) {
-            return false;
-          }
-
-
-          /* 弾 */
-
-          if (
-            currentSeason &&
-            String(
-              card.season || "1"
-            ) !== currentSeason
-          ) {
-
-            return false;
-
-          }
-
-
-          /* 検索 */
-
-          const searchableText = [
-
-            card.id,
-            card.name,
-            card.unit,
-            card.brand,
-            card.coordinate
-
-          ]
-            .filter(value => value)
-            .join(" ")
-            .toLowerCase();
-
-
-          if (
-            keyword &&
-            !searchableText.includes(
-              keyword
-            )
-          ) {
-
-            return false;
-
-          }
-
-
-          return true;
-
-        });
-
-
-      tradeStatus.textContent =
-        `${tradeCards.length}枚の交換可能カード`;
-
+    } else if (selectedSeason !== "all") {
 
       if (
-        tradeCards.length === 0
+        card.collection === "promotion" ||
+        String(card.season) !== selectedSeason
       ) {
-
-        tradeGrid.innerHTML = `
-
-          <p class="no-results">
-
-            交換可能なカードはありません。
-
-          </p>
-
-        `;
-
-        return;
-
+        return false;
       }
-
-
-      tradeCards.forEach(card => {
-
-        const count =
-          getCount(card);
-
-
-        const cardElement =
-          document.createElement(
-            "article"
-          );
-
-
-        cardElement.className =
-          "card trade-card";
-
-
-        cardElement.innerHTML = `
-
-          <div class="card-image">
-
-            <img
-              src="${card.image}"
-              alt="${card.name || card.id}"
-              onerror="this.style.display='none'"
-            >
-
-          </div>
-
-
-          <div class="card-info">
-
-            <div class="card-id">
-
-              ${card.id || ""}
-
-            </div>
-
-
-            <div class="card-name">
-
-              ${card.name || ""}
-
-            </div>
-
-
-            <div class="card-meta">
-
-              ${card.brand || ""}
-
-            </div>
-
-
-            <div class="trade-season-label">
-
-              第${card.season || 1}弾
-
-            </div>
-
-          </div>
-
-
-          <div class="trade-count">
-
-            所持 ${count}枚
-            <br>
-
-            <strong>
-              交換 ${count - 1}枚
-            </strong>
-
-          </div>
-
-        `;
-
-
-        cardElement.addEventListener(
-          "click",
-          () => {
-
-            location.href =
-              `cards.html?season=${card.season || 1}`;
-
-          }
-        );
-
-
-        tradeGrid.appendChild(
-          cardElement
-        );
-
-      });
 
     }
 
 
-    /* =========================
-       検索
-    ========================= */
+    // 検索
+    if (keyword) {
 
-    searchInput.addEventListener(
-      "input",
-      renderTradeCards
-    );
+      const text = [
+        card.id,
+        card.name,
+        card.unit,
+        card.brand,
+        card.coordinate,
+        card.type,
+        card.category
+      ]
+        .filter(Boolean)
+        .join(" ")
+        .toLowerCase();
+
+      if (!text.includes(keyword)) {
+        return false;
+      }
+    }
+
+    return true;
+
+  });
 
 
-    /* =========================
-       戻ってきたとき更新
-    ========================= */
+  // 並び順
+  cards.sort((a, b) => {
 
-    window.addEventListener(
-      "pageshow",
-      () => {
+    // プロモは最後
+    if (
+      a.collection === "promotion" &&
+      b.collection !== "promotion"
+    ) {
+      return 1;
+    }
 
-        if (cards.length > 0) {
+    if (
+      a.collection !== "promotion" &&
+      b.collection === "promotion"
+    ) {
+      return -1;
+    }
 
-          renderTradeCards();
+    return a.id.localeCompare(b.id, undefined, {
+      numeric: true
+    });
 
-        }
+  });
+
+
+  emptyMessage.style.display =
+    cards.length === 0 ? "block" : "none";
+
+
+  cards.forEach(card => {
+
+    const count = getOwnedCount(card);
+
+    const cardElement =
+      document.createElement("div");
+
+    cardElement.className = "card-item";
+
+
+    const image = document.createElement("img");
+
+    image.src = card.image;
+    image.alt = card.name || card.id;
+    image.loading = "lazy";
+
+
+    const info =
+      document.createElement("div");
+
+    info.className = "card-info";
+
+
+    const id =
+      document.createElement("div");
+
+    id.className = "card-id";
+    id.textContent = card.id;
+
+
+    const name =
+      document.createElement("div");
+
+    name.className = "card-name";
+    name.textContent = card.name || "";
+
+
+    const countText =
+      document.createElement("div");
+
+    countText.className = "trade-count";
+
+    countText.textContent =
+      `交換 ${count - 1}枚`;
+
+
+    info.appendChild(id);
+    info.appendChild(name);
+    info.appendChild(countText);
+
+
+    cardElement.appendChild(image);
+    cardElement.appendChild(info);
+
+
+    cardElement.addEventListener("click", () => {
+
+      if (card.collection === "promotion") {
+
+        location.href =
+          "promotion.html";
+
+      } else {
+
+        location.href =
+          `cards.html?season=${card.season}`;
 
       }
-    );
 
-  </script>
+    });
+
+
+    cardList.appendChild(cardElement);
+
+  });
+
+}
+
+
+// ==============================
+// 検索
+// ==============================
+
+searchInput.addEventListener(
+  "input",
+  renderCards
+);
+
+
+// ==============================
+// Safari 戻る対策
+// ==============================
+
+window.addEventListener(
+  "pageshow",
+  renderCards
+);
+
+
+loadCards();
+
+</script>
 
 </body>
 </html>
