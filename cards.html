@@ -170,10 +170,23 @@
             ? data
             : data.cards || [];
 
+
+        /* =========================
+           第○弾のカードだけ表示
+           プロモーションカードは除外
+        ========================= */
+
         cards =
           cards.filter(card =>
-            String(card.season || season) === String(season)
+            !card.collection ||
+            String(card.collection).toLowerCase() !== "promotion"
           );
+
+        cards =
+          cards.filter(card =>
+            String(card.season || "") === String(season)
+          );
+
 
         seasonTitle.textContent =
           `第${season}弾`;
@@ -476,27 +489,27 @@
 
           <div class="card-info">
 
-  <div class="card-id">
-    ${card.id || ""}
-  </div>
+            <div class="card-id">
+              ${card.id || ""}
+            </div>
 
-  <div class="card-name">
-    ${card.name || ""}
-  </div>
+            <div class="card-name">
+              ${card.name || ""}
+            </div>
 
-  <div class="card-meta">
-    ${card.brand || ""}
-  </div>
+            <div class="card-meta">
+              ${card.brand || ""}
+            </div>
 
-  ${
-    count >= 2
-      ? `<div class="trade-label">♡ 交換可能</div>`
-      : ""
-  }
+            ${
+              count >= 2
+                ? `<div class="trade-label">♡ 交換可能</div>`
+                : ""
+            }
 
-</div>
+          </div>
 
-<div class="count-control">
+          <div class="count-control">
 
             <button
               type="button"
@@ -752,55 +765,55 @@
       );
 
 
- /* =========================
-   左右の矢印
-   どちらを押しても表裏を切り替える
-========================= */
+      /* =========================
+         左右の矢印
+         どちらを押しても表裏を切り替える
+      ========================= */
 
-function toggleSide() {
+      function toggleSide() {
 
-  const isBack =
-    image.src === card.backImage;
+        const isBack =
+          image.src === card.backImage;
 
-  if (isBack) {
+        if (isBack) {
 
-    showSide("front");
+          showSide("front");
 
-  } else {
+        } else {
 
-    showSide("back");
+          showSide("back");
 
-  }
+        }
 
-}
-
-
-/* 左矢印 */
-
-leftArrow.addEventListener(
-  "click",
-  event => {
-
-    event.stopPropagation();
-
-    toggleSide();
-
-  }
-);
+      }
 
 
-/* 右矢印 */
+      /* 左矢印 */
 
-rightArrow.addEventListener(
-  "click",
-  event => {
+      leftArrow.addEventListener(
+        "click",
+        event => {
 
-    event.stopPropagation();
+          event.stopPropagation();
 
-    toggleSide();
+          toggleSide();
 
-  }
-);
+        }
+      );
+
+
+      /* 右矢印 */
+
+      rightArrow.addEventListener(
+        "click",
+        event => {
+
+          event.stopPropagation();
+
+          toggleSide();
+
+        }
+      );
 
 
       /* =========================
