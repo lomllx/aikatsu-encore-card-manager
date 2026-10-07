@@ -988,3 +988,82 @@ footer p {
   }
 
 }
+/* =========================
+   通常弾 / プロモ切り替え
+========================= */
+
+.collection-scope {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 7px;
+  margin-bottom: 12px;
+}
+
+.scope-button {
+  width: 100%;
+  padding: 10px 6px;
+  border: 1px solid #ead7e6;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #8c7188;
+  font-size: 12px;
+  font-weight: normal;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.scope-button.active {
+  background: #ead8e8;
+  border-color: #d6b7d1;
+  color: #70566d;
+  font-weight: bold;
+}
+
+
+/* =========================
+   全体コレクションの弾区切り
+========================= */
+
+.collection-section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 24px 0 12px;
+  color: #8d6688;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.collection-section-title::before,
+.collection-section-title::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #ead7e6;
+}
+
+.collection-section-title:first-child {
+  margin-top: 4px;
+}
+
+
+/* スマホ */
+
+@media (max-width: 480px) {
+
+  .collection-scope {
+    gap: 6px;
+  }
+
+  .scope-button {
+    padding: 9px 4px;
+    font-size: 12px;
+  }
+
+  .collection-section-title {
+    margin-top: 22px;
+    font-size: 15px;
+  }
+
+}
