@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -14,48 +14,41 @@
     <p>♡ CARD COLLECTION ♡</p>
   </header>
 
+
   <main class="home">
 
     <!-- Collection -->
+
     <section class="menu-section">
 
-      <button class="section-title" id="collectionToggle">
+      <button
+        class="section-title"
+        id="collectionToggle"
+      >
         ♡ Collection
         <span id="collectionArrow">▼</span>
       </button>
 
-      <div id="collectionList" class="collection-list">
+
+      <div
+        id="collectionList"
+        class="collection-list"
+      >
 
         <!-- 全体コレクション -->
 
-        <a href="all-cards.html" class="season-link">
+        <a
+          href="all-cards.html"
+          class="season-link"
+        >
           <span>♡ 全体コレクション</span>
           <span>›</span>
         </a>
 
 
-        <!-- 第1弾 -->
+        <!-- 各弾 -->
 
-        <a href="cards.html?season=1" class="season-link">
-          <span>第1弾</span>
-          <span>0 / 85　›</span>
-        </a>
-
-
-        <!-- 第2弾 -->
-
-        <a href="cards.html?season=2" class="season-link">
-          <span>第2弾</span>
-          <span>準備中　›</span>
-        </a>
-
-
-        <!-- 第3弾 -->
-
-        <a href="cards.html?season=3" class="season-link">
-          <span>第3弾</span>
-          <span>準備中　›</span>
-        </a>
+        <div id="seasonLinks"></div>
 
       </div>
 
@@ -66,7 +59,10 @@
 
     <section class="menu-section">
 
-      <a href="trade.html" class="menu-link">
+      <a
+        href="trade.html"
+        class="menu-link"
+      >
 
         <span>
           <strong>♡ Trade</strong>
@@ -84,7 +80,10 @@
 
     <section class="menu-section">
 
-      <a href="character.html" class="menu-link">
+      <a
+        href="character.html"
+        class="menu-link"
+      >
 
         <span>
           <strong>♡ My Character</strong>
@@ -102,7 +101,10 @@
 
     <section class="menu-section">
 
-      <a href="information.html" class="menu-link">
+      <a
+        href="information.html"
+        class="menu-link"
+      >
 
         <span>
           <strong>♡ Information</strong>
@@ -126,36 +128,177 @@
   <script>
 
     const collectionToggle =
-      document.getElementById("collectionToggle");
+      document.getElementById(
+        "collectionToggle"
+      );
 
     const collectionList =
-      document.getElementById("collectionList");
+      document.getElementById(
+        "collectionList"
+      );
 
     const collectionArrow =
-      document.getElementById("collectionArrow");
+      document.getElementById(
+        "collectionArrow"
+      );
+
+    const seasonLinks =
+      document.getElementById(
+        "seasonLinks"
+      );
 
 
-    collectionToggle.addEventListener("click", () => {
+    /* =========================
+       Collection 開閉
+    ========================= */
 
-      const isOpen =
-        collectionList.style.display !== "none";
+    collectionToggle.addEventListener(
+      "click",
+      () => {
+
+        const isOpen =
+          collectionList.style.display !== "none";
 
 
-      if (isOpen) {
+        if (isOpen) {
 
-        collectionList.style.display = "none";
+          collectionList.style.display =
+            "none";
 
-        collectionArrow.textContent = "▶";
+          collectionArrow.textContent =
+            "▶";
 
-      } else {
+        } else {
 
-        collectionList.style.display = "block";
+          collectionList.style.display =
+            "block";
 
-        collectionArrow.textContent = "▼";
+          collectionArrow.textContent =
+            "▼";
+
+        }
 
       }
+    );
 
-    });
+
+    /* =========================
+       カード情報を読み込む
+    ========================= */
+
+    fetch("cards.json")
+      .then(response => {
+
+        if (!response.ok) {
+          throw new Error(
+            "cards.jsonを読み込めませんでした"
+          );
+        }
+
+        return response.json();
+
+      })
+      .then(data => {
+
+        const cards =
+          Array.isArray(data)
+            ? data
+            : data.cards || [];
+
+
+        createSeasonLinks(cards);
+
+      })
+      .catch(error => {
+
+        console.error(error);
+
+        seasonLinks.innerHTML = `
+          <p>
+            カード情報を読み込めませんでした。
+          </p>
+        `;
+
+      });
+
+
+    /* =========================
+       弾ごとのリンクを作る
+    ========================= */
+
+    function createSeasonLinks(cards) {
+
+      const seasons = [
+        ...new Set(
+          cards.map(card =>
+            String(card.season || "1")
+          )
+        )
+      ]
+      .sort(
+        (a, b) =>
+          Number(a) - Number(b)
+      );
+
+
+      seasonLinks.innerHTML = "";
+
+
+      seasons.forEach(season => {
+
+        const seasonCards =
+          cards.filter(card =>
+            String(
+              card.season || "1"
+            ) === season
+          );
+
+
+        const ownership =
+          JSON.parse(
+            localStorage.getItem(
+              `aikatsu-encore-season-${season}`
+            ) || "{}"
+          );
+
+
+        const owned =
+          seasonCards.filter(card =>
+            Number(
+              ownership[card.id] || 0
+            ) >= 1
+          ).length;
+
+
+        const link =
+          document.createElement("a");
+
+
+        link.href =
+          `cards.html?season=${season}`;
+
+        link.className =
+          "season-link";
+
+
+        link.innerHTML = `
+
+          <span>
+            第${season}弾
+          </span>
+
+          <span>
+            ${owned} / ${seasonCards.length}　›
+          </span>
+
+        `;
+
+
+        seasonLinks.appendChild(link);
+
+      });
+
+    }
 
   </script>
 
