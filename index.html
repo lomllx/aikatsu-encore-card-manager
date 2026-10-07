@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -186,40 +186,44 @@
        カード情報を読み込む
     ========================= */
 
-    fetch("cards.json")
-      .then(response => {
+    function loadSeasonLinks() {
 
-        if (!response.ok) {
-          throw new Error(
-            "cards.jsonを読み込めませんでした"
-          );
-        }
+      fetch("cards.json")
+        .then(response => {
 
-        return response.json();
+          if (!response.ok) {
+            throw new Error(
+              "cards.jsonを読み込めませんでした"
+            );
+          }
 
-      })
-      .then(data => {
+          return response.json();
 
-        const cards =
-          Array.isArray(data)
-            ? data
-            : data.cards || [];
+        })
+        .then(data => {
+
+          const cards =
+            Array.isArray(data)
+              ? data
+              : data.cards || [];
 
 
-        createSeasonLinks(cards);
+          createSeasonLinks(cards);
 
-      })
-      .catch(error => {
+        })
+        .catch(error => {
 
-        console.error(error);
+          console.error(error);
 
-        seasonLinks.innerHTML = `
-          <p>
-            カード情報を読み込めませんでした。
-          </p>
-        `;
+          seasonLinks.innerHTML = `
+            <p>
+              カード情報を読み込めませんでした。
+            </p>
+          `;
 
-      });
+        });
+
+    }
 
 
     /* =========================
@@ -299,6 +303,21 @@
       });
 
     }
+
+
+    /* =========================
+       ページを開いたとき・
+       Safariで戻ってきたときに更新
+    ========================= */
+
+    window.addEventListener(
+      "pageshow",
+      () => {
+
+        loadSeasonLinks();
+
+      }
+    );
 
   </script>
 
