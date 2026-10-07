@@ -746,32 +746,55 @@
       );
 
 
-      /* 左矢印 */
+ /* =========================
+   左右の矢印
+   どちらを押しても表裏を切り替える
+========================= */
 
-      leftArrow.addEventListener(
-        "click",
-        event => {
+function toggleSide() {
 
-          event.stopPropagation();
+  const isBack =
+    image.src === card.backImage;
 
-          showSide("front");
+  if (isBack) {
 
-        }
-      );
+    showSide("front");
+
+  } else {
+
+    showSide("back");
+
+  }
+
+}
 
 
-      /* 右矢印 */
+/* 左矢印 */
 
-      rightArrow.addEventListener(
-        "click",
-        event => {
+leftArrow.addEventListener(
+  "click",
+  event => {
 
-          event.stopPropagation();
+    event.stopPropagation();
 
-          showSide("back");
+    toggleSide();
 
-        }
-      );
+  }
+);
+
+
+/* 右矢印 */
+
+rightArrow.addEventListener(
+  "click",
+  event => {
+
+    event.stopPropagation();
+
+    toggleSide();
+
+  }
+);
 
 
       /* =========================
