@@ -590,7 +590,17 @@
           ×
         </button>
 
+
         <div class="modal-card-area">
+
+          <button
+            type="button"
+            class="card-side-arrow left"
+            aria-label="表を見る"
+          >
+            ‹
+          </button>
+
 
           <img
             class="modal-card-image"
@@ -598,7 +608,17 @@
             alt="${card.name || card.id}"
           >
 
+
+          <button
+            type="button"
+            class="card-side-arrow right"
+            aria-label="裏を見る"
+          >
+            ›
+          </button>
+
         </div>
+
 
         <div class="card-side-buttons">
 
@@ -620,10 +640,6 @@
 
         </div>
 
-        <p class="card-side-hint">
-          左右にスワイプして表裏を切り替え
-        </p>
-
       `;
 
 
@@ -639,19 +655,47 @@
       const image =
         content.querySelector(".modal-card-image");
 
-      const sideButtons =
-        content.querySelectorAll(".card-side-button");
+      const frontButton =
+        content.querySelector(
+          '[data-side="front"]'
+        );
+
+      const backButton =
+        content.querySelector(
+          '[data-side="back"]'
+        );
+
+      const leftArrow =
+        content.querySelector(
+          ".card-side-arrow.left"
+        );
+
+      const rightArrow =
+        content.querySelector(
+          ".card-side-arrow.right"
+        );
 
 
       function showSide(side) {
 
-        if (side === "back" && card.backImage) {
+        if (
+          side === "back" &&
+          card.backImage
+        ) {
 
           image.src =
             card.backImage;
 
           image.alt =
             `${card.name || card.id} 裏面`;
+
+          frontButton.classList.remove(
+            "active"
+          );
+
+          backButton.classList.add(
+            "active"
+          );
 
         } else {
 
@@ -661,35 +705,124 @@
           image.alt =
             `${card.name || card.id}`;
 
-        }
-
-
-        sideButtons.forEach(button => {
-
-          button.classList.toggle(
-            "active",
-            button.dataset.side === side
+          frontButton.classList.add(
+            "active"
           );
 
-        });
+          backButton.classList.remove(
+            "active"
+          );
+
+        }
 
       }
 
 
-      sideButtons.forEach(button => {
+      /* 表ボタン */
 
-        button.addEventListener(
-          "click",
-          () => {
+      frontButton.addEventListener(
+        "click",
+        event => {
 
-            showSide(
-              button.dataset.side
-            );
+          event.stopPropagation();
 
-          }
+          showSide("front");
+
+        }
+      );
+
+
+      /* 裏ボタン */
+
+      backButton.addEventListener(
+        "click",
+        event => {
+
+          event.stopPropagation();
+
+          showSide("back");
+
+        }
+      );
+
+
+      /* 左矢印 */
+
+      leftArrow.addEventListener(
+        "click",
+        event => {
+
+          event.stopPropagation();
+
+          showSide("front");
+
+        }
+      );
+
+
+      /* 右矢印 */
+
+      rightArrow.addEventListener(
+        "click",
+        event => {
+
+          event.stopPropagation();
+
+          showSide("back");
+
+        }
+      );
+
+
+      /* =========================
+         カード左右タップ
+      ========================= */
+
+      const cardArea =
+        content.querySelector(
+          ".modal-card-area"
         );
 
-      });
+
+      cardArea.addEventListener(
+        "click",
+        event => {
+
+          /*
+            矢印を押した場合は、
+            矢印側の処理だけを使う
+          */
+
+          if (
+            event.target.classList.contains(
+              "card-side-arrow"
+            )
+          ) {
+            return;
+          }
+
+
+          const rect =
+            cardArea.getBoundingClientRect();
+
+          const tapX =
+            event.clientX - rect.left;
+
+
+          if (
+            tapX < rect.width / 2
+          ) {
+
+            showSide("front");
+
+          } else {
+
+            showSide("back");
+
+          }
+
+        }
+      );
 
 
       /* =========================
@@ -697,54 +830,57 @@
       ========================= */
 
       let touchStartX = 0;
-      let touchEndX = 0;
+      let isSwiping = false;
 
 
-      content
-        .querySelector(".modal-card-area")
-        .addEventListener(
-          "touchstart",
-          event => {
+      cardArea.addEventListener(
+        "touchstart",
+        event => {
 
-            touchStartX =
-              event.changedTouches[0].screenX;
+          touchStartX =
+            event.changedTouches[0].screenX;
 
-          },
-          { passive: true }
-        );
+          isSwiping = false;
 
-
-      content
-        .querySelector(".modal-card-area")
-        .addEventListener(
-          "touchend",
-          event => {
-
-            touchEndX =
-              event.changedTouches[0].screenX;
-
-            const distance =
-              touchEndX - touchStartX;
+        },
+        { passive: true }
+      );
 
 
-            if (Math.abs(distance) < 50) {
-              return;
-            }
+      cardArea.addEventListener(
+        "touchend",
+        event => {
+
+          const touchEndX =
+            event.changedTouches[0].screenX;
+
+          const distance =
+            touchEndX - touchStartX;
 
 
-            if (distance < 0) {
+          if (
+            Math.abs(distance) < 50
+          ) {
+            return;
+          }
 
-              showSide("back");
 
-            } else {
+          isSwiping = true;
 
-              showSide("front");
 
-            }
+          if (distance < 0) {
 
-          },
-          { passive: true }
-        );
+            showSide("back");
+
+          } else {
+
+            showSide("front");
+
+          }
+
+        },
+        { passive: true }
+      );
 
 
       /* =========================
