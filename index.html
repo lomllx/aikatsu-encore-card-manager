@@ -26,15 +26,31 @@
 
       <div id="collectionList" class="collection-list">
 
+        <!-- 全体コレクション -->
+
+        <a href="all-cards.html" class="season-link">
+          <span>♡ 全体コレクション</span>
+          <span>›</span>
+        </a>
+
+
+        <!-- 第1弾 -->
+
         <a href="cards.html?season=1" class="season-link">
           <span>第1弾</span>
           <span>0 / 85　›</span>
         </a>
 
+
+        <!-- 第2弾 -->
+
         <a href="cards.html?season=2" class="season-link">
           <span>第2弾</span>
           <span>準備中　›</span>
         </a>
+
+
+        <!-- 第3弾 -->
 
         <a href="cards.html?season=3" class="season-link">
           <span>第3弾</span>
@@ -47,45 +63,54 @@
 
 
     <!-- Trade -->
+
     <section class="menu-section">
 
       <a href="trade.html" class="menu-link">
+
         <span>
           <strong>♡ Trade</strong>
           <small>交換可能カード</small>
         </span>
 
         <span>›</span>
+
       </a>
 
     </section>
 
 
     <!-- My Character -->
+
     <section class="menu-section">
 
       <a href="character.html" class="menu-link">
+
         <span>
           <strong>♡ My Character</strong>
           <small>マイキャラ</small>
         </span>
 
         <span>›</span>
+
       </a>
 
     </section>
 
 
     <!-- Information -->
+
     <section class="menu-section">
 
       <a href="information.html" class="menu-link">
+
         <span>
           <strong>♡ Information</strong>
           <small>アイカツ情報</small>
         </span>
 
         <span>›</span>
+
       </a>
 
     </section>
@@ -115,14 +140,17 @@
       const isOpen =
         collectionList.style.display !== "none";
 
+
       if (isOpen) {
 
         collectionList.style.display = "none";
+
         collectionArrow.textContent = "▶";
 
       } else {
 
         collectionList.style.display = "block";
+
         collectionArrow.textContent = "▼";
 
       }
