@@ -28,37 +28,213 @@
     </section>
 
 
-    <!-- 全体集計 -->
+    <!-- =========================
+         通常弾 / プロモ切り替え
+    ========================= -->
+
+    <div class="collection-scope">
+
+      <button
+        type="button"
+        class="scope-button active"
+        data-scope="season"
+      >
+        通常弾のみ
+      </button>
+
+      <button
+        type="button"
+        class="scope-button"
+        data-scope="all"
+      >
+        プロモ含む
+      </button>
+
+    </div>
+
+
+    <!-- =========================
+         検索
+    ========================= -->
+
+    <div class="search-box">
+
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="カード番号・カード名・ブランドなどを検索"
+      >
+
+    </div>
+
+
+    <!-- =========================
+         所持状態
+    ========================= -->
+
+    <div class="status-filters">
+
+      <button
+        class="status-button active"
+        data-status="all"
+      >
+        すべて
+      </button>
+
+      <button
+        class="status-button"
+        data-status="owned"
+      >
+        所持
+      </button>
+
+      <button
+        class="status-button"
+        data-status="missing"
+      >
+        未所持
+      </button>
+
+      <button
+        class="status-button"
+        data-status="trade"
+      >
+        交換
+      </button>
+
+    </div>
+
+
+    <!-- =========================
+         4種類のフィルター
+    ========================= -->
+
+    <div class="filters">
+
+      <div class="filter-group">
+
+        <label for="typeFilter">
+          タイプ
+        </label>
+
+        <select id="typeFilter">
+          <option value="">
+            すべて
+          </option>
+        </select>
+
+      </div>
+
+
+      <div class="filter-group">
+
+        <label for="brandFilter">
+          ブランド
+        </label>
+
+        <select id="brandFilter">
+          <option value="">
+            すべて
+          </option>
+        </select>
+
+      </div>
+
+
+      <div class="filter-group">
+
+        <label for="coordinateFilter">
+          コーデ
+        </label>
+
+        <select id="coordinateFilter">
+          <option value="">
+            すべて
+          </option>
+        </select>
+
+      </div>
+
+
+      <div class="filter-group">
+
+        <label for="categoryFilter">
+          カテゴリ
+        </label>
+
+        <select id="categoryFilter">
+          <option value="">
+            すべて
+          </option>
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         全体集計
+    ========================= -->
 
     <section class="overall-summary">
 
       <div class="summary-card">
-        <span>♡ 所持</span>
-        <strong id="ownedCount">0</strong>
+
+        <span>
+          ♡ 所持
+        </span>
+
+        <strong id="ownedCount">
+          0
+        </strong>
+
       </div>
 
-      <div class="summary-card">
-        <span>♡ 未所持</span>
-        <strong id="missingCount">0</strong>
-      </div>
 
       <div class="summary-card">
-        <span>♡ 交換</span>
-        <strong id="tradeCount">0</strong>
+
+        <span>
+          ♡ 未所持
+        </span>
+
+        <strong id="missingCount">
+          0
+        </strong>
+
+      </div>
+
+
+      <div class="summary-card">
+
+        <span>
+          ♡ 交換
+        </span>
+
+        <strong id="tradeCount">
+          0
+        </strong>
+
       </div>
 
     </section>
 
 
-    <!-- 弾ごとの一覧 -->
+    <!-- =========================
+         カード一覧
+    ========================= -->
 
-    <section class="season-summary">
+    <div id="cardList"></div>
 
-      <h3>♡ 弾ごとのコレクション</h3>
 
-      <div id="seasonList"></div>
+    <div
+      id="noResults"
+      class="no-results"
+      style="display:none;"
+    >
+      該当するカードがありません。
+    </div>
 
-    </section>
 
   </main>
 
@@ -78,23 +254,77 @@
 
     let ownershipBySeason = {};
 
+    let currentScope = "season";
+
+    let currentStatus = "all";
+
+
+    /* =========================
+       要素
+    ========================= */
+
+    const searchInput =
+      document.getElementById(
+        "searchInput"
+      );
+
+
+    const typeFilter =
+      document.getElementById(
+        "typeFilter"
+      );
+
+
+    const brandFilter =
+      document.getElementById(
+        "brandFilter"
+      );
+
+
+    const coordinateFilter =
+      document.getElementById(
+        "coordinateFilter"
+      );
+
+
+    const categoryFilter =
+      document.getElementById(
+        "categoryFilter"
+      );
+
+
+    const cardList =
+      document.getElementById(
+        "cardList"
+      );
+
+
+    const noResults =
+      document.getElementById(
+        "noResults"
+      );
+
 
     /* =========================
        JSON読み込み
     ========================= */
 
     fetch("cards.json")
+
       .then(response => {
 
         if (!response.ok) {
+
           throw new Error(
             "cards.jsonを読み込めませんでした"
           );
+
         }
 
         return response.json();
 
       })
+
       .then(data => {
 
         cards =
@@ -105,9 +335,12 @@
 
         loadOwnership();
 
-        renderOverall();
+        setupFilters();
+
+        renderAll();
 
       })
+
       .catch(error => {
 
         console.error(error);
@@ -121,6 +354,21 @@
 
 
     /* =========================
+       通常弾かどうか
+    ========================= */
+
+    function isPromotion(card) {
+
+      return (
+        String(
+          card.collection || ""
+        ).toLowerCase() === "promotion"
+      );
+
+    }
+
+
+    /* =========================
        所持データ読み込み
     ========================= */
 
@@ -128,9 +376,19 @@
 
       const seasons = [
         ...new Set(
-          cards.map(card =>
-            String(card.season || "1")
-          )
+
+          cards
+
+            .filter(card =>
+              !isPromotion(card)
+            )
+
+            .map(card =>
+              String(
+                card.season || "1"
+              )
+            )
+
         )
       ];
 
@@ -143,12 +401,26 @@
 
         ownershipBySeason[season] =
           JSON.parse(
+
             localStorage.getItem(
               storageKey
             ) || "{}"
+
           );
 
       });
+
+
+      /* プロモ */
+
+      ownershipBySeason.promotion =
+        JSON.parse(
+
+          localStorage.getItem(
+            "aikatsu-encore-promotion"
+          ) || "{}"
+
+        );
 
     }
 
@@ -159,12 +431,25 @@
 
     function getCount(card) {
 
-      const season =
-        String(card.season || "1");
+      let ownership;
 
 
-      const ownership =
-        ownershipBySeason[season] || {};
+      if (isPromotion(card)) {
+
+        ownership =
+          ownershipBySeason.promotion || {};
+
+      } else {
+
+        const season =
+          String(
+            card.season || "1"
+          );
+
+        ownership =
+          ownershipBySeason[season] || {};
+
+      }
 
 
       return Number(
@@ -175,25 +460,336 @@
 
 
     /* =========================
-       全体表示
+       フィルター項目
     ========================= */
 
-    function renderOverall() {
+    function setupFilters() {
+
+      fillFilter(
+        typeFilter,
+        "type"
+      );
+
+
+      fillFilter(
+        brandFilter,
+        "brand"
+      );
+
+
+      fillFilter(
+        coordinateFilter,
+        "coordinate"
+      );
+
+
+      fillFilter(
+        categoryFilter,
+        "category"
+      );
+
+    }
+
+
+    function fillFilter(
+      select,
+      key
+    ) {
+
+      const values = [
+
+        ...new Set(
+
+          cards
+
+            .map(card =>
+              card[key]
+            )
+
+            .filter(value =>
+
+              value !== undefined &&
+              value !== null &&
+              String(value).trim() !== ""
+
+            )
+
+            .map(value =>
+              String(value).trim()
+            )
+
+        )
+
+      ].sort(
+
+        (a, b) =>
+          a.localeCompare(
+            b,
+            "ja"
+          )
+
+      );
+
+
+      values.forEach(value => {
+
+        const option =
+          document.createElement(
+            "option"
+          );
+
+
+        option.value =
+          value;
+
+
+        option.textContent =
+          value;
+
+
+        select.appendChild(
+          option
+        );
+
+      });
+
+    }
+
+
+    /* =========================
+       表示対象
+    ========================= */
+
+    function getVisibleCards() {
+
+      const keyword =
+        searchInput.value
+          .toLowerCase()
+          .trim();
+
+
+      const type =
+        typeFilter.value;
+
+
+      const brand =
+        brandFilter.value;
+
+
+      const coordinate =
+        coordinateFilter.value;
+
+
+      const category =
+        categoryFilter.value;
+
+
+      return cards.filter(card => {
+
+
+        /* 通常弾 / プロモ */
+
+        if (
+          currentScope === "season" &&
+          isPromotion(card)
+        ) {
+
+          return false;
+
+        }
+
+
+        /* 検索 */
+
+        const searchableText = [
+
+          card.id,
+          card.name,
+          card.unit,
+          card.brand,
+          card.coordinate,
+          card.type,
+          card.category,
+          card.rarity
+
+        ]
+
+          .filter(value =>
+            value !== undefined &&
+            value !== null &&
+            String(value).trim() !== ""
+          )
+
+          .join(" ")
+
+          .toLowerCase();
+
+
+        if (
+
+          keyword &&
+          !searchableText.includes(
+            keyword
+          )
+
+        ) {
+
+          return false;
+
+        }
+
+
+        /* タイプ */
+
+        if (
+
+          type &&
+          String(
+            card.type || ""
+          ).trim() !== type
+
+        ) {
+
+          return false;
+
+        }
+
+
+        /* ブランド */
+
+        if (
+
+          brand &&
+          String(
+            card.brand || ""
+          ).trim() !== brand
+
+        ) {
+
+          return false;
+
+        }
+
+
+        /* コーデ */
+
+        if (
+
+          coordinate &&
+          String(
+            card.coordinate || ""
+          ).trim() !== coordinate
+
+        ) {
+
+          return false;
+
+        }
+
+
+        /* カテゴリ */
+
+        if (
+
+          category &&
+          String(
+            card.category || ""
+          ).trim() !== category
+
+        ) {
+
+          return false;
+
+        }
+
+
+        /* 所持状態 */
+
+        const count =
+          getCount(card);
+
+
+        if (
+
+          currentStatus === "owned" &&
+          count < 1
+
+        ) {
+
+          return false;
+
+        }
+
+
+        if (
+
+          currentStatus === "missing" &&
+          count >= 1
+
+        ) {
+
+          return false;
+
+        }
+
+
+        if (
+
+          currentStatus === "trade" &&
+          count < 2
+
+        ) {
+
+          return false;
+
+        }
+
+
+        return true;
+
+      });
+
+    }
+
+
+    /* =========================
+       全体集計
+    ========================= */
+
+    function renderSummary() {
+
+      const scopeCards =
+        cards.filter(card => {
+
+          if (
+            currentScope === "season"
+          ) {
+
+            return !isPromotion(
+              card
+            );
+
+          }
+
+          return true;
+
+        });
+
 
       const owned =
-        cards.filter(card =>
+        scopeCards.filter(card =>
           getCount(card) >= 1
         ).length;
 
 
       const missing =
-        cards.filter(card =>
+        scopeCards.filter(card =>
           getCount(card) === 0
         ).length;
 
 
       const trade =
-        cards.filter(card =>
+        scopeCards.filter(card =>
           getCount(card) >= 2
         ).length;
 
@@ -201,7 +797,7 @@
       document.getElementById(
         "overallStatus"
       ).textContent =
-        `${owned} / ${cards.length}`;
+        `${owned} / ${scopeCards.length}`;
 
 
       document.getElementById(
@@ -221,127 +817,450 @@
       ).textContent =
         trade;
 
+    }
 
-      renderSeasonList();
+
+    /* =========================
+       カード一覧
+    ========================= */
+
+    function renderCards() {
+
+      cardList.innerHTML = "";
+
+
+      const filtered =
+        getVisibleCards();
+
+
+      noResults.style.display =
+        filtered.length === 0
+          ? "block"
+          : "none";
+
+
+      if (
+        filtered.length === 0
+      ) {
+
+        return;
+
+      }
+
+
+      /*
+        弾ごとにまとめる
+        表示順は第1弾 → 第2弾 → …
+        プロモーションは最後
+      */
+
+      const normalCards =
+        filtered.filter(
+          card =>
+            !isPromotion(card)
+        );
+
+
+      const promotionCards =
+        filtered.filter(
+          card =>
+            isPromotion(card)
+        );
+
+
+      const seasons = [
+
+        ...new Set(
+
+          normalCards.map(card =>
+            String(
+              card.season || "1"
+            )
+          )
+
+        )
+
+      ].sort(
+
+        (a, b) =>
+          Number(a) - Number(b)
+
+      );
+
+
+      seasons.forEach(
+        season => {
+
+          const seasonCards =
+            normalCards.filter(
+              card =>
+                String(
+                  card.season || "1"
+                ) === season
+            );
+
+
+          if (
+            seasonCards.length === 0
+          ) {
+
+            return;
+
+          }
+
+
+          createSectionTitle(
+            `第${season}弾`
+          );
+
+
+          const grid =
+            document.createElement(
+              "div"
+            );
+
+
+          grid.className =
+            "card-grid";
+
+
+          seasonCards.forEach(
+            card =>
+              createCard(
+                card,
+                grid
+              )
+          );
+
+
+          cardList.appendChild(
+            grid
+          );
+
+        }
+      );
+
+
+      /* プロモ */
+
+      if (
+        promotionCards.length > 0
+      ) {
+
+        createSectionTitle(
+          "♡ プロモーション"
+        );
+
+
+        const grid =
+          document.createElement(
+            "div"
+          );
+
+
+        grid.className =
+          "card-grid";
+
+
+        promotionCards.forEach(
+          card =>
+            createCard(
+              card,
+              grid
+            )
+        );
+
+
+        cardList.appendChild(
+          grid
+        );
+
+      }
 
     }
 
 
     /* =========================
-       弾ごとの集計
+       区切りタイトル
     ========================= */
 
-    function renderSeasonList() {
+    function createSectionTitle(
+      text
+    ) {
 
-      const seasonList =
-        document.getElementById(
-          "seasonList"
+      const title =
+        document.createElement(
+          "h3"
         );
 
 
-      seasonList.innerHTML = "";
+      title.className =
+        "collection-section-title";
 
 
-      const seasons =
-        [
-          ...new Set(
-            cards.map(card =>
-              String(card.season || "1")
-            )
-          )
-        ]
-        .sort(
-          (a, b) =>
-            Number(a) - Number(b)
+      title.textContent =
+        text;
+
+
+      cardList.appendChild(
+        title
+      );
+
+    }
+
+
+    /* =========================
+       カード作成
+    ========================= */
+
+    function createCard(
+      card,
+      grid
+    ) {
+
+      const count =
+        getCount(card);
+
+
+      const cardElement =
+        document.createElement(
+          "article"
         );
 
 
-      seasons.forEach(season => {
-
-        const seasonCards =
-          cards.filter(card =>
-            String(
-              card.season || "1"
-            ) === season
-          );
+      cardElement.className =
+        "card";
 
 
-        const owned =
-          seasonCards.filter(card =>
-            getCount(card) >= 1
-          ).length;
+      cardElement.innerHTML = `
+
+        <div class="card-image">
+
+          <img
+            src="${card.image}"
+            alt="${card.name || card.id}"
+            onerror="this.style.display='none'"
+          >
+
+        </div>
 
 
-        const missing =
-          seasonCards.filter(card =>
-            getCount(card) === 0
-          ).length;
+        <div class="card-info">
 
-
-        const trade =
-          seasonCards.filter(card =>
-            getCount(card) >= 2
-          ).length;
-
-
-        const link =
-          document.createElement("a");
-
-
-        link.href =
-          `cards.html?season=${season}`;
-
-
-        link.className =
-          "season-summary-card";
-
-
-        link.innerHTML = `
-
-          <div class="season-summary-main">
-
-            <strong>
-              第${season}弾
-            </strong>
-
-            <span>
-              ${owned} / ${seasonCards.length}
-            </span>
-
+          <div class="card-id">
+            ${card.id || ""}
           </div>
 
 
-          <div class="season-summary-detail">
-
-            <span>
-              所持 ${owned}
-            </span>
-
-            <span>
-              未所持 ${missing}
-            </span>
-
-            <span>
-              交換 ${trade}
-            </span>
-
+          <div class="card-name">
+            ${card.name || ""}
           </div>
 
 
-          <span class="season-summary-arrow">
-            ›
+          <div class="card-meta">
+            ${card.brand || ""}
+          </div>
+
+
+          ${
+            count >= 2
+              ? `<div class="trade-label">
+                  ♡ 交換可能
+                </div>`
+              : ""
+          }
+
+        </div>
+
+
+        <div class="count-control">
+
+          <span class="count">
+            所持 ${count}枚
           </span>
 
-        `;
+        </div>
+
+      `;
 
 
-        seasonList.appendChild(
-          link
+      cardElement.addEventListener(
+        "click",
+        () => {
+
+          if (
+            isPromotion(card)
+          ) {
+
+            location.href =
+              "promotion.html";
+
+          } else {
+
+            location.href =
+              `cards.html?season=${card.season || 1}`;
+
+          }
+
+        }
+      );
+
+
+      grid.appendChild(
+        cardElement
+      );
+
+    }
+
+
+    /* =========================
+       全体更新
+    ========================= */
+
+    function renderAll() {
+
+      renderSummary();
+
+      renderCards();
+
+    }
+
+
+    /* =========================
+       スコープ切り替え
+    ========================= */
+
+    document
+      .querySelectorAll(
+        ".scope-button"
+      )
+      .forEach(button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            document
+              .querySelectorAll(
+                ".scope-button"
+              )
+              .forEach(button =>
+                button.classList.remove(
+                  "active"
+                )
+              );
+
+
+            button.classList.add(
+              "active"
+            );
+
+
+            currentScope =
+              button.dataset.scope;
+
+
+            renderAll();
+
+          }
         );
 
       });
 
-    }
+
+    /* =========================
+       検索
+    ========================= */
+
+    searchInput.addEventListener(
+      "input",
+      renderCards
+    );
+
+
+    /* =========================
+       フィルター
+    ========================= */
+
+    [
+
+      typeFilter,
+      brandFilter,
+      coordinateFilter,
+      categoryFilter
+
+    ].forEach(select => {
+
+      select.addEventListener(
+        "change",
+        renderCards
+      );
+
+    });
+
+
+    /* =========================
+       所持状態
+    ========================= */
+
+    document
+      .querySelectorAll(
+        ".status-button"
+      )
+      .forEach(button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            document
+              .querySelectorAll(
+                ".status-button"
+              )
+              .forEach(button =>
+                button.classList.remove(
+                  "active"
+                )
+              );
+
+
+            button.classList.add(
+              "active"
+            );
+
+
+            currentStatus =
+              button.dataset.status;
+
+
+            renderCards();
+
+          }
+        );
+
+      });
+
+
+    /* =========================
+       戻ってきたとき更新
+    ========================= */
+
+    window.addEventListener(
+      "pageshow",
+      () => {
+
+        if (
+          cards.length > 0
+        ) {
+
+          loadOwnership();
+
+          renderAll();
+
+        }
+
+      }
+    );
 
   </script>
 
