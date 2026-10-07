@@ -85,6 +85,7 @@
     <p>♡ AIKATSU ENCORE ♡</p>
   </footer>
 
+
   <script>
 
     /* =========================
@@ -457,11 +458,6 @@
         const cardElement =
           document.createElement("article");
 
-        /*
-          アクセサリーも通常カードと
-          同じ表示に戻す
-        */
-
         cardElement.className =
           "card";
 
@@ -565,7 +561,7 @@
 
 
     /* =========================
-       モーダル
+       カード詳細モーダル
     ========================= */
 
     function openCardModal(card) {
@@ -584,17 +580,6 @@
         "card-modal-content";
 
 
-      const backImage =
-        card.backImage
-          ? `
-            <img
-              src="${card.backImage}"
-              alt="${card.name || card.id} 裏面"
-            >
-          `
-          : "";
-
-
       content.innerHTML = `
 
         <button
@@ -605,16 +590,39 @@
           ×
         </button>
 
-        <div class="modal-images">
+        <div class="modal-card-area">
 
           <img
+            class="modal-card-image"
             src="${card.image}"
             alt="${card.name || card.id}"
           >
 
-          ${backImage}
+        </div>
+
+        <div class="card-side-buttons">
+
+          <button
+            type="button"
+            class="card-side-button active"
+            data-side="front"
+          >
+            表
+          </button>
+
+          <button
+            type="button"
+            class="card-side-button"
+            data-side="back"
+          >
+            裏
+          </button>
 
         </div>
+
+        <p class="card-side-hint">
+          左右にスワイプして表裏を切り替え
+        </p>
 
       `;
 
@@ -624,7 +632,124 @@
       document.body.appendChild(modal);
 
 
-      /* 閉じる */
+      /* =========================
+         表裏切り替え
+      ========================= */
+
+      const image =
+        content.querySelector(".modal-card-image");
+
+      const sideButtons =
+        content.querySelectorAll(".card-side-button");
+
+
+      function showSide(side) {
+
+        if (side === "back" && card.backImage) {
+
+          image.src =
+            card.backImage;
+
+          image.alt =
+            `${card.name || card.id} 裏面`;
+
+        } else {
+
+          image.src =
+            card.image;
+
+          image.alt =
+            `${card.name || card.id}`;
+
+        }
+
+
+        sideButtons.forEach(button => {
+
+          button.classList.toggle(
+            "active",
+            button.dataset.side === side
+          );
+
+        });
+
+      }
+
+
+      sideButtons.forEach(button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            showSide(
+              button.dataset.side
+            );
+
+          }
+        );
+
+      });
+
+
+      /* =========================
+         スワイプ
+      ========================= */
+
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+
+      content
+        .querySelector(".modal-card-area")
+        .addEventListener(
+          "touchstart",
+          event => {
+
+            touchStartX =
+              event.changedTouches[0].screenX;
+
+          },
+          { passive: true }
+        );
+
+
+      content
+        .querySelector(".modal-card-area")
+        .addEventListener(
+          "touchend",
+          event => {
+
+            touchEndX =
+              event.changedTouches[0].screenX;
+
+            const distance =
+              touchEndX - touchStartX;
+
+
+            if (Math.abs(distance) < 50) {
+              return;
+            }
+
+
+            if (distance < 0) {
+
+              showSide("back");
+
+            } else {
+
+              showSide("front");
+
+            }
+
+          },
+          { passive: true }
+        );
+
+
+      /* =========================
+         閉じる
+      ========================= */
 
       const close =
         () => modal.remove();
