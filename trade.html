@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>交換可能カード</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="header">
+    <h1>✦ AIKATSU ENCORE ✦</h1>
+    <p>♡ TRADE ♡</p>
+  </header>
+
+
+  <main class="cards-page">
+
+    <a href="index.html" class="back-link">
+      ‹ Home
+    </a>
+
+
+    <section class="season-header">
+
+      <h2>交換可能カード</h2>
+
+      <p id="tradeStatus">
+        読み込み中…
+      </p>
+
+    </section>
+
+
+    <!-- 検索 -->
+
+    <div class="search-box">
+
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="カード番号・カード名を検索"
+      >
+
+    </div>
+
+
+    <!-- 弾フィルター -->
+
+    <div class="trade-season-filter">
+
+      <button
+        class="trade-season-button active"
+        data-season=""
+      >
+        すべて
+      </button>
+
+      <div id="seasonButtons"></div>
+
+    </div>
+
+
+    <!-- カード一覧 -->
+
+    <div
+      id="tradeGrid"
+      class="card-grid"
+    ></div>
+
+
+  </main>
+
+
+  <footer>
+    <p>♡ AIKATSU ENCORE ♡</p>
+  </footer>
+
+
+  <script>
+
+    let cards = [];
+
+    let currentSeason = "";
+
+
+    const searchInput =
+      document.getElementById(
+        "searchInput"
+      );
+
+    const tradeGrid =
+      document.getElementById(
+        "tradeGrid"
+      );
+
+    const tradeStatus =
+      document.getElementById(
+        "tradeStatus"
+      );
+
+    const seasonButtons =
+      document.getElementById(
+        "seasonButtons"
+      );
+
+
+    /* =========================
+       カード情報読み込み
+    ========================= */
+
+    fetch("cards.json")
+
+      .then(response => {
+
+        if (!response.ok) {
+
+          throw new Error(
+            "cards.jsonを読み込めませんでした"
+          );
+
+        }
+
+        return response.json();
+
+      })
+
+      .then(data => {
+
+        cards =
+          Array.isArray(data)
+            ? data
+            : data.cards || [];
+
+
+        createSeasonButtons();
+
+        renderTradeCards();
+
+      })
+
+      .catch(error => {
+
+        console.error(error);
+
+        tradeStatus.textContent =
+          "カードを読み込めませんでした。";
+
+      });
+
+
+    /* =========================
+       所持数を取得
+    ========================= */
+
+    function getCount(card) {
+
+      const season =
+        String(card.season || "1");
+
+
+      const ownership =
+        JSON.parse(
+          localStorage.getItem(
+            `aikatsu-encore-season-${season}`
+          ) || "{}"
+        );
+
+
+      return Number(
+        ownership[card.id] || 0
+      );
+
+    }
+
+
+    /* =========================
+       弾ボタン作成
+    ========================= */
+
+    function createSeasonButtons() {
+
+      const seasons = [
+
+        ...new Set(
+
+          cards.map(card =>
+            String(
+              card.season || "1"
+            )
+          )
+
+        )
+
+      ].sort(
+        (a, b) =>
+          Number(a) - Number(b)
+      );
+
+
+      seasonButtons.innerHTML = "";
+
+
+      seasons.forEach(season => {
+
+        const button =
+          document.createElement(
+            "button"
+          );
+
+
+        button.type = "button";
+
+        button.className =
+          "trade-season-button";
+
+
+        button.dataset.season =
+          season;
+
+
+        button.textContent =
+          `第${season}弾`;
+
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            document
+              .querySelectorAll(
+                ".trade-season-button"
+              )
+              .forEach(button =>
+                button.classList.remove(
+                  "active"
+                )
+              );
+
+
+            button.classList.add(
+              "active"
+            );
+
+
+            currentSeason =
+              season;
+
+
+            renderTradeCards();
+
+          }
+        );
+
+
+        seasonButtons.appendChild(
+          button
+        );
+
+      });
+
+
+      document
+        .querySelector(
+          '[data-season=""]'
+        )
+        .addEventListener(
+          "click",
+          () => {
+
+            document
+              .querySelectorAll(
+                ".trade-season-button"
+              )
+              .forEach(button =>
+                button.classList.remove(
+                  "active"
+                )
+              );
+
+
+            document
+              .querySelector(
+                '[data-season=""]'
+              )
+              .classList.add(
+                "active"
+              );
+
+
+            currentSeason = "";
+
+            renderTradeCards();
+
+          }
+        );
+
+    }
+
+
+    /* =========================
+       交換可能カード表示
+    ========================= */
+
+    function renderTradeCards() {
+
+      tradeGrid.innerHTML = "";
+
+
+      const keyword =
+        searchInput.value
+          .toLowerCase()
+          .trim();
+
+
+      const tradeCards =
+        cards.filter(card => {
+
+          const count =
+            getCount(card);
+
+
+          /* 2枚以上だけ */
+
+          if (count < 2) {
+            return false;
+          }
+
+
+          /* 弾 */
+
+          if (
+            currentSeason &&
+            String(
+              card.season || "1"
+            ) !== currentSeason
+          ) {
+
+            return false;
+
+          }
+
+
+          /* 検索 */
+
+          const searchableText = [
+
+            card.id,
+            card.name,
+            card.unit,
+            card.brand,
+            card.coordinate
+
+          ]
+            .filter(value => value)
+            .join(" ")
+            .toLowerCase();
+
+
+          if (
+            keyword &&
+            !searchableText.includes(
+              keyword
+            )
+          ) {
+
+            return false;
+
+          }
+
+
+          return true;
+
+        });
+
+
+      tradeStatus.textContent =
+        `${tradeCards.length}枚の交換可能カード`;
+
+
+      if (
+        tradeCards.length === 0
+      ) {
+
+        tradeGrid.innerHTML = `
+
+          <p class="no-results">
+
+            交換可能なカードはありません。
+
+          </p>
+
+        `;
+
+        return;
+
+      }
+
+
+      tradeCards.forEach(card => {
+
+        const count =
+          getCount(card);
+
+
+        const cardElement =
+          document.createElement(
+            "article"
+          );
+
+
+        cardElement.className =
+          "card trade-card";
+
+
+        cardElement.innerHTML = `
+
+          <div class="card-image">
+
+            <img
+              src="${card.image}"
+              alt="${card.name || card.id}"
+              onerror="this.style.display='none'"
+            >
+
+          </div>
+
+
+          <div class="card-info">
+
+            <div class="card-id">
+
+              ${card.id || ""}
+
+            </div>
+
+
+            <div class="card-name">
+
+              ${card.name || ""}
+
+            </div>
+
+
+            <div class="card-meta">
+
+              ${card.brand || ""}
+
+            </div>
+
+
+            <div class="trade-season-label">
+
+              第${card.season || 1}弾
+
+            </div>
+
+          </div>
+
+
+          <div class="trade-count">
+
+            所持 ${count}枚
+            <br>
+
+            <strong>
+              交換 ${count - 1}枚
+            </strong>
+
+          </div>
+
+        `;
+
+
+        cardElement.addEventListener(
+          "click",
+          () => {
+
+            location.href =
+              `cards.html?season=${card.season || 1}`;
+
+          }
+        );
+
+
+        tradeGrid.appendChild(
+          cardElement
+        );
+
+      });
+
+    }
+
+
+    /* =========================
+       検索
+    ========================= */
+
+    searchInput.addEventListener(
+      "input",
+      renderTradeCards
+    );
+
+
+    /* =========================
+       戻ってきたとき更新
+    ========================= */
+
+    window.addEventListener(
+      "pageshow",
+      () => {
+
+        if (cards.length > 0) {
+
+          renderTradeCards();
+
+        }
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>
