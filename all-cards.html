@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>全体コレクション</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="header">
+    <h1>✦ AIKATSU ENCORE ✦</h1>
+    <p>♡ ALL COLLECTION ♡</p>
+  </header>
+
+
+  <main class="cards-page">
+
+    <a href="index.html" class="back-link">
+      ‹ Collection
+    </a>
+
+
+    <section class="season-header">
+      <h2>全体コレクション</h2>
+      <p id="overallStatus">読み込み中…</p>
+    </section>
+
+
+    <!-- 全体集計 -->
+
+    <section class="overall-summary">
+
+      <div class="summary-card">
+        <span>♡ 所持</span>
+        <strong id="ownedCount">0</strong>
+      </div>
+
+      <div class="summary-card">
+        <span>♡ 未所持</span>
+        <strong id="missingCount">0</strong>
+      </div>
+
+      <div class="summary-card">
+        <span>♡ 交換</span>
+        <strong id="tradeCount">0</strong>
+      </div>
+
+    </section>
+
+
+    <!-- 弾ごとの一覧 -->
+
+    <section class="season-summary">
+
+      <h3>♡ 弾ごとのコレクション</h3>
+
+      <div id="seasonList"></div>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+    <p>♡ AIKATSU ENCORE ♡</p>
+  </footer>
+
+
+  <script>
+
+    /* =========================
+       基本設定
+    ========================= */
+
+    let cards = [];
+
+    let ownershipBySeason = {};
+
+
+    /* =========================
+       JSON読み込み
+    ========================= */
+
+    fetch("cards.json")
+      .then(response => {
+
+        if (!response.ok) {
+          throw new Error(
+            "cards.jsonを読み込めませんでした"
+          );
+        }
+
+        return response.json();
+
+      })
+      .then(data => {
+
+        cards =
+          Array.isArray(data)
+            ? data
+            : data.cards || [];
+
+
+        loadOwnership();
+
+        renderOverall();
+
+      })
+      .catch(error => {
+
+        console.error(error);
+
+        document.getElementById(
+          "overallStatus"
+        ).textContent =
+          "カードを読み込めませんでした。";
+
+      });
+
+
+    /* =========================
+       所持データ読み込み
+    ========================= */
+
+    function loadOwnership() {
+
+      const seasons = [
+        ...new Set(
+          cards.map(card =>
+            String(card.season || "1")
+          )
+        )
+      ];
+
+
+      seasons.forEach(season => {
+
+        const storageKey =
+          `aikatsu-encore-season-${season}`;
+
+
+        ownershipBySeason[season] =
+          JSON.parse(
+            localStorage.getItem(
+              storageKey
+            ) || "{}"
+          );
+
+      });
+
+    }
+
+
+    /* =========================
+       所持数
+    ========================= */
+
+    function getCount(card) {
+
+      const season =
+        String(card.season || "1");
+
+
+      const ownership =
+        ownershipBySeason[season] || {};
+
+
+      return Number(
+        ownership[card.id] || 0
+      );
+
+    }
+
+
+    /* =========================
+       全体表示
+    ========================= */
+
+    function renderOverall() {
+
+      const owned =
+        cards.filter(card =>
+          getCount(card) >= 1
+        ).length;
+
+
+      const missing =
+        cards.filter(card =>
+          getCount(card) === 0
+        ).length;
+
+
+      const trade =
+        cards.filter(card =>
+          getCount(card) >= 2
+        ).length;
+
+
+      document.getElementById(
+        "overallStatus"
+      ).textContent =
+        `${owned} / ${cards.length}`;
+
+
+      document.getElementById(
+        "ownedCount"
+      ).textContent =
+        owned;
+
+
+      document.getElementById(
+        "missingCount"
+      ).textContent =
+        missing;
+
+
+      document.getElementById(
+        "tradeCount"
+      ).textContent =
+        trade;
+
+
+      renderSeasonList();
+
+    }
+
+
+    /* =========================
+       弾ごとの集計
+    ========================= */
+
+    function renderSeasonList() {
+
+      const seasonList =
+        document.getElementById(
+          "seasonList"
+        );
+
+
+      seasonList.innerHTML = "";
+
+
+      const seasons =
+        [
+          ...new Set(
+            cards.map(card =>
+              String(card.season || "1")
+            )
+          )
+        ]
+        .sort(
+          (a, b) =>
+            Number(a) - Number(b)
+        );
+
+
+      seasons.forEach(season => {
+
+        const seasonCards =
+          cards.filter(card =>
+            String(
+              card.season || "1"
+            ) === season
+          );
+
+
+        const owned =
+          seasonCards.filter(card =>
+            getCount(card) >= 1
+          ).length;
+
+
+        const missing =
+          seasonCards.filter(card =>
+            getCount(card) === 0
+          ).length;
+
+
+        const trade =
+          seasonCards.filter(card =>
+            getCount(card) >= 2
+          ).length;
+
+
+        const link =
+          document.createElement("a");
+
+
+        link.href =
+          `cards.html?season=${season}`;
+
+
+        link.className =
+          "season-summary-card";
+
+
+        link.innerHTML = `
+
+          <div class="season-summary-main">
+
+            <strong>
+              第${season}弾
+            </strong>
+
+            <span>
+              ${owned} / ${seasonCards.length}
+            </span>
+
+          </div>
+
+
+          <div class="season-summary-detail">
+
+            <span>
+              所持 ${owned}
+            </span>
+
+            <span>
+              未所持 ${missing}
+            </span>
+
+            <span>
+              交換 ${trade}
+            </span>
+
+          </div>
+
+
+          <span class="season-summary-arrow">
+            ›
+          </span>
+
+        `;
+
+
+        seasonList.appendChild(
+          link
+        );
+
+      });
+
+    }
+
+  </script>
+
+</body>
+</html>
