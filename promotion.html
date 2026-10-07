@@ -1,1230 +1,1238 @@
-<!DOCTYPE html>
-<html lang="ja">
+<!DOCTYPEhtml>
+<htmllang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>プロモーションカード</title>
-  <link rel="stylesheet" href="style.css">
+<metacharset="UTF-8">
+<metaname="viewport"content="width=device-width,initial-scale=1.0">
+<title>プロモーションカード</title>
+<linkrel="stylesheet"href="style.css">
 </head>
 
 <body>
 
-  <header class="header">
-    <h1>✦ AIKATSU ENCORE ✦</h1>
-    <p>♡ PROMOTION CARD ♡</p>
-  </header>
+<headerclass="header">
+<h1>✦AIKATSUENCORE✦</h1>
+<p>♡PROMOTIONCARD♡</p>
+</header>
 
-  <main class="cards-page">
+<mainclass="cards-page">
 
-    <a href="index.html" class="back-link">
-      ‹ Collection
-    </a>
+<ahref="index.html"class="back-link">
+‹Collection
+</a>
 
-    <section class="season-header">
-      <h2>♡ プロモーションカード</h2>
-      <p id="collectionStatus">0 / 0</p>
-    </section>
+<sectionclass="season-header">
+<h2>♡プロモーションカード</h2>
+<pid="collectionStatus">0/0</p>
+</section>
 
 
-    <!-- 検索 -->
+<!--検索-->
 
-    <div class="search-box">
-      <input
-        type="search"
-        id="searchInput"
-        placeholder="カード番号・カード名を検索"
-      >
-    </div>
+<divclass="search-box">
+<input
+type="search"
+id="searchInput"
+placeholder="カード番号・カード名を検索"
+>
+</div>
 
 
-    <!-- 所持状態 -->
+<!--所持状態-->
 
-    <div class="status-filters">
+<divclass="status-filters">
 
-      <button
-        class="status-button active"
-        data-status="all"
-      >
-        すべて
-      </button>
+<button
+class="status-buttonactive"
+data-status="all"
+>
+すべて
+</button>
 
-      <button
-        class="status-button"
-        data-status="owned"
-      >
-        所持
-      </button>
+<button
+class="status-button"
+data-status="owned"
+>
+所持
+</button>
 
-      <button
-        class="status-button"
-        data-status="missing"
-      >
-        未所持
-      </button>
+<button
+class="status-button"
+data-status="missing"
+>
+未所持
+</button>
 
-      <button
-        class="status-button"
-        data-status="trade"
-      >
-        交換
-      </button>
+<button
+class="status-button"
+data-status="trade"
+>
+交換
+</button>
 
-    </div>
+</div>
 
 
-    <!-- フィルター -->
+<!--フィルター-->
 
-    <div class="filters">
+<divclass="filters">
 
-      <div class="filter-group">
-        <label for="typeFilter">タイプ</label>
+<divclass="filter-group">
+<labelfor="typeFilter">タイプ</label>
 
-        <select id="typeFilter">
-          <option value="">すべて</option>
-        </select>
-      </div>
+<selectid="typeFilter">
+<optionvalue="">すべて</option>
+</select>
+</div>
 
 
-      <div class="filter-group">
-        <label for="brandFilter">ブランド</label>
+<divclass="filter-group">
+<labelfor="brandFilter">ブランド</label>
 
-        <select id="brandFilter">
-          <option value="">すべて</option>
-        </select>
-      </div>
+<selectid="brandFilter">
+<optionvalue="">すべて</option>
+</select>
+</div>
 
 
-      <div class="filter-group">
-        <label for="coordinateFilter">コーデ</label>
+<divclass="filter-group">
+<labelfor="coordinateFilter">コーデ</label>
 
-        <select id="coordinateFilter">
-          <option value="">すべて</option>
-        </select>
-      </div>
+<selectid="coordinateFilter">
+<optionvalue="">すべて</option>
+</select>
+</div>
 
 
-      <div class="filter-group">
-        <label for="categoryFilter">カテゴリ</label>
+<divclass="filter-group">
+<labelfor="categoryFilter">カテゴリ</label>
 
-        <select id="categoryFilter">
-          <option value="">すべて</option>
-        </select>
-      </div>
+<selectid="categoryFilter">
+<optionvalue="">すべて</option>
+</select>
+</div>
 
-    </div>
+</div>
 
 
-    <div id="loading" class="loading">
-      プロモーションカードを読み込み中…
-    </div>
+<divid="loading"class="loading">
+プロモーションカードを読み込み中…
+</div>
 
-    <div
-      id="cardGrid"
-      class="card-grid"
-    ></div>
+<div
+id="cardGrid"
+class="card-grid"
+></div>
 
-  </main>
+</main>
 
 
-  <footer>
-    <p>♡ AIKATSU ENCORE ♡</p>
-  </footer>
+<footer>
+<p>♡AIKATSUENCORE♡</p>
+</footer>
 
 
-  <script>
+<script>
 
-    /* =========================
-       基本設定
-    ========================= */
+/*=========================
+基本設定
+=========================*/
 
-    const storageKey =
-      "aikatsu-encore-promotion";
+conststorageKey=
+"aikatsu-encore-promotion";
 
-    let cards = [];
+letcards=[];
 
-    let ownership = {};
+letownership={};
 
-    let currentStatus = "all";
+letcurrentStatus="all";
 
 
-    /* =========================
-       要素
-    ========================= */
+/*=========================
+要素
+=========================*/
 
-    const seasonTitle =
-      document.getElementById(
-        "collectionStatus"
-      );
+constcollectionStatus=
+document.getElementById(
+"collectionStatus"
+);
 
-    const collectionStatus =
-      document.getElementById(
-        "collectionStatus"
-      );
+constsearchInput=
+document.getElementById(
+"searchInput"
+);
 
-    const searchInput =
-      document.getElementById(
-        "searchInput"
-      );
+constcardGrid=
+document.getElementById(
+"cardGrid"
+);
 
-    const cardGrid =
-      document.getElementById(
-        "cardGrid"
-      );
+constloading=
+document.getElementById(
+"loading"
+);
 
-    const loading =
-      document.getElementById(
-        "loading"
-      );
+consttypeFilter=
+document.getElementById(
+"typeFilter"
+);
 
-    const typeFilter =
-      document.getElementById(
-        "typeFilter"
-      );
+constbrandFilter=
+document.getElementById(
+"brandFilter"
+);
 
-    const brandFilter =
-      document.getElementById(
-        "brandFilter"
-      );
+constcoordinateFilter=
+document.getElementById(
+"coordinateFilter"
+);
 
-    const coordinateFilter =
-      document.getElementById(
-        "coordinateFilter"
-      );
+constcategoryFilter=
+document.getElementById(
+"categoryFilter"
+);
 
-    const categoryFilter =
-      document.getElementById(
-        "categoryFilter"
-      );
 
+/*=========================
+所持データ
+=========================*/
 
-    /* =========================
-       所持データ
-    ========================= */
+functionloadOwnership(){
 
-    function loadOwnership() {
+ownership=
+JSON.parse(
 
-      ownership =
-        JSON.parse(
+localStorage.getItem(
+storageKey
+)||"{}"
 
-          localStorage.getItem(
-            storageKey
-          ) || "{}"
+);
 
-        );
+}
 
-    }
 
+/*=========================
+JSON読み込み
+=========================*/
 
-    /* =========================
-       JSON読み込み
-    ========================= */
+fetch("cards.json")
 
-    fetch("cards.json")
+.then(response=>{
 
-      .then(response => {
+if(!response.ok){
 
-        if (!response.ok) {
+thrownewError(
+"cards.jsonを読み込めませんでした"
+);
 
-          throw new Error(
-            "cards.jsonを読み込めませんでした"
-          );
+}
 
-        }
+returnresponse.json();
 
-        return response.json();
+})
 
-      })
+.then(data=>{
 
-      .then(data => {
+constallCards=
+Array.isArray(data)
+?data
+:data.cards||[];
 
-        const allCards =
-          Array.isArray(data)
-            ? data
-            : data.cards || [];
 
+/*
+collectionがpromotionの
+カードだけを取得
+*/
 
-        /*
-          collection が promotion の
-          カードだけを取得
-        */
+cards=
+allCards.filter(card=>
 
-        cards =
-          allCards.filter(card =>
+String(
+card.collection||""
+).toLowerCase()==="promotion"
 
-            String(
-              card.collection || ""
-            ).toLowerCase() === "promotion"
+);
 
-          );
 
+loadOwnership();
 
-        loadOwnership();
+setupFilters();
 
-        setupFilters();
+updateStatus();
 
-        updateStatus();
+renderCards();
 
-        renderCards();
+loading.style.display="none";
 
-        loading.style.display = "none";
+})
 
-      })
+.catch(error=>{
 
-      .catch(error => {
+console.error(error);
 
-        console.error(error);
+loading.textContent=
+"カードを読み込めませんでした。";
 
-        loading.textContent =
-          "カードを読み込めませんでした。";
+});
 
-      });
 
+/*=========================
+フィルター設定
+=========================*/
 
-    /* =========================
-       フィルター設定
-    ========================= */
+functionsetupFilters(){
 
-    function setupFilters() {
+fillFilter(
+typeFilter,
+"type"
+);
 
-      fillFilter(
-        typeFilter,
-        "type"
-      );
+fillFilter(
+brandFilter,
+"brand"
+);
 
-      fillFilter(
-        brandFilter,
-        "brand"
-      );
+fillFilter(
+coordinateFilter,
+"coordinate"
+);
 
-      fillFilter(
-        coordinateFilter,
-        "coordinate"
-      );
+fillFilter(
+categoryFilter,
+"category"
+);
 
-      fillFilter(
-        categoryFilter,
-        "category"
-      );
+}
 
-    }
 
+functionfillFilter(
+select,
+key
+){
 
-    function fillFilter(
-      select,
-      key
-    ) {
+constvalues=[
 
-      const values = [
+...newSet(
 
-        ...new Set(
+cards
 
-          cards
+.map(card=>
+card[key]
+)
 
-            .map(card =>
-              card[key]
-            )
+.filter(value=>
 
-            .filter(value =>
+value!==undefined&&
+value!==null&&
+String(value).trim()!==""
 
-              value !== undefined &&
-              value !== null &&
-              String(value).trim() !== ""
+)
 
-            )
+.map(value=>
+String(value).trim()
+)
 
-            .map(value =>
-              String(value).trim()
-            )
+)
 
-        )
+].sort(
 
-      ].sort(
+(a,b)=>
+a.localeCompare(
+b,
+"ja"
+)
 
-        (a, b) =>
-          a.localeCompare(
-            b,
-            "ja"
-          )
+);
 
-      );
 
+values.forEach(value=>{
 
-      values.forEach(value => {
+constoption=
+document.createElement(
+"option"
+);
 
-        const option =
-          document.createElement(
-            "option"
-          );
+option.value=
+value;
 
-        option.value =
-          value;
+option.textContent=
+value;
 
-        option.textContent =
-          value;
+select.appendChild(
+option
+);
 
-        select.appendChild(
-          option
-        );
+});
 
-      });
+}
 
-    }
 
+/*=========================
+所持数
+=========================*/
 
-    /* =========================
-       所持数
-    ========================= */
+functiongetCount(card){
 
-    function getCount(card) {
+returnNumber(
+ownership[card.id]||0
+);
 
-      return Number(
-        ownership[card.id] || 0
-      );
+}
 
-    }
 
+functionsetCount(
+card,
+count
+){
 
-    function setCount(
-      card,
-      count
-    ) {
+if(count<=0){
 
-      if (count <= 0) {
+deleteownership[card.id];
 
-        delete ownership[card.id];
+}else{
 
-      } else {
+ownership[card.id]=
+count;
 
-        ownership[card.id] =
-          count;
+}
 
-      }
 
+localStorage.setItem(
+storageKey,
+JSON.stringify(
+ownership
+)
+);
 
-      localStorage.setItem(
-        storageKey,
-        JSON.stringify(
-          ownership
-        )
-      );
 
+updateStatus();
 
-      updateStatus();
+renderCards();
 
-      renderCards();
+}
 
-    }
 
+/*=========================
+集計
+=========================*/
 
-    /* =========================
-       集計
-    ========================= */
+functionupdateStatus(){
 
-    function updateStatus() {
+constowned=
+cards.filter(
+card=>
+getCount(card)>=1
+).length;
 
-      const owned =
-        cards.filter(
-          card =>
-            getCount(card) >= 1
-        ).length;
 
+collectionStatus.textContent=
+`${owned}/${cards.length}`;
 
-      collectionStatus.textContent =
-        `${owned} / ${cards.length}`;
+}
 
-    }
 
+/*=========================
+フィルター
+=========================*/
 
-    /* =========================
-       フィルター
-    ========================= */
+functiongetFilteredCards(){
 
-    function getFilteredCards() {
+constkeyword=
+searchInput.value
+.toLowerCase()
+.trim();
 
-      const keyword =
-        searchInput.value
-          .toLowerCase()
-          .trim();
 
+consttype=
+typeFilter.value;
 
-      const type =
-        typeFilter.value;
+constbrand=
+brandFilter.value;
 
-      const brand =
-        brandFilter.value;
+constcoordinate=
+coordinateFilter.value;
 
-      const coordinate =
-        coordinateFilter.value;
+constcategory=
+categoryFilter.value;
 
-      const category =
-        categoryFilter.value;
 
+returncards.filter(card=>{
 
-      return cards.filter(card => {
+constsearchableText=[
 
-        const searchableText = [
+card.id,
+card.name,
+card.unit,
+card.brand,
+card.coordinate,
+card.type,
+card.category,
+card.rarity
 
-          card.id,
-          card.name,
-          card.unit
+]
 
-        ]
+.filter(value=>
+value!==undefined&&
+value!==null
+)
 
-          .filter(value =>
-            value !== undefined &&
-            value !== null
-          )
+.join("")
+.toLowerCase();
 
-          .join(" ")
-          .toLowerCase();
 
+constcount=
+getCount(card);
 
-        const count =
-          getCount(card);
 
+if(
+keyword&&
+!searchableText.includes(
+keyword
+)
+){
 
-        if (
-          keyword &&
-          !searchableText.includes(
-            keyword
-          )
-        ) {
+returnfalse;
 
-          return false;
+}
 
-        }
 
+if(
+type&&
+String(
+card.type||""
+).trim()!==type
+){
 
-        if (
-          type &&
-          String(
-            card.type || ""
-          ).trim() !== type
-        ) {
+returnfalse;
 
-          return false;
+}
 
-        }
 
+if(
+brand&&
+String(
+card.brand||""
+).trim()!==brand
+){
 
-        if (
-          brand &&
-          String(
-            card.brand || ""
-          ).trim() !== brand
-        ) {
+returnfalse;
 
-          return false;
+}
 
-        }
 
+if(
+coordinate&&
+String(
+card.coordinate||""
+).trim()!==coordinate
+){
 
-        if (
-          coordinate &&
-          String(
-            card.coordinate || ""
-          ).trim() !== coordinate
-        ) {
+returnfalse;
 
-          return false;
+}
 
-        }
 
+if(
+category&&
+String(
+card.category||""
+).trim()!==category
+){
 
-        if (
-          category &&
-          String(
-            card.category || ""
-          ).trim() !== category
-        ) {
+returnfalse;
 
-          return false;
+}
 
-        }
 
+if(
+currentStatus==="owned"&&
+count<1
+){
 
-        if (
-          currentStatus === "owned" &&
-          count < 1
-        ) {
+returnfalse;
 
-          return false;
+}
 
-        }
 
+if(
+currentStatus==="missing"&&
+count>=1
+){
 
-        if (
-          currentStatus === "missing" &&
-          count >= 1
-        ) {
+returnfalse;
 
-          return false;
+}
 
-        }
 
+if(
+currentStatus==="trade"&&
+count<2
+){
 
-        if (
-          currentStatus === "trade" &&
-          count < 2
-        ) {
+returnfalse;
 
-          return false;
+}
 
-        }
 
+returntrue;
 
-        return true;
+});
 
-      });
+}
 
-    }
 
+/*=========================
+カード表示
+=========================*/
 
-    /* =========================
-       カード表示
-    ========================= */
+functionrenderCards(){
 
-    function renderCards() {
+cardGrid.innerHTML="";
 
-      cardGrid.innerHTML = "";
 
+constfiltered=
+getFilteredCards();
 
-      const filtered =
-        getFilteredCards();
 
+if(
+filtered.length===0
+){
 
-      if (
-        filtered.length === 0
-      ) {
+cardGrid.innerHTML=
+`<pclass="no-results">
+該当するカードがありません。
+</p>`;
 
-        cardGrid.innerHTML =
-          `<p class="no-results">
-            該当するカードがありません。
-          </p>`;
+return;
 
-        return;
+}
 
-      }
 
+filtered.forEach(card=>{
 
-      filtered.forEach(card => {
+constcount=
+getCount(card);
 
-        const count =
-          getCount(card);
 
+constcardElement=
+document.createElement(
+"article"
+);
 
-        const cardElement =
-          document.createElement(
-            "article"
-          );
 
+cardElement.className=
+"card";
 
-        cardElement.className =
-          "card";
 
+cardElement.innerHTML=`
 
-        cardElement.innerHTML = `
+<divclass="card-image">
 
-          <div class="card-image">
+<img
+src="${card.image}"
+alt="${card.name||card.id}"
+onerror="this.style.display='none'"
+>
 
-            <img
-              src="${card.image}"
-              alt="${card.name || card.id}"
-              onerror="this.style.display='none'"
-            >
+</div>
 
-          </div>
 
+<divclass="card-info">
 
-          <div class="card-info">
+<divclass="card-id">
+${card.id||""}
+</div>
 
-            <div class="card-id">
-              ${card.id || ""}
-            </div>
+<divclass="card-name">
+${card.name||""}
+</div>
 
-            <div class="card-name">
-              ${card.name || ""}
-            </div>
+<divclass="card-meta">
+${card.brand||""}
+</div>
 
-            <div class="card-meta">
-              ${card.brand || ""}
-            </div>
+${
+card.rarity
+?`<divclass="card-rarity">
+${card.rarity}
+</div>`
+:""
+}
 
-            ${
-              count >= 2
-                ? `<div class="trade-label">
-                    ♡ 交換可能
-                  </div>`
-                : ""
-            }
+${
+count>=2
+?`<divclass="trade-label">
+♡交換可能
+</div>`
+:""
+}
 
-          </div>
+</div>
 
 
-          <div class="count-control">
+<divclass="count-control">
 
-            <button
-              type="button"
-              class="count-button minus"
-            >
-              −
-            </button>
+<button
+type="button"
+class="count-buttonminus"
+>
+−
+</button>
 
-            <span class="count">
-              ${count}
-            </span>
+<spanclass="count">
+${count}
+</span>
 
-            <button
-              type="button"
-              class="count-button plus"
-            >
-              ＋
-            </button>
+<button
+type="button"
+class="count-buttonplus"
+>
+＋
+</button>
 
-          </div>
+</div>
 
-        `;
+`;
 
 
-        /* − */
+/*−*/
 
-        cardElement
-          .querySelector(".minus")
-          .addEventListener(
-            "click",
-            event => {
+cardElement
+.querySelector(".minus")
+.addEventListener(
+"click",
+event=>{
 
-              event.stopPropagation();
+event.stopPropagation();
 
-              setCount(
-                card,
-                Math.max(
-                  0,
-                  count - 1
-                )
-              );
+setCount(
+card,
+Math.max(
+0,
+count-1
+)
+);
 
-            }
-          );
+}
+);
 
 
-        /* ＋ */
+/*＋*/
 
-        cardElement
-          .querySelector(".plus")
-          .addEventListener(
-            "click",
-            event => {
+cardElement
+.querySelector(".plus")
+.addEventListener(
+"click",
+event=>{
 
-              event.stopPropagation();
+event.stopPropagation();
 
-              setCount(
-                card,
-                count + 1
-              );
+setCount(
+card,
+count+1
+);
 
-            }
-          );
+}
+);
 
 
-        /* カード */
+/*カード*/
 
-        cardElement.addEventListener(
-          "click",
-          () =>
-            openCardModal(card)
-        );
+cardElement.addEventListener(
+"click",
+()=>
+openCardModal(card)
+);
 
 
-        cardGrid.appendChild(
-          cardElement
-        );
+cardGrid.appendChild(
+cardElement
+);
 
-      });
+});
 
-    }
+}
 
 
-    /* =========================
-       カード詳細モーダル
-    ========================= */
+/*=========================
+カード詳細モーダル
+=========================*/
 
-    function openCardModal(card) {
+functionopenCardModal(card){
 
-      const modal =
-        document.createElement(
-          "div"
-        );
+constmodal=
+document.createElement(
+"div"
+);
 
-      modal.className =
-        "card-modal";
+modal.className=
+"card-modal";
 
 
-      const content =
-        document.createElement(
-          "div"
-        );
+constcontent=
+document.createElement(
+"div"
+);
 
-      content.className =
-        "card-modal-content";
+content.className=
+"card-modal-content";
 
 
-      content.innerHTML = `
+content.innerHTML=`
 
-        <button
-          type="button"
-          class="card-modal-close"
-          aria-label="閉じる"
-        >
-          ×
-        </button>
+<button
+type="button"
+class="card-modal-close"
+aria-label="閉じる"
+>
+×
+</button>
 
 
-        <div class="modal-card-area">
+<divclass="modal-card-area">
 
-          <button
-            type="button"
-            class="card-side-arrow left"
-            aria-label="表を見る"
-          >
-            ‹
-          </button>
+<button
+type="button"
+class="card-side-arrowleft"
+aria-label="表を見る"
+>
+‹
+</button>
 
 
-          <img
-            class="modal-card-image"
-            src="${card.image}"
-            alt="${card.name || card.id}"
-          >
+<img
+class="modal-card-image"
+src="${card.image}"
+alt="${card.name||card.id}"
+>
 
 
-          <button
-            type="button"
-            class="card-side-arrow right"
-            aria-label="裏を見る"
-          >
-            ›
-          </button>
+<button
+type="button"
+class="card-side-arrowright"
+aria-label="裏を見る"
+>
+›
+</button>
 
-        </div>
+</div>
 
 
-        <div class="card-side-buttons">
+<divclass="card-side-buttons">
 
-          <button
-            type="button"
-            class="card-side-button active"
-            data-side="front"
-          >
-            表
-          </button>
+<button
+type="button"
+class="card-side-buttonactive"
+data-side="front"
+>
+表
+</button>
 
-          <button
-            type="button"
-            class="card-side-button"
-            data-side="back"
-          >
-            裏
-          </button>
+<button
+type="button"
+class="card-side-button"
+data-side="back"
+>
+裏
+</button>
 
-        </div>
+</div>
 
-      `;
+`;
 
 
-      modal.appendChild(
-        content
-      );
+modal.appendChild(
+content
+);
 
-      document.body.appendChild(
-        modal
-      );
+document.body.appendChild(
+modal
+);
 
 
-      const image =
-        content.querySelector(
-          ".modal-card-image"
-        );
+constimage=
+content.querySelector(
+".modal-card-image"
+);
 
 
-      const frontButton =
-        content.querySelector(
-          '[data-side="front"]'
-        );
+constfrontButton=
+content.querySelector(
+'[data-side="front"]'
+);
 
 
-      const backButton =
-        content.querySelector(
-          '[data-side="back"]'
-        );
+constbackButton=
+content.querySelector(
+'[data-side="back"]'
+);
 
 
-      const leftArrow =
-        content.querySelector(
-          ".card-side-arrow.left"
-        );
+constleftArrow=
+content.querySelector(
+".card-side-arrow.left"
+);
 
 
-      const rightArrow =
-        content.querySelector(
-          ".card-side-arrow.right"
-        );
+constrightArrow=
+content.querySelector(
+".card-side-arrow.right"
+);
 
 
-      /* =========================
-         表 / 裏
-      ========================= */
+/*=========================
+表/裏
+=========================*/
 
-      function showSide(side) {
+functionshowSide(side){
 
-        if (
-          side === "back" &&
-          card.backImage
-        ) {
+if(
+side==="back"&&
+card.backImage
+){
 
-          image.src =
-            card.backImage;
+image.src=
+card.backImage;
 
-          image.alt =
-            `${card.name || card.id} 裏面`;
+image.alt=
+`${card.name||card.id}裏面`;
 
-          frontButton
-            .classList
-            .remove("active");
+frontButton
+.classList
+.remove("active");
 
-          backButton
-            .classList
-            .add("active");
+backButton
+.classList
+.add("active");
 
-        } else {
+}else{
 
-          image.src =
-            card.image;
+image.src=
+card.image;
 
-          image.alt =
-            `${card.name || card.id}`;
+image.alt=
+`${card.name||card.id}`;
 
-          frontButton
-            .classList
-            .add("active");
+frontButton
+.classList
+.add("active");
 
-          backButton
-            .classList
-            .remove("active");
+backButton
+.classList
+.remove("active");
 
-        }
+}
 
-      }
+}
 
 
-      frontButton.addEventListener(
-        "click",
-        event => {
+frontButton.addEventListener(
+"click",
+event=>{
 
-          event.stopPropagation();
+event.stopPropagation();
 
-          showSide("front");
+showSide("front");
 
-        }
-      );
+}
+);
 
 
-      backButton.addEventListener(
-        "click",
-        event => {
+backButton.addEventListener(
+"click",
+event=>{
 
-          event.stopPropagation();
+event.stopPropagation();
 
-          showSide("back");
+showSide("back");
 
-        }
-      );
+}
+);
 
 
-      /* =========================
-         左右矢印
-      ========================= */
+/*=========================
+左右矢印
+=========================*/
 
-      function toggleSide() {
+functiontoggleSide(){
 
-        const isBack =
-          image.src ===
-          card.backImage;
+constisBack=
+image.src===
+card.backImage;
 
 
-        if (isBack) {
+if(isBack){
 
-          showSide("front");
+showSide("front");
 
-        } else {
+}else{
 
-          showSide("back");
+showSide("back");
 
-        }
+}
 
-      }
+}
 
 
-      leftArrow.addEventListener(
-        "click",
-        event => {
+leftArrow.addEventListener(
+"click",
+event=>{
 
-          event.stopPropagation();
+event.stopPropagation();
 
-          toggleSide();
+toggleSide();
 
-        }
-      );
+}
+);
 
 
-      rightArrow.addEventListener(
-        "click",
-        event => {
+rightArrow.addEventListener(
+"click",
+event=>{
 
-          event.stopPropagation();
+event.stopPropagation();
 
-          toggleSide();
+toggleSide();
 
-        }
-      );
+}
+);
 
 
-      /* =========================
-         左右タップ
-      ========================= */
+/*=========================
+左右タップ
+=========================*/
 
-      const cardArea =
-        content.querySelector(
-          ".modal-card-area"
-        );
+constcardArea=
+content.querySelector(
+".modal-card-area"
+);
 
 
-      cardArea.addEventListener(
-        "click",
-        event => {
+cardArea.addEventListener(
+"click",
+event=>{
 
-          if (
-            event.target.classList.contains(
-              "card-side-arrow"
-            )
-          ) {
+if(
+event.target.classList.contains(
+"card-side-arrow"
+)
+){
 
-            return;
+return;
 
-          }
+}
 
 
-          const rect =
-            cardArea.getBoundingClientRect();
+constrect=
+cardArea.getBoundingClientRect();
 
 
-          const tapX =
-            event.clientX -
-            rect.left;
+consttapX=
+event.clientX-
+rect.left;
 
 
-          if (
-            tapX <
-            rect.width / 2
-          ) {
+if(
+tapX<
+rect.width/2
+){
 
-            showSide("front");
+showSide("front");
 
-          } else {
+}else{
 
-            showSide("back");
+showSide("back");
 
-          }
+}
 
-        }
-      );
+}
+);
 
 
-      /* =========================
-         スワイプ
-      ========================= */
+/*=========================
+スワイプ
+=========================*/
 
-      let touchStartX = 0;
+lettouchStartX=0;
 
 
-      cardArea.addEventListener(
-        "touchstart",
-        event => {
+cardArea.addEventListener(
+"touchstart",
+event=>{
 
-          touchStartX =
-            event.changedTouches[0]
-              .screenX;
+touchStartX=
+event.changedTouches[0]
+.screenX;
 
-        },
-        { passive: true }
-      );
+},
+{passive:true}
+);
 
 
-      cardArea.addEventListener(
-        "touchend",
-        event => {
+cardArea.addEventListener(
+"touchend",
+event=>{
 
-          const touchEndX =
-            event.changedTouches[0]
-              .screenX;
+consttouchEndX=
+event.changedTouches[0]
+.screenX;
 
 
-          const distance =
-            touchEndX -
-            touchStartX;
+constdistance=
+touchEndX-
+touchStartX;
 
 
-          if (
-            Math.abs(distance) <
-            50
-          ) {
+if(
+Math.abs(distance)<
+50
+){
 
-            return;
+return;
 
-          }
+}
 
 
-          if (
-            distance < 0
-          ) {
+if(
+distance<0
+){
 
-            showSide("back");
+showSide("back");
 
-          } else {
+}else{
 
-            showSide("front");
+showSide("front");
 
-          }
+}
 
-        },
-        { passive: true }
-      );
+},
+{passive:true}
+);
 
 
-      /* =========================
-         閉じる
-      ========================= */
+/*=========================
+閉じる
+=========================*/
 
-      const close =
-        () => modal.remove();
+constclose=
+()=>modal.remove();
 
 
-      content
-        .querySelector(
-          ".card-modal-close"
-        )
-        .addEventListener(
-          "click",
-          close
-        );
+content
+.querySelector(
+".card-modal-close"
+)
+.addEventListener(
+"click",
+close
+);
 
 
-      modal.addEventListener(
-        "click",
-        event => {
+modal.addEventListener(
+"click",
+event=>{
 
-          if (
-            event.target === modal
-          ) {
+if(
+event.target===modal
+){
 
-            close();
+close();
 
-          }
+}
 
-        }
-      );
+}
+);
 
-    }
+}
 
 
-    /* =========================
-       イベント
-    ========================= */
+/*=========================
+イベント
+=========================*/
 
-    searchInput.addEventListener(
-      "input",
-      renderCards
-    );
+searchInput.addEventListener(
+"input",
+renderCards
+);
 
 
-    [
-      typeFilter,
-      brandFilter,
-      coordinateFilter,
-      categoryFilter
+[
+typeFilter,
+brandFilter,
+coordinateFilter,
+categoryFilter
 
-    ].forEach(select => {
+].forEach(select=>{
 
-      select.addEventListener(
-        "change",
-        renderCards
-      );
+select.addEventListener(
+"change",
+renderCards
+);
 
-    });
+});
 
 
-    document
-      .querySelectorAll(
-        ".status-button"
-      )
-      .forEach(button => {
+document
+.querySelectorAll(
+".status-button"
+)
+.forEach(button=>{
 
-        button.addEventListener(
-          "click",
-          () => {
+button.addEventListener(
+"click",
+()=>{
 
-            document
-              .querySelectorAll(
-                ".status-button"
-              )
-              .forEach(button =>
-                button.classList.remove(
-                  "active"
-                )
-              );
+document
+.querySelectorAll(
+".status-button"
+)
+.forEach(button=>
+button.classList.remove(
+"active"
+)
+);
 
 
-            button.classList.add(
-              "active"
-            );
+button.classList.add(
+"active"
+);
 
 
-            currentStatus =
-              button.dataset.status;
+currentStatus=
+button.dataset.status;
 
 
-            renderCards();
+renderCards();
 
-          }
-        );
+}
+);
 
-      });
+});
 
 
-    /* =========================
-       戻ってきたとき更新
-    ========================= */
+/*=========================
+戻ってきたとき更新
+=========================*/
 
-    window.addEventListener(
-      "pageshow",
-      () => {
+window.addEventListener(
+"pageshow",
+()=>{
 
-        if (
-          cards.length > 0
-        ) {
+if(
+cards.length>0
+){
 
-          loadOwnership();
+loadOwnership();
 
-          updateStatus();
+updateStatus();
 
-          renderCards();
+renderCards();
 
-        }
+}
 
-      }
-    );
+}
+);
 
-  </script>
+</script>
 
 </body>
 </html>
