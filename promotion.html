@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>プロモーションカード</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="header">
+    <h1>✦ AIKATSU ENCORE ✦</h1>
+    <p>♡ PROMOTION CARD ♡</p>
+  </header>
+
+  <main class="cards-page">
+
+    <a href="index.html" class="back-link">
+      ‹ Collection
+    </a>
+
+    <section class="season-header">
+      <h2>♡ プロモーションカード</h2>
+      <p id="collectionStatus">0 / 0</p>
+    </section>
+
+
+    <!-- 検索 -->
+
+    <div class="search-box">
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="カード番号・カード名を検索"
+      >
+    </div>
+
+
+    <!-- 所持状態 -->
+
+    <div class="status-filters">
+
+      <button
+        class="status-button active"
+        data-status="all"
+      >
+        すべて
+      </button>
+
+      <button
+        class="status-button"
+        data-status="owned"
+      >
+        所持
+      </button>
+
+      <button
+        class="status-button"
+        data-status="missing"
+      >
+        未所持
+      </button>
+
+      <button
+        class="status-button"
+        data-status="trade"
+      >
+        交換
+      </button>
+
+    </div>
+
+
+    <!-- フィルター -->
+
+    <div class="filters">
+
+      <div class="filter-group">
+        <label for="typeFilter">タイプ</label>
+
+        <select id="typeFilter">
+          <option value="">すべて</option>
+        </select>
+      </div>
+
+
+      <div class="filter-group">
+        <label for="brandFilter">ブランド</label>
+
+        <select id="brandFilter">
+          <option value="">すべて</option>
+        </select>
+      </div>
+
+
+      <div class="filter-group">
+        <label for="coordinateFilter">コーデ</label>
+
+        <select id="coordinateFilter">
+          <option value="">すべて</option>
+        </select>
+      </div>
+
+
+      <div class="filter-group">
+        <label for="categoryFilter">カテゴリ</label>
+
+        <select id="categoryFilter">
+          <option value="">すべて</option>
+        </select>
+      </div>
+
+    </div>
+
+
+    <div id="loading" class="loading">
+      プロモーションカードを読み込み中…
+    </div>
+
+    <div
+      id="cardGrid"
+      class="card-grid"
+    ></div>
+
+  </main>
+
+
+  <footer>
+    <p>♡ AIKATSU ENCORE ♡</p>
+  </footer>
+
+
+  <script>
+
+    /* =========================
+       基本設定
+    ========================= */
+
+    const storageKey =
+      "aikatsu-encore-promotion";
+
+    let cards = [];
+
+    let ownership = {};
+
+    let currentStatus = "all";
+
+
+    /* =========================
+       要素
+    ========================= */
+
+    const seasonTitle =
+      document.getElementById(
+        "collectionStatus"
+      );
+
+    const collectionStatus =
+      document.getElementById(
+        "collectionStatus"
+      );
+
+    const searchInput =
+      document.getElementById(
+        "searchInput"
+      );
+
+    const cardGrid =
+      document.getElementById(
+        "cardGrid"
+      );
+
+    const loading =
+      document.getElementById(
+        "loading"
+      );
+
+    const typeFilter =
+      document.getElementById(
+        "typeFilter"
+      );
+
+    const brandFilter =
+      document.getElementById(
+        "brandFilter"
+      );
+
+    const coordinateFilter =
+      document.getElementById(
+        "coordinateFilter"
+      );
+
+    const categoryFilter =
+      document.getElementById(
+        "categoryFilter"
+      );
+
+
+    /* =========================
+       所持データ
+    ========================= */
+
+    function loadOwnership() {
+
+      ownership =
+        JSON.parse(
+
+          localStorage.getItem(
+            storageKey
+          ) || "{}"
+
+        );
+
+    }
+
+
+    /* =========================
+       JSON読み込み
+    ========================= */
+
+    fetch("cards.json")
+
+      .then(response => {
+
+        if (!response.ok) {
+
+          throw new Error(
+            "cards.jsonを読み込めませんでした"
+          );
+
+        }
+
+        return response.json();
+
+      })
+
+      .then(data => {
+
+        const allCards =
+          Array.isArray(data)
+            ? data
+            : data.cards || [];
+
+
+        /*
+          collection が promotion の
+          カードだけを取得
+        */
+
+        cards =
+          allCards.filter(card =>
+
+            String(
+              card.collection || ""
+            ).toLowerCase() === "promotion"
+
+          );
+
+
+        loadOwnership();
+
+        setupFilters();
+
+        updateStatus();
+
+        renderCards();
+
+        loading.style.display = "none";
+
+      })
+
+      .catch(error => {
+
+        console.error(error);
+
+        loading.textContent =
+          "カードを読み込めませんでした。";
+
+      });
+
+
+    /* =========================
+       フィルター設定
+    ========================= */
+
+    function setupFilters() {
+
+      fillFilter(
+        typeFilter,
+        "type"
+      );
+
+      fillFilter(
+        brandFilter,
+        "brand"
+      );
+
+      fillFilter(
+        coordinateFilter,
+        "coordinate"
+      );
+
+      fillFilter(
+        categoryFilter,
+        "category"
+      );
+
+    }
+
+
+    function fillFilter(
+      select,
+      key
+    ) {
+
+      const values = [
+
+        ...new Set(
+
+          cards
+
+            .map(card =>
+              card[key]
+            )
+
+            .filter(value =>
+
+              value !== undefined &&
+              value !== null &&
+              String(value).trim() !== ""
+
+            )
+
+            .map(value =>
+              String(value).trim()
+            )
+
+        )
+
+      ].sort(
+
+        (a, b) =>
+          a.localeCompare(
+            b,
+            "ja"
+          )
+
+      );
+
+
+      values.forEach(value => {
+
+        const option =
+          document.createElement(
+            "option"
+          );
+
+        option.value =
+          value;
+
+        option.textContent =
+          value;
+
+        select.appendChild(
+          option
+        );
+
+      });
+
+    }
+
+
+    /* =========================
+       所持数
+    ========================= */
+
+    function getCount(card) {
+
+      return Number(
+        ownership[card.id] || 0
+      );
+
+    }
+
+
+    function setCount(
+      card,
+      count
+    ) {
+
+      if (count <= 0) {
+
+        delete ownership[card.id];
+
+      } else {
+
+        ownership[card.id] =
+          count;
+
+      }
+
+
+      localStorage.setItem(
+        storageKey,
+        JSON.stringify(
+          ownership
+        )
+      );
+
+
+      updateStatus();
+
+      renderCards();
+
+    }
+
+
+    /* =========================
+       集計
+    ========================= */
+
+    function updateStatus() {
+
+      const owned =
+        cards.filter(
+          card =>
+            getCount(card) >= 1
+        ).length;
+
+
+      collectionStatus.textContent =
+        `${owned} / ${cards.length}`;
+
+    }
+
+
+    /* =========================
+       フィルター
+    ========================= */
+
+    function getFilteredCards() {
+
+      const keyword =
+        searchInput.value
+          .toLowerCase()
+          .trim();
+
+
+      const type =
+        typeFilter.value;
+
+      const brand =
+        brandFilter.value;
+
+      const coordinate =
+        coordinateFilter.value;
+
+      const category =
+        categoryFilter.value;
+
+
+      return cards.filter(card => {
+
+        const searchableText = [
+
+          card.id,
+          card.name,
+          card.unit
+
+        ]
+
+          .filter(value =>
+            value !== undefined &&
+            value !== null
+          )
+
+          .join(" ")
+          .toLowerCase();
+
+
+        const count =
+          getCount(card);
+
+
+        if (
+          keyword &&
+          !searchableText.includes(
+            keyword
+          )
+        ) {
+
+          return false;
+
+        }
+
+
+        if (
+          type &&
+          String(
+            card.type || ""
+          ).trim() !== type
+        ) {
+
+          return false;
+
+        }
+
+
+        if (
+          brand &&
+          String(
+            card.brand || ""
+          ).trim() !== brand
+        ) {
+
+          return false;
+
+        }
+
+
+        if (
+          coordinate &&
+          String(
+            card.coordinate || ""
+          ).trim() !== coordinate
+        ) {
+
+          return false;
+
+        }
+
+
+        if (
+          category &&
+          String(
+            card.category || ""
+          ).trim() !== category
+        ) {
+
+          return false;
+
+        }
+
+
+        if (
+          currentStatus === "owned" &&
+          count < 1
+        ) {
+
+          return false;
+
+        }
+
+
+        if (
+          currentStatus === "missing" &&
+          count >= 1
+        ) {
+
+          return false;
+
+        }
+
+
+        if (
+          currentStatus === "trade" &&
+          count < 2
+        ) {
+
+          return false;
+
+        }
+
+
+        return true;
+
+      });
+
+    }
+
+
+    /* =========================
+       カード表示
+    ========================= */
+
+    function renderCards() {
+
+      cardGrid.innerHTML = "";
+
+
+      const filtered =
+        getFilteredCards();
+
+
+      if (
+        filtered.length === 0
+      ) {
+
+        cardGrid.innerHTML =
+          `<p class="no-results">
+            該当するカードがありません。
+          </p>`;
+
+        return;
+
+      }
+
+
+      filtered.forEach(card => {
+
+        const count =
+          getCount(card);
+
+
+        const cardElement =
+          document.createElement(
+            "article"
+          );
+
+
+        cardElement.className =
+          "card";
+
+
+        cardElement.innerHTML = `
+
+          <div class="card-image">
+
+            <img
+              src="${card.image}"
+              alt="${card.name || card.id}"
+              onerror="this.style.display='none'"
+            >
+
+          </div>
+
+
+          <div class="card-info">
+
+            <div class="card-id">
+              ${card.id || ""}
+            </div>
+
+            <div class="card-name">
+              ${card.name || ""}
+            </div>
+
+            <div class="card-meta">
+              ${card.brand || ""}
+            </div>
+
+            ${
+              count >= 2
+                ? `<div class="trade-label">
+                    ♡ 交換可能
+                  </div>`
+                : ""
+            }
+
+          </div>
+
+
+          <div class="count-control">
+
+            <button
+              type="button"
+              class="count-button minus"
+            >
+              −
+            </button>
+
+            <span class="count">
+              ${count}
+            </span>
+
+            <button
+              type="button"
+              class="count-button plus"
+            >
+              ＋
+            </button>
+
+          </div>
+
+        `;
+
+
+        /* − */
+
+        cardElement
+          .querySelector(".minus")
+          .addEventListener(
+            "click",
+            event => {
+
+              event.stopPropagation();
+
+              setCount(
+                card,
+                Math.max(
+                  0,
+                  count - 1
+                )
+              );
+
+            }
+          );
+
+
+        /* ＋ */
+
+        cardElement
+          .querySelector(".plus")
+          .addEventListener(
+            "click",
+            event => {
+
+              event.stopPropagation();
+
+              setCount(
+                card,
+                count + 1
+              );
+
+            }
+          );
+
+
+        /* カード */
+
+        cardElement.addEventListener(
+          "click",
+          () =>
+            openCardModal(card)
+        );
+
+
+        cardGrid.appendChild(
+          cardElement
+        );
+
+      });
+
+    }
+
+
+    /* =========================
+       カード詳細モーダル
+    ========================= */
+
+    function openCardModal(card) {
+
+      const modal =
+        document.createElement(
+          "div"
+        );
+
+      modal.className =
+        "card-modal";
+
+
+      const content =
+        document.createElement(
+          "div"
+        );
+
+      content.className =
+        "card-modal-content";
+
+
+      content.innerHTML = `
+
+        <button
+          type="button"
+          class="card-modal-close"
+          aria-label="閉じる"
+        >
+          ×
+        </button>
+
+
+        <div class="modal-card-area">
+
+          <button
+            type="button"
+            class="card-side-arrow left"
+            aria-label="表を見る"
+          >
+            ‹
+          </button>
+
+
+          <img
+            class="modal-card-image"
+            src="${card.image}"
+            alt="${card.name || card.id}"
+          >
+
+
+          <button
+            type="button"
+            class="card-side-arrow right"
+            aria-label="裏を見る"
+          >
+            ›
+          </button>
+
+        </div>
+
+
+        <div class="card-side-buttons">
+
+          <button
+            type="button"
+            class="card-side-button active"
+            data-side="front"
+          >
+            表
+          </button>
+
+          <button
+            type="button"
+            class="card-side-button"
+            data-side="back"
+          >
+            裏
+          </button>
+
+        </div>
+
+      `;
+
+
+      modal.appendChild(
+        content
+      );
+
+      document.body.appendChild(
+        modal
+      );
+
+
+      const image =
+        content.querySelector(
+          ".modal-card-image"
+        );
+
+
+      const frontButton =
+        content.querySelector(
+          '[data-side="front"]'
+        );
+
+
+      const backButton =
+        content.querySelector(
+          '[data-side="back"]'
+        );
+
+
+      const leftArrow =
+        content.querySelector(
+          ".card-side-arrow.left"
+        );
+
+
+      const rightArrow =
+        content.querySelector(
+          ".card-side-arrow.right"
+        );
+
+
+      /* =========================
+         表 / 裏
+      ========================= */
+
+      function showSide(side) {
+
+        if (
+          side === "back" &&
+          card.backImage
+        ) {
+
+          image.src =
+            card.backImage;
+
+          image.alt =
+            `${card.name || card.id} 裏面`;
+
+          frontButton
+            .classList
+            .remove("active");
+
+          backButton
+            .classList
+            .add("active");
+
+        } else {
+
+          image.src =
+            card.image;
+
+          image.alt =
+            `${card.name || card.id}`;
+
+          frontButton
+            .classList
+            .add("active");
+
+          backButton
+            .classList
+            .remove("active");
+
+        }
+
+      }
+
+
+      frontButton.addEventListener(
+        "click",
+        event => {
+
+          event.stopPropagation();
+
+          showSide("front");
+
+        }
+      );
+
+
+      backButton.addEventListener(
+        "click",
+        event => {
+
+          event.stopPropagation();
+
+          showSide("back");
+
+        }
+      );
+
+
+      /* =========================
+         左右矢印
+      ========================= */
+
+      function toggleSide() {
+
+        const isBack =
+          image.src ===
+          card.backImage;
+
+
+        if (isBack) {
+
+          showSide("front");
+
+        } else {
+
+          showSide("back");
+
+        }
+
+      }
+
+
+      leftArrow.addEventListener(
+        "click",
+        event => {
+
+          event.stopPropagation();
+
+          toggleSide();
+
+        }
+      );
+
+
+      rightArrow.addEventListener(
+        "click",
+        event => {
+
+          event.stopPropagation();
+
+          toggleSide();
+
+        }
+      );
+
+
+      /* =========================
+         左右タップ
+      ========================= */
+
+      const cardArea =
+        content.querySelector(
+          ".modal-card-area"
+        );
+
+
+      cardArea.addEventListener(
+        "click",
+        event => {
+
+          if (
+            event.target.classList.contains(
+              "card-side-arrow"
+            )
+          ) {
+
+            return;
+
+          }
+
+
+          const rect =
+            cardArea.getBoundingClientRect();
+
+
+          const tapX =
+            event.clientX -
+            rect.left;
+
+
+          if (
+            tapX <
+            rect.width / 2
+          ) {
+
+            showSide("front");
+
+          } else {
+
+            showSide("back");
+
+          }
+
+        }
+      );
+
+
+      /* =========================
+         スワイプ
+      ========================= */
+
+      let touchStartX = 0;
+
+
+      cardArea.addEventListener(
+        "touchstart",
+        event => {
+
+          touchStartX =
+            event.changedTouches[0]
+              .screenX;
+
+        },
+        { passive: true }
+      );
+
+
+      cardArea.addEventListener(
+        "touchend",
+        event => {
+
+          const touchEndX =
+            event.changedTouches[0]
+              .screenX;
+
+
+          const distance =
+            touchEndX -
+            touchStartX;
+
+
+          if (
+            Math.abs(distance) <
+            50
+          ) {
+
+            return;
+
+          }
+
+
+          if (
+            distance < 0
+          ) {
+
+            showSide("back");
+
+          } else {
+
+            showSide("front");
+
+          }
+
+        },
+        { passive: true }
+      );
+
+
+      /* =========================
+         閉じる
+      ========================= */
+
+      const close =
+        () => modal.remove();
+
+
+      content
+        .querySelector(
+          ".card-modal-close"
+        )
+        .addEventListener(
+          "click",
+          close
+        );
+
+
+      modal.addEventListener(
+        "click",
+        event => {
+
+          if (
+            event.target === modal
+          ) {
+
+            close();
+
+          }
+
+        }
+      );
+
+    }
+
+
+    /* =========================
+       イベント
+    ========================= */
+
+    searchInput.addEventListener(
+      "input",
+      renderCards
+    );
+
+
+    [
+      typeFilter,
+      brandFilter,
+      coordinateFilter,
+      categoryFilter
+
+    ].forEach(select => {
+
+      select.addEventListener(
+        "change",
+        renderCards
+      );
+
+    });
+
+
+    document
+      .querySelectorAll(
+        ".status-button"
+      )
+      .forEach(button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            document
+              .querySelectorAll(
+                ".status-button"
+              )
+              .forEach(button =>
+                button.classList.remove(
+                  "active"
+                )
+              );
+
+
+            button.classList.add(
+              "active"
+            );
+
+
+            currentStatus =
+              button.dataset.status;
+
+
+            renderCards();
+
+          }
+        );
+
+      });
+
+
+    /* =========================
+       戻ってきたとき更新
+    ========================= */
+
+    window.addEventListener(
+      "pageshow",
+      () => {
+
+        if (
+          cards.length > 0
+        ) {
+
+          loadOwnership();
+
+          updateStatus();
+
+          renderCards();
+
+        }
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>
