@@ -1,103 +1,141 @@
-/* =========================
-   全体
-========================= */
+/* =========================================================
+   AIKATSU ENCORE
+   PAGE DESIGN SYSTEM
+   ========================================================= */
+
+
+/* =========================================================
+   0. 共通
+   ========================================================= */
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  background: #fff8fc;
+}
+
 body {
   margin: 0;
-  background: #fff8fc;
   color: #5f5360;
+
   font-family:
     -apple-system,
     BlinkMacSystemFont,
     "Helvetica Neue",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
     sans-serif;
+
+  -webkit-text-size-adjust: 100%;
+}
+
+button,
+input,
+select {
+  font-family: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
 
-/* =========================
-   ヘッダー
-========================= */
+/* =========================================================
+   1. 共通ヘッダー
+   ========================================================= */
 
 .header {
-  padding: 28px 20px 22px;
+  padding: 28px 20px 24px;
+
   text-align: center;
-  background: linear-gradient(
-    135deg,
-    #f8dff0,
-    #eee2fa
-  );
+
+  background:
+    linear-gradient(
+      135deg,
+      #f8dff0,
+      #eee2fa
+    );
 }
 
 .header h1 {
   margin: 0;
+
   color: #80627d;
+
   font-size: 20px;
+  font-weight: 700;
+
   letter-spacing: 2px;
 }
 
 .header p {
-  margin: 7px 0 0;
+  margin: 8px 0 0;
+
   color: #a886a4;
+
   font-size: 11px;
   letter-spacing: 2px;
 }
 
 
-/* =========================
-   ページ
-========================= */
+/* =========================================================
+   2. 共通フッター
+   ========================================================= */
+
+footer {
+  padding: 25px 10px 35px;
+
+  text-align: center;
+}
+
+footer p {
+  margin: 0;
+
+  color: #b99fb5;
+
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   3. 共通カードページ
+   ========================================================= */
 
 .cards-page {
   width: min(100% - 28px, 900px);
+
   margin: 0 auto;
+
   padding: 18px 0 40px;
 }
 
-
-/* =========================
-   戻る
-========================= */
-
 .back-link {
-  display: inline-block;
-  margin-bottom: 12px;
-  color: #9b7798;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-
-/* =========================
-   シーズン
-========================= */
-
-.season-header {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
+
   margin-bottom: 14px;
-}
 
-.season-header h2 {
-  margin: 0;
-  color: #72596f;
-  font-size: 22px;
-}
+  color: #9b7798;
 
-.season-header p {
-  margin: 0;
-  color: #a486a1;
   font-size: 14px;
+  text-decoration: none;
+}
+
+.back-link:active {
+  opacity: 0.7;
 }
 
 
-/* =========================
-   検索
-========================= */
+/* =========================================================
+   4. 共通検索
+   ========================================================= */
 
 .search-box {
   margin-bottom: 12px;
@@ -105,114 +143,181 @@ body {
 
 .search-box input {
   width: 100%;
+
   padding: 12px 14px;
+
   border: 1px solid #ead7e6;
   border-radius: 12px;
+
   background: #fff;
+
   color: #5f5360;
+
   font-size: 14px;
+
   outline: none;
+
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.search-box input::placeholder {
+  color: #b9a8b5;
 }
 
 .search-box input:focus {
   border-color: #cfa9c8;
+
+  box-shadow:
+    0 0 0 3px rgba(207, 169, 200, 0.12);
 }
 
 
-/* =========================
-   所持状態
-========================= */
+/* =========================================================
+   5. 共通 所持状態
+   ========================================================= */
 
 .status-filters {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
   gap: 6px;
+
   margin-bottom: 12px;
 }
 
 .status-button {
-  padding: 9px 4px;
+  min-height: 38px;
+
+  padding: 8px 4px;
+
   border: 1px solid #ead7e6;
   border-radius: 10px;
+
   background: #fff;
+
   color: #8c7188;
+
   font-size: 12px;
+
+  cursor: pointer;
+
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.status-button:active {
+  transform: scale(0.97);
 }
 
 .status-button.active {
   background: #ead8e8;
+
   border-color: #d6b7d1;
+
   color: #70566d;
+
   font-weight: bold;
 }
 
 
-/* =========================
-   フィルター
-========================= */
+/* =========================================================
+   6. 共通フィルター
+   ========================================================= */
 
 .filters {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
   gap: 8px;
+
   margin-bottom: 18px;
 }
 
 .filter-group label {
   display: block;
+
   margin-bottom: 4px;
+
   color: #8f778b;
+
   font-size: 11px;
 }
 
 .filter-group select {
   width: 100%;
-  padding: 9px 8px;
+
+  min-height: 38px;
+
+  padding: 8px;
+
   border: 1px solid #ead7e6;
   border-radius: 10px;
+
   background: #fff;
+
   color: #665966;
+
   font-size: 12px;
+
+  outline: none;
+}
+
+.filter-group select:focus {
+  border-color: #cfa9c8;
 }
 
 
-/* =========================
-   カード一覧
-========================= */
+/* =========================================================
+   7. 共通カード一覧
+   ========================================================= */
 
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
   gap: 12px;
 }
 
-
-/* =========================
-   カード
-========================= */
-
 .card {
   min-width: 0;
+
   padding: 8px;
+
   border: 1px solid #eadde8;
   border-radius: 14px;
+
   background: #fff;
+
   box-shadow:
     0 3px 10px rgba(130, 100, 130, 0.07);
 
   cursor: pointer;
+
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease;
 }
 
-
-/* =========================
-   カード画像
-========================= */
+.card:active {
+  transform: scale(0.985);
+}
 
 .card-image {
   width: 100%;
+
   aspect-ratio: 5 / 7;
+
   overflow: hidden;
+
   border-radius: 9px;
+
   background: #f7f2f7;
 
   display: flex;
@@ -221,192 +326,1223 @@ body {
 }
 
 .card-image img {
+  display: block;
+
   width: 100%;
   height: 100%;
-  display: block;
 
   object-fit: contain;
 }
 
-
-/*
-  アクセサリーも通常カードと同じ。
-  特別な回転・横長化はしない。
-*/
-
-
-/* =========================
-   カード情報
-========================= */
-
 .card-info {
+  min-width: 0;
+
   padding: 7px 3px 3px;
 }
 
 .card-id {
   color: #a18b9e;
+
   font-size: 10px;
 }
 
 .card-name {
-  margin-top: 2px;
   min-height: 17px;
+
+  margin-top: 2px;
+
   color: #655864;
+
   font-size: 12px;
   font-weight: bold;
+
   line-height: 1.4;
+
+  overflow-wrap: anywhere;
 }
 
 .card-meta {
   margin-top: 2px;
+
   color: #a18b9e;
+
   font-size: 10px;
+
+  overflow-wrap: anywhere;
+}
+
+.card-rarity {
+  margin-top: 2px;
+
+  color: #a889a3;
+
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.trade-label {
+  margin-top: 4px;
+
+  color: #b47eaa;
+
+  font-size: 10px;
+  font-weight: bold;
 }
 
 
-/* =========================
-   所持数
-========================= */
+/* =========================================================
+   8. 所持数
+   ========================================================= */
 
 .count-control {
   display: flex;
   align-items: center;
   justify-content: center;
+
   gap: 12px;
+
   margin-top: 7px;
 }
 
 .count-button {
   width: 27px;
   height: 27px;
+
   padding: 0;
 
   border: 1px solid #ead7e6;
   border-radius: 50%;
 
   background: #fff8fc;
+
   color: #896e84;
 
   font-size: 16px;
   line-height: 1;
+
+  cursor: pointer;
+}
+
+.count-button:active {
+  transform: scale(0.9);
 }
 
 .count {
   min-width: 18px;
+
   text-align: center;
+
   color: #6d5a69;
+
   font-size: 13px;
   font-weight: bold;
 }
 
 
-/* =========================
-   読み込み・該当なし
-========================= */
+/* =========================================================
+   9. 読み込み
+   ========================================================= */
 
 .loading,
 .no-results {
   padding: 40px 10px;
+
   text-align: center;
+
   color: #a58d9f;
+
   font-size: 13px;
 }
 
 
-/* =========================
-   モーダル
-========================= */
+/* =========================================================
+   10. カードモーダル 共通
+   ========================================================= */
 
 .card-modal {
   position: fixed;
+
   inset: 0;
-  z-index: 1000;
+
+  z-index: 9999;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  padding: 20px;
+  padding: 10px;
 
-  background: rgba(60, 45, 60, 0.55);
+  background: rgba(45, 30, 55, 0.72);
+
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 .card-modal-content {
   position: relative;
 
-  width: min(92vw, 600px);
-  max-height: 90vh;
+  width: min(90vw, 360px);
 
-  padding: 18px;
+  max-height: 88vh;
 
-  overflow-y: auto;
+  padding: 16px 8px 18px;
 
-  border-radius: 18px;
-  background: #fff9fd;
+  overflow: hidden;
+
+  border-radius: 22px;
+
+  background: #fffaff;
+
+  box-shadow:
+    0 10px 35px rgba(80, 50, 80, 0.25);
+
+  text-align: center;
 }
 
 .card-modal-close {
   position: absolute;
+
   top: 8px;
-  right: 10px;
+  right: 8px;
 
-  z-index: 2;
+  z-index: 10;
 
-  width: 34px;
-  height: 34px;
+  width: 42px;
+  height: 42px;
 
-  border: 0;
+  border: none;
   border-radius: 50%;
 
-  background: rgba(255,255,255,0.9);
-  color: #80677b;
+  background: rgba(255,255,255,0.95);
 
-  font-size: 24px;
+  color: #8d6688;
+
+  font-size: 30px;
   line-height: 1;
+
+  cursor: pointer;
 }
 
-.modal-images {
+.modal-card-area {
+  position: relative;
+
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 14px;
-  padding-top: 10px;
-}
-
-.modal-images img {
-  display: block;
+  justify-content: center;
 
   width: 100%;
-  max-width: 500px;
-  height: auto;
 
-  border-radius: 10px;
+  margin-top: 8px;
+
+  touch-action: pan-y;
+}
+
+.modal-card-image {
+  display: block;
+
+  width: min(62vw, 280px);
+
+  max-width: 100%;
+  max-height: 57vh;
+
   object-fit: contain;
+
+  border-radius: 6px;
+
+  box-shadow:
+    0 5px 18px rgba(80, 50, 80, 0.18);
+
+  user-select: none;
+
+  -webkit-user-drag: none;
+}
+
+.card-side-arrow {
+  position: absolute;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255,255,255,0.92);
+
+  color: #8d6688;
+
+  font-size: 32px;
+  line-height: 1;
+
+  box-shadow:
+    0 3px 10px rgba(80,50,80,0.18);
+
+  cursor: pointer;
+
+  z-index: 5;
+}
+
+.card-side-arrow.left {
+  left: 2px;
+}
+
+.card-side-arrow.right {
+  right: 2px;
+}
+
+.card-side-buttons {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-top: 16px;
+}
+
+.card-side-button {
+  min-width: 95px;
+
+  padding: 10px 20px;
+
+  border: 1px solid #e8cce4;
+  border-radius: 999px;
+
+  background: #fff;
+
+  color: #8d6688;
+
+  font-size: 15px;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.card-side-button.active {
+  background: #e8c9e4;
+
+  border-color: #e8c9e4;
+
+  color: #fff;
 }
 
 
-/* =========================
-   フッター
-========================= */
+/* =========================================================
+   =========================================================
+   🦇 HOME
+   ゴスマジックコーデ風
+   =========================================================
+   ========================================================= */
 
-footer {
-  padding: 25px 10px 35px;
-  text-align: center;
+body:has(.home) {
+  min-height: 100vh;
+
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(139, 106, 177, 0.20),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 85% 70%,
+      rgba(95, 83, 163, 0.15),
+      transparent 30%
+    ),
+    linear-gradient(
+      160deg,
+      #15111d 0%,
+      #21172d 48%,
+      #171320 100%
+    );
+
+  color: #f7f1fb;
 }
 
-footer p {
-  margin: 0;
-  color: #b99fb5;
+
+/* ゴスマジック用ヘッダー */
+
+body:has(.home) .header {
+  position: relative;
+
+  overflow: hidden;
+
+  padding: 34px 20px 30px;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(155, 123, 205, 0.30),
+      transparent 42%
+    ),
+    linear-gradient(
+      145deg,
+      #18121f,
+      #302043 55%,
+      #17121f
+    );
+
+  border-bottom:
+    1px solid rgba(220,195,238,0.35);
+
+  box-shadow:
+    0 5px 25px rgba(0,0,0,0.28);
+}
+
+body:has(.home) .header::before {
+  content: "✦   ☾   ✦";
+
+  display: block;
+
+  margin-bottom: 12px;
+
+  color: #d9c8ee;
+
+  font-size: 15px;
+
+  letter-spacing: 12px;
+}
+
+body:has(.home) .header::after {
+  content: "🦇";
+
+  position: absolute;
+
+  right: 22px;
+  bottom: 16px;
+
+  opacity: 0.32;
+
+  font-size: 25px;
+}
+
+body:has(.home) .header h1 {
+  color: #faf7ff;
+
+  font-size: 21px;
+
+  letter-spacing: 3px;
+
+  text-shadow:
+    0 0 14px rgba(194,166,230,0.35);
+}
+
+body:has(.home) .header p {
+  color: #c8afd9;
+
+  letter-spacing: 3px;
+}
+
+
+/* ホーム本体 */
+
+body:has(.home) .home {
+  width: min(100% - 30px, 560px);
+
+  margin: 0 auto;
+
+  padding: 25px 0 42px;
+}
+
+
+/* セクション */
+
+body:has(.home) .menu-section {
+  margin-bottom: 12px;
+}
+
+
+/* Collection ボタン */
+
+body:has(.home) .section-title {
+  position: relative;
+
+  width: 100%;
+
+  min-height: 52px;
+
+  padding: 13px 17px;
+
+  border:
+    1px solid rgba(223,201,239,0.45);
+
+  border-radius: 4px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(68,45,87,0.95),
+      rgba(34,24,47,0.98)
+    );
+
+  color: #f8f1fc;
+
+  font-size: 15px;
+  font-weight: bold;
+
+  letter-spacing: 1px;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.04),
+    0 5px 18px rgba(0,0,0,0.22);
+}
+
+body:has(.home) .section-title::before {
+  content: "✦";
+
+  margin-right: 7px;
+
+  color: #c9a9e6;
+}
+
+body:has(.home) #collectionArrow {
+  float: right;
+
+  color: #c8abd9;
+
+  font-size: 11px;
+}
+
+
+/* Collection 内 */
+
+body:has(.home) .collection-list {
+  margin-top: 8px;
+
+  padding: 7px;
+
+  border:
+    1px solid rgba(214,191,232,0.25);
+
+  background:
+    rgba(21,15,29,0.62);
+
+  box-shadow:
+    inset 0 0 25px rgba(128,94,164,0.08);
+}
+
+
+/* Collectionリンク */
+
+body:has(.home) .season-link {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 48px;
+
+  margin-bottom: 6px;
+
+  padding: 10px 13px;
+
+  border:
+    1px solid rgba(219,199,235,0.24);
+
+  border-radius: 3px;
+
+  background:
+    linear-gradient(
+      100deg,
+      rgba(49,35,62,0.98),
+      rgba(31,24,42,0.98)
+    );
+
+  color: #eee5f5;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  box-shadow:
+    inset 0 0 12px rgba(170,140,205,0.04);
+}
+
+body:has(.home) .season-link::before {
+  content: "✦";
+
+  margin-right: 8px;
+
+  color: #a98bc7;
+
+  font-size: 9px;
+}
+
+body:has(.home) .season-link span:first-child {
+  flex: 1;
+}
+
+body:has(.home) .season-link span:last-child {
+  color: #c7acd9;
+}
+
+body:has(.home) .season-link:active {
+  background: #39274b;
+
+  transform: scale(0.985);
+}
+
+
+/* プロモリンク */
+
+body:has(.home) .promotion-link {
+  border-color:
+    rgba(198,174,222,0.38);
+}
+
+
+/* Trade / My Character / Information */
+
+body:has(.home) .menu-link {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 62px;
+
+  padding: 11px 17px;
+
+  border:
+    1px solid rgba(222,201,238,0.32);
+
+  border-radius: 4px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(48,35,62,0.98),
+      rgba(27,21,37,0.98)
+    );
+
+  color: #f2eaf7;
+
+  text-decoration: none;
+
+  box-shadow:
+    0 5px 18px rgba(0,0,0,0.18);
+}
+
+body:has(.home) .menu-link strong {
+  display: block;
+
+  color: #f8f2fc;
+
+  font-size: 14px;
+
+  letter-spacing: 0.7px;
+}
+
+body:has(.home) .menu-link small {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #ad94bf;
+
   font-size: 10px;
+}
+
+body:has(.home) .menu-link > span:last-child {
+  color: #c5a8d9;
+
+  font-size: 23px;
+}
+
+body:has(.home) .menu-link:active {
+  transform: scale(0.985);
+
+  background: #39274b;
+}
+
+
+/* ホームフッター */
+
+body:has(.home) footer p {
+  color: #9c83ad;
+
+  letter-spacing: 3px;
+}
+
+
+/* =========================================================
+   =========================================================
+   🌸 第1弾
+   エンジェリーシュガー
+   オーロラキスコーデ風
+   =========================================================
+   ========================================================= */
+
+body:has(#seasonTitle) {
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(255,215,236,0.75),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 90% 20%,
+      rgba(198,236,255,0.65),
+      transparent 28%
+    ),
+    linear-gradient(
+      180deg,
+      #fffafd,
+      #f9f2fb
+    );
+}
+
+
+/* ヘッダー */
+
+body:has(#seasonTitle) .header {
+  position: relative;
+
+  overflow: hidden;
+
+  padding: 30px 20px 27px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff7fc 0%,
+      #fce4f1 38%,
+      #e9f5ff 68%,
+      #f5e5fb 100%
+    );
+
+  border-bottom:
+    1px solid #eed6eb;
+}
+
+body:has(#seasonTitle) .header::before {
+  content: "♡  ✦  ♡  ✦  ♡";
+
+  display: block;
+
+  margin-bottom: 9px;
+
+  color: #dfb0cf;
+
+  font-size: 12px;
+
+  letter-spacing: 7px;
+}
+
+body:has(#seasonTitle) .header h1 {
+  color: #9a7091;
+
+  text-shadow:
+    0 1px 0 #fff;
+}
+
+body:has(#seasonTitle) .header p {
+  color: #b88eae;
+}
+
+
+/* 第1弾ページ */
+
+body:has(#seasonTitle) .cards-page {
+  position: relative;
+}
+
+
+/* オーロラキス風タイトル */
+
+body:has(#seasonTitle) .season-header {
+  position: relative;
+
+  padding: 13px 15px;
+
+  border:
+    1px solid #efd5e8;
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.96),
+      rgba(255,240,250,0.96),
+      rgba(239,249,255,0.96)
+    );
+
+  box-shadow:
+    0 5px 16px rgba(201,160,195,0.10);
+}
+
+body:has(#seasonTitle) .season-header::before {
+  content: "✦";
+
+  color: #d5a8ce;
+
+  font-size: 13px;
+}
+
+body:has(#seasonTitle) .season-header h2 {
+  color: #a06d95;
+
+  font-size: 20px;
+}
+
+body:has(#seasonTitle) .season-header p {
+  color: #b687aa;
+
+  font-weight: bold;
+}
+
+
+/* 戻る */
+
+body:has(#seasonTitle) .back-link {
+  color: #b079a6;
+}
+
+
+/* 検索 */
+
+body:has(#seasonTitle) .search-box input {
+  border-color: #ecd5e8;
+
+  background: rgba(255,255,255,0.9);
+}
+
+body:has(#seasonTitle) .search-box input:focus {
+  border-color: #d8a8ce;
+
+  box-shadow:
+    0 0 0 3px rgba(224,171,209,0.16);
+}
+
+
+/* 状態ボタン */
+
+body:has(#seasonTitle) .status-button {
+  border-color: #ead6e8;
+
+  color: #a27499;
+
+  background: #fff;
+}
+
+body:has(#seasonTitle) .status-button.active {
+  border-color: #e0afd2;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f6dce9,
+      #e9e4f8
+    );
+
+  color: #8f6687;
+}
+
+
+/* フィルター */
+
+body:has(#seasonTitle) .filter-group label {
+  color: #a2779a;
+}
+
+body:has(#seasonTitle) .filter-group select {
+  border-color: #ead6e8;
+
+  background: rgba(255,255,255,0.9);
+
+  color: #806478;
+}
+
+
+/* 第1弾カード */
+
+body:has(#seasonTitle) .card {
+  border-color: #efdde9;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #fff9fd
+    );
+
+  box-shadow:
+    0 4px 12px rgba(183,139,174,0.10);
+}
+
+body:has(#seasonTitle) .card-image {
+  background:
+    linear-gradient(
+      145deg,
+      #fff9fc,
+      #f2faff
+    );
+
+  border: 1px solid #f0e0ee;
+}
+
+body:has(#seasonTitle) .card-id {
+  color: #ba91b0;
+}
+
+body:has(#seasonTitle) .card-name {
+  color: #856379;
+}
+
+body:has(#seasonTitle) .card-meta,
+body:has(#seasonTitle) .card-rarity {
+  color: #ad83a1;
+}
+
+body:has(#seasonTitle) .count-button {
+  border-color: #e9d3e4;
+
+  background: #fff8fc;
+
+  color: #a17396;
+}
+
+
+/* 第1弾モーダル */
+
+body:has(#seasonTitle) .card-modal {
+  background:
+    rgba(87,55,82,0.48);
+}
+
+body:has(#seasonTitle) .card-modal-content {
+  border:
+    2px solid #efd2e7;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fffaff,
+      #f7fbff
+    );
+
+  box-shadow:
+    0 12px 40px rgba(120,78,120,0.25);
+}
+
+body:has(#seasonTitle) .card-side-button {
+  border-color: #e5c9df;
+
+  color: #a06f96;
+}
+
+body:has(#seasonTitle) .card-side-button.active {
+  border-color: #e2b5d6;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e7bad8,
+      #c7c9e8
+    );
+}
+
+
+/* =========================================================
+   =========================================================
+   🏫 プロモーション
+   スターライト学園風
+   =========================================================
+   ========================================================= */
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) {
+  background:
+    linear-gradient(
+      180deg,
+      #f7f9fc 0%,
+      #eef2f7 100%
+    );
+}
+
+
+/* スターライト学園ヘッダー */
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .header {
+  position: relative;
+
+  overflow: hidden;
+
+  padding: 29px 20px 26px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #fdfefe 0%,
+      #e9edf5 55%,
+      #d9e0eb 100%
+    );
+
+  border-bottom:
+    3px solid #1f3049;
+
+  box-shadow:
+    0 4px 14px rgba(37,52,73,0.10);
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .header::before {
+  content: "★  STarlight Academy  ★";
+
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #b52f4c;
+
+  font-family: Georgia, serif;
+
+  font-size: 10px;
+
+  letter-spacing: 2px;
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .header h1 {
+  color: #263b57;
+
+  font-family: Georgia, serif;
+
+  letter-spacing: 2px;
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .header p {
+  color: #a52e49;
+
   letter-spacing: 2px;
 }
 
 
-/* =========================
-   スマホ
-========================= */
+/* プロモ戻る */
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .back-link {
+  color: #334c6c;
+
+  font-weight: 600;
+}
+
+
+/* プロモ見出し */
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .season-header {
+  position: relative;
+
+  padding: 14px 16px;
+
+  border:
+    1px solid #c8d1df;
+
+  border-left:
+    5px solid #a92e49;
+
+  border-radius: 4px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ffffff,
+      #f3f6fa
+    );
+
+  box-shadow:
+    0 3px 9px rgba(45,61,82,0.08);
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .season-header::after {
+  content: "★";
+
+  position: absolute;
+
+  right: 15px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: #b73250;
+
+  font-size: 17px;
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .season-header h2 {
+  color: #263b57;
+
+  font-family: Georgia, serif;
+
+  font-size: 19px;
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .season-header p {
+  color: #a02e48;
+
+  font-weight: bold;
+}
+
+
+/* プロモ検索 */
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .search-box input {
+  border-color: #cbd4df;
+
+  background: #fff;
+
+  color: #293b52;
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .search-box input:focus {
+  border-color: #8e9db2;
+
+  box-shadow:
+    0 0 0 3px rgba(94,116,145,0.12);
+}
+
+
+/* プロモ状態 */
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .status-button {
+  border-color: #ccd5e0;
+
+  background: #fff;
+
+  color: #42566f;
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .status-button.active {
+  border-color: #243b59;
+
+  background: #263b57;
+
+  color: #fff;
+}
+
+
+/* プロモフィルター */
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .filter-group label {
+  color: #536982;
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .filter-group select {
+  border-color: #cbd4df;
+
+  background: #fff;
+
+  color: #344b66;
+}
+
+
+/* プロモカード */
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .card {
+  border-color: #c9d2de;
+
+  border-radius: 6px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #f5f7fa
+    );
+
+  box-shadow:
+    0 3px 10px rgba(45,61,82,0.09);
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .card-image {
+  border-radius: 4px;
+
+  background: #edf1f6;
+
+  border:
+    1px solid #d9e0e8;
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .card-id {
+  color: #71849b;
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .card-name {
+  color: #263b57;
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .card-meta,
+body:not(:has(#seasonTitle)):has(#collectionStatus) .card-rarity {
+  color: #687c94;
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .count-button {
+  border-color: #ccd5df;
+
+  background: #f7f9fb;
+
+  color: #405875;
+}
+
+
+/* プロモモーダル */
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .card-modal-content {
+  border:
+    2px solid #c9d3df;
+
+  border-radius: 8px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #ffffff,
+      #f0f4f8
+    );
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .card-side-button {
+  border-color: #bfcbd9;
+
+  border-radius: 4px;
+
+  color: #314964;
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .card-side-button.active {
+  border-color: #273d59;
+
+  background: #273d59;
+
+  color: #fff;
+}
+
+
+/* =========================================================
+   11. スマホ
+   ========================================================= */
 
 @media (max-width: 480px) {
+
+  .header {
+    padding: 27px 16px 23px;
+  }
+
+  .header h1 {
+    font-size: 19px;
+  }
 
   .cards-page {
     width: min(100% - 20px, 900px);
@@ -418,6 +1554,7 @@ footer p {
 
   .card {
     padding: 6px;
+
     border-radius: 12px;
   }
 
@@ -439,331 +1576,96 @@ footer p {
   }
 
   .card-modal-content {
-    width: 96vw;
-    padding: 12px;
-  }
-
-}
-/* =========================
-   カード詳細モーダル
-========================= */
-
-.card-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  padding: 16px;
-
-  background: rgba(60, 40, 70, 0.72);
-
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-
-
-/* =========================
-   モーダル本体
-========================= */
-
-.card-modal-content {
-  position: relative;
-
-  width: min(88vw, 360px);
-  max-height: 88vh;
-
-  padding: 18px 12px 20px;
-
-  background: #fffaff;
-
-  border: 2px solid #f0d8ed;
-  border-radius: 24px;
-
-  box-shadow:
-    0 10px 35px rgba(80, 50, 80, 0.25);
-
-  overflow: hidden;
-
-  text-align: center;
-}
-
-
-/* =========================
-   閉じるボタン
-========================= */
-
-.card-modal-close {
-  position: absolute;
-
-  top: 8px;
-  right: 8px;
-
-  width: 42px;
-  height: 42px;
-
-  border: none;
-  border-radius: 50%;
-
-  background: rgba(255, 255, 255, 0.95);
-
-  color: #8d6688;
-
-  font-size: 30px;
-  line-height: 1;
-
-  cursor: pointer;
-
-  z-index: 10;
-}
-
-.card-modal-close:active {
-  transform: scale(0.92);
-}
-
-
-/* =========================
-   カード表示エリア
-========================= */
-
-.modal-card-area {
-  position: relative;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  width: 100%;
-
-  margin-top: 8px;
-
-  touch-action: pan-y;
-}
-
-
-/* カード本体 */
-
-.modal-card-image {
-  display: block;
-
-  width: min(62vw, 280px);
-
-  max-width: 100%;
-  max-height: 58vh;
-
-  object-fit: contain;
-
-  border-radius: 6px;
-
-  box-shadow:
-    0 5px 18px rgba(80, 50, 80, 0.18);
-
-  user-select: none;
-  -webkit-user-drag: none;
-}
-
-
-/* =========================
-   左右の矢印
-========================= */
-
-.card-side-arrow {
-  position: absolute;
-
-  top: 50%;
-
-  transform: translateY(-50%);
-
-  width: 46px;
-  height: 46px;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  border: none;
-  border-radius: 50%;
-
-  background: rgba(255, 255, 255, 0.92);
-
-  color: #8d6688;
-
-  font-size: 34px;
-  font-weight: normal;
-
-  line-height: 1;
-
-  box-shadow:
-    0 3px 10px rgba(80, 50, 80, 0.18);
-
-  cursor: pointer;
-
-  z-index: 5;
-}
-
-.card-side-arrow.left {
-  left: 4px;
-}
-
-.card-side-arrow.right {
-  right: 4px;
-}
-
-.card-side-arrow:active {
-  transform:
-    translateY(-50%)
-    scale(0.9);
-}
-
-
-/* =========================
-   表・裏ボタン
-========================= */
-
-.card-side-buttons {
-  display: flex;
-
-  justify-content: center;
-
-  gap: 12px;
-
-  margin-top: 16px;
-}
-
-
-.card-side-button {
-  min-width: 100px;
-
-  padding: 11px 22px;
-
-  border: 1px solid #e8cce4;
-  border-radius: 999px;
-
-  background: #fff;
-
-  color: #8d6688;
-
-  font-size: 15px;
-  font-weight: bold;
-
-  cursor: pointer;
-
-  transition:
-    background 0.2s ease,
-    color 0.2s ease,
-    transform 0.15s ease;
-}
-
-
-.card-side-button.active {
-  background: #e8c9e4;
-
-  color: #fff;
-
-  border-color: #e8c9e4;
-}
-
-
-.card-side-button:active {
-  transform: scale(0.95);
-}
-
-
-/* =========================
-   スマホ用
-========================= */
-
-@media (max-width: 480px) {
-
-  .card-modal {
-    padding: 10px;
-  }
-
-
-  .card-modal-content {
     width: 90vw;
-
-    padding:
-      16px 8px 18px;
-
-    border-radius: 22px;
   }
-
 
   .modal-card-image {
     width: 62vw;
-
-    max-height: 57vh;
   }
 
-
-  .card-side-arrow {
-    width: 44px;
-    height: 44px;
-
-    font-size: 32px;
+  .collection-scope {
+    gap: 6px;
   }
 
+  .scope-button {
+    padding: 9px 4px;
 
-  .card-side-arrow.left {
-    left: 2px;
+    font-size: 12px;
   }
 
+  /* ホーム */
 
-  .card-side-arrow.right {
-    right: 2px;
+  body:has(.home) .home {
+    width: min(100% - 22px, 560px);
+
+    padding-top: 20px;
   }
 
+  body:has(.home) .section-title {
+    min-height: 50px;
 
-  .card-side-button {
-    min-width: 95px;
+    font-size: 14px;
+  }
 
-    padding: 10px 20px;
+  body:has(.home) .menu-link {
+    min-height: 59px;
+  }
 
-    font-size: 15px;
+  /* 第1弾 */
+
+  body:has(#seasonTitle) .season-header h2 {
+    font-size: 18px;
   }
 
 }
-/* =========================
-   全体コレクション
-========================= */
+
+
+/* =========================================================
+   12. 全体コレクション用
+   ========================================================= */
 
 .overall-summary {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
   gap: 8px;
+
   margin: 18px 0 28px;
 }
 
 .summary-card {
   padding: 14px 6px;
-  background: #fff;
+
   border: 1px solid #efd9ec;
   border-radius: 16px;
+
+  background: #fff;
+
   text-align: center;
-  box-shadow: 0 3px 10px rgba(100, 70, 100, 0.08);
+
+  box-shadow:
+    0 3px 10px rgba(100,70,100,0.08);
 }
 
 .summary-card span {
   display: block;
+
   margin-bottom: 5px;
+
   color: #9b7897;
+
   font-size: 12px;
 }
 
 .summary-card strong {
   display: block;
+
   color: #8d6688;
+
   font-size: 22px;
 }
-
-
-/* 弾ごとのコレクション */
 
 .season-summary {
   margin-top: 10px;
@@ -771,12 +1673,11 @@ footer p {
 
 .season-summary h3 {
   margin: 0 0 12px;
+
   color: #8d6688;
+
   font-size: 17px;
 }
-
-
-/* 弾カード */
 
 .season-summary-card {
   position: relative;
@@ -784,26 +1685,25 @@ footer p {
   display: block;
 
   margin-bottom: 10px;
-  padding: 15px 42px 14px 16px;
 
-  background: #fff;
+  padding: 15px 42px 14px 16px;
 
   border: 1px solid #efd9ec;
   border-radius: 18px;
 
+  background: #fff;
+
   color: #7f627c;
+
   text-decoration: none;
 
   box-shadow:
-    0 3px 10px rgba(100, 70, 100, 0.08);
+    0 3px 10px rgba(100,70,100,0.08);
 }
 
 .season-summary-card:active {
   transform: scale(0.98);
 }
-
-
-/* 弾名＋進捗 */
 
 .season-summary-main {
   display: flex;
@@ -816,17 +1716,16 @@ footer p {
 
 .season-summary-main strong {
   color: #8d6688;
+
   font-size: 16px;
 }
 
 .season-summary-main span {
   color: #a985a4;
+
   font-size: 14px;
   font-weight: bold;
 }
-
-
-/* 所持・未所持・交換 */
 
 .season-summary-detail {
   display: flex;
@@ -841,17 +1740,14 @@ footer p {
 .season-summary-detail span {
   padding: 4px 8px;
 
-  background: #fff7fd;
-
   border-radius: 999px;
+
+  background: #fff7fd;
 
   color: #9b7897;
 
   font-size: 11px;
 }
-
-
-/* 矢印 */
 
 .season-summary-arrow {
   position: absolute;
@@ -867,170 +1763,58 @@ footer p {
 }
 
 
-/* スマホ */
-
-@media (max-width: 480px) {
-
-  .overall-summary {
-    gap: 6px;
-  }
-
-  .summary-card {
-    padding: 13px 4px;
-  }
-
-  .summary-card span {
-    font-size: 11px;
-  }
-
-  .summary-card strong {
-    font-size: 20px;
-  }
-
-}
-/* =========================
-   交換可能表示
-========================= */
-
-.trade-label {
-  margin-top: 4px;
-  color: #b47eaa;
-  font-size: 10px;
-  font-weight: bold;
-}
-/* =========================
-   全体コレクション
-   通常弾 / プロモ切り替え
-========================= */
+/* =========================================================
+   全体コレクション切替
+   ========================================================= */
 
 .collection-scope {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
   gap: 7px;
-  margin-bottom: 12px;
-}
 
-.scope-button {
-  padding: 10px 6px;
-  border: 1px solid #ead7e6;
-  border-radius: 10px;
-  background: #fff;
-  color: #8c7188;
-  font-size: 12px;
-  font-weight: normal;
-}
-
-.scope-button.active {
-  background: #ead8e8;
-  border-color: #d6b7d1;
-  color: #70566d;
-  font-weight: bold;
-}
-
-
-/* =========================
-   全体コレクションの区切り
-========================= */
-
-.collection-section-title {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  margin: 24px 0 12px;
-
-  color: #8d6688;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.collection-section-title::before,
-.collection-section-title::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: #ead7e6;
-}
-
-.collection-section-title:first-child {
-  margin-top: 4px;
-}
-
-
-/* =========================
-   全体コレクションの所持数
-========================= */
-
-.card .count-control .count {
-  color: #8d7188;
-  font-size: 11px;
-}
-
-
-/* =========================
-   スマホ
-========================= */
-
-@media (max-width: 480px) {
-
-  .collection-scope {
-    gap: 6px;
-  }
-
-  .scope-button {
-    padding: 9px 4px;
-    font-size: 12px;
-  }
-
-  .collection-section-title {
-    margin-top: 22px;
-    font-size: 15px;
-  }
-
-}
-/* =========================
-   通常弾 / プロモ切り替え
-========================= */
-
-.collection-scope {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 7px;
   margin-bottom: 12px;
 }
 
 .scope-button {
   width: 100%;
+
   padding: 10px 6px;
+
   border: 1px solid #ead7e6;
   border-radius: 10px;
-  background: #ffffff;
+
+  background: #fff;
+
   color: #8c7188;
+
   font-size: 12px;
-  font-weight: normal;
+
   cursor: pointer;
-  -webkit-appearance: none;
-  appearance: none;
 }
 
 .scope-button.active {
   background: #ead8e8;
+
   border-color: #d6b7d1;
+
   color: #70566d;
+
   font-weight: bold;
 }
-
-
-/* =========================
-   全体コレクションの弾区切り
-========================= */
 
 .collection-section-title {
   display: flex;
   align-items: center;
+
   gap: 10px;
+
   margin: 24px 0 12px;
+
   color: #8d6688;
+
   font-size: 16px;
   font-weight: bold;
 }
@@ -1038,8 +1822,11 @@ footer p {
 .collection-section-title::before,
 .collection-section-title::after {
   content: "";
+
   flex: 1;
+
   height: 1px;
+
   background: #ead7e6;
 }
 
@@ -1048,28 +1835,6 @@ footer p {
 }
 
 
-/* スマホ */
-
-@media (max-width: 480px) {
-
-  .collection-scope {
-    gap: 6px;
-  }
-
-  .scope-button {
-    padding: 9px 4px;
-    font-size: 12px;
-  }
-
-  .collection-section-title {
-    margin-top: 22px;
-    font-size: 15px;
-  }
-
-}
-.card-rarity{
-margin-top:2px;
-color:#a889a3;
-font-size:11px;
-font-weight:bold;
-}
+/* =========================================================
+   完了
+   ========================================================= */
