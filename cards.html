@@ -476,21 +476,27 @@
 
           <div class="card-info">
 
-            <div class="card-id">
-              ${card.id || ""}
-            </div>
+  <div class="card-id">
+    ${card.id || ""}
+  </div>
 
-            <div class="card-name">
-              ${card.name || ""}
-            </div>
+  <div class="card-name">
+    ${card.name || ""}
+  </div>
 
-            <div class="card-meta">
-              ${card.brand || ""}
-            </div>
+  <div class="card-meta">
+    ${card.brand || ""}
+  </div>
 
-          </div>
+  ${
+    count >= 2
+      ? `<div class="trade-label">♡ 交換可能</div>`
+      : ""
+  }
 
-          <div class="count-control">
+</div>
+
+<div class="count-control">
 
             <button
               type="button"
