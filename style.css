@@ -729,3 +729,162 @@ footer p {
   }
 
 }
+/* =========================
+   全体コレクション
+========================= */
+
+.overall-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 18px 0 28px;
+}
+
+.summary-card {
+  padding: 14px 6px;
+  background: #fff;
+  border: 1px solid #efd9ec;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(100, 70, 100, 0.08);
+}
+
+.summary-card span {
+  display: block;
+  margin-bottom: 5px;
+  color: #9b7897;
+  font-size: 12px;
+}
+
+.summary-card strong {
+  display: block;
+  color: #8d6688;
+  font-size: 22px;
+}
+
+
+/* 弾ごとのコレクション */
+
+.season-summary {
+  margin-top: 10px;
+}
+
+.season-summary h3 {
+  margin: 0 0 12px;
+  color: #8d6688;
+  font-size: 17px;
+}
+
+
+/* 弾カード */
+
+.season-summary-card {
+  position: relative;
+
+  display: block;
+
+  margin-bottom: 10px;
+  padding: 15px 42px 14px 16px;
+
+  background: #fff;
+
+  border: 1px solid #efd9ec;
+  border-radius: 18px;
+
+  color: #7f627c;
+  text-decoration: none;
+
+  box-shadow:
+    0 3px 10px rgba(100, 70, 100, 0.08);
+}
+
+.season-summary-card:active {
+  transform: scale(0.98);
+}
+
+
+/* 弾名＋進捗 */
+
+.season-summary-main {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+}
+
+.season-summary-main strong {
+  color: #8d6688;
+  font-size: 16px;
+}
+
+.season-summary-main span {
+  color: #a985a4;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+
+/* 所持・未所持・交換 */
+
+.season-summary-detail {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-top: 8px;
+}
+
+.season-summary-detail span {
+  padding: 4px 8px;
+
+  background: #fff7fd;
+
+  border-radius: 999px;
+
+  color: #9b7897;
+
+  font-size: 11px;
+}
+
+
+/* 矢印 */
+
+.season-summary-arrow {
+  position: absolute;
+
+  top: 50%;
+  right: 15px;
+
+  transform: translateY(-50%);
+
+  color: #c69bc1;
+
+  font-size: 25px;
+}
+
+
+/* スマホ */
+
+@media (max-width: 480px) {
+
+  .overall-summary {
+    gap: 6px;
+  }
+
+  .summary-card {
+    padding: 13px 4px;
+  }
+
+  .summary-card span {
+    font-size: 11px;
+  }
+
+  .summary-card strong {
+    font-size: 20px;
+  }
+
+}
