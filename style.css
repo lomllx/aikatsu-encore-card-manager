@@ -444,3 +444,219 @@ footer p {
   }
 
 }
+/* =========================
+   カード詳細モーダル
+========================= */
+
+.card-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(60, 40, 70, 0.72);
+
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+
+.card-modal-content {
+  position: relative;
+
+  width: min(90vw, 420px);
+  max-height: 92vh;
+
+  padding: 20px 16px 18px;
+
+  background: #fffaff;
+
+  border: 2px solid #f0d8ed;
+  border-radius: 24px;
+
+  box-shadow:
+    0 10px 35px rgba(80, 50, 80, 0.25);
+
+  overflow-y: auto;
+
+  text-align: center;
+}
+
+
+/* =========================
+   閉じるボタン
+========================= */
+
+.card-modal-close {
+  position: absolute;
+
+  top: 8px;
+  right: 10px;
+
+  width: 38px;
+  height: 38px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  color: #8d6688;
+
+  font-size: 28px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  z-index: 2;
+}
+
+
+.card-modal-close:active {
+  transform: scale(0.92);
+}
+
+
+/* =========================
+   大きなカード表示
+========================= */
+
+.modal-card-area {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  margin-top: 8px;
+
+  touch-action: pan-y;
+}
+
+
+.modal-card-image {
+  display: block;
+
+  width: min(76vw, 350px);
+  max-width: 100%;
+
+  max-height: 68vh;
+
+  object-fit: contain;
+
+  border-radius: 8px;
+
+  box-shadow:
+    0 5px 18px rgba(80, 50, 80, 0.18);
+
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+
+/* =========================
+   表・裏ボタン
+========================= */
+
+.card-side-buttons {
+  display: flex;
+
+  justify-content: center;
+  gap: 10px;
+
+  margin-top: 18px;
+}
+
+
+.card-side-button {
+  min-width: 90px;
+
+  padding: 9px 18px;
+
+  border: 1px solid #e8cce4;
+  border-radius: 999px;
+
+  background: #fff;
+
+  color: #8d6688;
+
+  font-size: 14px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.15s ease;
+}
+
+
+.card-side-button.active {
+  background: #e8c9e4;
+
+  color: #fff;
+
+  border-color: #e8c9e4;
+}
+
+
+.card-side-button:active {
+  transform: scale(0.95);
+}
+
+
+/* =========================
+   スワイプ説明
+========================= */
+
+.card-side-hint {
+  margin: 10px 0 0;
+
+  color: #aa91a7;
+
+  font-size: 11px;
+}
+
+
+/* =========================
+   スマホ用
+========================= */
+
+@media (max-width: 480px) {
+
+  .card-modal {
+    padding: 12px;
+  }
+
+
+  .card-modal-content {
+    width: 92vw;
+
+    padding:
+      18px 12px 15px;
+
+    border-radius: 22px;
+  }
+
+
+  .modal-card-image {
+    width: 78vw;
+
+    max-height: 65vh;
+  }
+
+
+  .card-side-button {
+    min-width: 82px;
+
+    padding: 8px 16px;
+  }
+
+}
