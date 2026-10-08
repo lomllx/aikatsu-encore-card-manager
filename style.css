@@ -381,9 +381,107 @@ footer p {
   font-size: 10px;
   font-weight: bold;
 }
-bold;
+
+/* =========================================================
+   8. 所持数 ＋ / −
+   ちゅるっと透明・枠なし
+   ========================================================= */
+
+.count-control {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  margin-top: 8px;
+
+  min-height: 38px;
 }
 
+/*
+  ボタンそのものは大きなタップ領域を持たせつつ、
+  見た目には枠や丸を出さない。
+*/
+
+.count-button {
+  width: 38px;
+  height: 38px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: transparent;
+
+  color: rgba(157, 111, 150, 0.72);
+
+  font-size: 22px;
+  font-weight: 400;
+
+  line-height: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  -webkit-appearance: none;
+  appearance: none;
+
+  /*
+    文字そのものを少しちゅるっと見せる
+  */
+  text-shadow:
+    0 1px 2px rgba(255,255,255,0.95),
+    0 0 5px rgba(207,169,200,0.22);
+
+  transition:
+    transform 0.12s ease,
+    color 0.12s ease,
+    opacity 0.12s ease,
+    filter 0.12s ease;
+}
+
+/* ＋ */
+
+.count-button.plus {
+  color: rgba(157, 111, 150, 0.76);
+}
+
+/* − */
+
+.count-button.minus {
+  color: rgba(143, 125, 155, 0.70);
+}
+
+/* 押した瞬間 */
+
+.count-button:active {
+  transform: scale(0.78);
+
+  opacity: 0.65;
+
+  filter: blur(0.15px);
+}
+
+/* 所持数 */
+
+.count {
+  min-width: 24px;
+
+  color: #765f72;
+
+  font-size: 14px;
+  font-weight: bold;
+
+  line-height: 38px;
+
+  text-align: center;
+}
 
 /* =========================================================
    9. 読み込み
@@ -634,7 +732,6 @@ bold;
 
 /* =========================================================
    10.6 コレクション進捗
-   ※ cards.html の実際のHTML構造に合わせる
    ========================================================= */
 
 .collection-progress {
@@ -685,8 +782,6 @@ bold;
   -webkit-backdrop-filter: blur(2px);
 }
 
-/* パーセント表示 */
-
 .collection-progress-text {
   margin: 5px 0 0;
 
@@ -700,8 +795,6 @@ bold;
 
   letter-spacing: 0.5px;
 }
-
-/* 旧構造が残っていても崩れないようにする */
 
 .collection-progress-track {
   display: block;
@@ -722,10 +815,8 @@ bold;
 }
 
 /* =========================================================
-   =========================================================
    🦇 HOME
    ゴスマジックコーデ風
-   =========================================================
    ========================================================= */
 
 body:has(.home) {
@@ -1058,11 +1149,9 @@ body:has(.home) footer p {
 }
 
 /* =========================================================
-   =========================================================
    🌸 第1弾
    エンジェリーシュガー
    オーロラキスコーデ風
-   =========================================================
    ========================================================= */
 
 body:has(#seasonTitle) {
@@ -1293,12 +1382,30 @@ body:has(#seasonTitle) .card-rarity {
   color: #ad83a1;
 }
 
+/*
+  第1弾の＋−
+  背景・枠を消して、
+  透けたピンク〜ラベンダーの文字だけにする
+*/
+
 body:has(#seasonTitle) .count-button {
-  border-color: #e9d3e4;
+  border: none;
 
-  background: #fff8fc;
+  background: transparent;
 
-  color: #a17396;
+  color: rgba(161, 115, 150, 0.72);
+
+  text-shadow:
+    0 1px 2px rgba(255,255,255,0.95),
+    0 0 6px rgba(216,172,207,0.24);
+}
+
+body:has(#seasonTitle) .count-button.plus {
+  color: rgba(157, 111, 150, 0.78);
+}
+
+body:has(#seasonTitle) .count-button.minus {
+  color: rgba(145, 125, 157, 0.70);
 }
 
 /* 第1弾モーダル */
@@ -1368,11 +1475,9 @@ body:has(#seasonTitle) .collection-progress-text {
 }
 
 /* =========================================================
-   =========================================================
    🏫 プロモーション
    スターライト学園・制服カラー
    紺 × 白 × 赤 × ゴールド
-   =========================================================
    ========================================================= */
 
 body:not(:has(#seasonTitle)):has(#collectionStatus) {
@@ -1604,9 +1709,7 @@ body:not(:has(#seasonTitle)):has(#collectionStatus) .collection-progress-text {
   color: #c9d4e4;
 }
 
-/* =========================================================
-   プロモ検索
-   ========================================================= */
+/* プロモ検索 */
 
 body:not(:has(#seasonTitle)):has(#collectionStatus) .search-box input {
   border-color: #50657f;
@@ -1719,12 +1822,29 @@ body:not(:has(#seasonTitle)):has(#collectionStatus) .trade-label {
   color: #a52e49;
 }
 
+/*
+  プロモの＋−
+  紺背景の上で、透明感のある白〜水色
+*/
+
 body:not(:has(#seasonTitle)):has(#collectionStatus) .count-button {
-  border-color: #b8c5d3;
+  border: none;
 
-  background: #f5f7fa;
+  background: transparent;
 
-  color: #304c6b;
+  color: rgba(210, 224, 239, 0.78);
+
+  text-shadow:
+    0 1px 2px rgba(255,255,255,0.45),
+    0 0 7px rgba(220,230,245,0.18);
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .count-button.plus {
+  color: rgba(235, 222, 155, 0.86);
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .count-button.minus {
+  color: rgba(205, 220, 237, 0.76);
 }
 
 /* =========================================================
@@ -1845,7 +1965,25 @@ body:not(:has(#seasonTitle)):has(#collectionStatus) .modal-acquisition-text {
   }
 
   .count-control {
-    gap: 9px;
+    gap: 8px;
+  }
+
+  /*
+    スマホでも＋−自体は大きく、
+    ただし見た目は枠なし
+  */
+
+  .count-button {
+    width: 38px;
+    height: 38px;
+
+    font-size: 22px;
+  }
+
+  .count {
+    min-width: 24px;
+
+    line-height: 38px;
   }
 
   .card-modal {
