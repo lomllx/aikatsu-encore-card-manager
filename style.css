@@ -678,31 +678,26 @@ footer p {
 
 /* =========================================================
    10.6 コレクション進捗
+   ※ cards.html の実際のHTML構造に合わせる
    ========================================================= */
 
 .collection-progress {
   display: block;
 
   width: 100%;
-
-  margin-top: 9px;
-}
-
-.collection-progress-track {
-  display: block;
-
-  position: relative;
-
-  width: 100%;
   height: 10px;
-  min-height: 10px;
+
+  margin: 10px 0 0;
 
   overflow: hidden;
 
-  border: 1px solid rgba(160, 130, 155, 0.18);
+  border:
+    1px solid rgba(190, 155, 185, 0.30);
+
   border-radius: 999px;
 
-  background: rgba(160, 130, 155, 0.14);
+  background:
+    rgba(190, 155, 185, 0.16);
 }
 
 .collection-progress-bar {
@@ -710,6 +705,7 @@ footer p {
 
   width: 0%;
   height: 100%;
+
   min-width: 0;
   min-height: 8px;
 
@@ -718,26 +714,52 @@ footer p {
   background:
     linear-gradient(
       90deg,
-      #d6a9cf,
-      #b9c9e9
+      #d6a9cf 0%,
+      #c7b6df 50%,
+      #b9c9e9 100%
     );
 
   transition:
     width 0.3s ease;
+
+  box-shadow:
+    0 0 5px rgba(205, 170, 205, 0.35);
 }
 
-.collection-progress-label {
-  display: block;
+/* パーセント表示 */
 
-  margin-top: 5px;
+.collection-progress-text {
+  margin: 5px 0 0;
 
   color: #a18b9e;
 
   font-size: 9px;
 
+  line-height: 1.2;
+
   text-align: right;
 
   letter-spacing: 0.5px;
+}
+
+/* 旧構造が残っていても崩れないようにする */
+
+.collection-progress-track {
+  display: block;
+
+  width: 100%;
+  height: 8px;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background:
+    rgba(190, 155, 185, 0.16);
+}
+
+.collection-progress-track .collection-progress-bar {
+  height: 100%;
 }
 
 /* =========================================================
@@ -1359,6 +1381,33 @@ body:has(#seasonTitle) .card-side-button.active {
     );
 }
 
+/* 第1弾進捗バー */
+
+body:has(#seasonTitle) .collection-progress {
+  background:
+    rgba(185, 150, 180, 0.14);
+
+  border-color:
+    rgba(190, 155, 185, 0.28);
+}
+
+body:has(#seasonTitle) .collection-progress-bar {
+  background:
+    linear-gradient(
+      90deg,
+      #d99bc7,
+      #c8b3df,
+      #aebfe8
+    );
+
+  box-shadow:
+    0 0 6px rgba(205, 165, 205, 0.40);
+}
+
+body:has(#seasonTitle) .collection-progress-text {
+  color: #a47c9b;
+}
+
 /* =========================================================
    =========================================================
    🏫 プロモーション
@@ -1572,11 +1621,12 @@ body:not(:has(#seasonTitle)):has(#collectionStatus) .season-header p {
    プロモ進捗バー
    ========================================================= */
 
-body:not(:has(#seasonTitle)):has(#collectionStatus) .collection-progress-track {
-  background: rgba(255,255,255,0.18);
+body:not(:has(#seasonTitle)):has(#collectionStatus) .collection-progress {
+  background:
+    rgba(255,255,255,0.18);
 
-  border:
-    1px solid rgba(255,255,255,0.12);
+  border-color:
+    rgba(255,255,255,0.16);
 }
 
 body:not(:has(#seasonTitle)):has(#collectionStatus) .collection-progress-bar {
@@ -1591,11 +1641,13 @@ body:not(:has(#seasonTitle)):has(#collectionStatus) .collection-progress-bar {
     0 0 8px rgba(244,211,94,0.35);
 }
 
-body:not(:has(#seasonTitle)):has(#collectionStatus) .collection-progress-label {
+body:not(:has(#seasonTitle)):has(#collectionStatus) .collection-progress-text {
   color: #c9d4e4;
 }
 
-/* プロモ検索 */
+/* =========================================================
+   プロモ検索
+   ========================================================= */
 
 body:not(:has(#seasonTitle)):has(#collectionStatus) .search-box input {
   border-color: #50657f;
@@ -1910,17 +1962,6 @@ body:not(:has(#seasonTitle)):has(#collectionStatus) .modal-acquisition-text {
 
   body:not(:has(#seasonTitle)):has(#collectionStatus) .header h1 {
     font-size: 18px;
-  }
-
-  /* 進捗バー */
-
-  .collection-progress-track {
-    height: 10px;
-    min-height: 10px;
-  }
-
-  .collection-progress-bar {
-    min-height: 8px;
   }
 
 }
