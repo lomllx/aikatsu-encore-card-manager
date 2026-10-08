@@ -1,4 +1,3 @@
-
 /* =========================================================
    AIKATSU ENCORE
    PAGE DESIGN SYSTEM
@@ -624,6 +623,113 @@ footer p {
 }
 
 /* =========================================================
+   10.5 カード詳細・入手方法
+   ========================================================= */
+
+.modal-card-name {
+  margin: 12px 38px 0;
+
+  color: #655864;
+
+  font-size: 15px;
+  font-weight: bold;
+
+  line-height: 1.45;
+}
+
+.modal-acquisition {
+  margin: 10px 14px 0;
+
+  padding: 10px 12px;
+
+  border-radius: 10px;
+
+  background: #faf4fa;
+
+  color: #786374;
+
+  font-size: 11px;
+
+  line-height: 1.55;
+
+  text-align: left;
+}
+
+.modal-acquisition-title {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #8d6688;
+
+  font-size: 10px;
+  font-weight: bold;
+
+  letter-spacing: 0.8px;
+}
+
+.modal-acquisition-text {
+  display: block;
+
+  color: #665663;
+
+  font-size: 12px;
+}
+
+/* =========================================================
+   10.6 コレクション進捗
+   ========================================================= */
+
+.collection-progress {
+  width: 100%;
+
+  margin-top: 9px;
+}
+
+.collection-progress-track {
+  position: relative;
+
+  width: 100%;
+  height: 8px;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background: rgba(160, 130, 155, 0.14);
+}
+
+.collection-progress-bar {
+  width: 0%;
+
+  height: 100%;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      90deg,
+      #d6a9cf,
+      #b9c9e9
+    );
+
+  transition:
+    width 0.3s ease;
+}
+
+.collection-progress-label {
+  margin-top: 5px;
+
+  color: #a18b9e;
+
+  font-size: 9px;
+
+  text-align: right;
+
+  letter-spacing: 0.5px;
+}
+
+/* =========================================================
    =========================================================
    🦇 HOME
    ゴスマジックコーデ風
@@ -1044,7 +1150,7 @@ body:has(#seasonTitle) .cards-page {
 body:has(#seasonTitle) .season-header {
   position: relative;
 
-  padding: 13px 15px;
+  padding: 16px 15px;
 
   border:
     1px solid #efd5e8;
@@ -1061,10 +1167,16 @@ body:has(#seasonTitle) .season-header {
 
   box-shadow:
     0 5px 16px rgba(201,160,195,0.10);
+
+  text-align: center;
 }
 
 body:has(#seasonTitle) .season-header::before {
   content: "✦";
+
+  display: block;
+
+  margin-bottom: 3px;
 
   color: #d5a8ce;
 
@@ -1072,15 +1184,23 @@ body:has(#seasonTitle) .season-header::before {
 }
 
 body:has(#seasonTitle) .season-header h2 {
+  margin: 0;
+
   color: #a06d95;
 
   font-size: 20px;
+
+  text-align: center;
 }
 
 body:has(#seasonTitle) .season-header p {
+  margin: 6px 0 0;
+
   color: #b687aa;
 
   font-weight: bold;
+
+  text-align: center;
 }
 
 /* 戻る */
@@ -1231,17 +1351,28 @@ body:has(#seasonTitle) .card-side-button.active {
 /* =========================================================
    =========================================================
    🏫 プロモーション
-   スターライト学園風
+   スターライト学園・制服カラー
+   紺 × 白 × 赤 × ゴールド
    =========================================================
    ========================================================= */
 
 body:not(:has(#seasonTitle)):has(#collectionStatus) {
+  min-height: 100vh;
+
   background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(67,88,121,0.42),
+      transparent 35%
+    ),
     linear-gradient(
       180deg,
-      #f7f9fc 0%,
-      #eef2f7 100%
+      #172942 0%,
+      #102038 48%,
+      #0c192c 100%
     );
+
+  color: #fff;
 }
 
 /* スターライト学園ヘッダー */
@@ -1251,57 +1382,90 @@ body:not(:has(#seasonTitle)):has(#collectionStatus) .header {
 
   overflow: hidden;
 
-  padding: 29px 20px 26px;
+  padding: 31px 20px 28px;
 
   background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(255,211,76,0.14),
+      transparent 34%
+    ),
     linear-gradient(
       145deg,
-      #fdfefe 0%,
-      #e9edf5 55%,
-      #d9e0eb 100%
+      #263c5c 0%,
+      #182c48 52%,
+      #0e1d32 100%
     );
 
   border-bottom:
-    3px solid #1f3049;
+    3px solid #d5ad3d;
 
   box-shadow:
-    0 4px 14px rgba(37,52,73,0.10);
+    0 5px 20px rgba(0,0,0,0.30);
 }
 
 body:not(:has(#seasonTitle)):has(#collectionStatus) .header::before {
-  content: "★  STarlight Academy  ★";
+  content: "★  STARLIGHT ACADEMY  ★";
 
   display: block;
 
-  margin-bottom: 8px;
+  margin-bottom: 9px;
 
-  color: #b52f4c;
+  color: #f3ce52;
 
   font-family: Georgia, serif;
 
   font-size: 10px;
 
+  font-weight: bold;
+
   letter-spacing: 2px;
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .header::after {
+  content: "★";
+
+  position: absolute;
+
+  top: 18px;
+  right: 22px;
+
+  color: #f3ce52;
+
+  opacity: 0.35;
+
+  font-size: 24px;
 }
 
 body:not(:has(#seasonTitle)):has(#collectionStatus) .header h1 {
-  color: #263b57;
+  color: #ffffff;
 
   font-family: Georgia, serif;
+
+  font-size: 20px;
+
+  letter-spacing: 2px;
+
+  text-shadow:
+    0 2px 8px rgba(0,0,0,0.35);
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .header p {
+  color: #f1d35e;
 
   letter-spacing: 2px;
 }
 
-body:not(:has(#seasonTitle)):has(#collectionStatus) .header p {
-  color: #a52e49;
+/* プロモページ本体 */
 
-  letter-spacing: 2px;
+body:not(:has(#seasonTitle)):has(#collectionStatus) .cards-page {
+  position: relative;
 }
 
 /* プロモ戻る */
 
 body:not(:has(#seasonTitle)):has(#collectionStatus) .back-link {
-  color: #334c6c;
+  color: #f2d35e;
 
   font-weight: 600;
 }
@@ -1311,25 +1475,42 @@ body:not(:has(#seasonTitle)):has(#collectionStatus) .back-link {
 body:not(:has(#seasonTitle)):has(#collectionStatus) .season-header {
   position: relative;
 
-  padding: 14px 16px;
+  padding: 17px 16px 15px;
 
   border:
-    1px solid #c8d1df;
+    1px solid rgba(231,207,112,0.65);
 
-  border-left:
-    5px solid #a92e49;
+  border-top:
+    3px solid #f0cf50;
 
-  border-radius: 4px;
+  border-bottom:
+    3px solid #b62d48;
+
+  border-radius: 5px;
 
   background:
     linear-gradient(
-      90deg,
-      #ffffff,
-      #f3f6fa
+      145deg,
+      #263d5d,
+      #172c48
     );
 
   box-shadow:
-    0 3px 9px rgba(45,61,82,0.08);
+    0 5px 18px rgba(0,0,0,0.25);
+
+  text-align: center;
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .season-header::before {
+  content: "★";
+
+  display: block;
+
+  margin-bottom: 2px;
+
+  color: #f1cf51;
+
+  font-size: 13px;
 }
 
 body:not(:has(#seasonTitle)):has(#collectionStatus) .season-header::after {
@@ -1342,70 +1523,124 @@ body:not(:has(#seasonTitle)):has(#collectionStatus) .season-header::after {
 
   transform: translateY(-50%);
 
-  color: #b73250;
+  color: #f1cf51;
+
+  opacity: 0.8;
 
   font-size: 17px;
 }
 
 body:not(:has(#seasonTitle)):has(#collectionStatus) .season-header h2 {
-  color: #263b57;
+  margin: 0;
+
+  color: #ffffff;
 
   font-family: Georgia, serif;
 
-  font-size: 19px;
+  font-size: 20px;
+
+  text-align: center;
+
+  text-shadow:
+    0 2px 5px rgba(0,0,0,0.25);
 }
 
 body:not(:has(#seasonTitle)):has(#collectionStatus) .season-header p {
-  color: #a02e48;
+  margin: 6px 0 0;
+
+  color: #f1d35e;
+
+  font-size: 13px;
 
   font-weight: bold;
+
+  text-align: center;
+}
+
+/* =========================================================
+   プロモ進捗バー
+   ========================================================= */
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .collection-progress-track {
+  background: rgba(255,255,255,0.18);
+
+  border:
+    1px solid rgba(255,255,255,0.12);
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .collection-progress-bar {
+  background:
+    linear-gradient(
+      90deg,
+      #f4d35e,
+      #ffffff
+    );
+
+  box-shadow:
+    0 0 8px rgba(244,211,94,0.35);
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .collection-progress-label {
+  color: #c9d4e4;
 }
 
 /* プロモ検索 */
 
 body:not(:has(#seasonTitle)):has(#collectionStatus) .search-box input {
-  border-color: #cbd4df;
+  border-color: #50657f;
 
-  background: #fff;
+  background: #f8fafc;
 
-  color: #293b52;
+  color: #263b57;
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .search-box input::placeholder {
+  color: #8797aa;
 }
 
 body:not(:has(#seasonTitle)):has(#collectionStatus) .search-box input:focus {
-  border-color: #8e9db2;
+  border-color: #e1bd48;
 
   box-shadow:
-    0 0 0 3px rgba(94,116,145,0.12);
+    0 0 0 3px rgba(225,189,72,0.18);
 }
 
 /* プロモ状態 */
 
 body:not(:has(#seasonTitle)):has(#collectionStatus) .status-button {
-  border-color: #ccd5e0;
+  border-color: #50647c;
 
-  background: #fff;
+  background: #f7f9fc;
 
-  color: #42566f;
+  color: #304863;
 }
 
 body:not(:has(#seasonTitle)):has(#collectionStatus) .status-button.active {
-  border-color: #243b59;
+  border-color: #d7b23f;
 
-  background: #263b57;
+  background:
+    linear-gradient(
+      135deg,
+      #263e5e,
+      #192e4b
+    );
 
-  color: #fff;
+  color: #f5d35b;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.08);
 }
 
 /* プロモフィルター */
 
 body:not(:has(#seasonTitle)):has(#collectionStatus) .filter-group label {
-  color: #536982;
+  color: #d4dfed;
 }
 
 body:not(:has(#seasonTitle)):has(#collectionStatus) .filter-group select {
-  border-color: #cbd4df;
+  border-color: #50647c;
 
-  background: #fff;
+  background: #f8fafc;
 
   color: #344b66;
 }
@@ -1413,7 +1648,7 @@ body:not(:has(#seasonTitle)):has(#collectionStatus) .filter-group select {
 /* プロモカード */
 
 body:not(:has(#seasonTitle)):has(#collectionStatus) .card {
-  border-color: #c9d2de;
+  border-color: #405873;
 
   border-radius: 6px;
 
@@ -1421,20 +1656,25 @@ body:not(:has(#seasonTitle)):has(#collectionStatus) .card {
     linear-gradient(
       145deg,
       #ffffff,
-      #f5f7fa
+      #edf2f7
     );
 
   box-shadow:
-    0 3px 10px rgba(45,61,82,0.09);
+    0 5px 14px rgba(0,0,0,0.20);
 }
 
 body:not(:has(#seasonTitle)):has(#collectionStatus) .card-image {
   border-radius: 4px;
 
-  background: #edf1f6;
+  background:
+    linear-gradient(
+      145deg,
+      #edf2f7,
+      #dce5ef
+    );
 
   border:
-    1px solid #d9e0e8;
+    1px solid #b9c6d5;
 }
 
 body:not(:has(#seasonTitle)):has(#collectionStatus) .card-id {
@@ -1445,37 +1685,64 @@ body:not(:has(#seasonTitle)):has(#collectionStatus) .card-name {
   color: #263b57;
 }
 
-body:not(:has(#seasonTitle)):has(#collectionStatus) .card-meta,
-body:not(:has(#seasonTitle)):has(#collectionStatus) .card-rarity {
+body:not(:has(#seasonTitle)):has(#collectionStatus) .card-meta {
   color: #687c94;
 }
 
-body:not(:has(#seasonTitle)):has(#collectionStatus) .count-button {
-  border-color: #ccd5df;
-
-  background: #f7f9fb;
-
-  color: #405875;
+body:not(:has(#seasonTitle)):has(#collectionStatus) .card-rarity {
+  color: #a52e49;
 }
 
-/* プロモモーダル */
+body:not(:has(#seasonTitle)):has(#collectionStatus) .trade-label {
+  color: #a52e49;
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .count-button {
+  border-color: #b8c5d3;
+
+  background: #f5f7fa;
+
+  color: #304c6b;
+}
+
+/* =========================================================
+   プロモモーダル
+   ========================================================= */
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .card-modal {
+  background:
+    rgba(5,16,31,0.78);
+}
 
 body:not(:has(#seasonTitle)):has(#collectionStatus) .card-modal-content {
   border:
-    2px solid #c9d3df;
+    2px solid #d5b33f;
 
-  border-radius: 8px;
+  border-radius: 9px;
 
   background:
     linear-gradient(
       145deg,
-      #ffffff,
-      #f0f4f8
+      #f9fbfd,
+      #e7edf4
     );
+
+  box-shadow:
+    0 12px 40px rgba(0,0,0,0.45);
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .card-modal-close {
+  color: #263b57;
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .card-side-arrow {
+  background: rgba(255,255,255,0.96);
+
+  color: #263b57;
 }
 
 body:not(:has(#seasonTitle)):has(#collectionStatus) .card-side-button {
-  border-color: #bfcbd9;
+  border-color: #aebdce;
 
   border-radius: 4px;
 
@@ -1483,11 +1750,44 @@ body:not(:has(#seasonTitle)):has(#collectionStatus) .card-side-button {
 }
 
 body:not(:has(#seasonTitle)):has(#collectionStatus) .card-side-button.active {
-  border-color: #273d59;
+  border-color: #263b57;
 
-  background: #273d59;
+  background:
+    linear-gradient(
+      135deg,
+      #263e5e,
+      #182d4a
+    );
 
-  color: #fff;
+  color: #f3d25a;
+}
+
+/* プロモ入手方法 */
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .modal-card-name {
+  color: #263b57;
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .modal-acquisition {
+  border:
+    1px solid #c4ceda;
+
+  background:
+    linear-gradient(
+      135deg,
+      #eef2f6,
+      #ffffff
+    );
+
+  color: #53677e;
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .modal-acquisition-title {
+  color: #a52e49;
+}
+
+body:not(:has(#seasonTitle)):has(#collectionStatus) .modal-acquisition-text {
+  color: #344b66;
 }
 
 /* =========================================================
@@ -1543,6 +1843,20 @@ body:not(:has(#seasonTitle)):has(#collectionStatus) .card-side-button.active {
     width: 62vw;
   }
 
+  .modal-card-name {
+    margin-left: 34px;
+    margin-right: 34px;
+
+    font-size: 14px;
+  }
+
+  .modal-acquisition {
+    margin-left: 10px;
+    margin-right: 10px;
+
+    padding: 9px 10px;
+  }
+
   .collection-scope {
     gap: 6px;
   }
@@ -1574,6 +1888,16 @@ body:not(:has(#seasonTitle)):has(#collectionStatus) .card-side-button.active {
   /* 第1弾 */
 
   body:has(#seasonTitle) .season-header h2 {
+    font-size: 18px;
+  }
+
+  /* プロモ */
+
+  body:not(:has(#seasonTitle)):has(#collectionStatus) .season-header h2 {
+    font-size: 18px;
+  }
+
+  body:not(:has(#seasonTitle)):has(#collectionStatus) .header h1 {
     font-size: 18px;
   }
 
