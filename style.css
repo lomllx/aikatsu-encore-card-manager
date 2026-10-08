@@ -381,10 +381,9 @@ footer p {
   font-size: 10px;
   font-weight: bold;
 }
-
 /* =========================================================
    8. 所持数 ＋ / −
-   ちゅるっと透明・枠なし
+   透明ちゅるちゅる・ガラス風
    ========================================================= */
 
 .count-control {
@@ -393,32 +392,38 @@ footer p {
   align-items: center;
   justify-content: center;
 
-  gap: 10px;
+  gap: 9px;
 
   margin-top: 8px;
 
-  min-height: 38px;
+  min-height: 40px;
 }
 
-/*
-  ボタンそのものは大きなタップ領域を持たせつつ、
-  見た目には枠や丸を出さない。
-*/
-
 .count-button {
+  position: relative;
+
   width: 38px;
   height: 38px;
 
   padding: 0;
 
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.55);
   border-radius: 50%;
 
-  background: transparent;
+  /*
+    完全透明ではなく、
+    背景がうっすら透ける「膜」
+  */
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.72),
+      rgba(250, 230, 248, 0.42)
+    );
 
-  color: rgba(157, 111, 150, 0.72);
+  color: rgba(145, 105, 139, 0.88);
 
-  font-size: 22px;
+  font-size: 21px;
   font-weight: 400;
 
   line-height: 1;
@@ -433,39 +438,91 @@ footer p {
   appearance: none;
 
   /*
-    文字そのものを少しちゅるっと見せる
+    ちゅるっとした光沢
   */
-  text-shadow:
-    0 1px 2px rgba(255,255,255,0.95),
-    0 0 5px rgba(207,169,200,0.22);
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.95),
+    inset 0 -2px 4px rgba(190, 145, 185, 0.10),
+    0 2px 7px rgba(180, 135, 175, 0.10);
+
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 
   transition:
     transform 0.12s ease,
-    color 0.12s ease,
-    opacity 0.12s ease,
-    filter 0.12s ease;
+    box-shadow 0.12s ease,
+    background 0.12s ease,
+    opacity 0.12s ease;
+}
+
+/*
+  表面の小さな光
+*/
+.count-button::before {
+  content: "";
+
+  position: absolute;
+
+  top: 5px;
+  left: 7px;
+
+  width: 15px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.48);
+
+  transform: rotate(-20deg);
+
+  pointer-events: none;
 }
 
 /* ＋ */
 
 .count-button.plus {
-  color: rgba(157, 111, 150, 0.76);
+  border-color:
+    rgba(231, 195, 224, 0.48);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 250, 253, 0.78),
+      rgba(247, 220, 241, 0.48)
+    );
+
+  color:
+    rgba(157, 105, 148, 0.88);
 }
 
 /* − */
 
 .count-button.minus {
-  color: rgba(143, 125, 155, 0.70);
+  border-color:
+    rgba(218, 207, 228, 0.45);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 252, 255, 0.76),
+      rgba(232, 226, 242, 0.46)
+    );
+
+  color:
+    rgba(132, 116, 145, 0.82);
 }
 
 /* 押した瞬間 */
 
 .count-button:active {
-  transform: scale(0.78);
+  transform: scale(0.86);
 
-  opacity: 0.65;
+  opacity: 0.82;
 
-  filter: blur(0.15px);
+  box-shadow:
+    inset 0 2px 4px rgba(180, 135, 175, 0.13),
+    0 1px 3px rgba(180, 135, 175, 0.08);
 }
 
 /* 所持数 */
