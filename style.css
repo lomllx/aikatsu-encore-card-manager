@@ -121,6 +121,7 @@ footer p {
   color: #9b7798;
 
   font-size: 14px;
+
   text-decoration: none;
 }
 
@@ -714,16 +715,19 @@ footer p {
   background:
     linear-gradient(
       90deg,
-      #d6a9cf 0%,
-      #c7b6df 50%,
-      #b9c9e9 100%
+      rgba(214, 169, 207, 0.72) 0%,
+      rgba(199, 182, 223, 0.72) 50%,
+      rgba(185, 201, 233, 0.72) 100%
     );
 
   transition:
     width 0.3s ease;
 
   box-shadow:
-    0 0 5px rgba(205, 170, 205, 0.35);
+    0 0 6px rgba(205, 170, 205, 0.28);
+
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 }
 
 /* パーセント表示 */
@@ -1395,13 +1399,13 @@ body:has(#seasonTitle) .collection-progress-bar {
   background:
     linear-gradient(
       90deg,
-      #d99bc7,
-      #c8b3df,
-      #aebfe8
+      rgba(217, 155, 199, 0.72),
+      rgba(200, 179, 223, 0.72),
+      rgba(174, 191, 232, 0.72)
     );
 
   box-shadow:
-    0 0 6px rgba(205, 165, 205, 0.40);
+    0 0 6px rgba(205, 165, 205, 0.30);
 }
 
 body:has(#seasonTitle) .collection-progress-text {
@@ -1633,12 +1637,12 @@ body:not(:has(#seasonTitle)):has(#collectionStatus) .collection-progress-bar {
   background:
     linear-gradient(
       90deg,
-      #f4d35e,
-      #ffffff
+      rgba(244, 211, 94, 0.72),
+      rgba(255, 255, 255, 0.72)
     );
 
   box-shadow:
-    0 0 8px rgba(244,211,94,0.35);
+    0 0 8px rgba(244,211,94,0.25);
 }
 
 body:not(:has(#seasonTitle)):has(#collectionStatus) .collection-progress-text {
