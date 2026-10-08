@@ -381,54 +381,9 @@ footer p {
   font-size: 10px;
   font-weight: bold;
 }
-
-/* =========================================================
-   8. 所持数
-   ========================================================= */
-
-.count-control {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  gap: 12px;
-
-  margin-top: 7px;
+bold;
 }
 
-.count-button {
-  width: 27px;
-  height: 27px;
-
-  padding: 0;
-
-  border: 1px solid #ead7e6;
-  border-radius: 50%;
-
-  background: #fff8fc;
-
-  color: #896e84;
-
-  font-size: 16px;
-  line-height: 1;
-
-  cursor: pointer;
-}
-
-.count-button:active {
-  transform: scale(0.9);
-}
-
-.count {
-  min-width: 18px;
-
-  text-align: center;
-
-  color: #6d5a69;
-
-  font-size: 13px;
-  font-weight: bold;
-}
 
 /* =========================================================
    9. 読み込み
@@ -1891,11 +1846,6 @@ body:not(:has(#seasonTitle)):has(#collectionStatus) .modal-acquisition-text {
 
   .count-control {
     gap: 9px;
-  }
-
-  .count-button {
-    width: 25px;
-    height: 25px;
   }
 
   .card-modal {
