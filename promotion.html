@@ -1,1235 +1,1276 @@
-<!DOCTYPEhtml>
-<htmllang="ja">
+<!DOCTYPE html>
+<html lang="ja">
+
 <head>
-<metacharset="UTF-8">
-<metaname="viewport"content="width=device-width,initial-scale=1.0">
-<title>プロモーションカード</title>
-<linkrel="stylesheet"href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>プロモーションカード</title>
+
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<headerclass="header">
-<h1>✦AIKATSUENCORE✦</h1>
-<p>♡PROMOTIONCARD♡</p>
+<header class="header">
+  <h1>✦ AIKATSU ENCORE ✦</h1>
+  <p>♡ PROMOTION CARD ♡</p>
 </header>
 
-<mainclass="cards-page">
 
-<ahref="index.html"class="back-link">
-‹Collection
-</a>
+<main class="cards-page">
 
-<sectionclass="season-header">
-<h2>♡プロモーションカード</h2>
-<pid="collectionStatus">0/0</p>
-</section>
+  <a href="index.html" class="back-link">
+    ‹ Collection
+  </a>
 
 
-<!--検索-->
+  <section class="season-header">
 
-<divclass="search-box">
-<input
-type="search"
-id="searchInput"
-placeholder="カード番号・カード名を検索"
->
-</div>
+    <h2>♡ プロモーションカード</h2>
 
+    <p id="collectionStatus">
+      0 / 0
+    </p>
 
-<!--所持状態-->
-
-<divclass="status-filters">
-
-<button
-class="status-buttonactive"
-data-status="all"
->
-すべて
-</button>
-
-<button
-class="status-button"
-data-status="owned"
->
-所持
-</button>
-
-<button
-class="status-button"
-data-status="missing"
->
-未所持
-</button>
-
-<button
-class="status-button"
-data-status="trade"
->
-交換
-</button>
-
-</div>
+  </section>
 
 
-<!--フィルター-->
+  <!-- 検索 -->
 
-<divclass="filters">
+  <div class="search-box">
 
-<divclass="filter-group">
-<labelfor="typeFilter">タイプ</label>
+    <input
+      type="search"
+      id="searchInput"
+      placeholder="カード番号・カード名を検索"
+    >
 
-<selectid="typeFilter">
-<optionvalue="">すべて</option>
-</select>
-</div>
-
-
-<divclass="filter-group">
-<labelfor="brandFilter">ブランド</label>
-
-<selectid="brandFilter">
-<optionvalue="">すべて</option>
-</select>
-</div>
+  </div>
 
 
-<divclass="filter-group">
-<labelfor="coordinateFilter">コーデ</label>
+  <!-- 所持状態 -->
 
-<selectid="coordinateFilter">
-<optionvalue="">すべて</option>
-</select>
-</div>
+  <div class="status-filters">
+
+    <button
+      type="button"
+      class="status-button active"
+      data-status="all"
+    >
+      すべて
+    </button>
+
+    <button
+      type="button"
+      class="status-button"
+      data-status="owned"
+    >
+      所持
+    </button>
+
+    <button
+      type="button"
+      class="status-button"
+      data-status="missing"
+    >
+      未所持
+    </button>
+
+    <button
+      type="button"
+      class="status-button"
+      data-status="trade"
+    >
+      交換
+    </button>
+
+  </div>
 
 
-<divclass="filter-group">
-<labelfor="categoryFilter">カテゴリ</label>
+  <!-- フィルター -->
 
-<selectid="categoryFilter">
-<optionvalue="">すべて</option>
-</select>
-</div>
+  <div class="filters">
 
-</div>
+    <div class="filter-group">
+
+      <label for="typeFilter">
+        タイプ
+      </label>
+
+      <select id="typeFilter">
+
+        <option value="">
+          すべて
+        </option>
+
+      </select>
+
+    </div>
 
 
-<divid="loading"class="loading">
-プロモーションカードを読み込み中…
-</div>
+    <div class="filter-group">
 
-<div
-id="cardGrid"
-class="card-grid"
-></div>
+      <label for="brandFilter">
+        ブランド
+      </label>
+
+      <select id="brandFilter">
+
+        <option value="">
+          すべて
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div class="filter-group">
+
+      <label for="coordinateFilter">
+        コーデ
+      </label>
+
+      <select id="coordinateFilter">
+
+        <option value="">
+          すべて
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <div class="filter-group">
+
+      <label for="categoryFilter">
+        カテゴリ
+      </label>
+
+      <select id="categoryFilter">
+
+        <option value="">
+          すべて
+        </option>
+
+      </select>
+
+    </div>
+
+  </div>
+
+
+  <div id="loading" class="loading">
+    プロモーションカードを読み込み中…
+  </div>
+
+
+  <div id="cardGrid" class="card-grid"></div>
 
 </main>
 
 
 <footer>
-<p>♡AIKATSUENCORE♡</p>
+  <p>♡ AIKATSU ENCORE ♡</p>
 </footer>
+
 
 
 <script>
 
-/*=========================
-基本設定
-=========================*/
+/* =========================================================
+   基本設定
+   ========================================================= */
 
-conststorageKey=
-"aikatsu-encore-promotion";
+const storageKey =
+  "aikatsu-encore-promotion";
 
-letcards=[];
+let cards = [];
 
-letownership={};
+let ownership = {};
 
-letcurrentStatus="all";
-
-
-/*=========================
-要素
-=========================*/
-
-constcollectionStatus=
-document.getElementById(
-"collectionStatus"
-);
-
-constsearchInput=
-document.getElementById(
-"searchInput"
-);
-
-constcardGrid=
-document.getElementById(
-"cardGrid"
-);
-
-constloading=
-document.getElementById(
-"loading"
-);
-
-consttypeFilter=
-document.getElementById(
-"typeFilter"
-);
-
-constbrandFilter=
-document.getElementById(
-"brandFilter"
-);
-
-constcoordinateFilter=
-document.getElementById(
-"coordinateFilter"
-);
-
-constcategoryFilter=
-document.getElementById(
-"categoryFilter"
-);
+let currentStatus = "all";
 
 
-/*=========================
-所持データ
-=========================*/
+/* =========================================================
+   要素
+   ========================================================= */
 
-functionloadOwnership(){
+const collectionStatus =
+  document.getElementById(
+    "collectionStatus"
+  );
 
-ownership=
-JSON.parse(
+const searchInput =
+  document.getElementById(
+    "searchInput"
+  );
 
-localStorage.getItem(
-storageKey
-)||"{}"
+const cardGrid =
+  document.getElementById(
+    "cardGrid"
+  );
 
-);
+const loading =
+  document.getElementById(
+    "loading"
+  );
+
+const typeFilter =
+  document.getElementById(
+    "typeFilter"
+  );
+
+const brandFilter =
+  document.getElementById(
+    "brandFilter"
+  );
+
+const coordinateFilter =
+  document.getElementById(
+    "coordinateFilter"
+  );
+
+const categoryFilter =
+  document.getElementById(
+    "categoryFilter"
+  );
+
+
+/* =========================================================
+   所持データ
+   ========================================================= */
+
+function loadOwnership() {
+
+  ownership =
+    JSON.parse(
+      localStorage.getItem(
+        storageKey
+      ) || "{}"
+    );
 
 }
 
 
-/*=========================
-JSON読み込み
-=========================*/
+/* =========================================================
+   JSON読み込み
+   ========================================================= */
 
 fetch("cards.json")
 
-.then(response=>{
+  .then(response => {
 
-if(!response.ok){
+    if (!response.ok) {
 
-thrownewError(
-"cards.jsonを読み込めませんでした"
-);
+      throw new Error(
+        "cards.jsonを読み込めませんでした"
+      );
 
-}
+    }
 
-returnresponse.json();
+    return response.json();
 
-})
+  })
 
-.then(data=>{
+  .then(data => {
 
-constallCards=
-Array.isArray(data)
-?data
-:data.cards||[];
-
-
-/*
-collectionがpromotionの
-カードだけを取得
-*/
-
-cards=
-allCards.filter(card=>
-
-String(
-card.collection||""
-).toLowerCase()==="promotion"
-
-);
+    const allCards =
+      Array.isArray(data)
+        ? data
+        : data.cards || [];
 
 
-loadOwnership();
+    /*
+      プロモーションカードだけ取得
+    */
 
-setupFilters();
-
-updateStatus();
-
-renderCards();
-
-loading.style.display="none";
-
-})
-
-.catch(error=>{
-
-console.error(error);
-
-loading.textContent=
-"カードを読み込めませんでした。";
-
-});
+    cards =
+      allCards.filter(card =>
+        String(
+          card.collection || ""
+        ).toLowerCase() === "promotion"
+      );
 
 
-/*=========================
-フィルター設定
-=========================*/
+    loadOwnership();
 
-functionsetupFilters(){
+    setupFilters();
 
-fillFilter(
-typeFilter,
-"type"
-);
+    updateStatus();
 
-fillFilter(
-brandFilter,
-"brand"
-);
+    renderCards();
 
-fillFilter(
-coordinateFilter,
-"coordinate"
-);
+    loading.style.display = "none";
 
-fillFilter(
-categoryFilter,
-"category"
-);
+  })
+
+  .catch(error => {
+
+    console.error(error);
+
+    loading.textContent =
+      "カードを読み込めませんでした。";
+
+  });
+
+
+/* =========================================================
+   フィルター設定
+   ========================================================= */
+
+function setupFilters() {
+
+  fillFilter(
+    typeFilter,
+    "type"
+  );
+
+  fillFilter(
+    brandFilter,
+    "brand"
+  );
+
+  fillFilter(
+    coordinateFilter,
+    "coordinate"
+  );
+
+  fillFilter(
+    categoryFilter,
+    "category"
+  );
 
 }
 
 
-functionfillFilter(
-select,
-key
-){
+function fillFilter(
+  select,
+  key
+) {
 
-constvalues=[
+  const values = [
 
-...newSet(
+    ...new Set(
 
-cards
+      cards
 
-.map(card=>
-card[key]
-)
+        .map(card =>
+          card[key]
+        )
 
-.filter(value=>
+        .filter(value =>
+          value !== undefined &&
+          value !== null &&
+          String(value).trim() !== ""
+        )
 
-value!==undefined&&
-value!==null&&
-String(value).trim()!==""
+        .map(value =>
+          String(value).trim()
+        )
 
-)
+    )
 
-.map(value=>
-String(value).trim()
-)
-
-)
-
-].sort(
-
-(a,b)=>
-a.localeCompare(
-b,
-"ja"
-)
-
-);
+  ].sort(
+    (a, b) =>
+      a.localeCompare(
+        b,
+        "ja"
+      )
+  );
 
 
-values.forEach(value=>{
+  values.forEach(value => {
 
-constoption=
-document.createElement(
-"option"
-);
+    const option =
+      document.createElement(
+        "option"
+      );
 
-option.value=
-value;
+    option.value = value;
 
-option.textContent=
-value;
+    option.textContent = value;
 
-select.appendChild(
-option
-);
+    select.appendChild(
+      option
+    );
 
-});
+  });
 
 }
 
 
-/*=========================
-所持数
-=========================*/
+/* =========================================================
+   所持数
+   ========================================================= */
 
-functiongetCount(card){
+function getCount(card) {
 
-returnNumber(
-ownership[card.id]||0
-);
-
-}
-
-
-functionsetCount(
-card,
-count
-){
-
-if(count<=0){
-
-deleteownership[card.id];
-
-}else{
-
-ownership[card.id]=
-count;
+  return Number(
+    ownership[card.id] || 0
+  );
 
 }
 
 
-localStorage.setItem(
-storageKey,
-JSON.stringify(
-ownership
-)
-);
+function setCount(
+  card,
+  count
+) {
+
+  if (count <= 0) {
+
+    delete ownership[card.id];
+
+  } else {
+
+    ownership[card.id] =
+      count;
+
+  }
 
 
-updateStatus();
-
-renderCards();
-
-}
-
-
-/*=========================
-集計
-=========================*/
-
-functionupdateStatus(){
-
-constowned=
-cards.filter(
-card=>
-getCount(card)>=1
-).length;
+  localStorage.setItem(
+    storageKey,
+    JSON.stringify(
+      ownership
+    )
+  );
 
 
-collectionStatus.textContent=
-`${owned}/${cards.length}`;
+  updateStatus();
+
+  renderCards();
 
 }
 
 
-/*=========================
-フィルター
-=========================*/
+/* =========================================================
+   集計
+   ========================================================= */
 
-functiongetFilteredCards(){
+function updateStatus() {
 
-constkeyword=
-searchInput.value
-.toLowerCase()
-.trim();
-
-
-consttype=
-typeFilter.value;
-
-constbrand=
-brandFilter.value;
-
-constcoordinate=
-coordinateFilter.value;
-
-constcategory=
-categoryFilter.value;
+  const owned =
+    cards.filter(
+      card =>
+        getCount(card) >= 1
+    ).length;
 
 
-returncards.filter(card=>{
-
-constsearchableText=[
-
-card.id,
-card.name,
-card.unit,
-card.brand,
-card.coordinate,
-card.type,
-card.category,
-card.rarity
-
-]
-
-.filter(value=>
-value!==undefined&&
-value!==null
-)
-
-.join("")
-.toLowerCase();
-
-
-constcount=
-getCount(card);
-
-
-if(
-keyword&&
-!searchableText.includes(
-keyword
-)
-){
-
-returnfalse;
+  collectionStatus.textContent =
+    `${owned} / ${cards.length}`;
 
 }
 
 
-if(
-type&&
-String(
-card.type||""
-).trim()!==type
-){
+/* =========================================================
+   フィルター
+   ========================================================= */
 
-returnfalse;
+function getFilteredCards() {
+
+  const keyword =
+    searchInput.value
+      .toLowerCase()
+      .trim();
+
+
+  const type =
+    typeFilter.value;
+
+  const brand =
+    brandFilter.value;
+
+  const coordinate =
+    coordinateFilter.value;
+
+  const category =
+    categoryFilter.value;
+
+
+  return cards.filter(card => {
+
+    const searchableText = [
+
+      card.id,
+      card.name,
+      card.unit,
+      card.brand,
+      card.coordinate,
+      card.type,
+      card.category,
+      card.rarity
+
+    ]
+
+      .filter(value =>
+        value !== undefined &&
+        value !== null
+      )
+
+      .join("")
+      .toLowerCase();
+
+
+    const count =
+      getCount(card);
+
+
+    if (
+      keyword &&
+      !searchableText.includes(
+        keyword
+      )
+    ) {
+
+      return false;
+
+    }
+
+
+    if (
+      type &&
+      String(
+        card.type || ""
+      ).trim() !== type
+    ) {
+
+      return false;
+
+    }
+
+
+    if (
+      brand &&
+      String(
+        card.brand || ""
+      ).trim() !== brand
+    ) {
+
+      return false;
+
+    }
+
+
+    if (
+      coordinate &&
+      String(
+        card.coordinate || ""
+      ).trim() !== coordinate
+    ) {
+
+      return false;
+
+    }
+
+
+    if (
+      category &&
+      String(
+        card.category || ""
+      ).trim() !== category
+    ) {
+
+      return false;
+
+    }
+
+
+    if (
+      currentStatus === "owned" &&
+      count < 1
+    ) {
+
+      return false;
+
+    }
+
+
+    if (
+      currentStatus === "missing" &&
+      count >= 1
+    ) {
+
+      return false;
+
+    }
+
+
+    if (
+      currentStatus === "trade" &&
+      count < 2
+    ) {
+
+      return false;
+
+    }
+
+
+    return true;
+
+  });
 
 }
 
 
-if(
-brand&&
-String(
-card.brand||""
-).trim()!==brand
-){
+/* =========================================================
+   カード表示
+   ========================================================= */
 
-returnfalse;
+function renderCards() {
+
+  cardGrid.innerHTML = "";
+
+
+  const filtered =
+    getFilteredCards();
+
+
+  if (
+    filtered.length === 0
+  ) {
+
+    cardGrid.innerHTML =
+      `
+      <p class="no-results">
+        該当するカードがありません。
+      </p>
+      `;
+
+    return;
+
+  }
+
+
+  filtered.forEach(card => {
+
+    const count =
+      getCount(card);
+
+
+    const cardElement =
+      document.createElement(
+        "article"
+      );
+
+
+    cardElement.className =
+      "card";
+
+
+    cardElement.innerHTML = `
+
+      <div class="card-image">
+
+        <img
+          src="${card.image}"
+          alt="${card.name || card.id}"
+          onerror="this.style.display='none'"
+        >
+
+      </div>
+
+
+      <div class="card-info">
+
+        <div class="card-id">
+          ${card.id || ""}
+        </div>
+
+        <div class="card-name">
+          ${card.name || ""}
+        </div>
+
+        <div class="card-meta">
+          ${card.brand || ""}
+        </div>
+
+        ${
+          card.rarity
+            ? `
+              <div class="card-rarity">
+                ${card.rarity}
+              </div>
+            `
+            : ""
+        }
+
+        ${
+          count >= 2
+            ? `
+              <div class="trade-label">
+                ♡ 交換可能
+              </div>
+            `
+            : ""
+        }
+
+      </div>
+
+
+      <div class="count-control">
+
+        <button
+          type="button"
+          class="count-button minus"
+        >
+          −
+        </button>
+
+        <span class="count">
+          ${count}
+        </span>
+
+        <button
+          type="button"
+          class="count-button plus"
+        >
+          ＋
+        </button>
+
+      </div>
+
+    `;
+
+
+    /* − */
+
+    cardElement
+      .querySelector(".minus")
+      .addEventListener(
+        "click",
+        event => {
+
+          event.stopPropagation();
+
+          setCount(
+            card,
+            Math.max(
+              0,
+              count - 1
+            )
+          );
+
+        }
+      );
+
+
+    /* ＋ */
+
+    cardElement
+      .querySelector(".plus")
+      .addEventListener(
+        "click",
+        event => {
+
+          event.stopPropagation();
+
+          setCount(
+            card,
+            count + 1
+          );
+
+        }
+      );
+
+
+    /* カード */
+
+    cardElement.addEventListener(
+      "click",
+      () =>
+        openCardModal(card)
+    );
+
+
+    cardGrid.appendChild(
+      cardElement
+    );
+
+  });
 
 }
 
 
-if(
-coordinate&&
-String(
-card.coordinate||""
-).trim()!==coordinate
-){
+/* =========================================================
+   カード詳細モーダル
+   ========================================================= */
 
-returnfalse;
+function openCardModal(card) {
+
+  const modal =
+    document.createElement(
+      "div"
+    );
+
+  modal.className =
+    "card-modal";
+
+
+  const content =
+    document.createElement(
+      "div"
+    );
+
+  content.className =
+    "card-modal-content";
+
+
+  content.innerHTML = `
+
+    <button
+      type="button"
+      class="card-modal-close"
+      aria-label="閉じる"
+    >
+      ×
+    </button>
+
+
+    <div class="modal-card-area">
+
+      <button
+        type="button"
+        class="card-side-arrow left"
+        aria-label="表を見る"
+      >
+        ‹
+      </button>
+
+
+      <img
+        class="modal-card-image"
+        src="${card.image}"
+        alt="${card.name || card.id}"
+      >
+
+
+      <button
+        type="button"
+        class="card-side-arrow right"
+        aria-label="裏を見る"
+      >
+        ›
+      </button>
+
+    </div>
+
+
+    <div class="card-side-buttons">
+
+      <button
+        type="button"
+        class="card-side-button active"
+        data-side="front"
+      >
+        表
+      </button>
+
+      <button
+        type="button"
+        class="card-side-button"
+        data-side="back"
+      >
+        裏
+      </button>
+
+    </div>
+
+  `;
+
+
+  modal.appendChild(
+    content
+  );
+
+  document.body.appendChild(
+    modal
+  );
+
+
+  const image =
+    content.querySelector(
+      ".modal-card-image"
+    );
+
+
+  const frontButton =
+    content.querySelector(
+      '[data-side="front"]'
+    );
+
+
+  const backButton =
+    content.querySelector(
+      '[data-side="back"]'
+    );
+
+
+  const leftArrow =
+    content.querySelector(
+      ".card-side-arrow.left"
+    );
+
+
+  const rightArrow =
+    content.querySelector(
+      ".card-side-arrow.right"
+    );
+
+
+  /* =======================================================
+     表 / 裏
+     ======================================================= */
+
+  function showSide(side) {
+
+    if (
+      side === "back" &&
+      card.backImage
+    ) {
+
+      image.src =
+        card.backImage;
+
+      image.alt =
+        `${card.name || card.id} 裏面`;
+
+      frontButton
+        .classList
+        .remove("active");
+
+      backButton
+        .classList
+        .add("active");
+
+    } else {
+
+      image.src =
+        card.image;
+
+      image.alt =
+        `${card.name || card.id}`;
+
+      frontButton
+        .classList
+        .add("active");
+
+      backButton
+        .classList
+        .remove("active");
+
+    }
+
+  }
+
+
+  frontButton.addEventListener(
+    "click",
+    event => {
+
+      event.stopPropagation();
+
+      showSide("front");
+
+    }
+  );
+
+
+  backButton.addEventListener(
+    "click",
+    event => {
+
+      event.stopPropagation();
+
+      showSide("back");
+
+    }
+  );
+
+
+  /* =======================================================
+     左右矢印
+     ======================================================= */
+
+  function toggleSide() {
+
+    const isBack =
+      image.src ===
+      card.backImage;
+
+
+    if (isBack) {
+
+      showSide("front");
+
+    } else {
+
+      showSide("back");
+
+    }
+
+  }
+
+
+  leftArrow.addEventListener(
+    "click",
+    event => {
+
+      event.stopPropagation();
+
+      toggleSide();
+
+    }
+  );
+
+
+  rightArrow.addEventListener(
+    "click",
+    event => {
+
+      event.stopPropagation();
+
+      toggleSide();
+
+    }
+  );
+
+
+  /* =======================================================
+     左右タップ
+     ======================================================= */
+
+  const cardArea =
+    content.querySelector(
+      ".modal-card-area"
+    );
+
+
+  cardArea.addEventListener(
+    "click",
+    event => {
+
+      if (
+        event.target.classList.contains(
+          "card-side-arrow"
+        )
+      ) {
+
+        return;
+
+      }
+
+
+      const rect =
+        cardArea.getBoundingClientRect();
+
+
+      const tapX =
+        event.clientX -
+        rect.left;
+
+
+      if (
+        tapX <
+        rect.width / 2
+      ) {
+
+        showSide("front");
+
+      } else {
+
+        showSide("back");
+
+      }
+
+    }
+  );
+
+
+  /* =======================================================
+     スワイプ
+     ======================================================= */
+
+  let touchStartX = 0;
+
+
+  cardArea.addEventListener(
+    "touchstart",
+    event => {
+
+      touchStartX =
+        event.changedTouches[0]
+          .screenX;
+
+    },
+    {
+      passive: true
+    }
+  );
+
+
+  cardArea.addEventListener(
+    "touchend",
+    event => {
+
+      const touchEndX =
+        event.changedTouches[0]
+          .screenX;
+
+
+      const distance =
+        touchEndX -
+        touchStartX;
+
+
+      if (
+        Math.abs(distance) < 50
+      ) {
+
+        return;
+
+      }
+
+
+      if (distance < 0) {
+
+        showSide("back");
+
+      } else {
+
+        showSide("front");
+
+      }
+
+    },
+    {
+      passive: true
+    }
+  );
+
+
+  /* =======================================================
+     閉じる
+     ======================================================= */
+
+  const close =
+    () => modal.remove();
+
+
+  content
+    .querySelector(
+      ".card-modal-close"
+    )
+    .addEventListener(
+      "click",
+      close
+    );
+
+
+  modal.addEventListener(
+    "click",
+    event => {
+
+      if (
+        event.target === modal
+      ) {
+
+        close();
+
+      }
+
+    }
+  );
 
 }
 
 
-if(
-category&&
-String(
-card.category||""
-).trim()!==category
-){
-
-returnfalse;
-
-}
-
-
-if(
-currentStatus==="owned"&&
-count<1
-){
-
-returnfalse;
-
-}
-
-
-if(
-currentStatus==="missing"&&
-count>=1
-){
-
-returnfalse;
-
-}
-
-
-if(
-currentStatus==="trade"&&
-count<2
-){
-
-returnfalse;
-
-}
-
-
-returntrue;
-
-});
-
-}
-
-
-/*=========================
-カード表示
-=========================*/
-
-functionrenderCards(){
-
-cardGrid.innerHTML="";
-
-
-constfiltered=
-getFilteredCards();
-
-
-if(
-filtered.length===0
-){
-
-cardGrid.innerHTML=
-`<pclass="no-results">
-該当するカードがありません。
-</p>`;
-
-return;
-
-}
-
-
-filtered.forEach(card=>{
-
-constcount=
-getCount(card);
-
-
-constcardElement=
-document.createElement(
-"article"
-);
-
-
-cardElement.className=
-"card";
-
-
-cardElement.innerHTML=`
-
-<divclass="card-image">
-
-<img
-src="${card.image}"
-alt="${card.name||card.id}"
-onerror="this.style.display='none'"
->
-
-</div>
-
-
-<divclass="card-info">
-
-<divclass="card-id">
-${card.id||""}
-</div>
-
-<divclass="card-name">
-${card.name||""}
-</div>
-
-<divclass="card-meta">
-${card.brand||""}
-</div>
-
-${
-card.rarity
-?`<divclass="card-rarity">
-${card.rarity}
-</div>`
-:""
-}
-
-${
-count>=2
-?`<divclass="trade-label">
-♡交換可能
-</div>`
-:""
-}
-
-</div>
-
-
-<divclass="count-control">
-
-<button
-type="button"
-class="count-buttonminus"
->
-−
-</button>
-
-<spanclass="count">
-${count}
-</span>
-
-<button
-type="button"
-class="count-buttonplus"
->
-＋
-</button>
-
-</div>
-
-`;
-
-
-/*−*/
-
-cardElement
-.querySelector(".minus")
-.addEventListener(
-"click",
-event=>{
-
-event.stopPropagation();
-
-setCount(
-card,
-Math.max(
-0,
-count-1
-)
-);
-
-}
-);
-
-
-/*＋*/
-
-cardElement
-.querySelector(".plus")
-.addEventListener(
-"click",
-event=>{
-
-event.stopPropagation();
-
-setCount(
-card,
-count+1
-);
-
-}
-);
-
-
-/*カード*/
-
-cardElement.addEventListener(
-"click",
-()=>
-openCardModal(card)
-);
-
-
-cardGrid.appendChild(
-cardElement
-);
-
-});
-
-}
-
-
-/*=========================
-カード詳細モーダル
-=========================*/
-
-functionopenCardModal(card){
-
-constmodal=
-document.createElement(
-"div"
-);
-
-modal.className=
-"card-modal";
-
-
-constcontent=
-document.createElement(
-"div"
-);
-
-content.className=
-"card-modal-content";
-
-
-content.innerHTML=`
-
-<button
-type="button"
-class="card-modal-close"
-aria-label="閉じる"
->
-×
-</button>
-
-
-<divclass="modal-card-area">
-
-<button
-type="button"
-class="card-side-arrowleft"
-aria-label="表を見る"
->
-‹
-</button>
-
-
-<img
-class="modal-card-image"
-src="${card.image}"
-alt="${card.name||card.id}"
->
-
-
-<button
-type="button"
-class="card-side-arrowright"
-aria-label="裏を見る"
->
-›
-</button>
-
-</div>
-
-
-<divclass="card-side-buttons">
-
-<button
-type="button"
-class="card-side-buttonactive"
-data-side="front"
->
-表
-</button>
-
-<button
-type="button"
-class="card-side-button"
-data-side="back"
->
-裏
-</button>
-
-</div>
-
-`;
-
-
-modal.appendChild(
-content
-);
-
-document.body.appendChild(
-modal
-);
-
-
-constimage=
-content.querySelector(
-".modal-card-image"
-);
-
-
-constfrontButton=
-content.querySelector(
-'[data-side="front"]'
-);
-
-
-constbackButton=
-content.querySelector(
-'[data-side="back"]'
-);
-
-
-constleftArrow=
-content.querySelector(
-".card-side-arrow.left"
-);
-
-
-constrightArrow=
-content.querySelector(
-".card-side-arrow.right"
-);
-
-
-/*=========================
-表/裏
-=========================*/
-
-functionshowSide(side){
-
-if(
-side==="back"&&
-card.backImage
-){
-
-image.src=
-card.backImage;
-
-image.alt=
-`${card.name||card.id}裏面`;
-
-frontButton
-.classList
-.remove("active");
-
-backButton
-.classList
-.add("active");
-
-}else{
-
-image.src=
-card.image;
-
-image.alt=
-`${card.name||card.id}`;
-
-frontButton
-.classList
-.add("active");
-
-backButton
-.classList
-.remove("active");
-
-}
-
-}
-
-
-frontButton.addEventListener(
-"click",
-event=>{
-
-event.stopPropagation();
-
-showSide("front");
-
-}
-);
-
-
-backButton.addEventListener(
-"click",
-event=>{
-
-event.stopPropagation();
-
-showSide("back");
-
-}
-);
-
-
-/*=========================
-左右矢印
-=========================*/
-
-functiontoggleSide(){
-
-constisBack=
-image.src===
-card.backImage;
-
-
-if(isBack){
-
-showSide("front");
-
-}else{
-
-showSide("back");
-
-}
-
-}
-
-
-leftArrow.addEventListener(
-"click",
-event=>{
-
-event.stopPropagation();
-
-toggleSide();
-
-}
-);
-
-
-rightArrow.addEventListener(
-"click",
-event=>{
-
-event.stopPropagation();
-
-toggleSide();
-
-}
-);
-
-
-/*=========================
-左右タップ
-=========================*/
-
-constcardArea=
-content.querySelector(
-".modal-card-area"
-);
-
-
-cardArea.addEventListener(
-"click",
-event=>{
-
-if(
-event.target.classList.contains(
-"card-side-arrow"
-)
-){
-
-return;
-
-}
-
-
-constrect=
-cardArea.getBoundingClientRect();
-
-
-consttapX=
-event.clientX-
-rect.left;
-
-
-if(
-tapX<
-rect.width/2
-){
-
-showSide("front");
-
-}else{
-
-showSide("back");
-
-}
-
-}
-);
-
-
-/*=========================
-スワイプ
-=========================*/
-
-lettouchStartX=0;
-
-
-cardArea.addEventListener(
-"touchstart",
-event=>{
-
-touchStartX=
-event.changedTouches[0]
-.screenX;
-
-},
-{passive:true}
-);
-
-
-cardArea.addEventListener(
-"touchend",
-event=>{
-
-consttouchEndX=
-event.changedTouches[0]
-.screenX;
-
-
-constdistance=
-touchEndX-
-touchStartX;
-
-
-if(
-Math.abs(distance)<
-50
-){
-
-return;
-
-}
-
-
-if(
-distance<0
-){
-
-showSide("back");
-
-}else{
-
-showSide("front");
-
-}
-
-},
-{passive:true}
-);
-
-
-/*=========================
-閉じる
-=========================*/
-
-constclose=
-()=>modal.remove();
-
-
-content
-.querySelector(
-".card-modal-close"
-)
-.addEventListener(
-"click",
-close
-);
-
-
-modal.addEventListener(
-"click",
-event=>{
-
-if(
-event.target===modal
-){
-
-close();
-
-}
-
-}
-);
-
-}
-
-
-/*=========================
-イベント
-=========================*/
+/* =========================================================
+   イベント
+   ========================================================= */
 
 searchInput.addEventListener(
-"input",
-renderCards
+  "input",
+  renderCards
 );
 
 
 [
-typeFilter,
-brandFilter,
-coordinateFilter,
-categoryFilter
+  typeFilter,
+  brandFilter,
+  coordinateFilter,
+  categoryFilter
 
-].forEach(select=>{
+].forEach(select => {
 
-select.addEventListener(
-"change",
-renderCards
-);
+  select.addEventListener(
+    "change",
+    renderCards
+  );
 
 });
 
 
 document
-.querySelectorAll(
-".status-button"
-)
-.forEach(button=>{
+  .querySelectorAll(
+    ".status-button"
+  )
+  .forEach(button => {
 
-button.addEventListener(
-"click",
-()=>{
+    button.addEventListener(
+      "click",
+      () => {
 
-document
-.querySelectorAll(
-".status-button"
-)
-.forEach(button=>
-button.classList.remove(
-"active"
-)
-);
-
-
-button.classList.add(
-"active"
-);
+        document
+          .querySelectorAll(
+            ".status-button"
+          )
+          .forEach(button =>
+            button.classList.remove(
+              "active"
+            )
+          );
 
 
-currentStatus=
-button.dataset.status;
+        button.classList.add(
+          "active"
+        );
 
 
-renderCards();
-
-}
-);
-
-});
+        currentStatus =
+          button.dataset.status;
 
 
-/*=========================
-戻ってきたとき更新
-=========================*/
+        renderCards();
+
+      }
+    );
+
+  });
+
+
+/* =========================================================
+   戻ってきたとき更新
+   ========================================================= */
 
 window.addEventListener(
-"pageshow",
-()=>{
+  "pageshow",
+  () => {
 
-if(
-cards.length>0
-){
+    if (cards.length > 0) {
 
-loadOwnership();
+      loadOwnership();
 
-updateStatus();
+      updateStatus();
 
-renderCards();
+      renderCards();
 
-}
+    }
 
-}
+  }
 );
 
 </script>
