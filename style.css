@@ -2119,3 +2119,26 @@ body:not(:has(#seasonTitle)):has(#collectionStatus) .modal-acquisition-text {
 /* =========================================================
    完了
    ========================================================= */
+/* =========================
+   コレクション進捗バー
+   ========================= */
+
+.collection-progress {
+  width: 100%;
+  height: 10px;
+  margin: 10px 0 4px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.collection-progress-bar {
+  display: block;
+  width: 0%;
+  height: 100%;
+  min-height: 10px;
+  background: #ffffff;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
