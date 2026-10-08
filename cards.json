@@ -946,52 +946,57 @@
     "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-85_N.webp",
     "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/E1-85_N_b.webp"
   },
+
   {
-  "id": "EP-001",
-  "name": "ピンクステージベスト＆スカート",
-  "type": "キュート",
-  "brand": "ノーブランド",
-  "coordinate": "ピンクステージコーデ",
-  "category": "トップス&ボトムス",
-  "rarity": "ノーマル",
-  "collection": "promotion",
-  "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/EP-001_N.webp",
-  "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/EP-001_N_b.webp"
-},
-{
-  "id": "EP-002",
-  "name": "レジェンダリールージュティアラ",
-  "type": "セクシー",
-  "brand": "ノーブランド",
-  "coordinate": "レジェンダリールージュコーデ",
-  "category": "アクセサリー",
-  "rarity": "プレミアムレア",
-  "collection": "promotion",
-  "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/EP-002_PR.webp",
-  "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/EP-002_PR_b.webp"
-},
-{
-  "id": "EP-029",
-  "name": "スターライト学園制服",
-  "type": "キュート",
-  "brand": "ノーブランド",
-  "coordinate": "スターライト学園制服コーデ",
-  "category": "トップス&ボトムス",
-  "rarity": "レア",
-  "collection": "promotion",
-  "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/EP-029_R.webp",
-  "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/EP-029_R_b.webp"
-},
-{
-  "id": "EP-030",
-  "name": "スターライト学園ブーツ",
-  "type": "キュート",
-  "brand": "ノーブランド",
-  "coordinate": "スターライト学園制服コーデ",
-  "category": "シューズ",
-  "rarity": "レア",
-  "collection": "promotion",
-  "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/EP-030_R.webp",
-  "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/EP-030_R_b.webp"
-}
+    "id": "EP-001",
+    "name": "ピンクステージベスト＆スカート",
+    "type": "キュート",
+    "brand": "ノーブランド",
+    "coordinate": "ピンクステージコーデ",
+    "category": "トップス&ボトムス",
+    "rarity": "ノーマル",
+    "collection": "promotion",
+    "acquisition": "アイカツ！はじめようプレゼントキャンペーン 第2弾（2026年10月16日～）",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/EP-001_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/EP-001_N_b.webp"
+  },
+  {
+    "id": "EP-002",
+    "name": "レジェンダリールージュティアラ",
+    "type": "セクシー",
+    "brand": "ノーブランド",
+    "coordinate": "レジェンダリールージュコーデ",
+    "category": "アクセサリー",
+    "rarity": "プレミアムレア",
+    "collection": "promotion",
+    "acquisition": "アイカツ！はじめようプレゼントキャンペーン 第1弾（2026年10月8日～）",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/EP-002_PR.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/EP-002_PR_b.webp"
+  },
+  {
+    "id": "EP-029",
+    "name": "スターライト学園制服",
+    "type": "キュート",
+    "brand": "ノーブランド",
+    "coordinate": "スターライト学園制服コーデ",
+    "category": "トップス&ボトムス",
+    "rarity": "レア",
+    "collection": "promotion",
+    "acquisition": "アイカツ！はじめようプレゼントキャンペーン 第3弾（2026年10月30日～）",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/EP-029_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/EP-029_R_b.webp"
+  },
+  {
+    "id": "EP-030",
+    "name": "スターライト学園ブーツ",
+    "type": "キュート",
+    "brand": "ノーブランド",
+    "coordinate": "スターライト学園制服コーデ",
+    "category": "シューズ",
+    "rarity": "レア",
+    "collection": "promotion",
+    "acquisition": "アイカツ！はじめようプレゼントキャンペーン 第4弾（2026年11月13日～）",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/EP-030_R.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/EP-030_R_b.webp"
+  }
 ]
