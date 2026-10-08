@@ -681,30 +681,39 @@ footer p {
    ========================================================= */
 
 .collection-progress {
+  display: block;
+
   width: 100%;
 
   margin-top: 9px;
 }
 
 .collection-progress-track {
+  display: block;
+
   position: relative;
 
   width: 100%;
-  height: 8px;
+  height: 10px;
+  min-height: 10px;
 
   overflow: hidden;
 
+  border: 1px solid rgba(160, 130, 155, 0.18);
   border-radius: 999px;
 
   background: rgba(160, 130, 155, 0.14);
 }
 
 .collection-progress-bar {
+  display: block;
+
   width: 0%;
-
   height: 100%;
+  min-width: 0;
+  min-height: 8px;
 
-  border-radius: inherit;
+  border-radius: 999px;
 
   background:
     linear-gradient(
@@ -718,6 +727,8 @@ footer p {
 }
 
 .collection-progress-label {
+  display: block;
+
   margin-top: 5px;
 
   color: #a18b9e;
@@ -1901,6 +1912,17 @@ body:not(:has(#seasonTitle)):has(#collectionStatus) .modal-acquisition-text {
     font-size: 18px;
   }
 
+  /* 進捗バー */
+
+  .collection-progress-track {
+    height: 10px;
+    min-height: 10px;
+  }
+
+  .collection-progress-bar {
+    min-height: 8px;
+  }
+
 }
 
 /* =========================================================
@@ -2119,26 +2141,3 @@ body:not(:has(#seasonTitle)):has(#collectionStatus) .modal-acquisition-text {
 /* =========================================================
    完了
    ========================================================= */
-/* =========================
-   コレクション進捗バー
-   ========================= */
-
-.collection-progress {
-  width: 100%;
-  height: 10px;
-  margin: 10px 0 4px;
-  background: rgba(255, 255, 255, 0.25);
-  border-radius: 999px;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
-.collection-progress-bar {
-  display: block;
-  width: 0%;
-  height: 100%;
-  min-height: 10px;
-  background: #ffffff;
-  border-radius: 999px;
-  transition: width 0.3s ease;
-}
