@@ -153,7 +153,7 @@
         return String(card.rarity).trim().toUpperCase();
       }
       const id = String(card.id || "").trim();
-      const match = id.match(/_(SPR|PR|CP|R|N)$/i);
+      const match = id.match(/_(SPR|PR|CP|ER|R|N)$/i);
       return match ? match[1].toUpperCase() : "";
     }
     function isParallelCard(card) {
