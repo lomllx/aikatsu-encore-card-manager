@@ -3,26 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>♡ Cosmic Trade | アイカツアンコール</title>
+  <title>トレード</title>
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* =====================================
-       天の川コズミック風デザイン
-    ===================================== */
-
     body.trade-page {
-      background:
-        radial-gradient(ellipse at 15% 5%, rgba(76, 95, 185, 0.22), transparent 40%),
-        radial-gradient(ellipse at 90% 30%, rgba(137, 92, 206, 0.16), transparent 38%),
-        linear-gradient(160deg, #090e25, #10152f 50%, #17102e);
-      color: #f4f2ff;
       min-height: 100vh;
+      color: #f4f2ff;
+      background:
+        radial-gradient(ellipse at 15% 5%, rgba(76,95,185,.22), transparent 40%),
+        radial-gradient(ellipse at 90% 30%, rgba(137,92,206,.16), transparent 38%),
+        linear-gradient(160deg,#090e25,#10152f 50%,#17102e);
     }
 
     .trade-page .header {
       background:
-        radial-gradient(ellipse at 50% 100%, rgba(127, 157, 255, 0.16), transparent 65%),
+        radial-gradient(ellipse at 50% 100%,rgba(127,157,255,.16),transparent 65%),
         transparent;
     }
 
@@ -34,38 +30,28 @@
 
     .trade-back-link {
       display: inline-block;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       color: #d6d8ff;
       text-decoration: none;
     }
 
     .trade-heading {
-      margin: 8px 0 6px;
+      margin: 8px 0 22px;
       text-align: center;
       color: #e9e5ff;
-      letter-spacing: 0.08em;
-      text-shadow: 0 0 18px rgba(154, 173, 255, 0.45);
-    }
-
-    .trade-subtitle {
-      margin: 0 0 20px;
-      text-align: center;
-      color: #b9c9f5;
-      font-size: 0.82rem;
-      letter-spacing: 0.14em;
+      letter-spacing: .08em;
+      text-shadow: 0 0 18px rgba(154,173,255,.45);
     }
 
     .trade-panel {
       margin: 16px 0;
       padding: 16px;
-      border: 1px solid rgba(174, 191, 255, 0.25);
+      border: 1px solid rgba(174,191,255,.25);
       border-radius: 18px;
       background:
-        linear-gradient(140deg, rgba(255,255,255,0.065), transparent 55%),
-        rgba(16, 23, 52, 0.72);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.08),
-        0 10px 26px rgba(0,0,0,0.15);
+        linear-gradient(140deg,rgba(255,255,255,.065),transparent 55%),
+        rgba(16,23,52,.72);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
     }
@@ -73,8 +59,8 @@
     .trade-panel-title {
       margin: 0 0 14px;
       text-align: center;
-      font-size: 0.98rem;
-      letter-spacing: 0.08em;
+      font-size: .95rem;
+      letter-spacing: .08em;
       color: #e2e7ff;
     }
 
@@ -86,85 +72,77 @@
 
     .trade-summary-item {
       padding: 12px 8px;
-      border: 1px solid rgba(174, 191, 255, 0.18);
+      border: 1px solid rgba(174,191,255,.18);
       border-radius: 12px;
-      background: rgba(157, 175, 255, 0.07);
+      background: rgba(157,175,255,.07);
       text-align: center;
     }
 
     .trade-summary-label {
       display: block;
       margin-bottom: 5px;
-      font-size: 0.76rem;
+      font-size: .76rem;
       color: #becbf0;
     }
 
     .trade-summary-value {
       display: block;
-      font-size: 1.25rem;
-      color: #ffffff;
+      font-size: 1.2rem;
+      color: white;
       overflow-wrap: anywhere;
-      text-shadow: 0 0 12px rgba(154, 184, 255, 0.35);
     }
 
-    .trade-search {
+    .trade-search, .trade-select {
       width: 100%;
-      min-height: 46px;
+      min-height: 44px;
       box-sizing: border-box;
-      padding: 12px 14px;
-      border: 1px solid rgba(174, 191, 255, 0.3);
-      border-radius: 12px;
+      padding: 10px 12px;
+      border: 1px solid rgba(174,191,255,.28);
+      border-radius: 10px;
       outline: none;
-      background: rgba(8, 13, 34, 0.75);
-      color: #f8f7ff;
+      background: #111a3a;
+      color: #f4f2ff;
       font: inherit;
+      font-size: .88rem;
     }
 
     .trade-search::placeholder {
       color: #9ba9d3;
     }
 
-    .trade-search:focus,
-    .trade-select:focus {
+    .trade-search:focus, .trade-select:focus {
       border-color: #a8c5ff;
-      box-shadow: 0 0 0 3px rgba(133, 167, 255, 0.12);
+      box-shadow: 0 0 0 3px rgba(133,167,255,.12);
     }
 
     .trade-status-filters {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(4,minmax(0,1fr));
       gap: 7px;
       margin: 12px 0;
     }
 
-    .trade-status-button,
-    .trade-reset-button {
+    .trade-status-button, .trade-reset-button {
       min-height: 40px;
       padding: 8px 6px;
-      border: 1px solid rgba(174, 191, 255, 0.25);
+      border: 1px solid rgba(174,191,255,.25);
       border-radius: 10px;
-      background: rgba(133, 153, 229, 0.07);
+      background: rgba(133,153,229,.07);
       color: #dce3ff;
       font: inherit;
-      font-size: 0.82rem;
+      font-size: .82rem;
       cursor: pointer;
-      transition: background 0.2s, border-color 0.2s;
     }
 
     .trade-status-button.active {
-      border-color: rgba(189, 204, 255, 0.8);
-      background: linear-gradient(
-        120deg,
-        rgba(100, 125, 214, 0.48),
-        rgba(151, 112, 212, 0.36)
-      );
-      color: #fff;
-      box-shadow: 0 0 13px rgba(128, 155, 255, 0.13);
+      border-color: rgba(189,204,255,.8);
+      background: linear-gradient(120deg,rgba(100,125,214,.48),rgba(151,112,212,.36));
+      color: white;
     }
 
     .trade-filters {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(2,minmax(0,1fr));
       gap: 12px;
     }
 
@@ -176,31 +154,13 @@
       display: block;
       margin-bottom: 6px;
       color: #c7d1f8;
-      font-size: 0.8rem;
-    }
-
-    .trade-select {
-      width: 100%;
-      min-height: 42px;
-      box-sizing: border-box;
-      padding: 9px 28px 9px 10px;
-      border: 1px solid rgba(174, 191, 255, 0.24);
-      border-radius: 10px;
-      outline: none;
-      background: #111a3a;
-      color: #f4f2ff;
-      font: inherit;
-      font-size: 0.85rem;
+      font-size: .8rem;
     }
 
     .trade-filter-actions {
       display: flex;
       justify-content: flex-end;
       margin-top: 12px;
-    }
-
-    .trade-reset-button {
-      padding-inline: 14px;
     }
 
     .trade-results-heading {
@@ -219,40 +179,30 @@
 
     .trade-results-count {
       color: #bdcafa;
-      font-size: 0.82rem;
+      font-size: .82rem;
       white-space: nowrap;
     }
 
     .trade-card-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2,minmax(0,1fr));
       gap: 10px;
     }
 
     .trade-card {
       min-width: 0;
       overflow: hidden;
-      border: 1px solid rgba(167, 190, 255, 0.22);
+      border: 1px solid rgba(167,190,255,.22);
       border-radius: 13px;
-      background: linear-gradient(
-        155deg,
-        rgba(38, 49, 91, 0.8),
-        rgba(17, 22, 49, 0.96)
-      );
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
-      cursor: pointer;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-
-    .trade-card:focus-visible {
-      outline: 2px solid #b7c9ff;
-      outline-offset: 3px;
+      background: linear-gradient(155deg,rgba(38,49,91,.8),rgba(17,22,49,.96));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
     }
 
     .trade-card-image {
       aspect-ratio: 3 / 4;
       overflow: hidden;
-      background: rgba(6, 10, 27, 0.7);
+      background: rgba(6,10,27,.7);
+      cursor: pointer;
     }
 
     .trade-card-image img {
@@ -269,14 +219,14 @@
     .trade-card-id {
       margin-bottom: 4px;
       color: #aebdf1;
-      font-size: 0.68rem;
+      font-size: .68rem;
       overflow-wrap: anywhere;
     }
 
     .trade-card-name {
       margin-bottom: 7px;
       color: #f6f5ff;
-      font-size: 0.8rem;
+      font-size: .8rem;
       line-height: 1.45;
       overflow-wrap: anywhere;
     }
@@ -284,24 +234,58 @@
     .trade-card-meta {
       margin-bottom: 7px;
       color: #c2ccef;
-      font-size: 0.7rem;
+      font-size: .7rem;
       overflow-wrap: anywhere;
     }
 
     .trade-available {
       display: inline-block;
       padding: 4px 7px;
-      border: 1px solid rgba(166, 203, 255, 0.3);
+      border: 1px solid rgba(166,203,255,.3);
       border-radius: 999px;
-      background: rgba(124, 169, 255, 0.12);
+      background: rgba(124,169,255,.12);
       color: #dceaff;
-      font-size: 0.72rem;
+      font-size: .72rem;
     }
 
-    .trade-no-results {
+    .trade-count-control {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 10px 6px 12px;
+      border-top: 1px solid rgba(174,191,255,.15);
+    }
+
+    .trade-count-button {
+      width: 40px;
+      height: 40px;
+      flex: 0 0 40px;
+      border: 1px solid rgba(174,191,255,.4);
+      border-radius: 50%;
+      background: rgba(133,153,229,.16);
+      color: #fff;
+      font-size: 1.35rem;
+      line-height: 1;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    .trade-count-button:active {
+      background: rgba(151,166,255,.4);
+    }
+
+    .trade-count-number {
+      min-width: 24px;
+      text-align: center;
+      font-size: 1rem;
+      color: #fff;
+    }
+
+    .trade-no-results, .trade-error {
       grid-column: 1 / -1;
-      padding: 28px 12px;
-      border: 1px dashed rgba(174, 191, 255, 0.22);
+      padding: 24px 12px;
+      border: 1px dashed rgba(174,191,255,.22);
       border-radius: 14px;
       color: #c2ccef;
       text-align: center;
@@ -309,9 +293,7 @@
     }
 
     .trade-error {
-      padding: 20px 12px;
       color: #ffd9e9;
-      text-align: center;
     }
 
     .trade-page footer {
@@ -321,16 +303,16 @@
 
     @media (min-width: 700px) {
       .trade-filters {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(3,minmax(0,1fr));
       }
 
       .trade-card-grid {
-        grid-template-columns: repeat(5, minmax(0, 1fr));
+        grid-template-columns: repeat(5,minmax(0,1fr));
         gap: 14px;
       }
 
       .trade-container {
-        width: min(100% - 40px, 1000px);
+        width: min(100% - 40px,1000px);
       }
     }
 
@@ -339,55 +321,35 @@
         padding: 12px;
       }
 
-      .trade-card-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .trade-count-control {
+        gap: 7px;
+      }
+
+      .trade-count-button {
+        width: 36px;
+        height: 36px;
+        flex-basis: 36px;
       }
 
       .trade-status-button {
-        font-size: 0.76rem;
-      }
-    }
-
-    @media (hover: hover) and (pointer: fine) {
-      .trade-card:hover {
-        border-color: rgba(190, 209, 255, 0.7);
-        transform: translateY(-2px);
-      }
-
-      .trade-status-button:hover,
-      .trade-reset-button:hover {
-        border-color: rgba(190, 209, 255, 0.65);
-        background-color: rgba(133, 153, 229, 0.16);
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .trade-card,
-      .trade-status-button,
-      .trade-reset-button {
-        transition: none;
+        font-size: .76rem;
       }
     }
   </style>
 </head>
 
 <body class="trade-page">
-
   <header class="header">
     <h1>✦ AIKATSU ENCORE ✦</h1>
     <p>♡ COSMIC TRADE ♡</p>
   </header>
 
   <main class="trade-container">
-
     <a href="index.html" class="trade-back-link">← ホームへ戻る</a>
 
-    <h1 class="trade-heading">✦ 天の川トレード ✦</h1>
-    <p class="trade-subtitle">STARS · GALAXY · COSMIC</p>
+    <h1 class="trade-heading">トレード</h1>
 
     <section class="trade-panel" aria-label="交換可能カードの集計">
-      <h2 class="trade-panel-title">✧ MY TRADE COLLECTION ✧</h2>
-
       <div class="trade-summary">
         <div class="trade-summary-item">
           <span class="trade-summary-label">交換可能なカード種類</span>
@@ -401,9 +363,6 @@
     </section>
 
     <section class="trade-panel" aria-label="カード検索とフィルター">
-
-      <h2 class="trade-panel-title">✧ CARD SEARCH ✧</h2>
-
       <input
         type="search"
         id="searchInput"
@@ -420,42 +379,36 @@
       </div>
 
       <div class="trade-filters">
-
         <div class="trade-filter-group">
           <label for="typeFilter">タイプ</label>
           <select id="typeFilter" class="trade-select">
             <option value="">すべて</option>
           </select>
         </div>
-
         <div class="trade-filter-group">
           <label for="brandFilter">ブランド</label>
           <select id="brandFilter" class="trade-select">
             <option value="">すべて</option>
           </select>
         </div>
-
         <div class="trade-filter-group">
           <label for="coordinateFilter">コーデ</label>
           <select id="coordinateFilter" class="trade-select">
             <option value="">すべて</option>
           </select>
         </div>
-
         <div class="trade-filter-group">
           <label for="categoryFilter">カテゴリ</label>
           <select id="categoryFilter" class="trade-select">
             <option value="">すべて</option>
           </select>
         </div>
-
         <div class="trade-filter-group">
           <label for="rarityFilter">レアリティ</label>
           <select id="rarityFilter" class="trade-select">
             <option value="">すべて</option>
           </select>
         </div>
-
         <div class="trade-filter-group">
           <label for="parallelFilter">カード種類</label>
           <select id="parallelFilter" class="trade-select">
@@ -464,7 +417,6 @@
             <option value="parallel">パラレル</option>
           </select>
         </div>
-
       </div>
 
       <div class="trade-filter-actions">
@@ -487,7 +439,6 @@
     ></section>
 
     <p id="loadingMessage" class="trade-no-results">カードを読み込んでいます…</p>
-
   </main>
 
   <footer>
@@ -506,10 +457,6 @@
     const loadingMessage = document.getElementById("loadingMessage");
     const resultsCount = document.getElementById("resultsCount");
 
-    let allCards = [];
-    let currentStatus = "all";
-    let ownershipByKey = {};
-
     const filterElements = [
       typeFilter,
       brandFilter,
@@ -519,60 +466,110 @@
       parallelFilter
     ];
 
-    /* プロモーション判定 */
+    let allCards = [];
+    let currentStatus = "all";
+    let ownershipByKey = {};
+
     function isPromotion(card) {
       return String(card.collection || "").toLowerCase() === "promotion";
     }
 
-    /* カードごとの保存キー */
     function getStorageKey(card) {
       if (isPromotion(card)) {
         return "aikatsu-encore-promotion";
       }
-
       return `aikatsu-encore-season-${String(card.season || "1")}`;
     }
 
-    /* 保存データを安全に読み込む */
     function readOwnership(storageKey) {
       try {
-        const raw = localStorage.getItem(storageKey);
-        if (!raw) return {};
-
-        const parsed = JSON.parse(raw);
-
+        const parsed = JSON.parse(localStorage.getItem(storageKey) || "{}");
         return parsed &&
           typeof parsed === "object" &&
           !Array.isArray(parsed)
           ? parsed
           : {};
       } catch (error) {
-        console.warn(`${storageKey} の読み込みに失敗しました`, error);
+        console.warn("所持数の読み込みに失敗しました", error);
         return {};
       }
     }
 
-    /* 所持数 */
-    function getOwnedCount(card) {
+    function getOwnershipMap(card) {
       const key = getStorageKey(card);
-
       if (!ownershipByKey[key]) {
         ownershipByKey[key] = readOwnership(key);
       }
+      return ownershipByKey[key];
+    }
 
-      const count = Number(ownershipByKey[key][String(card.id)] || 0);
-
+    function getOwnedCount(card) {
+      const map = getOwnershipMap(card);
+      const count = Number(map[String(card.id)] || 0);
       return Number.isFinite(count) && count > 0
         ? Math.floor(count)
         : 0;
     }
 
-    /* 交換可能枚数（手元に1枚残す） */
+    function setOwnedCount(card, newCount) {
+      const storageKey = getStorageKey(card);
+      const ownership = getOwnershipMap(card);
+      const count = Math.max(0, Math.floor(Number(newCount) || 0));
+      const id = String(card.id);
+
+      const previousValue = localStorage.getItem(storageKey);
+
+      if (count <= 0) {
+        delete ownership[id];
+      } else {
+        ownership[id] = count;
+      }
+
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(ownership));
+      } catch (error) {
+        // 保存に失敗したら、画面上の変更も元に戻す
+        if (previousValue === null) {
+          delete ownershipByKey[storageKey];
+        } else {
+          try {
+            ownershipByKey[storageKey] = JSON.parse(previousValue);
+          } catch (_) {
+            delete ownershipByKey[storageKey];
+          }
+        }
+        alert("所持数を保存できなかったよ。ブラウザの保存設定を確認してね。");
+        return;
+      }
+
+      ownershipByKey[storageKey] = ownership;
+      updateSummary();
+      renderCards();
+    }
+
     function getTradeCount(card) {
       return Math.max(0, getOwnedCount(card) - 1);
     }
 
-    /* 検索用の文字列 */
+    function getRarity(card) {
+      if (
+        card.rarity !== undefined &&
+        card.rarity !== null &&
+        String(card.rarity).trim() !== ""
+      ) {
+        return String(card.rarity).trim().toUpperCase();
+      }
+
+      const id = String(card.id || "").trim();
+      const match = id.match(/_(SPR|PR|CP|ER|R|N)$/i);
+      return match ? match[1].toUpperCase() : "";
+    }
+
+    function isParallel(card) {
+      return card.parallel === true ||
+        /(?:_PARALLEL|_PARA|_P)$/i.test(String(card.id || ""));
+    }
+
     function getSearchableText(card) {
       return [
         card.id,
@@ -582,7 +579,7 @@
         card.coordinate,
         card.type,
         card.category,
-        card.rarity,
+        getRarity(card),
         card.season,
         card.collection
       ]
@@ -591,23 +588,12 @@
         .toLowerCase();
     }
 
-    /* パラレル判定 */
-    function isParallel(card) {
-      return card.parallel === true ||
-        String(card.id || "").includes("_PARALLEL");
-    }
+    function fillFilter(select, values) {
+      const uniqueValues = [...new Set(
+        values.map(value => String(value || "").trim()).filter(Boolean)
+      )].sort((a, b) => a.localeCompare(b, "ja"));
 
-    /* フィルターの選択肢を作成 */
-    function fillFilter(select, key) {
-      const values = [
-        ...new Set(
-          allCards
-            .map(card => String(card[key] || "").trim())
-            .filter(Boolean)
-        )
-      ].sort((a, b) => a.localeCompare(b, "ja"));
-
-      values.forEach(value => {
+      uniqueValues.forEach(value => {
         const option = document.createElement("option");
         option.value = value;
         option.textContent = value;
@@ -616,10 +602,10 @@
     }
 
     function setupFilters() {
-      fillFilter(typeFilter, "type");
-      fillFilter(brandFilter, "brand");
-      fillFilter(coordinateFilter, "coordinate");
-      fillFilter(rarityFilter, "rarity");
+      fillFilter(typeFilter, allCards.map(card => card.type));
+      fillFilter(brandFilter, allCards.map(card => card.brand));
+      fillFilter(coordinateFilter, allCards.map(card => card.coordinate));
+      fillFilter(rarityFilter, allCards.map(card => getRarity(card)));
 
       const categoryOrder = [
         "トップス",
@@ -631,15 +617,12 @@
         "フルコーデ"
       ];
 
+      const normalizeCategory = value => value.replace(/＆/g, "&");
       const categories = [
         ...new Set(
-          allCards
-            .map(card => String(card.category || "").trim())
-            .filter(Boolean)
+          allCards.map(card => String(card.category || "").trim()).filter(Boolean)
         )
       ];
-
-      const normalizeCategory = value => value.replace(/＆/g, "&");
 
       categories.sort((a, b) => {
         const ai = categoryOrder.findIndex(
@@ -648,7 +631,6 @@
         const bi = categoryOrder.findIndex(
           item => normalizeCategory(item) === normalizeCategory(b)
         );
-
         if (ai === -1 && bi === -1) return a.localeCompare(b, "ja");
         if (ai === -1) return 1;
         if (bi === -1) return -1;
@@ -658,12 +640,14 @@
       categories.forEach(value => {
         const option = document.createElement("option");
         option.value = value;
-        option.textContent = value.replace("トップス&ボトムス", "トップス＆ボトムス");
+        option.textContent = value.replace(
+          "トップス&ボトムス",
+          "トップス＆ボトムス"
+        );
         categoryFilter.appendChild(option);
       });
     }
 
-    /* 重複カードを抽出して各フィルターを適用 */
     function getFilteredCards() {
       const keyword = searchInput.value.trim().toLowerCase();
 
@@ -672,10 +656,7 @@
 
         const ownedCount = getOwnedCount(card);
 
-        /*
-         * 最優先条件：
-         * どのステータス・フィルターでも、重複カードのみ対象。
-         */
+        // トレードページには重複カードだけを表示する
         if (ownedCount < 2) return false;
 
         if (keyword && !getSearchableText(card).includes(keyword)) {
@@ -697,13 +678,17 @@
           return false;
         }
 
-        if (categoryFilter.value &&
-            String(card.category || "").trim().replace("トップス&ボトムス", "トップス＆ボトムス") !== categoryFilter.value) {
+        const category = String(card.category || "").trim()
+          .replace("トップス&ボトムス", "トップス＆ボトムス");
+
+        const selectedCategory = categoryFilter.value
+          .replace("トップス&ボトムス", "トップス＆ボトムス");
+
+        if (selectedCategory && category !== selectedCategory) {
           return false;
         }
 
-        if (rarityFilter.value &&
-            String(card.rarity || "").trim() !== rarityFilter.value) {
+        if (rarityFilter.value && getRarity(card) !== rarityFilter.value) {
           return false;
         }
 
@@ -715,19 +700,16 @@
           return false;
         }
 
-        /*
-         * 重複のみを表示するため「未所持」は必ず0件。
-         * 「所持」「交換」はどちらも重複カードを表示する。
-         */
         if (currentStatus === "missing") return false;
         if (currentStatus === "owned" && ownedCount < 1) return false;
-        if (currentStatus === "trade" && getTradeCount(card) < 1) return false;
+        if (currentStatus === "trade" && getTradeCount(card) < 1) {
+          return false;
+        }
 
         return true;
       });
     }
 
-    /* 交換可能カードの集計 */
     function updateSummary() {
       const tradeCards = allCards.filter(
         card => card.id !== undefined &&
@@ -747,7 +729,6 @@
         `${tradeCopies.toLocaleString("ja-JP")} 枚`;
     }
 
-    /* テキストを安全に要素へ追加 */
     function appendText(parent, className, text) {
       const element = document.createElement("div");
       element.className = className;
@@ -756,30 +737,26 @@
       return element;
     }
 
-    /* カード一覧の描画 */
     function renderCards() {
       cardGrid.innerHTML = "";
-
-      const cards = getFilteredCards();
+      const filteredCards = getFilteredCards();
 
       resultsCount.textContent =
-        `${cards.length.toLocaleString("ja-JP")} 種`;
+        `${filteredCards.length.toLocaleString("ja-JP")} 種`;
 
       loadingMessage.style.display = "none";
 
-      if (cards.length === 0) {
+      if (filteredCards.length === 0) {
         const message = document.createElement("p");
         message.className = "trade-no-results";
-
         message.textContent = currentStatus === "missing"
           ? "重複カードのみを表示するため、未所持カードはありません。"
           : "条件に合う交換可能カードがありません。";
-
         cardGrid.appendChild(message);
         return;
       }
 
-      cards.sort((a, b) => {
+      filteredCards.sort((a, b) => {
         const aPromo = isPromotion(a);
         const bPromo = isPromotion(b);
 
@@ -798,20 +775,21 @@
         });
       });
 
-      cards.forEach(card => {
+      filteredCards.forEach(card => {
         const count = getOwnedCount(card);
         const tradeCount = getTradeCount(card);
 
         const cardElement = document.createElement("article");
         cardElement.className = "trade-card";
-        cardElement.tabIndex = 0;
-        cardElement.setAttribute(
-          "aria-label",
-          `${card.name || card.id}、所持${count}枚、交換可能${tradeCount}枚。クリックしてカードページを開く`
-        );
 
         const imageWrap = document.createElement("div");
         imageWrap.className = "trade-card-image";
+        imageWrap.setAttribute("role", "link");
+        imageWrap.setAttribute("tabindex", "0");
+        imageWrap.setAttribute(
+          "aria-label",
+          `${card.name || card.id} のカードページを開く`
+        );
 
         const image = document.createElement("img");
         image.src = card.image || "";
@@ -820,33 +798,7 @@
         image.onerror = () => {
           image.style.display = "none";
         };
-
         imageWrap.appendChild(image);
-
-        const info = document.createElement("div");
-        info.className = "trade-card-info";
-
-        appendText(info, "trade-card-id", card.id);
-        appendText(info, "trade-card-name", card.name || "名称未設定");
-
-        const meta = [
-          card.brand,
-          card.rarity
-        ].filter(Boolean).join(" · ");
-
-        if (meta) {
-          appendText(info, "trade-card-meta", meta);
-        }
-
-        appendText(info, "trade-card-meta", `所持 ${count} 枚`);
-
-        const badge = document.createElement("span");
-        badge.className = "trade-available";
-        badge.textContent = `交換可能 ${tradeCount} 枚`;
-        info.appendChild(badge);
-
-        cardElement.appendChild(imageWrap);
-        cardElement.appendChild(info);
 
         const openCardPage = () => {
           if (isPromotion(card)) {
@@ -857,20 +809,68 @@
           }
         };
 
-        cardElement.addEventListener("click", openCardPage);
-
-        cardElement.addEventListener("keydown", event => {
+        imageWrap.addEventListener("click", openCardPage);
+        imageWrap.addEventListener("keydown", event => {
           if (event.key === "Enter" || event.key === " ") {
             event.preventDefault();
             openCardPage();
           }
         });
 
+        const info = document.createElement("div");
+        info.className = "trade-card-info";
+
+        appendText(info, "trade-card-id", card.id);
+        appendText(info, "trade-card-name", card.name || "名称未設定");
+
+        const meta = [card.brand, getRarity(card)].filter(Boolean).join(" · ");
+        if (meta) appendText(info, "trade-card-meta", meta);
+
+        appendText(info, "trade-card-meta", `所持 ${count} 枚`);
+
+        const badge = document.createElement("span");
+        badge.className = "trade-available";
+        badge.textContent = `交換可能 ${tradeCount} 枚`;
+        info.appendChild(badge);
+
+        const countControl = document.createElement("div");
+        countControl.className = "trade-count-control";
+
+        const minusButton = document.createElement("button");
+        minusButton.type = "button";
+        minusButton.className = "trade-count-button";
+        minusButton.textContent = "−";
+        minusButton.setAttribute("aria-label", "所持数を1枚減らす");
+        minusButton.disabled = count <= 0;
+
+        const countNumber = document.createElement("span");
+        countNumber.className = "trade-count-number";
+        countNumber.textContent = String(count);
+        countNumber.setAttribute("aria-live", "polite");
+
+        const plusButton = document.createElement("button");
+        plusButton.type = "button";
+        plusButton.className = "trade-count-button";
+        plusButton.textContent = "＋";
+        plusButton.setAttribute("aria-label", "所持数を1枚増やす");
+
+        // ボタン操作でカードページへの移動が起きないようにする
+        minusButton.addEventListener("click", event => {
+          event.stopPropagation();
+          setOwnedCount(card, Math.max(0, getOwnedCount(card) - 1));
+        });
+
+        plusButton.addEventListener("click", event => {
+          event.stopPropagation();
+          setOwnedCount(card, getOwnedCount(card) + 1);
+        });
+
+        countControl.append(minusButton, countNumber, plusButton);
+        cardElement.append(imageWrap, info, countControl);
         cardGrid.appendChild(cardElement);
       });
     }
 
-    /* ステータスボタン */
     document.querySelectorAll(".trade-status-button").forEach(button => {
       button.addEventListener("click", () => {
         currentStatus = button.dataset.status || "all";
@@ -883,23 +883,18 @@
       });
     });
 
-    /* フィルター変更 */
     searchInput.addEventListener("input", renderCards);
-
     filterElements.forEach(select => {
       select.addEventListener("change", renderCards);
     });
 
-    /* 条件をリセット */
     document.getElementById("resetFilters").addEventListener("click", () => {
       searchInput.value = "";
-
       filterElements.forEach(select => {
         select.value = "";
       });
 
       currentStatus = "all";
-
       document.querySelectorAll(".trade-status-button").forEach(button => {
         button.classList.toggle("active", button.dataset.status === "all");
       });
@@ -907,7 +902,7 @@
       renderCards();
     });
 
-    /* 所持数が別ページで変更された場合 */
+    // 他のタブで所持数が変わったときにも再読み込み
     window.addEventListener("storage", event => {
       if (
         event.key === null ||
@@ -920,41 +915,37 @@
       }
     });
 
-    /* Safariの戻る操作でも所持数を再読み込み */
+    // 戻る操作などでページが再表示されたら最新データを読み直す
     window.addEventListener("pageshow", () => {
       ownershipByKey = {};
-      updateSummary();
-      renderCards();
+      if (allCards.length) {
+        updateSummary();
+        renderCards();
+      }
     });
 
-    /* カード情報の読み込み */
     async function loadCards() {
       try {
         const response = await fetch("cards.json");
-
         if (!response.ok) {
           throw new Error("cards.jsonを読み込めませんでした");
         }
 
         const data = await response.json();
-
         allCards = Array.isArray(data)
           ? data
           : Array.isArray(data.cards)
             ? data.cards
             : [];
 
-        setupFilters();
         ownershipByKey = {};
+        setupFilters();
         updateSummary();
         renderCards();
-
       } catch (error) {
         console.error(error);
-
         loadingMessage.textContent =
-          "カード情報を読み込めませんでした。";
-
+          "カード情報を読み込めませんでした。cards.jsonの場所を確認してね。";
         loadingMessage.className = "trade-error";
         loadingMessage.style.display = "block";
       }
@@ -962,6 +953,5 @@
 
     loadCards();
   </script>
-
 </body>
 </html>
