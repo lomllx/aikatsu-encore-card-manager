@@ -1,963 +1,449 @@
 <!DOCTYPE html>
-
 <html lang="ja">
-
 <head>
-
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>カードコレクション</title>
-
   <link rel="stylesheet" href="style.css">
-
   <style>
-
     .back-to-top {
-
       position: fixed;
-
       right: 18px;
-
       bottom: 24px;
-
       z-index: 999;
-
       width: 46px;
-
       height: 46px;
-
       border: 1px solid rgba(255,255,255,0.85);
-
       border-radius: 50%;
-
       background: rgba(65,48,83,0.88);
-
       color: #fff;
-
       font-size: 25px;
-
       line-height: 1;
-
       box-shadow: 0 3px 12px rgba(40,20,55,0.2);
-
       cursor: pointer;
-
       opacity: 0;
-
       visibility: hidden;
-
       pointer-events: none;
-
       transition: opacity 0.25s, visibility 0.25s;
-
     }
-
     .back-to-top.visible {
-
       opacity: 1;
-
       visibility: visible;
-
       pointer-events: auto;
-
     }
-
   </style>
-
 </head>
-
 <body>
-
   <header class="header">
-
     <h1>✦ AIKATSU ENCORE ✦</h1>
-
     <p>♡ CARD COLLECTION ♡</p>
-
   </header>
-
   <main class="cards-page">
-
     <a href="index.html" class="back-link">‹ Collection</a>
-
     <section class="season-header">
-
       <h2 id="seasonTitle">第1弾</h2>
-
       <p id="collectionStatus">0 / 85</p>
-
       <div class="collection-progress" aria-label="コレクション進捗">
-
         <div class="collection-progress-bar" id="collectionProgressBar"></div>
-
       </div>
-
       <p class="collection-progress-text" id="collectionProgressText">0%</p>
-
     </section>
-
     <div class="search-box">
-
       <input type="search" id="searchInput" placeholder="カード番号・カード名を検索">
-
     </div>
-
     <div class="status-filters">
-
       <button class="status-button active" data-status="all">すべて</button>
-
       <button class="status-button" data-status="owned">所持</button>
-
       <button class="status-button" data-status="missing">未所持</button>
-
       <button class="status-button" data-status="trade">交換</button>
-
     </div>
-
     <div class="filters">
-
       <div class="filter-group">
-
         <label for="typeFilter">タイプ</label>
-
-        <select id="typeFilter">
-
-          <option value="">すべて</option>
-
-        </select>
-
+        <select id="typeFilter"><option value="">すべて</option></select>
       </div>
-
       <div class="filter-group">
-
         <label for="brandFilter">ブランド</label>
-
-        <select id="brandFilter">
-
-          <option value="">すべて</option>
-
-        </select>
-
+        <select id="brandFilter"><option value="">すべて</option></select>
       </div>
-
       <div class="filter-group">
-
         <label for="coordinateFilter">コーデ</label>
-
-        <select id="coordinateFilter">
-
-          <option value="">すべて</option>
-
-        </select>
-
+        <select id="coordinateFilter"><option value="">すべて</option></select>
       </div>
-
       <div class="filter-group">
-
         <label for="categoryFilter">カテゴリ</label>
-
-        <select id="categoryFilter">
-
-          <option value="">すべて</option>
-
-        </select>
-
+        <select id="categoryFilter"><option value="">すべて</option></select>
       </div>
-
       <div class="filter-group">
-
         <label for="parallelFilter">カード種類</label>
-
         <select id="parallelFilter">
-
           <option value="">すべて</option>
-
           <option value="normal">通常カード</option>
-
           <option value="parallel">パラレル</option>
-
         </select>
-
       </div>
-
       <div class="filter-group">
-
         <label for="rarityFilter">レアリティ</label>
-
-        <select id="rarityFilter">
-
-          <option value="">すべて</option>
-
-        </select>
-
+        <select id="rarityFilter"><option value="">すべて</option></select>
       </div>
-
     </div>
-
     <div id="loading" class="loading">カードを読み込み中…</div>
-
     <div id="cardGrid" class="card-grid"></div>
-
   </main>
-
   <button type="button" id="backToTop" class="back-to-top"
-
     aria-label="ページの一番上へ" title="一番上へ">↑</button>
-
-  <footer>
-
-    <p>♡ AIKATSU ENCORE ♡</p>
-
-  </footer>
-
+  <footer><p>♡ AIKATSU ENCORE ♡</p></footer>
   <script>
-
     const params = new URLSearchParams(location.search);
-
     const season = params.get("season") || "1";
-
     const storageKey = `aikatsu-encore-season-${season}`;
-
     let cards = [];
-
     let ownership = {};
-
     let currentStatus = "all";
-
     const seasonTitle = document.getElementById("seasonTitle");
-
     const collectionStatus = document.getElementById("collectionStatus");
-
     const collectionProgressBar = document.getElementById("collectionProgressBar");
-
     const collectionProgressText = document.getElementById("collectionProgressText");
-
     const searchInput = document.getElementById("searchInput");
-
     const cardGrid = document.getElementById("cardGrid");
-
     const loading = document.getElementById("loading");
-
     const typeFilter = document.getElementById("typeFilter");
-
     const brandFilter = document.getElementById("brandFilter");
-
     const coordinateFilter = document.getElementById("coordinateFilter");
-
     const categoryFilter = document.getElementById("categoryFilter");
-
     const parallelFilter = document.getElementById("parallelFilter");
-
     const rarityFilter = document.getElementById("rarityFilter");
-
     const backToTop = document.getElementById("backToTop");
-
     try {
-
       const savedOwnership = localStorage.getItem(storageKey);
-
       ownership = savedOwnership ? JSON.parse(savedOwnership) : {};
-
       if (!ownership || typeof ownership !== "object" || Array.isArray(ownership)) {
-
         ownership = {};
-
       }
-
     } catch (error) {
-
       console.error("所持数データを読み込めませんでした", error);
-
       ownership = {};
-
     }
-
     fetch("cards.json")
-
       .then(response => {
-
-        if (!response.ok) {
-
-          throw new Error("cards.jsonを読み込めませんでした");
-
-        }
-
+        if (!response.ok) throw new Error("cards.jsonを読み込めませんでした");
         return response.json();
-
       })
-
       .then(data => {
-
         const allCards = Array.isArray(data) ? data : data.cards || [];
-
         cards = allCards.filter(card =>
-
           (!card.collection ||
-
             String(card.collection).toLowerCase() !== "promotion") &&
-
           String(card.season || "") === String(season)
-
         );
-
         seasonTitle.textContent = `第${season}弾`;
-
         setupFilters();
-
         updateStatus();
-
         renderCards();
-
         loading.style.display = "none";
-
       })
-
       .catch(error => {
-
         console.error(error);
-
         loading.textContent = "カードを読み込めませんでした。cards.jsonの場所を確認してね。";
-
       });
-
-    /* フィルター項目 */
-
+    /* レアリティをカード番号から判定 */
+    function getRarity(card) {
+      if (card.rarity !== undefined && card.rarity !== null &&
+          String(card.rarity).trim() !== "") {
+        return String(card.rarity).trim().toUpperCase();
+      }
+      const id = String(card.id || "").trim();
+      const match = id.match(/_(SPR|PR|CP|R|N)$/i);
+      return match ? match[1].toUpperCase() : "";
+    }
+    function isParallelCard(card) {
+      return card.parallel === true ||
+        /(?:_PARALLEL|_PARA|_P)$/i.test(String(card.id || ""));
+    }
     function setupFilters() {
-
       fillFilter(typeFilter, "type");
-
       fillFilter(brandFilter, "brand");
-
       fillFilter(coordinateFilter, "coordinate");
-
-      fillFilter(rarityFilter, "rarity");
-
-      const categoryOrder = [
-
-        "トップス",
-
-        "ボトムス",
-
-        "シューズ",
-
-        "アクセサリー",
-
-        "トップス＆ボトムス",
-
-        "フルコーデ"
-
-      ];
-
-      const normalizeCategory = value => value.replace(/＆/g, "&");
-
-      const categories = [...new Set(
-
-        cards
-
-          .map(card => String(card.category || "").trim())
-
-          .filter(Boolean)
-
-      )];
-
-      categories.sort((a, b) => {
-
-        const ai = categoryOrder.findIndex(
-
-          item => normalizeCategory(item) === normalizeCategory(a)
-
-        );
-
-        const bi = categoryOrder.findIndex(
-
-          item => normalizeCategory(item) === normalizeCategory(b)
-
-        );
-
+      const rarityOrder = ["PR", "SPR", "CP", "R", "N"];
+      const rarities = [...new Set(cards.map(getRarity).filter(Boolean))];
+      rarities.sort((a, b) => {
+        const ai = rarityOrder.indexOf(a);
+        const bi = rarityOrder.indexOf(b);
         if (ai === -1 && bi === -1) return a.localeCompare(b, "ja");
-
         if (ai === -1) return 1;
-
         if (bi === -1) return -1;
-
         return ai - bi;
-
       });
-
-      categories.forEach(value => {
-
+      rarities.forEach(value => {
         const option = document.createElement("option");
-
         option.value = value;
-
-        option.textContent = value.replace(
-
-          "トップス&ボトムス",
-
-          "トップス＆ボトムス"
-
-        );
-
-        categoryFilter.appendChild(option);
-
-      });
-
-    }
-
-    function fillFilter(select, key) {
-
-      const values = [...new Set(
-
-        cards
-
-          .map(card => card[key])
-
-          .filter(value =>
-
-            value !== undefined &&
-
-            value !== null &&
-
-            String(value).trim() !== ""
-
-          )
-
-          .map(value => String(value).trim())
-
-      )].sort((a, b) => a.localeCompare(b, "ja"));
-
-      values.forEach(value => {
-
-        const option = document.createElement("option");
-
-        option.value = value;
-
         option.textContent = value;
-
+        rarityFilter.appendChild(option);
+      });
+      const categoryOrder = [
+        "トップス", "ボトムス", "シューズ", "アクセサリー",
+        "トップス＆ボトムス", "フルコーデ"
+      ];
+      const normalizeCategory = value => value.replace(/＆/g, "&");
+      const categories = [...new Set(
+        cards.map(card => String(card.category || "").trim()).filter(Boolean)
+      )];
+      categories.sort((a, b) => {
+        const ai = categoryOrder.findIndex(
+          item => normalizeCategory(item) === normalizeCategory(a)
+        );
+        const bi = categoryOrder.findIndex(
+          item => normalizeCategory(item) === normalizeCategory(b)
+        );
+        if (ai === -1 && bi === -1) return a.localeCompare(b, "ja");
+        if (ai === -1) return 1;
+        if (bi === -1) return -1;
+        return ai - bi;
+      });
+      categories.forEach(value => {
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = value.replace(
+          "トップス&ボトムス", "トップス＆ボトムス"
+        );
+        categoryFilter.appendChild(option);
+      });
+    }
+    function fillFilter(select, key) {
+      const values = [...new Set(
+        cards.map(card => card[key])
+          .filter(value => value !== undefined && value !== null &&
+            String(value).trim() !== "")
+          .map(value => String(value).trim())
+      )].sort((a, b) => a.localeCompare(b, "ja"));
+      values.forEach(value => {
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = value;
         select.appendChild(option);
-
       });
-
     }
-
-    /* 所持数 */
-
     function getCount(card) {
-
       return Math.max(0, Number(ownership[card.id]) || 0);
-
     }
-
     function setCount(card, count) {
-
-      if (count <= 0) {
-
-        delete ownership[card.id];
-
-      } else {
-
-        ownership[card.id] = count;
-
-      }
-
+      if (count <= 0) delete ownership[card.id];
+      else ownership[card.id] = count;
       try {
-
         localStorage.setItem(storageKey, JSON.stringify(ownership));
-
       } catch (error) {
-
         console.error("所持数を保存できませんでした", error);
-
         alert("所持数を保存できなかったよ。ブラウザの保存設定を確認してね。");
-
         return;
-
       }
-
       updateStatus();
-
       renderCards();
-
     }
-
-    /* コレクション進捗 */
-
     function updateStatus() {
-
       const total = cards.length;
-
       const owned = cards.filter(card => getCount(card) >= 1).length;
-
       collectionStatus.textContent = `${owned} / ${total}`;
-
-      const percentage = total > 0
-
-        ? Math.round((owned / total) * 100)
-
-        : 0;
-
+      const percentage = total > 0 ? Math.round((owned / total) * 100) : 0;
       collectionProgressText.textContent = `${percentage}%`;
-
       collectionProgressBar.style.width = `${percentage}%`;
-
     }
-
-    /* フィルター適用 */
-
     function getFilteredCards() {
-
       const keyword = searchInput.value.toLowerCase().trim();
-
       const type = typeFilter.value;
-
       const brand = brandFilter.value;
-
       const coordinate = coordinateFilter.value;
-
       const category = categoryFilter.value;
-
       const parallel = parallelFilter.value;
-
       const rarity = rarityFilter.value;
-
       return cards.filter(card => {
-
-        const searchableText = [
-
-          card.id,
-
-          card.name,
-
-          card.unit
-
-        ].filter(Boolean).join(" ").toLowerCase();
-
+        const searchableText = [card.id, card.name, card.unit]
+          .filter(Boolean).join(" ").toLowerCase();
         const count = getCount(card);
-
         if (keyword && !searchableText.includes(keyword)) return false;
-
         if (type && String(card.type || "").trim() !== type) return false;
-
         if (brand && String(card.brand || "").trim() !== brand) return false;
-
-        if (
-
-          coordinate &&
-
-          String(card.coordinate || "").trim() !== coordinate
-
-        ) return false;
-
-        const cardCategory = String(card.category || "")
-
-          .trim()
-
+        if (coordinate && String(card.coordinate || "").trim() !== coordinate) return false;
+        const cardCategory = String(card.category || "").trim()
           .replace("トップス&ボトムス", "トップス＆ボトムス");
-
         if (category && cardCategory !== category) return false;
-
-        if (
-
-          rarity &&
-
-          String(card.rarity || "").trim() !== rarity
-
-        ) return false;
-
-        const isParallel =
-
-          card.parallel === true ||
-
-          String(card.id || "").includes("_PARALLEL");
-
-        if (parallel === "parallel" && !isParallel) return false;
-
-        if (parallel === "normal" && isParallel) return false;
-
+        if (rarity && getRarity(card) !== rarity) return false;
+        const parallelCard = isParallelCard(card);
+        if (parallel === "parallel" && !parallelCard) return false;
+        if (parallel === "normal" && parallelCard) return false;
         if (currentStatus === "owned" && count < 1) return false;
-
         if (currentStatus === "missing" && count >= 1) return false;
-
         if (currentStatus === "trade" && count < 2) return false;
-
         return true;
-
       });
-
     }
-
-    /* カード一覧 */
-
     function renderCards() {
-
       cardGrid.innerHTML = "";
-
       const filtered = getFilteredCards();
-
       if (filtered.length === 0) {
-
-        cardGrid.innerHTML =
-
-          '<p class="no-results">該当するカードがありません。</p>';
-
+        cardGrid.innerHTML = '<p class="no-results">該当するカードがありません。</p>';
         return;
-
       }
-
       filtered.forEach(card => {
-
         const count = getCount(card);
-
+        const rarity = getRarity(card);
         const cardElement = document.createElement("article");
-
         cardElement.className = "card";
-
         cardElement.innerHTML = `
-
           <div class="card-image">
-
-            <img src="${card.image || ""}"
-
+            <img src="${escapeHTML(card.image || "")}"
               alt="${escapeHTML(card.name || card.id || "")}"
-
               onerror="this.style.display='none'">
-
           </div>
-
           <div class="card-info">
-
             <div class="card-id">${escapeHTML(card.id || "")}</div>
-
             <div class="card-name">${escapeHTML(card.name || "")}</div>
-
             <div class="card-meta">${escapeHTML(card.brand || "")}</div>
-
-            ${card.rarity
-
-              ? `<div class="card-meta">レアリティ：${escapeHTML(card.rarity)}</div>`
-
-              : ""}
-
-            ${count >= 2
-
-              ? '<div class="trade-label">♡ 交換可能</div>'
-
-              : ""}
-
+            ${rarity ? `<div class="card-meta">レアリティ：${escapeHTML(rarity)}</div>` : ""}
+            ${count >= 2 ? '<div class="trade-label">♡ 交換可能</div>' : ""}
           </div>
-
           <div class="count-control">
-
             <button type="button" class="count-button minus" aria-label="所持数を減らす">−</button>
-
             <span class="count">${count}</span>
-
             <button type="button" class="count-button plus" aria-label="所持数を増やす">＋</button>
-
           </div>
-
         `;
-
         cardElement.querySelector(".minus").addEventListener("click", event => {
-
           event.stopPropagation();
-
           setCount(card, Math.max(0, count - 1));
-
         });
-
         cardElement.querySelector(".plus").addEventListener("click", event => {
-
           event.stopPropagation();
-
           setCount(card, count + 1);
-
         });
-
         cardElement.addEventListener("click", () => openCardModal(card));
-
         cardGrid.appendChild(cardElement);
-
       });
-
     }
-
-    /* HTMLに表示する文字を安全に変換 */
-
     function escapeHTML(value) {
-
       return String(value).replace(/[&<>"']/g, character => ({
-
-        "&": "&amp;",
-
-        "<": "&lt;",
-
-        ">": "&gt;",
-
-        '"': "&quot;",
-
-        "'": "&#39;"
-
+        "&": "&amp;", "<": "&lt;", ">": "&gt;",
+        '"': "&quot;", "'": "&#39;"
       })[character]);
-
     }
-
-    /* カード表裏モーダル */
-
     function openCardModal(card) {
-
       const modal = document.createElement("div");
-
       modal.className = "card-modal";
-
       const content = document.createElement("div");
-
       content.className = "card-modal-content";
-
       content.innerHTML = `
-
         <button type="button" class="card-modal-close" aria-label="閉じる">×</button>
-
         <div class="modal-card-area">
-
           <button type="button" class="card-side-arrow left" aria-label="表裏を切り替え">‹</button>
-
           <img class="modal-card-image" alt="">
-
           <button type="button" class="card-side-arrow right" aria-label="表裏を切り替え">›</button>
-
         </div>
-
         <div class="card-side-buttons">
-
           <button type="button" class="card-side-button active" data-side="front">表</button>
-
           <button type="button" class="card-side-button" data-side="back">裏</button>
-
         </div>
-
       `;
-
       modal.appendChild(content);
-
       document.body.appendChild(modal);
-
       const image = content.querySelector(".modal-card-image");
-
       const frontButton = content.querySelector('[data-side="front"]');
-
       const backButton = content.querySelector('[data-side="back"]');
-
       const leftArrow = content.querySelector(".card-side-arrow.left");
-
       const rightArrow = content.querySelector(".card-side-arrow.right");
-
+      let currentSide = "front";
       function showSide(side) {
-
         if (side === "back" && card.backImage) {
-
+          currentSide = "back";
           image.src = card.backImage;
-
           image.alt = `${card.name || card.id} 裏面`;
-
           frontButton.classList.remove("active");
-
           backButton.classList.add("active");
-
         } else {
-
+          currentSide = "front";
           image.src = card.image || "";
-
           image.alt = card.name || card.id || "";
-
           frontButton.classList.add("active");
-
           backButton.classList.remove("active");
-
         }
-
       }
-
       showSide("front");
-
       frontButton.addEventListener("click", event => {
-
         event.stopPropagation();
-
         showSide("front");
-
       });
-
       backButton.addEventListener("click", event => {
-
         event.stopPropagation();
-
-        if (card.backImage) {
-
-          showSide("back");
-
-        }
-
+        if (card.backImage) showSide("back");
       });
-
       function toggleSide() {
-
-        if (!card.backImage) return;
-
-        const isBack = image.src.endsWith(card.backImage);
-
-        showSide(isBack ? "front" : "back");
-
+        if (card.backImage) showSide(currentSide === "back" ? "front" : "back");
       }
-
       leftArrow.addEventListener("click", event => {
-
         event.stopPropagation();
-
         toggleSide();
-
       });
-
       rightArrow.addEventListener("click", event => {
-
         event.stopPropagation();
-
         toggleSide();
-
       });
-
       const cardArea = content.querySelector(".modal-card-area");
-
       cardArea.addEventListener("click", event => {
-
         if (event.target.classList.contains("card-side-arrow")) return;
-
         const rect = cardArea.getBoundingClientRect();
-
         const tapX = event.clientX - rect.left;
-
-        if (tapX < rect.width / 2) {
-
-          showSide("front");
-
-        } else if (card.backImage) {
-
-          showSide("back");
-
-        }
-
+        if (tapX < rect.width / 2) showSide("front");
+        else if (card.backImage) showSide("back");
       });
-
       let touchStartX = 0;
-
       cardArea.addEventListener("touchstart", event => {
-
         touchStartX = event.changedTouches[0].screenX;
-
       }, { passive: true });
-
       cardArea.addEventListener("touchend", event => {
-
         const distance = event.changedTouches[0].screenX - touchStartX;
-
         if (Math.abs(distance) < 50 || !card.backImage) return;
-
         showSide(distance < 0 ? "back" : "front");
-
       }, { passive: true });
-
-      content.querySelector(".card-modal-close").addEventListener("click", () => {
-
+      function closeModal() {
         modal.remove();
-
-      });
-
+        document.removeEventListener("keydown", closeOnEscape);
+      }
+      content.querySelector(".card-modal-close").addEventListener("click", closeModal);
       modal.addEventListener("click", event => {
-
-        if (event.target === modal) modal.remove();
-
+        if (event.target === modal) closeModal();
       });
-
+      function closeOnEscape(event) {
+        if (event.key === "Escape") closeModal();
+      }
+      document.addEventListener("keydown", closeOnEscape);
     }
-
-    /* イベント */
-
     searchInput.addEventListener("input", renderCards);
-
     [
-
-      typeFilter,
-
-      brandFilter,
-
-      coordinateFilter,
-
-      categoryFilter,
-
-      parallelFilter,
-
-      rarityFilter
-
-    ].forEach(select => {
-
-      select.addEventListener("change", renderCards);
-
-    });
-
+      typeFilter, brandFilter, coordinateFilter,
+      categoryFilter, parallelFilter, rarityFilter
+    ].forEach(select => select.addEventListener("change", renderCards));
     document.querySelectorAll(".status-button").forEach(button => {
-
       button.addEventListener("click", () => {
-
         document.querySelectorAll(".status-button").forEach(item => {
-
           item.classList.remove("active");
-
         });
-
         button.classList.add("active");
-
         currentStatus = button.dataset.status;
-
         renderCards();
-
       });
-
     });
-
-    /* 検索欄が画面外に出たら一番上へ戻るボタンを表示 */
-
     const searchArea = document.querySelector(".search-box");
-
-    const searchObserver = new IntersectionObserver(entries => {
-
-      backToTop.classList.toggle(
-
-        "visible",
-
-        !entries[0].isIntersecting
-
-      );
-
-    }, { threshold: 0 });
-
-    searchObserver.observe(searchArea);
-
-    backToTop.addEventListener("click", () => {
-
-      window.scrollTo({
-
-        top: 0,
-
-        behavior: "smooth"
-
+    if ("IntersectionObserver" in window) {
+      const searchObserver = new IntersectionObserver(entries => {
+        backToTop.classList.toggle("visible", !entries[0].isIntersecting);
+      }, { threshold: 0 });
+      searchObserver.observe(searchArea);
+    } else {
+      window.addEventListener("scroll", () => {
+        backToTop.classList.toggle("visible", window.scrollY > 200);
       });
-
+    }
+    backToTop.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
-
   </script>
-
 </body>
-
 </html>
