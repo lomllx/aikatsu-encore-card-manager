@@ -7,25 +7,84 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    .collection-summary,
-    .profile-summary {
+    /* ゴスマジック風・共通デザイン */
+    .profile-summary,
+    .collection-summary {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
       margin: 18px 0;
       padding: 18px;
-      border: 1px solid #eaddea;
-      border-radius: 16px;
-      background: #fff8fc;
-      color: #765b79;
+      border: 1px solid rgba(193, 166, 239, 0.38);
+      border-radius: 18px;
+      background:
+        radial-gradient(ellipse at 10% 0%, rgba(119, 83, 166, 0.24), transparent 48%),
+        radial-gradient(ellipse at 100% 100%, rgba(95, 125, 191, 0.15), transparent 45%),
+        linear-gradient(145deg, rgba(31, 24, 45, 0.97), rgba(13, 15, 29, 0.97));
+      color: #f4efff;
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.09),
+        0 8px 24px rgba(4, 3, 15, 0.16);
+    }
+
+    .profile-summary::before,
+    .collection-summary::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background: linear-gradient(
+        125deg,
+        transparent 10%,
+        rgba(255, 255, 255, 0.045) 35%,
+        transparent 55%
+      );
     }
 
     .collection-summary-title {
-      margin: 0 0 14px;
+      margin: 0 0 15px;
       font-size: 1rem;
       font-weight: bold;
+      letter-spacing: 0.08em;
       text-align: center;
+      color: #eee0ff;
+      text-shadow: 0 0 12px rgba(191, 154, 255, 0.32);
     }
 
-    .collection-summary-stats,
-    .profile-info {
+    /* プロフィール画像 */
+    .profile-image-frame {
+      position: relative;
+      width: 100%;
+      max-width: 290px;
+      margin: 0 auto 17px;
+      padding: 5px;
+      overflow: hidden;
+      border: 1px solid rgba(207, 183, 255, 0.68);
+      border-radius: 15px;
+      background: linear-gradient(
+        135deg,
+        rgba(231, 211, 255, 0.3),
+        rgba(115, 88, 159, 0.1),
+        rgba(165, 214, 255, 0.2)
+      );
+      box-shadow:
+        0 0 18px rgba(154, 115, 219, 0.15),
+        inset 0 0 12px rgba(255, 255, 255, 0.08);
+    }
+
+    .profile-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 360px;
+      object-fit: contain;
+      margin: 0 auto;
+      border-radius: 10px;
+    }
+
+    .profile-info,
+    .collection-summary-stats {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
@@ -34,83 +93,103 @@
     .collection-summary-item {
       min-width: 0;
       padding: 12px 8px;
+      border: 1px solid rgba(197, 177, 241, 0.19);
       border-radius: 12px;
-      background: #ffffff;
+      background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.075),
+        rgba(180, 157, 230, 0.035)
+      );
       text-align: center;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045);
     }
 
     .collection-summary-label {
       display: block;
       margin-bottom: 6px;
       font-size: 0.78rem;
+      color: #c9bddf;
     }
 
     .collection-summary-value {
       display: block;
       overflow-wrap: anywhere;
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       font-weight: bold;
+      color: #fffaff;
+      text-shadow: 0 0 10px rgba(197, 166, 255, 0.18);
     }
 
-    .collection-summary-note {
-      margin: 12px 0 0;
-      font-size: 0.75rem;
-      line-height: 1.6;
+    .profile-official-link {
+      margin: 15px 0 0;
       text-align: center;
-      color: #8d778f;
     }
 
-    .collection-summary-bar {
-      height: 10px;
-      margin-top: 14px;
-      overflow: hidden;
+    .profile-official-link a {
+      display: inline-block;
+      padding: 9px 15px;
+      border: 1px solid rgba(190, 167, 238, 0.36);
       border-radius: 999px;
-      background: #eadfea;
+      background: rgba(163, 131, 217, 0.09);
+      color: #e3d4ff;
+      font-size: 0.83rem;
+      text-decoration: none;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .profile-official-link a:hover {
+      background: rgba(163, 131, 217, 0.18);
+      border-color: rgba(214, 194, 255, 0.65);
+    }
+
+    /* コレクション進捗 */
+    .collection-summary-bar {
+      height: 12px;
+      margin-top: 16px;
+      padding: 2px;
+      overflow: hidden;
+      border: 1px solid rgba(190, 168, 235, 0.25);
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.28);
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.35);
     }
 
     .collection-summary-bar-fill {
       width: 0%;
       height: 100%;
       border-radius: inherit;
-      background: #b79db9;
-      transition: width 0.25s ease;
+      background: linear-gradient(
+        90deg,
+        #7760ad,
+        #b9a1f1 48%,
+        #c7e7ff
+      );
+      box-shadow: 0 0 10px rgba(174, 148, 255, 0.55);
+      transition: width 0.35s ease;
     }
 
     .collection-summary-status {
-      margin: 8px 0 0;
-      font-size: 0.78rem;
+      margin: 9px 0 0;
+      font-size: 0.8rem;
       text-align: right;
-      color: #8d778f;
-    }
-
-    .profile-image {
-      display: block;
-      width: 100%;
-      max-width: 100%;
-      height: auto;
-      max-height: 360px;
-      object-fit: contain;
-      margin: 0 auto 14px;
-      border-radius: 12px;
-    }
-
-    .profile-official-link {
-      margin: 12px 0 0;
-      text-align: center;
-    }
-
-    .profile-official-link a {
-      color: #8d6b91;
+      color: #d4c6ed;
     }
 
     @media (max-width: 360px) {
-      .collection-summary,
-      .profile-summary {
+      .profile-summary,
+      .collection-summary {
         padding: 14px;
       }
 
       .collection-summary-value {
-        font-size: 1.1rem;
+        font-size: 1.05rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .collection-summary-bar-fill,
+      .profile-official-link a {
+        transition: none;
       }
     }
   </style>
@@ -124,63 +203,17 @@
 
   <main class="home">
 
-    <!-- 登録カード・カード代・進捗 -->
-    <section class="collection-summary" aria-label="登録カードの集計">
-      <h2 class="collection-summary-title">
-        ♡ My Collection Summary ♡
-      </h2>
-
-      <div class="collection-summary-stats">
-        <div class="collection-summary-item">
-          <span class="collection-summary-label">登録カード枚数</span>
-          <strong class="collection-summary-value" id="registeredCardCount">
-            0 枚
-          </strong>
-        </div>
-
-        <div class="collection-summary-item">
-          <span class="collection-summary-label">カード代の合計</span>
-          <strong class="collection-summary-value" id="registeredCardCost">
-            ¥0
-          </strong>
-        </div>
-      </div>
-
-      <div
-        class="collection-summary-bar"
-        role="progressbar"
-        aria-label="公開カード種類数に対する所持進捗"
-        aria-valuemin="0"
-        aria-valuemax="0"
-        aria-valuenow="0"
-        id="registeredCardProgress"
-      >
-        <div
-          class="collection-summary-bar-fill"
-          id="registeredCardProgressFill"
-        ></div>
-      </div>
-
-      <p class="collection-summary-status" id="registeredCardProgressText">
-        0 / 0 種
-      </p>
-
-      <p class="collection-summary-note">
-        登録カード1枚を100円として計算しています。<br>
-        進捗は重複を除いた所持カード種類数 ÷ 公開中の全カード種類数です。<br>
-        プロモーションカードも進捗に含みます。
-      </p>
-    </section>
-
-    <!-- マイプロフィール -->
+    <!-- ① マイプロフィール -->
     <section class="profile-summary" aria-label="マイプロフィール">
-      <h2 class="collection-summary-title">♡ My Profile ♡</h2>
+      <h2 class="collection-summary-title">✦ My Profile ✦</h2>
 
-      <img
-        src="profile.jpg"
-        alt="マイプロフィール画像"
-        class="profile-image"
-      >
+      <div class="profile-image-frame">
+        <img
+          src="profile.jpg"
+          alt="マイプロフィール画像"
+          class="profile-image"
+        >
+      </div>
 
       <div class="profile-info">
         <div class="collection-summary-item">
@@ -196,11 +229,6 @@
         </div>
       </div>
 
-      <p class="collection-summary-note">
-        プロフィールは手動で表示しています。<br>
-        公式サイトの情報とは自動同期されません。
-      </p>
-
       <p class="profile-official-link">
         <a
           href="https://dcd.aikatsu.com/encore/mypage/profiles"
@@ -210,12 +238,55 @@
       </p>
     </section>
 
+    <!-- ② 登録カード枚数 -->
+    <section class="collection-summary" aria-label="カードコレクション">
+      <h2 class="collection-summary-title">✦ My Collection ✦</h2>
+
+      <div class="collection-summary-stats">
+        <div class="collection-summary-item">
+          <span class="collection-summary-label">登録カード枚数</span>
+          <strong class="collection-summary-value" id="registeredCardCount">
+            0 枚
+          </strong>
+        </div>
+
+        <div class="collection-summary-item">
+          <span class="collection-summary-label">所持カード種類数</span>
+          <strong class="collection-summary-value" id="registeredCardKinds">
+            0 種
+          </strong>
+        </div>
+      </div>
+
+      <!-- ③ 全カードに対するコレクション進捗 -->
+      <div
+        class="collection-summary-bar"
+        id="registeredCardProgress"
+        role="progressbar"
+        aria-label="公開カード種類数に対する所持進捗"
+        aria-valuemin="0"
+        aria-valuemax="0"
+        aria-valuenow="0"
+      >
+        <div
+          class="collection-summary-bar-fill"
+          id="registeredCardProgressFill"
+        ></div>
+      </div>
+
+      <p class="collection-summary-status" id="registeredCardProgressText">
+        0 / 0 種
+      </p>
+    </section>
+
     <!-- Collection -->
     <section class="menu-section">
       <button
         type="button"
         class="section-title"
         id="collectionToggle"
+        aria-expanded="true"
+        aria-controls="collectionList"
       >
         ♡ Collection
         <span id="collectionArrow">▼</span>
@@ -269,41 +340,27 @@
   </footer>
 
   <script>
-    const collectionToggle =
-      document.getElementById("collectionToggle");
-
-    const collectionList =
-      document.getElementById("collectionList");
-
-    const collectionArrow =
-      document.getElementById("collectionArrow");
-
-    const seasonLinks =
-      document.getElementById("seasonLinks");
-
-    const promotionCount =
-      document.getElementById("promotionCount");
+    const collectionToggle = document.getElementById("collectionToggle");
+    const collectionList = document.getElementById("collectionList");
+    const collectionArrow = document.getElementById("collectionArrow");
+    const seasonLinks = document.getElementById("seasonLinks");
+    const promotionCount = document.getElementById("promotionCount");
 
     let allCards = [];
 
     /* Collection 開閉 */
     collectionToggle.addEventListener("click", () => {
-      const isOpen = collectionList.style.display !== "none";
+      const isOpen = collectionToggle.getAttribute("aria-expanded") === "true";
 
-      if (isOpen) {
-        collectionList.style.display = "none";
-        collectionArrow.textContent = "▶";
-      } else {
-        collectionList.style.display = "block";
-        collectionArrow.textContent = "▼";
-      }
+      collectionToggle.setAttribute("aria-expanded", String(!isOpen));
+      collectionList.style.display = isOpen ? "none" : "block";
+      collectionArrow.textContent = isOpen ? "▶" : "▼";
     });
 
     /* 保存データを安全に読み込む */
     function readOwnership(storageKey) {
       try {
         const saved = localStorage.getItem(storageKey);
-
         if (!saved) return {};
 
         const parsed = JSON.parse(saved);
@@ -313,42 +370,44 @@
           typeof parsed === "object" &&
           !Array.isArray(parsed)
         ) ? parsed : {};
-
       } catch (error) {
-        console.warn(
-          `${storageKey} のデータを読み込めませんでした`,
-          error
-        );
-
+        console.warn(`${storageKey} のデータを読み込めませんでした`, error);
         return {};
       }
     }
 
     /* プロモーションカードか判定 */
     function isPromotion(card) {
-      return (
-        String(card.collection || "").toLowerCase() === "promotion"
-      );
+      return String(card.collection || "").toLowerCase() === "promotion";
     }
 
-    /* カードごとの保存キーを取得 */
+    /* カードごとの保存キー */
     function getStorageKey(card) {
       if (isPromotion(card)) {
         return "aikatsu-encore-promotion";
       }
 
       const season = String(card.season || "1");
-
       return `aikatsu-encore-season-${season}`;
     }
 
-    /* 登録枚数・カード代・進捗を更新 */
+    /* 所持枚数を安全に整数化 */
+    function getCopies(ownership, id) {
+      const count = Number(ownership[id] || 0);
+
+      if (!Number.isFinite(count) || count <= 0) {
+        return 0;
+      }
+
+      return Math.floor(count);
+    }
+
+    /* 登録枚数・所持種類数・進捗を更新 */
     function updateCollectionSummary(cards) {
       let totalCopies = 0;
 
       const ownedIds = new Set();
       const allIds = new Set();
-
       const ownershipByKey = {};
 
       cards.forEach(card => {
@@ -357,32 +416,28 @@
         }
 
         const id = String(card.id);
-        allIds.add(id);
-
         const storageKey = getStorageKey(card);
+
+        /*
+         * 弾ごと・プロモごとのIDを区別して集計する。
+         * 同じカードの重複所持は枚数に加算するが、
+         * 種類数には1回だけ加算する。
+         */
+        const uniqueKey = `${storageKey}:${id}`;
+        allIds.add(uniqueKey);
 
         if (!ownershipByKey[storageKey]) {
           ownershipByKey[storageKey] = readOwnership(storageKey);
         }
 
         const ownership = ownershipByKey[storageKey];
-        const count = Number(ownership[id] || 0);
+        const copies = getCopies(ownership, id);
 
-        if (Number.isFinite(count) && count > 0) {
-          const copies = Math.floor(count);
-
+        if (copies > 0) {
           totalCopies += copies;
-          ownedIds.add(id);
+          ownedIds.add(uniqueKey);
         }
       });
-
-      const totalCost = totalCopies * 100;
-
-      document.getElementById("registeredCardCount").textContent =
-        `${totalCopies.toLocaleString("ja-JP")} 枚`;
-
-      document.getElementById("registeredCardCost").textContent =
-        `¥${totalCost.toLocaleString("ja-JP")}`;
 
       const totalKinds = allIds.size;
       const ownedKinds = ownedIds.size;
@@ -391,12 +446,16 @@
         ? Math.min((ownedKinds / totalKinds) * 100, 100)
         : 0;
 
+      document.getElementById("registeredCardCount").textContent =
+        `${totalCopies.toLocaleString("ja-JP")} 枚`;
+
+      document.getElementById("registeredCardKinds").textContent =
+        `${ownedKinds.toLocaleString("ja-JP")} 種`;
+
       document.getElementById("registeredCardProgressFill").style.width =
         `${progress}%`;
 
-      const progressBar =
-        document.getElementById("registeredCardProgress");
-
+      const progressBar = document.getElementById("registeredCardProgress");
       progressBar.setAttribute("aria-valuemax", String(totalKinds));
       progressBar.setAttribute("aria-valuenow", String(ownedKinds));
 
@@ -428,10 +487,7 @@
       } catch (error) {
         console.error(error);
 
-        seasonLinks.innerHTML = `
-          <p>カード情報を読み込めませんでした。</p>
-        `;
-
+        seasonLinks.textContent = "カード情報を読み込めませんでした。";
         promotionCount.textContent = "›";
 
         document.getElementById("registeredCardProgressText").textContent =
@@ -444,9 +500,7 @@
       const normalCards = cards.filter(card => !isPromotion(card));
 
       const seasons = [
-        ...new Set(
-          normalCards.map(card => String(card.season || "1"))
-        )
+        ...new Set(normalCards.map(card => String(card.season || "1")))
       ].sort((a, b) => Number(a) - Number(b));
 
       seasonLinks.innerHTML = "";
@@ -461,11 +515,10 @@
         );
 
         const owned = seasonCards.filter(
-          card => Number(ownership[card.id] || 0) >= 1
+          card => getCopies(ownership, String(card.id)) >= 1
         ).length;
 
         const link = document.createElement("a");
-
         link.href = `cards.html?season=${encodeURIComponent(season)}`;
         link.className = "season-link";
 
@@ -477,7 +530,6 @@
 
         link.appendChild(label);
         link.appendChild(count);
-
         seasonLinks.appendChild(link);
       });
     }
@@ -488,7 +540,7 @@
       const ownership = readOwnership("aikatsu-encore-promotion");
 
       const owned = promotionCards.filter(
-        card => Number(ownership[card.id] || 0) >= 1
+        card => getCopies(ownership, String(card.id)) >= 1
       ).length;
 
       promotionCount.textContent = promotionCards.length > 0
@@ -496,7 +548,7 @@
         : "›";
     }
 
-    /* ページ表示時に更新 */
+    /* 他ページから戻ったときなどに再集計 */
     function refreshHome() {
       updateCollectionSummary(allCards);
       createSeasonLinks(allCards);
