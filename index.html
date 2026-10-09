@@ -5,22 +5,138 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>アイカツアンコール ♡ カードコレクション</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* 登録カード・カード代バー */
+    .collection-summary {
+      margin: 18px 0;
+      padding: 18px;
+      border: 1px solid #eaddea;
+      border-radius: 16px;
+      background: #fff8fc;
+      color: #765b79;
+    }
+    .collection-summary-title {
+      margin: 0 0 14px;
+      font-size: 1rem;
+      font-weight: bold;
+      text-align: center;
+    }
+    .collection-summary-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .collection-summary-item {
+      min-width: 0;
+      padding: 12px 8px;
+      border-radius: 12px;
+      background: #ffffff;
+      text-align: center;
+    }
+    .collection-summary-label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.78rem;
+    }
+    .collection-summary-value {
+      display: block;
+      overflow-wrap: anywhere;
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+    .collection-summary-note {
+      margin: 12px 0 0;
+      font-size: 0.75rem;
+      line-height: 1.6;
+      text-align: center;
+      color: #8d778f;
+    }
+    .collection-summary-bar {
+      height: 10px;
+      margin-top: 14px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #eadfea;
+    }
+    .collection-summary-bar-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: #b79db9;
+      transition: width 0.25s ease;
+    }
+    .collection-summary-status {
+      margin: 8px 0 0;
+      font-size: 0.78rem;
+      text-align: right;
+      color: #8d778f;
+    }
+    @media (max-width: 360px) {
+      .collection-summary {
+        padding: 14px;
+      }
+      .collection-summary-value {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
 </head>
-
 <body>
-
   <header class="header">
     <h1>✦ AIKATSU ENCORE ✦</h1>
     <p>♡ CARD COLLECTION ♡</p>
   </header>
-
-
   <main class="home">
-
+    <!-- 登録カード・カード代の合計 -->
+    <section class="collection-summary" aria-label="登録カードの集計">
+      <h2 class="collection-summary-title">
+        ♡ My Collection Summary ♡
+      </h2>
+      <div class="collection-summary-stats">
+        <div class="collection-summary-item">
+          <span class="collection-summary-label">
+            登録カード枚数
+          </span>
+          <strong
+            class="collection-summary-value"
+            id="registeredCardCount"
+          >0 枚</strong>
+        </div>
+        <div class="collection-summary-item">
+          <span class="collection-summary-label">
+            カード代の合計
+          </span>
+          <strong
+            class="collection-summary-value"
+            id="registeredCardCost"
+          >¥0</strong>
+        </div>
+      </div>
+      <div
+        class="collection-summary-bar"
+        role="progressbar"
+        aria-label="1000枚までの登録枚数"
+        aria-valuemin="0"
+        aria-valuemax="1000"
+        aria-valuenow="0"
+        id="registeredCardProgress"
+      >
+        <div
+          class="collection-summary-bar-fill"
+          id="registeredCardProgressFill"
+        ></div>
+      </div>
+      <p
+        class="collection-summary-status"
+        id="registeredCardProgressText"
+      >0 / 1,000 枚</p>
+      <p class="collection-summary-note">
+        登録しているカード1枚を100円として計算しています。<br>
+        実際に使った金額ではなく、現在の登録枚数からの計算です。
+      </p>
+    </section>
     <!-- Collection -->
-
     <section class="menu-section">
-
       <button
         class="section-title"
         id="collectionToggle"
@@ -28,15 +144,11 @@
         ♡ Collection
         <span id="collectionArrow">▼</span>
       </button>
-
-
       <div
         id="collectionList"
         class="collection-list"
       >
-
         <!-- 全体コレクション -->
-
         <a
           href="all-cards.html"
           class="season-link"
@@ -44,15 +156,9 @@
           <span>♡ 全体コレクション</span>
           <span>›</span>
         </a>
-
-
         <!-- 各弾 -->
-
         <div id="seasonLinks"></div>
-
-
         <!-- プロモーション -->
-
         <a
           href="promotion.html"
           class="season-link promotion-link"
@@ -61,353 +167,270 @@
           <span>♡ プロモーションカード</span>
           <span id="promotionCount">›</span>
         </a>
-
       </div>
-
     </section>
-
-
     <!-- Trade -->
-
     <section class="menu-section">
-
       <a
         href="trade.html"
         class="menu-link"
       >
-
         <span>
           <strong>♡ Trade</strong>
           <small>交換可能カード</small>
         </span>
-
         <span>›</span>
-
       </a>
-
     </section>
-
-
     <!-- My Character -->
-
     <section class="menu-section">
-
       <a
         href="character.html"
         class="menu-link"
       >
-
         <span>
           <strong>♡ My Character</strong>
           <small>マイキャラ</small>
         </span>
-
         <span>›</span>
-
       </a>
-
     </section>
-
-
     <!-- Information -->
-
     <section class="menu-section">
-
       <a
         href="information.html"
         class="menu-link"
       >
-
         <span>
           <strong>♡ Information</strong>
           <small>アイカツ情報</small>
         </span>
-
         <span>›</span>
-
       </a>
-
     </section>
-
   </main>
-
-
   <footer>
     <p>♡ AIKATSU ENCORE ♡</p>
   </footer>
-
-
   <script>
-
     const collectionToggle =
-      document.getElementById(
-        "collectionToggle"
-      );
-
+      document.getElementById("collectionToggle");
     const collectionList =
-      document.getElementById(
-        "collectionList"
-      );
-
+      document.getElementById("collectionList");
     const collectionArrow =
-      document.getElementById(
-        "collectionArrow"
-      );
-
+      document.getElementById("collectionArrow");
     const seasonLinks =
-      document.getElementById(
-        "seasonLinks"
-      );
-
+      document.getElementById("seasonLinks");
     const promotionCount =
-      document.getElementById(
-        "promotionCount"
-      );
-
-
+      document.getElementById("promotionCount");
     /* =========================
        Collection 開閉
     ========================= */
-
-    collectionToggle.addEventListener(
-      "click",
-      () => {
-
-        const isOpen =
-          collectionList.style.display !== "none";
-
-
-        if (isOpen) {
-
-          collectionList.style.display =
-            "none";
-
-          collectionArrow.textContent =
-            "▶";
-
-        } else {
-
-          collectionList.style.display =
-            "block";
-
-          collectionArrow.textContent =
-            "▼";
-
-        }
-
+    collectionToggle.addEventListener("click", () => {
+      const isOpen =
+        collectionList.style.display !== "none";
+      if (isOpen) {
+        collectionList.style.display = "none";
+        collectionArrow.textContent = "▶";
+      } else {
+        collectionList.style.display = "block";
+        collectionArrow.textContent = "▼";
       }
-    );
-
-
+    });
+    /* =========================
+       安全に保存データを読み込む
+    ========================= */
+    function readOwnership(storageKey) {
+      try {
+        const saved = localStorage.getItem(storageKey);
+        if (!saved) return {};
+        const parsed = JSON.parse(saved);
+        return (
+          parsed &&
+          typeof parsed === "object" &&
+          !Array.isArray(parsed)
+        ) ? parsed : {};
+      } catch (error) {
+        console.warn(
+          `${storageKey} のデータを読み込めませんでした`,
+          error
+        );
+        return {};
+      }
+    }
+    /* =========================
+       登録枚数・カード代を集計
+    ========================= */
+    function updateCollectionSummary() {
+      let totalCards = 0;
+      /*
+        通常弾の保存キー：
+        aikatsu-encore-season-1
+        aikatsu-encore-season-2 など
+        プロモーションの保存キー：
+        aikatsu-encore-promotion
+      */
+      for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (!key) continue;
+        const isSeasonKey =
+          /^aikatsu-encore-season-.+$/.test(key);
+        const isPromotionKey =
+          key === "aikatsu-encore-promotion";
+        if (!isSeasonKey && !isPromotionKey) continue;
+        const ownership = readOwnership(key);
+        Object.values(ownership).forEach(value => {
+          const count = Number(value);
+          if (Number.isFinite(count) && count > 0) {
+            totalCards += Math.floor(count);
+          }
+        });
+      }
+      const totalCost = totalCards * 100;
+      document.getElementById(
+        "registeredCardCount"
+      ).textContent =
+        `${totalCards.toLocaleString("ja-JP")} 枚`;
+      document.getElementById(
+        "registeredCardCost"
+      ).textContent =
+        `¥${totalCost.toLocaleString("ja-JP")}`;
+      /*
+        1000枚で100%になる。
+        1000枚を超えても枚数・金額は増え続け、
+        バーは満タンのまま。
+      */
+      const progress = Math.min(
+        totalCards / 1000 * 100,
+        100
+      );
+      document.getElementById(
+        "registeredCardProgressFill"
+      ).style.width = `${progress}%`;
+      const progressBar = document.getElementById(
+        "registeredCardProgress"
+      );
+      progressBar.setAttribute(
+        "aria-valuenow",
+        String(Math.min(totalCards, 1000))
+      );
+      document.getElementById(
+        "registeredCardProgressText"
+      ).textContent =
+        `${totalCards.toLocaleString("ja-JP")} / 1,000 枚`;
+    }
     /* =========================
        プロモーションかどうか
     ========================= */
-
     function isPromotion(card) {
-
       return (
-        String(
-          card.collection || ""
-        ).toLowerCase() === "promotion"
+        String(card.collection || "").toLowerCase()
+        === "promotion"
       );
-
     }
-
-
     /* =========================
        カード情報を読み込む
     ========================= */
-
     function loadSeasonLinks() {
-
       fetch("cards.json")
         .then(response => {
-
           if (!response.ok) {
-
             throw new Error(
               "cards.jsonを読み込めませんでした"
             );
-
           }
-
           return response.json();
-
         })
         .then(data => {
-
           const cards =
             Array.isArray(data)
               ? data
               : data.cards || [];
-
-
           createSeasonLinks(cards);
-
           updatePromotionLink(cards);
-
         })
         .catch(error => {
-
           console.error(error);
-
           seasonLinks.innerHTML = `
             <p>
               カード情報を読み込めませんでした。
             </p>
           `;
-
         });
-
     }
-
-
     /* =========================
        通常弾だけを弾ごとに表示
     ========================= */
-
     function createSeasonLinks(cards) {
-
-      /*
-        プロモーションカードを除外
-        通常弾だけをここで扱う
-      */
-
       const normalCards =
-        cards.filter(
-          card => !isPromotion(card)
-        );
-
-
+        cards.filter(card => !isPromotion(card));
       const seasons = [
         ...new Set(
           normalCards.map(card =>
-            String(
-              card.season || "1"
-            )
+            String(card.season || "1")
           )
         )
-      ]
-      .sort(
-        (a, b) =>
-          Number(a) - Number(b)
+      ].sort(
+        (a, b) => Number(a) - Number(b)
       );
-
-
       seasonLinks.innerHTML = "";
-
-
       seasons.forEach(season => {
-
         const seasonCards =
           normalCards.filter(card =>
-            String(
-              card.season || "1"
-            ) === season
+            String(card.season || "1") === season
           );
-
-
-        const ownership =
-          JSON.parse(
-            localStorage.getItem(
-              `aikatsu-encore-season-${season}`
-            ) || "{}"
-          );
-
-
+        const ownership = readOwnership(
+          `aikatsu-encore-season-${season}`
+        );
         const owned =
           seasonCards.filter(card =>
-            Number(
-              ownership[card.id] || 0
-            ) >= 1
+            Number(ownership[card.id] || 0) >= 1
           ).length;
-
-
         const link =
           document.createElement("a");
-
-
-        link.href =
-          `cards.html?season=${season}`;
-
-
-        link.className =
-          "season-link";
-
-
+        link.href = `cards.html?season=${season}`;
+        link.className = "season-link";
         link.innerHTML = `
-
-          <span>
-            第${season}弾
-          </span>
-
-          <span>
-            ${owned} / ${seasonCards.length}　›
-          </span>
-
+          <span>第${season}弾</span>
+          <span>${owned} / ${seasonCards.length}　›</span>
         `;
-
-
-        seasonLinks.appendChild(
-          link
-        );
-
+        seasonLinks.appendChild(link);
       });
-
     }
-
-
     /* =========================
        プロモーションカードの所持数
     ========================= */
-
     function updatePromotionLink(cards) {
-
       const promotionCards =
-        cards.filter(
-          card => isPromotion(card)
-        );
-
-
+        cards.filter(card => isPromotion(card));
       const ownership =
-        JSON.parse(
-          localStorage.getItem(
-            "aikatsu-encore-promotion"
-          ) || "{}"
-        );
-
-
+        readOwnership("aikatsu-encore-promotion");
       const owned =
         promotionCards.filter(card =>
-          Number(
-            ownership[card.id] || 0
-          ) >= 1
+          Number(ownership[card.id] || 0) >= 1
         ).length;
-
-
       promotionCount.textContent =
         promotionCards.length > 0
           ? `${owned} / ${promotionCards.length}　›`
           : "›";
-
     }
-
-
     /* =========================
-       ページを開いたとき・
-       Safariで戻ってきたときに更新
+       ページ表示時に更新
     ========================= */
-
-    window.addEventListener(
-      "pageshow",
-      () => {
-
-        loadSeasonLinks();
-
+    function refreshHome() {
+      updateCollectionSummary();
+      loadSeasonLinks();
+    }
+    window.addEventListener("pageshow", refreshHome);
+    window.addEventListener("storage", event => {
+      if (
+        event.key === null ||
+        /^aikatsu-encore-season-.+$/.test(event.key) ||
+        event.key === "aikatsu-encore-promotion"
+      ) {
+        refreshHome();
       }
-    );
-
+    });
   </script>
-
 </body>
 </html>
