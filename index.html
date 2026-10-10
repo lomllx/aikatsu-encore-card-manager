@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -52,16 +53,24 @@
       text-shadow: 0 0 12px rgba(191, 154, 255, 0.32);
     }
 
+    /* プロフィール横並びレイアウト */
+    .profile-layout {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
     /* プロフィール画像 */
     .profile-image-frame {
       position: relative;
-      width: 100%;
-      max-width: 290px;
-      margin: 0 auto 17px;
-      padding: 5px;
+      flex: 0 0 105px;
+      width: 105px;
+      min-width: 0;
+      margin: 0;
+      padding: 4px;
       overflow: hidden;
       border: 1px solid rgba(207, 183, 255, 0.68);
-      border-radius: 15px;
+      border-radius: 13px;
       background: linear-gradient(
         135deg,
         rgba(231, 211, 255, 0.3),
@@ -76,14 +85,68 @@
     .profile-image {
       display: block;
       width: 100%;
-      height: auto;
-      max-height: 360px;
-      object-fit: contain;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
       margin: 0 auto;
-      border-radius: 10px;
+      border-radius: 9px;
     }
 
-    .profile-info,
+    /* 画像横のプロフィール情報 */
+    .profile-details {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .profile-info {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 8px;
+    }
+
+    .profile-info .collection-summary-item {
+      min-width: 0;
+      padding: 9px 10px;
+      text-align: left;
+    }
+
+    .profile-info .collection-summary-label {
+      margin-bottom: 4px;
+      font-size: 0.72rem;
+    }
+
+    .profile-info .collection-summary-value {
+      font-size: 1rem;
+    }
+
+    .profile-info .plate-value {
+      font-size: 0.9rem;
+    }
+
+    .profile-official-link {
+      margin: 10px 0 0;
+      text-align: left;
+    }
+
+    .profile-official-link a {
+      display: inline-block;
+      max-width: 100%;
+      padding: 7px 10px;
+      border: 1px solid rgba(190, 167, 238, 0.36);
+      border-radius: 999px;
+      background: rgba(163, 131, 217, 0.09);
+      color: #e3d4ff;
+      font-size: 0.75rem;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .profile-official-link a:hover {
+      background: rgba(163, 131, 217, 0.18);
+      border-color: rgba(214, 194, 255, 0.65);
+    }
+
+    /* コレクション進捗 */
     .collection-summary-stats {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -120,29 +183,6 @@
       text-shadow: 0 0 10px rgba(197, 166, 255, 0.18);
     }
 
-    .profile-official-link {
-      margin: 15px 0 0;
-      text-align: center;
-    }
-
-    .profile-official-link a {
-      display: inline-block;
-      padding: 9px 15px;
-      border: 1px solid rgba(190, 167, 238, 0.36);
-      border-radius: 999px;
-      background: rgba(163, 131, 217, 0.09);
-      color: #e3d4ff;
-      font-size: 0.83rem;
-      text-decoration: none;
-      transition: background 0.2s ease, border-color 0.2s ease;
-    }
-
-    .profile-official-link a:hover {
-      background: rgba(163, 131, 217, 0.18);
-      border-color: rgba(214, 194, 255, 0.65);
-    }
-
-    /* コレクション進捗 */
     .collection-summary-bar {
       height: 12px;
       margin-top: 16px;
@@ -181,6 +221,23 @@
         padding: 14px;
       }
 
+      .profile-layout {
+        gap: 10px;
+      }
+
+      .profile-image-frame {
+        flex-basis: 88px;
+        width: 88px;
+      }
+
+      .profile-info .collection-summary-item {
+        padding: 8px;
+      }
+
+      .profile-info .collection-summary-value {
+        font-size: 0.92rem;
+      }
+
       .collection-summary-value {
         font-size: 1.05rem;
       }
@@ -207,35 +264,39 @@
     <section class="profile-summary" aria-label="マイプロフィール">
       <h2 class="collection-summary-title">✦ My Profile ✦</h2>
 
-      <div class="profile-image-frame">
-        <img
-          src="profile.jpg"
-          alt="マイプロフィール画像"
-          class="profile-image"
-        >
-      </div>
-
-      <div class="profile-info">
-        <div class="collection-summary-item">
-          <span class="collection-summary-label">ニックネーム</span>
-          <strong class="collection-summary-value">すもも</strong>
+      <div class="profile-layout">
+        <div class="profile-image-frame">
+          <img
+            src="profile.jpg"
+            alt="マイプロフィール画像"
+            class="profile-image"
+          >
         </div>
 
-        <div class="collection-summary-item">
-          <span class="collection-summary-label">アイドルプレート</span>
-          <strong class="collection-summary-value" style="font-size: 1rem;">
-            未設定
-          </strong>
+        <div class="profile-details">
+          <div class="profile-info">
+            <div class="collection-summary-item">
+              <span class="collection-summary-label">ニックネーム</span>
+              <strong class="collection-summary-value">すもも</strong>
+            </div>
+
+            <div class="collection-summary-item">
+              <span class="collection-summary-label">アイドルプレート</span>
+              <strong class="collection-summary-value plate-value">
+                未設定
+              </strong>
+            </div>
+          </div>
+
+          <p class="profile-official-link">
+            <a
+              href="https://dcd.aikatsu.com/encore/mypage/profiles"
+              target="_blank"
+              rel="noopener noreferrer"
+            >♡ 公式マイページ ↗</a>
+          </p>
         </div>
       </div>
-
-      <p class="profile-official-link">
-        <a
-          href="https://dcd.aikatsu.com/encore/mypage/profiles"
-          target="_blank"
-          rel="noopener noreferrer"
-        >♡ 公式マイページを開く ↗</a>
-      </p>
     </section>
 
     <!-- ② 登録カード枚数 -->
@@ -323,20 +384,20 @@
     </section>
 
     <!-- Information -->
-<section class="menu-section">
-  <a
-    href="https://dcd.aikatsu.com/encore/"
-    class="menu-link"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <span>
-      <strong>♡ Information</strong>
-      <small>アイカツ情報</small>
-    </span>
-    <span>›</span>
-  </a>
-</section>
+    <section class="menu-section">
+      <a
+        href="https://dcd.aikatsu.com/encore/"
+        class="menu-link"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span>
+          <strong>♡ Information</strong>
+          <small>アイカツ情報</small>
+        </span>
+        <span>›</span>
+      </a>
+    </section>
 
   </main>
 
@@ -422,13 +483,8 @@
 
         const id = String(card.id);
         const storageKey = getStorageKey(card);
-
-        /*
-         * 弾ごと・プロモごとのIDを区別して集計する。
-         * 同じカードの重複所持は枚数に加算するが、
-         * 種類数には1回だけ加算する。
-         */
         const uniqueKey = `${storageKey}:${id}`;
+
         allIds.add(uniqueKey);
 
         if (!ownershipByKey[storageKey]) {
