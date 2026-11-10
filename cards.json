@@ -1465,5 +1465,70 @@
     "acquisition": "ちゃお2026年11月号ふろく（2026年9月発売）",
     "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/EP-038_N.webp",
     "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/EP-038_N_b.webp"
+  },
+  {
+    "id": "EP-019",
+    "name": "エンジェリーベアフリルトップス",
+    "type": "キュート",
+    "brand": "エンジェリーシュガー",
+    "coordinate": "エンジェリーベアコーデ",
+    "category": "トップス",
+    "rarity": "N",
+    "collection": "promotion",
+    "acquisition": "公式プロモーションカード（入手方法の詳細未確認）",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/EP-019_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/EP-019_N_b.webp"
+  },
+  {
+    "id": "EP-020",
+    "name": "エンジェリーベアパステルスカート",
+    "type": "キュート",
+    "brand": "エンジェリーシュガー",
+    "coordinate": "エンジェリーベアコーデ",
+    "category": "ボトムス",
+    "rarity": "N",
+    "collection": "promotion",
+    "acquisition": "公式プロモーションカード（入手方法の詳細未確認）",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/EP-020_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/EP-020_N_b.webp"
+  },
+  {
+    "id": "EP-021",
+    "name": "エンジェリーベアスニーカー",
+    "type": "キュート",
+    "brand": "エンジェリーシュガー",
+    "coordinate": "エンジェリーベアコーデ",
+    "category": "シューズ",
+    "rarity": "N",
+    "collection": "promotion",
+    "acquisition": "公式プロモーションカード（入手方法の詳細未確認）",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/EP-021_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/EP-021_N_b.webp"
+  },
+  {
+    "id": "EP-022",
+    "name": "エンジェリーベアリボン",
+    "type": "キュート",
+    "brand": "エンジェリーシュガー",
+    "coordinate": "エンジェリーベアコーデ",
+    "category": "アクセサリー",
+    "rarity": "N",
+    "collection": "promotion",
+    "acquisition": "公式プロモーションカード（入手方法の詳細未確認）",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/EP-022_N.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/EP-022_N_b.webp"
+  },
+  {
+    "id": "EP-042",
+    "name": "たまごっちパラダイスカチューシャ",
+    "type": "ポップ",
+    "brand": "ノーブランド",
+    "coordinate": "たまごっちパラダイスコーデ",
+    "category": "アクセサリー",
+    "rarity": "PR",
+    "collection": "promotion",
+    "acquisition": "Tamagotchi Paradise（2026年11月21日～）／アイカツフォン アンコール（2026年11月28日～）",
+    "image": "https://dcd.aikatsu.com/encore/images/cardlist/card/EP-042_PR.webp",
+    "backImage": "https://dcd.aikatsu.com/encore/images/cardlist/card/EP-042_PR_b.webp"
   }
 ]
