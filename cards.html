@@ -397,7 +397,6 @@
       if (nextCount <= 0) delete ownership[card.id];
       else ownership[card.id] = nextCount;
 
-      // 通常の＋／−操作は購入枚数にも反映する
       const purchaseNext = Math.max(
         0,
         (Number(purchaseCounts[card.id]) || 0) + nextCount - oldCount
@@ -419,25 +418,20 @@
       renderCards();
     }
 
-    /* 所持枚数・合計獲得枚数・使用金額・タブごとの枚数を更新 */
     function updateStatus() {
       const total = cards.length;
       const owned = cards.filter(card => getCount(card) >= 1).length;
 
-      // 現在の所持枚数
       const totalCopies = cards.reduce(
         (sum, card) => sum + getCount(card), 0
       );
 
-      // 売却済みを含む合計獲得枚数
-      // 売却時にpurchaseCountsを減らさないため、累計枚数が保持される
       const totalPurchased = cards.reduce(
         (sum, card) =>
           sum + Math.max(0, Number(purchaseCounts[card.id]) || 0),
         0
       );
 
-      // 使用金額
       const totalCost = totalPurchased * 100;
 
       document.getElementById("seasonOwnedValue").innerHTML =
@@ -445,10 +439,8 @@
         `合計獲得枚数：${totalPurchased.toLocaleString("ja-JP")}枚<br>` +
         `使用金額：${totalCost.toLocaleString("ja-JP")}円`;
 
-      // 未所持はカードの種類数で集計
       const missingTypes = cards.filter(card => getCount(card) < 1).length;
 
-      // 交換可能数は各カードの2枚目以降を合計
       const tradeCopies = cards.reduce(
         (sum, card) => sum + Math.max(0, getCount(card) - 1), 0
       );
@@ -520,6 +512,7 @@
       });
     }
 
+    /* カード一覧と売却履歴を表示 */
     function renderCards() {
       cardGrid.innerHTML = "";
 
@@ -533,7 +526,13 @@
       }
 
       cardGrid.style.display = "";
-      salePanel.hidden = true;
+
+      // 「すべて」のときだけ、カード一覧の下に売却履歴を表示
+      salePanel.hidden = currentStatus !== "all";
+
+      if (currentStatus === "all") {
+        renderSales();
+      }
 
       const filtered = getFilteredCards();
 
@@ -767,7 +766,6 @@
         }
 
         if (editing) {
-          // 編集は履歴の内容だけを更新する
           record.cardId = cardId;
           record.date = date;
           record.price = price;
@@ -793,7 +791,6 @@
           if (nextCount <= 0) delete ownership[cardId];
           else ownership[cardId] = nextCount;
 
-          // 売却では購入枚数を減らさない
           try {
             saveOwnership();
           } catch (error) {
@@ -844,7 +841,6 @@
         return;
       }
 
-      // 合計獲得枚数は変更しない
       updateStatus();
       renderCards();
     }
