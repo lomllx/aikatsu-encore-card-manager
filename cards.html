@@ -10,6 +10,7 @@
     .season-owned-value {
       margin: 8px 0 4px;
       font-weight: 700;
+      line-height: 1.9;
     }
     .season-tab-summary {
       margin: 4px 0 8px;
@@ -91,22 +92,36 @@
     <h1>✦ AIKATSU ENCORE ✦</h1>
     <p>♡ CARD COLLECTION ♡</p>
   </header>
+
   <main class="cards-page">
     <a href="index.html" class="back-link">‹ Collection</a>
+
     <section class="season-header">
       <h2 id="seasonTitle">第1弾</h2>
       <p id="collectionStatus">0 / 85</p>
-      <p class="season-owned-value" id="seasonOwnedValue">所持枚数：0枚　使用金額：0円</p>
+
+      <p class="season-owned-value" id="seasonOwnedValue">
+        所持枚数：0枚<br>
+        合計獲得枚数：0枚<br>
+        使用金額：0円
+      </p>
+
       <p class="season-tab-summary" id="seasonTabSummary" aria-live="polite"></p>
-      <p class="missing-list-link"><a id="missingListLink" href="missing-cards.html?season=1">未所持カードを一覧で見る ♡</a></p>
+
+      <p class="missing-list-link">
+        <a id="missingListLink" href="missing-cards.html?season=1">未所持カードを一覧で見る ♡</a>
+      </p>
+
       <div class="collection-progress" aria-label="コレクション進捗">
         <div class="collection-progress-bar" id="collectionProgressBar"></div>
       </div>
       <p class="collection-progress-text" id="collectionProgressText">0%</p>
     </section>
+
     <div class="search-box">
       <input type="search" id="searchInput" placeholder="カード番号・カード名を検索">
     </div>
+
     <div class="status-filters">
       <button class="status-button active" data-status="all">すべて</button>
       <button class="status-button" data-status="owned">所持</button>
@@ -114,6 +129,7 @@
       <button class="status-button" data-status="trade">交換</button>
       <button class="status-button" data-status="sold">売却済み</button>
     </div>
+
     <div class="filters">
       <div class="filter-group">
         <label for="typeFilter">タイプ</label>
@@ -144,28 +160,37 @@
         <select id="rarityFilter"><option value="">すべて</option></select>
       </div>
     </div>
+
     <div id="loading" class="loading">カードを読み込み中…</div>
     <div id="cardGrid" class="card-grid"></div>
+
     <section id="salePanel" class="sale-panel" hidden>
-      <div class="sale-actions"><button type="button" id="addSaleButton" class="sale-add-button">＋ 売却済カードを追加</button></div>
+      <div class="sale-actions">
+        <button type="button" id="addSaleButton" class="sale-add-button">＋ 売却済カードを追加</button>
+      </div>
       <p id="saleSummary" class="sale-summary"></p>
       <div id="saleList"></div>
     </section>
   </main>
+
   <button type="button" id="backToTop" class="back-to-top"
     aria-label="ページの一番上へ" title="一番上へ">↑</button>
+
   <footer><p>♡ AIKATSU ENCORE ♡</p></footer>
+
   <script>
     const params = new URLSearchParams(location.search);
     const season = params.get("season") || "1";
     const storageKey = `aikatsu-encore-season-${season}`;
     const purchaseStorageKey = `aikatsu-encore-purchases-${season}`;
     const salesStorageKey = `aikatsu-encore-sales-${season}`;
+
     let cards = [];
     let ownership = {};
     let purchaseCounts = {};
     let sales = [];
     let currentStatus = "all";
+
     const seasonTitle = document.getElementById("seasonTitle");
     const collectionStatus = document.getElementById("collectionStatus");
     const collectionProgressBar = document.getElementById("collectionProgressBar");
@@ -194,12 +219,13 @@
 
     try {
       const savedPurchases = localStorage.getItem(purchaseStorageKey);
-      // 初回のみ、現在の所持枚数を購入枚数として引き継ぐ
       purchaseCounts = savedPurchases ? JSON.parse(savedPurchases) : { ...ownership };
       if (!purchaseCounts || typeof purchaseCounts !== "object" || Array.isArray(purchaseCounts)) {
         purchaseCounts = { ...ownership };
       }
-      if (!savedPurchases) localStorage.setItem(purchaseStorageKey, JSON.stringify(purchaseCounts));
+      if (!savedPurchases) {
+        localStorage.setItem(purchaseStorageKey, JSON.stringify(purchaseCounts));
+      }
     } catch (error) {
       console.error("購入枚数データを読み込めませんでした", error);
       purchaseCounts = { ...ownership };
@@ -217,9 +243,11 @@
     function saveOwnership() {
       localStorage.setItem(storageKey, JSON.stringify(ownership));
     }
+
     function savePurchaseCounts() {
       localStorage.setItem(purchaseStorageKey, JSON.stringify(purchaseCounts));
     }
+
     function saveSales() {
       localStorage.setItem(salesStorageKey, JSON.stringify(sales));
     }
@@ -236,9 +264,12 @@
             String(card.collection).toLowerCase() !== "promotion") &&
           String(card.season || "") === String(season)
         );
+
         seasonTitle.textContent = `第${season}弾`;
+
         document.getElementById("missingListLink").href =
           `missing-cards.html?season=${encodeURIComponent(season)}`;
+
         setupFilters();
         updateStatus();
         renderCards();
@@ -249,7 +280,6 @@
         loading.textContent = "カードを読み込めませんでした。cards.jsonの場所を確認してね。";
       });
 
-    /* レアリティをカード番号から判定 */
     function getRarity(card) {
       const normalize = value => {
         const raw = String(value || "").trim().toUpperCase();
@@ -272,7 +302,6 @@
         return normalize(card.rarity);
       }
 
-      // パラレル識別子を外してから、カード番号末尾のレアリティを読む
       const id = String(card.id || "").trim().replace(/_(?:PARALLEL|PARA|P)$/i, "");
       const match = id.match(/_(SPR|PR|CP|ER|R|N)$/i);
       return match ? match[1].toUpperCase() : "";
@@ -290,6 +319,7 @@
 
       const rarityOrder = ["PR", "SPR", "CP", "R", "N"];
       const rarities = [...new Set(cards.map(getRarity).filter(Boolean))];
+
       rarities.sort((a, b) => {
         const ai = rarityOrder.indexOf(a);
         const bi = rarityOrder.indexOf(b);
@@ -310,7 +340,9 @@
         "トップス", "ボトムス", "シューズ", "アクセサリー",
         "トップス＆ボトムス", "フルコーデ"
       ];
+
       const normalizeCategory = value => value.replace(/＆/g, "&");
+
       const categories = [...new Set(
         cards.map(card => String(card.category || "").trim()).filter(Boolean)
       )];
@@ -361,11 +393,16 @@
     function setCount(card, count) {
       const oldCount = getCount(card);
       const nextCount = Math.max(0, Number(count) || 0);
+
       if (nextCount <= 0) delete ownership[card.id];
       else ownership[card.id] = nextCount;
 
-      // 通常の＋／−操作は購入枚数にも反映。売却登録・削除では直接変更しない。
-      const purchaseNext = Math.max(0, (Number(purchaseCounts[card.id]) || 0) + nextCount - oldCount);
+      // 通常の＋／−操作は購入枚数にも反映する
+      const purchaseNext = Math.max(
+        0,
+        (Number(purchaseCounts[card.id]) || 0) + nextCount - oldCount
+      );
+
       if (purchaseNext <= 0) delete purchaseCounts[card.id];
       else purchaseCounts[card.id] = purchaseNext;
 
@@ -377,30 +414,41 @@
         alert("所持数を保存できなかったよ。ブラウザの保存設定を確認してね。");
         return;
       }
+
       updateStatus();
       renderCards();
     }
 
-    /* 所持枚数・使用金額・タブごとの枚数を更新 */
+    /* 所持枚数・合計獲得枚数・使用金額・タブごとの枚数を更新 */
     function updateStatus() {
       const total = cards.length;
       const owned = cards.filter(card => getCount(card) >= 1).length;
 
-      // 同じカードを複数枚持っている場合も、すべて合計する
+      // 現在の所持枚数
       const totalCopies = cards.reduce(
         (sum, card) => sum + getCount(card), 0
       );
 
+      // 売却済みを含む合計獲得枚数
+      // 売却時にpurchaseCountsを減らさないため、累計枚数が保持される
       const totalPurchased = cards.reduce(
-        (sum, card) => sum + Math.max(0, Number(purchaseCounts[card.id]) || 0), 0
+        (sum, card) =>
+          sum + Math.max(0, Number(purchaseCounts[card.id]) || 0),
+        0
       );
-      document.getElementById("seasonOwnedValue").textContent =
-        `所持枚数：${totalCopies.toLocaleString("ja-JP")}枚　使用金額：${(totalPurchased * 100).toLocaleString("ja-JP")}円`;
+
+      // 使用金額
+      const totalCost = totalPurchased * 100;
+
+      document.getElementById("seasonOwnedValue").innerHTML =
+        `所持枚数：${totalCopies.toLocaleString("ja-JP")}枚<br>` +
+        `合計獲得枚数：${totalPurchased.toLocaleString("ja-JP")}枚<br>` +
+        `使用金額：${totalCost.toLocaleString("ja-JP")}円`;
 
       // 未所持はカードの種類数で集計
       const missingTypes = cards.filter(card => getCount(card) < 1).length;
 
-      // 交換可能数は、各カードの2枚目以降を合計
+      // 交換可能数は各カードの2枚目以降を合計
       const tradeCopies = cards.reduce(
         (sum, card) => sum + Math.max(0, getCount(card) - 1), 0
       );
@@ -414,8 +462,11 @@
         tabSummary.textContent = `交換可能 ${tradeCopies}枚`;
         tabSummary.style.display = "block";
       } else if (currentStatus === "sold") {
-        const soldProfit = sales.reduce((sum, item) => sum + (Number(item.profit) || 0), 0);
-        tabSummary.textContent = `売却 ${sales.length}件　利益合計 ${soldProfit.toLocaleString("ja-JP")}円`;
+        const soldProfit = sales.reduce(
+          (sum, item) => sum + (Number(item.profit) || 0), 0
+        );
+        tabSummary.textContent =
+          `売却 ${sales.length}件　利益合計 ${soldProfit.toLocaleString("ja-JP")}円`;
         tabSummary.style.display = "block";
       } else {
         tabSummary.textContent = "";
@@ -423,7 +474,9 @@
       }
 
       collectionStatus.textContent = `${owned} / ${total}`;
+
       const percentage = total > 0 ? Math.round((owned / total) * 100) : 0;
+
       collectionProgressText.textContent = `${percentage}%`;
       collectionProgressBar.style.width = `${percentage}%`;
     }
@@ -440,6 +493,7 @@
       return cards.filter(card => {
         const searchableText = [card.id, card.name, card.unit]
           .filter(Boolean).join(" ").toLowerCase();
+
         const count = getCount(card);
 
         if (keyword && !searchableText.includes(keyword)) return false;
@@ -449,10 +503,12 @@
 
         const cardCategory = String(card.category || "").trim()
           .replace("トップス&ボトムス", "トップス＆ボトムス");
+
         if (category && cardCategory !== category) return false;
         if (rarity && getRarity(card) !== rarity) return false;
 
         const parallelCard = isParallelCard(card);
+
         if (parallel === "parallel" && !parallelCard) return false;
         if (parallel === "normal" && parallelCard) return false;
 
@@ -466,15 +522,19 @@
 
     function renderCards() {
       cardGrid.innerHTML = "";
+
       const salePanel = document.getElementById("salePanel");
+
       if (currentStatus === "sold") {
         cardGrid.style.display = "none";
         salePanel.hidden = false;
         renderSales();
         return;
       }
+
       cardGrid.style.display = "";
       salePanel.hidden = true;
+
       const filtered = getFilteredCards();
 
       if (filtered.length === 0) {
@@ -485,6 +545,7 @@
       filtered.forEach(card => {
         const count = getCount(card);
         const rarity = getRarity(card);
+
         const cardElement = document.createElement("article");
         cardElement.className = "card";
 
@@ -519,6 +580,7 @@
         });
 
         cardElement.addEventListener("click", () => openCardModal(card));
+
         cardGrid.appendChild(cardElement);
       });
     }
@@ -530,16 +592,27 @@
     function renderSales() {
       const list = document.getElementById("saleList");
       const summary = document.getElementById("saleSummary");
-      const totalPrice = sales.reduce((sum, item) => sum + (Number(item.price) || 0), 0);
-      const totalProfit = sales.reduce((sum, item) => sum + (Number(item.profit) || 0), 0);
-      summary.textContent = `売却 ${sales.length}件　売却価格合計 ${totalPrice.toLocaleString("ja-JP")}円　実際の利益合計 ${totalProfit.toLocaleString("ja-JP")}円`;
+
+      const totalPrice = sales.reduce(
+        (sum, item) => sum + (Number(item.price) || 0), 0
+      );
+
+      const totalProfit = sales.reduce(
+        (sum, item) => sum + (Number(item.profit) || 0), 0
+      );
+
+      summary.textContent =
+        `売却 ${sales.length}件　売却価格合計 ${totalPrice.toLocaleString("ja-JP")}円　実際の利益合計 ${totalProfit.toLocaleString("ja-JP")}円`;
+
       list.innerHTML = "";
+
       if (sales.length === 0) {
         list.innerHTML = '<p class="sale-empty">まだ売却履歴がありません。</p>';
         return;
       }
 
       const grouped = new Map();
+
       sales.forEach(item => {
         const key = String(item.cardId);
         if (!grouped.has(key)) grouped.set(key, []);
@@ -549,9 +622,14 @@
       [...grouped.entries()].forEach(([cardId, records]) => {
         const card = getCardById(cardId);
         if (!card) return;
-        records.sort((a, b) => String(b.date || "").localeCompare(String(a.date || "")));
+
+        records.sort((a, b) =>
+          String(b.date || "").localeCompare(String(a.date || ""))
+        );
+
         const article = document.createElement("article");
         article.className = "sale-card";
+
         const recordMarkup = records.map(item => `
           <div class="sale-record">
             <div><strong>${escapeHTML(item.date || "日付未設定")}</strong></div>
@@ -561,95 +639,177 @@
               <button type="button" class="sale-edit-button" data-edit="${escapeHTML(item.id)}">編集</button>
               <button type="button" class="sale-delete-button" data-delete="${escapeHTML(item.id)}">削除</button>
             </div>
-          </div>`).join("");
+          </div>
+        `).join("");
+
         article.innerHTML = `
-          <div class="sale-card-image"><img src="${escapeHTML(card.image || "")}" alt="${escapeHTML(card.name || card.id || "")}" onerror="this.style.display='none'"></div>
+          <div class="sale-card-image">
+            <img src="${escapeHTML(card.image || "")}"
+              alt="${escapeHTML(card.name || card.id || "")}"
+              onerror="this.style.display='none'">
+          </div>
           <div class="sale-card-content">
             <div class="sale-card-name">${escapeHTML(card.id || "")}　${escapeHTML(card.name || "")}</div>
             <div class="sale-note">売却履歴：${records.length}件</div>
             <details><summary>履歴を表示</summary>${recordMarkup}</details>
-          </div>`;
+          </div>
+        `;
+
         article.querySelectorAll("[data-edit]").forEach(button => {
-          button.addEventListener("click", () => openSaleModal(button.dataset.edit));
+          button.addEventListener("click", () =>
+            openSaleModal(button.dataset.edit)
+          );
         });
+
         article.querySelectorAll("[data-delete]").forEach(button => {
-          button.addEventListener("click", () => deleteSale(button.dataset.delete));
+          button.addEventListener("click", () =>
+            deleteSale(button.dataset.delete)
+          );
         });
+
         list.appendChild(article);
       });
     }
 
     function openSaleModal(editId = null) {
       const editing = editId !== null;
-      const record = editing ? sales.find(item => String(item.id) === String(editId)) : null;
+      const record = editing
+        ? sales.find(item => String(item.id) === String(editId))
+        : null;
+
       if (editing && !record) return;
 
       const modal = document.createElement("div");
       modal.className = "sale-modal-overlay";
+
       const box = document.createElement("div");
       box.className = "sale-modal-box";
+
       const options = cards
         .filter(card => editing ? true : getCount(card) > 0)
-        .map(card => `<option value="${escapeHTML(card.id)}">${escapeHTML(card.id)}　${escapeHTML(card.name || "")}</option>`).join("");
+        .map(card =>
+          `<option value="${escapeHTML(card.id)}">${escapeHTML(card.id)}　${escapeHTML(card.name || "")}</option>`
+        ).join("");
+
       const today = new Date();
-      const todayText = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,"0")}-${String(today.getDate()).padStart(2,"0")}`;
+
+      const todayText =
+        `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,"0")}-${String(today.getDate()).padStart(2,"0")}`;
+
       box.innerHTML = `
         <h3>${editing ? "売却履歴を編集" : "売却履歴を追加"}</h3>
         <form id="saleForm">
-          <div class="sale-form-row"><label for="saleCard">カード</label><select id="saleCard" required>${options}</select></div>
-          <div class="sale-form-row"><label for="saleDate">売却日</label><input id="saleDate" type="date" value="${escapeHTML(record?.date || todayText)}" required></div>
-          <div class="sale-form-row"><label for="salePrice">売却価格（円）</label><input id="salePrice" type="number" min="0" step="1" value="${editing ? Number(record.price)||0 : ""}" required></div>
-          <div class="sale-form-row"><label for="saleProfit">実際の利益（円）</label><input id="saleProfit" type="number" min="0" step="1" value="${editing ? Number(record.profit)||0 : ""}" required></div>
-          <p class="sale-note">実際の利益は、手数料・送料などを差し引いて手元に残った金額を入力してね。</p>
-          <div class="sale-modal-buttons"><button type="button" class="sale-cancel-button">キャンセル</button><button type="submit" class="sale-save-button">保存</button></div>
-        </form>`;
+          <div class="sale-form-row">
+            <label for="saleCard">カード</label>
+            <select id="saleCard" required>${options}</select>
+          </div>
+
+          <div class="sale-form-row">
+            <label for="saleDate">売却日</label>
+            <input id="saleDate" type="date"
+              value="${escapeHTML(record?.date || todayText)}" required>
+          </div>
+
+          <div class="sale-form-row">
+            <label for="salePrice">売却価格（円）</label>
+            <input id="salePrice" type="number" min="0" step="1"
+              value="${editing ? Number(record.price)||0 : ""}" required>
+          </div>
+
+          <div class="sale-form-row">
+            <label for="saleProfit">実際の利益（円）</label>
+            <input id="saleProfit" type="number" min="0" step="1"
+              value="${editing ? Number(record.profit)||0 : ""}" required>
+          </div>
+
+          <p class="sale-note">
+            実際の利益は、手数料・送料などを差し引いて手元に残った金額を入力してね。
+          </p>
+
+          <div class="sale-modal-buttons">
+            <button type="button" class="sale-cancel-button">キャンセル</button>
+            <button type="submit" class="sale-save-button">保存</button>
+          </div>
+        </form>
+      `;
+
       modal.appendChild(box);
       document.body.appendChild(modal);
+
       const form = box.querySelector("#saleForm");
       const cardSelect = box.querySelector("#saleCard");
+
       if (editing) cardSelect.value = String(record.cardId);
 
-      function close() { modal.remove(); }
+      function close() {
+        modal.remove();
+      }
+
       box.querySelector(".sale-cancel-button").addEventListener("click", close);
-      modal.addEventListener("click", event => { if (event.target === modal) close(); });
+
+      modal.addEventListener("click", event => {
+        if (event.target === modal) close();
+      });
+
       form.addEventListener("submit", event => {
         event.preventDefault();
+
         const cardId = cardSelect.value;
         const date = box.querySelector("#saleDate").value;
         const price = Number(box.querySelector("#salePrice").value);
         const profit = Number(box.querySelector("#saleProfit").value);
-        if (!cardId || !date || !Number.isFinite(price) || price < 0 || !Number.isFinite(profit) || profit < 0) {
+
+        if (!cardId || !date ||
+            !Number.isFinite(price) || price < 0 ||
+            !Number.isFinite(profit) || profit < 0) {
           alert("入力内容を確認してね。");
           return;
         }
 
         if (editing) {
-          // 編集は履歴の内容だけを更新し、所持枚数には触れない
+          // 編集は履歴の内容だけを更新する
           record.cardId = cardId;
           record.date = date;
           record.price = price;
           record.profit = profit;
         } else {
           const selectedCard = getCardById(cardId);
+
           if (!selectedCard || getCount(selectedCard) < 1) {
             alert("売却するカードの所持枚数がありません。");
             return;
           }
-          sales.push({ id: `sale-${Date.now()}-${Math.random().toString(36).slice(2,8)}`, cardId, date, price, profit });
+
+          sales.push({
+            id: `sale-${Date.now()}-${Math.random().toString(36).slice(2,8)}`,
+            cardId,
+            date,
+            price,
+            profit
+          });
+
           const nextCount = getCount(selectedCard) - 1;
+
           if (nextCount <= 0) delete ownership[cardId];
           else ownership[cardId] = nextCount;
-          // 売却では購入枚数・累計使用金額を減らさない
-          try { saveOwnership(); } catch (error) {
+
+          // 売却では購入枚数を減らさない
+          try {
+            saveOwnership();
+          } catch (error) {
             alert("所持枚数を保存できなかったよ。");
             return;
           }
         }
-        try { saveSales(); } catch (error) {
+
+        try {
+          saveSales();
+        } catch (error) {
           console.error(error);
           alert("売却履歴を保存できなかったよ。ブラウザの保存設定を確認してね。");
           return;
         }
+
         close();
         updateStatus();
         renderCards();
@@ -657,13 +817,25 @@
     }
 
     function deleteSale(id) {
-      const index = sales.findIndex(item => String(item.id) === String(id));
+      const index = sales.findIndex(
+        item => String(item.id) === String(id)
+      );
+
       if (index < 0) return;
-      if (!confirm("この売却履歴を削除する？ 所持枚数が1枚戻るよ。")) return;
+
+      if (!confirm("この売却履歴を削除する？ 所持枚数が1枚戻るよ。")) {
+        return;
+      }
+
       const removed = sales[index];
       sales.splice(index, 1);
+
       const card = getCardById(removed.cardId);
-      if (card) ownership[card.id] = getCount(card) + 1;
+
+      if (card) {
+        ownership[card.id] = getCount(card) + 1;
+      }
+
       try {
         saveSales();
         saveOwnership();
@@ -671,14 +843,19 @@
         alert("保存できなかったよ。もう一度読み込み直して確認してね。");
         return;
       }
+
+      // 合計獲得枚数は変更しない
       updateStatus();
       renderCards();
     }
 
     function escapeHTML(value) {
       return String(value).replace(/[&<>"']/g, character => ({
-        "&": "&amp;", "<": "&lt;", ">": "&gt;",
-        '"': "&quot;", "'": "&#39;"
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
       })[character]);
     }
 
@@ -710,6 +887,7 @@
       const backButton = content.querySelector('[data-side="back"]');
       const leftArrow = content.querySelector(".card-side-arrow.left");
       const rightArrow = content.querySelector(".card-side-arrow.right");
+
       let currentSide = "front";
 
       function showSide(side) {
@@ -741,7 +919,9 @@
       });
 
       function toggleSide() {
-        if (card.backImage) showSide(currentSide === "back" ? "front" : "back");
+        if (card.backImage) {
+          showSide(currentSide === "back" ? "front" : "back");
+        }
       }
 
       leftArrow.addEventListener("click", event => {
@@ -755,22 +935,29 @@
       });
 
       const cardArea = content.querySelector(".modal-card-area");
+
       cardArea.addEventListener("click", event => {
         if (event.target.classList.contains("card-side-arrow")) return;
+
         const rect = cardArea.getBoundingClientRect();
         const tapX = event.clientX - rect.left;
+
         if (tapX < rect.width / 2) showSide("front");
         else if (card.backImage) showSide("back");
       });
 
       let touchStartX = 0;
+
       cardArea.addEventListener("touchstart", event => {
         touchStartX = event.changedTouches[0].screenX;
       }, { passive: true });
 
       cardArea.addEventListener("touchend", event => {
-        const distance = event.changedTouches[0].screenX - touchStartX;
+        const distance =
+          event.changedTouches[0].screenX - touchStartX;
+
         if (Math.abs(distance) < 50 || !card.backImage) return;
+
         showSide(distance < 0 ? "back" : "front");
       }, { passive: true });
 
@@ -779,7 +966,8 @@
         document.removeEventListener("keydown", closeOnEscape);
       }
 
-      content.querySelector(".card-modal-close").addEventListener("click", closeModal);
+      content.querySelector(".card-modal-close")
+        .addEventListener("click", closeModal);
 
       modal.addEventListener("click", event => {
         if (event.target === modal) closeModal();
@@ -795,9 +983,15 @@
     searchInput.addEventListener("input", renderCards);
 
     [
-      typeFilter, brandFilter, coordinateFilter,
-      categoryFilter, parallelFilter, rarityFilter
-    ].forEach(select => select.addEventListener("change", renderCards));
+      typeFilter,
+      brandFilter,
+      coordinateFilter,
+      categoryFilter,
+      parallelFilter,
+      rarityFilter
+    ].forEach(select =>
+      select.addEventListener("change", renderCards)
+    );
 
     document.querySelectorAll(".status-button").forEach(button => {
       button.addEventListener("click", () => {
@@ -807,18 +1001,23 @@
 
         button.classList.add("active");
         currentStatus = button.dataset.status;
+
         updateStatus();
         renderCards();
       });
     });
 
-    document.getElementById("addSaleButton").addEventListener("click", () => openSaleModal());
+    document.getElementById("addSaleButton")
+      .addEventListener("click", () => openSaleModal());
 
     const searchArea = document.querySelector(".search-box");
 
     if ("IntersectionObserver" in window) {
       const searchObserver = new IntersectionObserver(entries => {
-        backToTop.classList.toggle("visible", !entries[0].isIntersecting);
+        backToTop.classList.toggle(
+          "visible",
+          !entries[0].isIntersecting
+        );
       }, { threshold: 0 });
 
       searchObserver.observe(searchArea);
